@@ -1,0 +1,11 @@
+{
+  "path": "C:\\dev\\Windows_fileexplore\\verification\\source",
+  "locked_at_utc": "2026-10-21T14:42:25.2604009Z",
+  "probe_read_denied": true,
+  "directory_listing_denied": true,
+  "source_downloaded": false,
+  "source_read": false,
+  "backup_path": "C:\\dev\\Windows_fileexplore\\docs\\analysis\\source-gate-acl-backup.json",
+  "post_lock_sddl": "O:S-1-5-21-1106707609-1311601361-392556325-1001G:S-1-5-21-1106707609-1311601361-392556325-513D:AI(D;OICI;CC;;;S-1-5-21-1106707609-1311601361-392556325-1001)(A;OICIID;FA;;;BA)(A;OICIID;FA;;;SY)(A;OICIID;0x1200a9;;;BU)(A;ID;0x1301bf;;;AU)(A;OICIIOID;SDGXGWGR;;;AU)",
+  "unlock_condition": "Phase 6 only after implementation and reports frozen with a verified SHA256 manifest"
+}

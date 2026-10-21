@@ -1,0 +1,4 @@
+* text=auto eol=lf
+*.json -text
+*.png -text
+docs/requirements.md -text

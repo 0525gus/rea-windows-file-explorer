@@ -1,0 +1,11 @@
+/artifacts/
+/test-data/
+/build*/
+/dist/
+/tools/
+/verification/source/
+/experiments/**/build*/
+*.user
+*.pdb
+*.ilk
+

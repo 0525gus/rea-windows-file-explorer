@@ -1,0 +1,883 @@
+{
+  "source": "phase2-inventory-bundle.json",
+  "sha256": "57abafb1e0ae4b60c0f6177e3bd12a8630479ef1d26c13a5c5164e6119e8e2fc",
+  "records": [
+    {
+      "evidence_id": "ev_00f7b5c1c1047b786d6223366e6c431e3cd45a79c9e712fddea05acb7593234c",
+      "operation": "procedure_pseudo_code",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {
+        "procedure": "0x140187350"
+      },
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 10
+    },
+    {
+      "evidence_id": "ev_0551af17abc1dd9d36c43496a11b0b0a0ea3764d5ee54f306e823eb779465c65",
+      "operation": "procedure_pseudo_code",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {
+        "procedure": "0x1400d2590"
+      },
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 10
+    },
+    {
+      "evidence_id": "ev_06f64e95abe9b0a2e1e7800f10c185a19968a86b99cd487f23cded461f0aabfd",
+      "operation": "binary_overview",
+      "provider": "rea-workflow",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {},
+      "confidence": "derived",
+      "authority": "shipped-artifact",
+      "limitations_count": 12
+    },
+    {
+      "evidence_id": "ev_0afb9884a651186b73acb2bd3a38660209b748b156e864a36caf07579c45d7e1",
+      "operation": "procedure_callers",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {
+        "procedure": "0x1400bce20"
+      },
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 8
+    },
+    {
+      "evidence_id": "ev_0c007d61edfd1c639376bedc0bbf7518323f027ae6e8582ac9c93c6da05ff466",
+      "operation": "procedure_callers",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {
+        "procedure": "EXTERNAL:0x11e"
+      },
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 8
+    },
+    {
+      "evidence_id": "ev_0d3355252cfe7526dbd74756a6e76f276ca5a87b588464a4f5764d16581b80d2",
+      "operation": "procedure_pseudo_code",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {
+        "procedure": "0x140186730"
+      },
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 10
+    },
+    {
+      "evidence_id": "ev_0dfa284fee6bdbe814300c762850d81edbddd3fc347ec15d4bca396c6e7c41b0",
+      "operation": "procedure_callers",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {
+        "procedure": "EXTERNAL:0xd5"
+      },
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 8
+    },
+    {
+      "evidence_id": "ev_0f8f55bb4e0a6a4642c3b1702ea0b408d40e95047ab851a1d1a8d0e36cd56e5c",
+      "operation": "procedure_pseudo_code",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {
+        "procedure": "0x14017cc30"
+      },
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 10
+    },
+    {
+      "evidence_id": "ev_12a671e8ea96afae648f1018cbf30d707d87f9c9fc340650a5c16a4b300f3156",
+      "operation": "procedure_pseudo_code",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {
+        "procedure": "0x1400f69a0"
+      },
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 12
+    },
+    {
+      "evidence_id": "ev_14b9bd8c1b3381de49bbb5c0ea5283dfd358e4a11ff3e3d0ef7b37d9bb37ccc5",
+      "operation": "xrefs",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {
+        "address": "0x1402ebb40"
+      },
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 10
+    },
+    {
+      "evidence_id": "ev_1833fa2545dcaf1a16f796fe9e11fad0146e3cb7b969facef4aaa36ac1720255",
+      "operation": "analyze_function",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {
+        "procedure": "0x140171ba0"
+      },
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 13
+    },
+    {
+      "evidence_id": "ev_186ca57c3ba8682e09cbc461075806eaaafffbcdc081f8997e7dead3522771df",
+      "operation": "analyze_function",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {
+        "procedure": "0x1400d23f0"
+      },
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 13
+    },
+    {
+      "evidence_id": "ev_1c1de14f1975484a69e66424814c9bb7d8893e2f7f3d06286946632232ce7931",
+      "operation": "procedure_pseudo_code",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {
+        "procedure": "0x140185140"
+      },
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 26
+    },
+    {
+      "evidence_id": "ev_21a2de0620d2705ead8b4abec5731577cef68eae65d76ce4acafbee7711684c0",
+      "operation": "procedure_pseudo_code",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {
+        "procedure": "0x140194fd0"
+      },
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 10
+    },
+    {
+      "evidence_id": "ev_2251f131d8da55a7a67f60bc1157152f7522fb3bfb6cecae9d319d93a866fc9b",
+      "operation": "xrefs",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {
+        "address": "0x1401637d0"
+      },
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 10
+    },
+    {
+      "evidence_id": "ev_22b5828c78436e5424098497293992adb7118493471c2609412cb20616497d69",
+      "operation": "procedure_callers",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {
+        "procedure": "EXTERNAL:0xf3"
+      },
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 8
+    },
+    {
+      "evidence_id": "ev_25df43d36c41f00bcea5f2b476bbe53e3f45e185039d7c0f65789c849c471da6",
+      "operation": "analyze_function",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {
+        "procedure": "0x14009cea0"
+      },
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 13
+    },
+    {
+      "evidence_id": "ev_284a9d8659356df0716d71c251dc79d2ae4e96f149abb6203cc73c9d4a94fa92",
+      "operation": "procedure_pseudo_code",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {
+        "procedure": "0x1400d2000"
+      },
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 11
+    },
+    {
+      "evidence_id": "ev_29f8178882cbca7392ba8a54062330a5988d97b5d82c2e186db38a24864eef76",
+      "operation": "list_procedures",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {},
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 9
+    },
+    {
+      "evidence_id": "ev_31296ff49e6986f663c9eec54c8e921bfe7b11f3b67dd3ac52f33412313e5a2f",
+      "operation": "procedure_pseudo_code",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {
+        "procedure": "0x140178e80"
+      },
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 11
+    },
+    {
+      "evidence_id": "ev_369e8cb0f86b0a7f29c9cff2149e791629aa707c191c9780fbd8754d0783694b",
+      "operation": "procedure_pseudo_code",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {
+        "procedure": "0x1400bd5c0"
+      },
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 10
+    },
+    {
+      "evidence_id": "ev_37033ee2017621418f12890bb629601cfcc8fa391268e48485698cbb8c59fd5b",
+      "operation": "procedure_pseudo_code",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {
+        "procedure": "0x140179920"
+      },
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 12
+    },
+    {
+      "evidence_id": "ev_3761e8d7bef1490779b6d5c7401fb82d44487399a9e08c862660ce8a022113f9",
+      "operation": "read_binary_inventory_summary",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {},
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 11
+    },
+    {
+      "evidence_id": "ev_3bec0bf727e1be9dff676ab67c7deadadaea5286fa1a892e3419cbced275601e",
+      "operation": "procedure_pseudo_code",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {
+        "procedure": "0x1401607f0"
+      },
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 10
+    },
+    {
+      "evidence_id": "ev_3df3ea886e17b152b5f4d377fdce7341830778f07a8a61843e5acec57b4958da",
+      "operation": "procedure_pseudo_code",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {
+        "procedure": "0x140197ea0"
+      },
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 13
+    },
+    {
+      "evidence_id": "ev_44f502515c8685c94a77584c61cbe69d3ecde42f0f2dda46c57219a7f4f7d153",
+      "operation": "procedure_callers",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {
+        "procedure": "EXTERNAL:0x9"
+      },
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 8
+    },
+    {
+      "evidence_id": "ev_4753c6dbd00c20e97af18b690e7374ac1b3e8e2762bfdaa85cc37574e2cb6619",
+      "operation": "procedure_pseudo_code",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {
+        "procedure": "0x1400d17b0"
+      },
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 11
+    },
+    {
+      "evidence_id": "ev_4c770e0ef421600e4990c877f3b1d379ef2c340a46be06fe60594956a558b748",
+      "operation": "procedure_pseudo_code",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {
+        "procedure": "0x140172c10"
+      },
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 11
+    },
+    {
+      "evidence_id": "ev_50a032c249ea49a41798ef2288eb5848eb7e76938dcee14d671397a234328bdf",
+      "operation": "procedure_pseudo_code",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {
+        "procedure": "0x140187090"
+      },
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 10
+    },
+    {
+      "evidence_id": "ev_50ab84a04ebad94e6d070a5cb6e766d51c217f8fedd274611e0977c2966e691f",
+      "operation": "procedure_pseudo_code",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {
+        "procedure": "0x140163000"
+      },
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 10
+    },
+    {
+      "evidence_id": "ev_512fac631346b5b0b2002630f4e7866dcc9d09e85d1b1e1028f1ce6e3da7d5e9",
+      "operation": "procedure_pseudo_code",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {
+        "procedure": "0x1401646b0"
+      },
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 13
+    },
+    {
+      "evidence_id": "ev_52f1a056a7aa68984db9128bb7135b93c4471fee26c179d08b6a19fdb20c469b",
+      "operation": "xrefs",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {
+        "address": "0x1402ec068"
+      },
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 10
+    },
+    {
+      "evidence_id": "ev_562b49a7e332b51fdb1a0476205ef732729d19f2d35dca9957accc6bd69dbe3a",
+      "operation": "procedure_pseudo_code",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {
+        "procedure": "0x14001d9f0"
+      },
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 10
+    },
+    {
+      "evidence_id": "ev_5789646dfa42e9b7e7c55f126f896bf0c0bcb2c68fd829af391ad03a75fb9587",
+      "operation": "procedure_pseudo_code",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {
+        "procedure": "0x140164150"
+      },
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 11
+    },
+    {
+      "evidence_id": "ev_58fdf7ad692690eb3741cd61de09ead6678814e7f5dedcc92e05242843333119",
+      "operation": "procedure_pseudo_code",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {
+        "procedure": "0x1401630f0"
+      },
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 10
+    },
+    {
+      "evidence_id": "ev_5f4b741ad2d49219be87ae4178436805dc515ae8db896794396f01b453a7f6de",
+      "operation": "search_procedures",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {
+        "case_sensitive": false,
+        "mode": "regex",
+        "pattern": "(SHParseDisplayName|FindFirstFile|FindNextFile|ShellExecute|SHGetFileInfo|SHFileOperation|ReadDirectoryChanges|CompareString|CreateFile|SetFileInformation|Browse|Sort|Rename|^entry$)"
+      },
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 9
+    },
+    {
+      "evidence_id": "ev_5fc10eb96f7eda2603ca88973c7aba18349a2aebdef5611ae106a193e7d28a0a",
+      "operation": "procedure_callers",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {
+        "procedure": "0x1401637d0"
+      },
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 8
+    },
+    {
+      "evidence_id": "ev_6884eda4b24742b2232eb7b958dbf5baa41a979bca4d8695c6141190d055a83c",
+      "operation": "procedure_pseudo_code",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {
+        "procedure": "0x1400d2490"
+      },
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 10
+    },
+    {
+      "evidence_id": "ev_6c4d408656f6d1acdb8da1fdfcb2b7080343fab72a8c4072aced423f6631af70",
+      "operation": "search_procedures",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {
+        "case_sensitive": false,
+        "mode": "regex",
+        "pattern": "(StrCmpLogicalW|CompareStringOrdinal|CompareFileTime|RegisterDragDrop|SHCreateFileOperation)"
+      },
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 9
+    },
+    {
+      "evidence_id": "ev_6d53c388db0f2309c950c6f8ae03df1cea77e16a554f01279e9f72a598427998",
+      "operation": "procedure_pseudo_code",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {
+        "procedure": "0x140184520"
+      },
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 14
+    },
+    {
+      "evidence_id": "ev_741405188a7b1dce156ce8aa4e3a3ef03b0b454f38b88c3f9222481fe4cac6be",
+      "operation": "read_bytes",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {
+        "address": "0x1402eb390",
+        "length": 128
+      },
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 9
+    },
+    {
+      "evidence_id": "ev_74e890e39fdb2ae483ecbf4179b56a7a4c3734971acd37c982e941a607af9b3f",
+      "operation": "procedure_pseudo_code",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {
+        "procedure": "0x140195160"
+      },
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 10
+    },
+    {
+      "evidence_id": "ev_7bc52a97a76a9a7002abf0c4ad3c90814537187a57c85173b13345dcc444b779",
+      "operation": "procedure_callers",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {
+        "procedure": "EXTERNAL:0x1b"
+      },
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 8
+    },
+    {
+      "evidence_id": "ev_7cc81d72f01880447b88ab2c3cc29bfd437d42edcc38e7b7103014739e194160",
+      "operation": "resolve_containing_procedure",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {
+        "address": "0x140171c85"
+      },
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 9
+    },
+    {
+      "evidence_id": "ev_7d46906a28479efbfbd6665f03bda7428c95f243c220c51cee931d846e4be9a4",
+      "operation": "procedure_pseudo_code",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {
+        "procedure": "0x1400c0710"
+      },
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 12
+    },
+    {
+      "evidence_id": "ev_965f1272b2d839d57335846e823c5cd80c9f8e04b0f620147071e95c75b86b0d",
+      "operation": "procedure_callers",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {
+        "procedure": "0x140164210"
+      },
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 8
+    },
+    {
+      "evidence_id": "ev_970afdb1e01530bd6f56243d9b23602e2e49bcb97da429a299e5735aea76d983",
+      "operation": "analyze_function",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {
+        "procedure": "0x140163e80"
+      },
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 13
+    },
+    {
+      "evidence_id": "ev_973ef9b5b6459cac03f85af8ad721e361ac1b973977135ea70b348e80f98df73",
+      "operation": "inspect_pe_resources",
+      "provider": "rea-pe-resources",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {
+        "max_entries": 16384,
+        "max_file_bytes": 67108864,
+        "path": "C:\\dev\\Windows_fileexplore\\artifacts\\original\\Explorer++.exe"
+      },
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 3
+    },
+    {
+      "evidence_id": "ev_9d6c8203a6f21e8874ef16abf2322c683057a24632a7f2bd42a51d0f0fc15fa9",
+      "operation": "read_bytes",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {
+        "address": "0x1402ec068",
+        "length": 56
+      },
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 9
+    },
+    {
+      "evidence_id": "ev_9dd2b29a976449277348ba3ac5c1d42604d3f26445a30c880302863eba9a818c",
+      "operation": "list_strings",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {},
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 10
+    },
+    {
+      "evidence_id": "ev_a23bb5a808bbb02ffc6a6ceee4bb31cda851cc322493d06b81cf8a8044b8dc32",
+      "operation": "procedure_pseudo_code",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {
+        "procedure": "0x1401698f0"
+      },
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 11
+    },
+    {
+      "evidence_id": "ev_a43cbe5f29d79b39fc53ecaa97c260dc612745e5e3e490c7864f04fc4e4c8101",
+      "operation": "procedure_pseudo_code",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {
+        "procedure": "0x140194d40"
+      },
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 10
+    },
+    {
+      "evidence_id": "ev_a6af60e3bd61d7cca2e8d3255e23dbddbe9bcb8f3147c26c54e7dca7ae1a66e9",
+      "operation": "procedure_pseudo_code",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {
+        "procedure": "0x1401a7630"
+      },
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 11
+    },
+    {
+      "evidence_id": "ev_ad5bbad86afa46a4b572689342731c57a99e7187d7debd76b73c4777ab343088",
+      "operation": "procedure_pseudo_code",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {
+        "procedure": "0x140173350"
+      },
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 11
+    },
+    {
+      "evidence_id": "ev_ae2fe1c352f9575a7c6dd213a4fc95c525cb3eed73dcc29cdef028da1493c53a",
+      "operation": "read_bytes",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {
+        "address": "0x1402e19e0",
+        "length": 168
+      },
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 9
+    },
+    {
+      "evidence_id": "ev_b21b454cf7fa5866c506e916f870414d33febed477f8bb3e81746ed8dfe33f8b",
+      "operation": "procedure_pseudo_code",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {
+        "procedure": "0x14017dca0"
+      },
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 11
+    },
+    {
+      "evidence_id": "ev_b3f79775094bb2a9da78114a28b41c82d2ebc2eda03e09a146abe90da1ff2ad7",
+      "operation": "procedure_callers",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {
+        "procedure": "EXTERNAL:0x51"
+      },
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 8
+    },
+    {
+      "evidence_id": "ev_b4e0b8a1e8e4f42957490f2d0cd7a2580e22290d486c92dbbbe7384cc23eaada",
+      "operation": "procedure_pseudo_code",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {
+        "procedure": "0x1400d26a0"
+      },
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 11
+    },
+    {
+      "evidence_id": "ev_b5c90d2767ee7b130372791fff1943bfd5c31d22346fc9bd8629eab4851984b5",
+      "operation": "procedure_pseudo_code",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {
+        "procedure": "0x140196040"
+      },
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 10
+    },
+    {
+      "evidence_id": "ev_b726bd7bb142d72aa48618b1baea63ffcd879870f274719097b27aa7dc1def66",
+      "operation": "procedure_callers",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {
+        "procedure": "EXTERNAL:0x1e"
+      },
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 8
+    },
+    {
+      "evidence_id": "ev_b957a5780fddbffbadceb44e7c71fb93ecc8bafa17e4d97b9e57660520e24f6e",
+      "operation": "procedure_callers",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {
+        "procedure": "EXTERNAL:0x2"
+      },
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 8
+    },
+    {
+      "evidence_id": "ev_bb6929603db06b25862da3691b4a8da7e0d1e1307147c1a80ba65713dc974f88",
+      "operation": "procedure_pseudo_code",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {
+        "procedure": "0x1401631d0"
+      },
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 11
+    },
+    {
+      "evidence_id": "ev_bcf098d43636ed7566f5a1628c11403e9db45a26d563a614a0d81fea21369d00",
+      "operation": "list_names",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {},
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 9
+    },
+    {
+      "evidence_id": "ev_c575f01e0e8efd6219b1f6ecd377ea9f403a63d2f9acfde0d41b3e66545e711f",
+      "operation": "procedure_pseudo_code",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {
+        "procedure": "0x1401a9b10"
+      },
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 11
+    },
+    {
+      "evidence_id": "ev_c65a9ef46e64126efcd4fd66683bad189aab555ee43b763ffbecaf61838499f4",
+      "operation": "procedure_pseudo_code",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {
+        "procedure": "0x140179270"
+      },
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 10
+    },
+    {
+      "evidence_id": "ev_d7026ef387782a21957e238eaa5bd192e30cb54e8d8b0567f51193bb18af7432",
+      "operation": "search_strings",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {
+        "case_sensitive": false,
+        "mode": "regex",
+        "pattern": "(ShellBrowser|ShellTree|TabContainer|SearchDialog|FolderSettings|EnumObjects|NavigationController|BrowseFolder)"
+      },
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 10
+    },
+    {
+      "evidence_id": "ev_d78530ba1c86efa71b59082a69058bbf2ed65812dc94582a0122b17ef8b4ae4d",
+      "operation": "analyze_function",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {
+        "procedure": "0x140164210"
+      },
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 13
+    },
+    {
+      "evidence_id": "ev_dadd9ec09b25d18061ecc9fc9c7e4bffa7bca2f75796bcce7c01427f05335f0d",
+      "operation": "procedure_pseudo_code",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {
+        "procedure": "0x140165c90"
+      },
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 11
+    },
+    {
+      "evidence_id": "ev_db4a1bcf15da634cb92bf7b176fe59912ef93abe6dd6399870b961fd51995856",
+      "operation": "procedure_pseudo_code",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {
+        "procedure": "0x1400d04c0"
+      },
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 10
+    },
+    {
+      "evidence_id": "ev_dda9e3cd0223a56b86fb96b1bd0cda24603bfc4ebb30e7c377fb9d37211eb59a",
+      "operation": "procedure_pseudo_code",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {
+        "procedure": "0x1401637d0"
+      },
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 10
+    },
+    {
+      "evidence_id": "ev_e62a9ea2c70c21a4c3c64bcd43f12bb17fdaab6ebf7c34d5469753bf8751d56a",
+      "operation": "procedure_pseudo_code",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {
+        "procedure": "0x1400d0280"
+      },
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 10
+    },
+    {
+      "evidence_id": "ev_e7df16c3017378f68437b87604dd8193c530a8a95bb2f0b8a4129eaa21958d79",
+      "operation": "procedure_pseudo_code",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {
+        "procedure": "0x140172860"
+      },
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 11
+    },
+    {
+      "evidence_id": "ev_fc2e69129dd48e48cb15ae6d6d6d7a724a1e2e67dda942c84297943ce2bde8cf",
+      "operation": "procedure_pseudo_code",
+      "provider": "ghidra",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "parameters": {
+        "procedure": "0x1400bce20"
+      },
+      "confidence": "observed",
+      "authority": "shipped-artifact",
+      "limitations_count": 10
+    }
+  ]
+}

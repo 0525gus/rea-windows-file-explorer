@@ -1,0 +1,542 @@
+{
+  "schema_version": 1,
+  "audited_at": "2026-10-21T23:08:47+09:00",
+  "timezone": "Asia/Seoul",
+  "scope": {
+    "kind": "read-only developer environment inventory",
+    "requirements": "C:\\dev\\Windows_fileexplore\\docs\\requirements.md",
+    "requirements_sha256": "76b659ec0594607e02b1818683ccc826a7af2c8dff6583888852d351e3890c88",
+    "source_code_accessed": false,
+    "explorerplusplus_source_accessed": false,
+    "rea_calls_performed": false,
+    "installations_performed": false,
+    "configuration_changes_performed": false,
+    "files_owned": [
+      "docs/evaluation/environment-audit.json",
+      "docs/evaluation/environment-audit.md"
+    ]
+  },
+  "method": {
+    "evidence_type": "observed shell command results; no program build or GUI validation",
+    "search_boundary": "Current PATH; selected toolchain variables; standard Qt roots; named Visual Studio roots; named vcpkg installed roots; selected Windows SDK paths; CMake/Qt/Windows SDK and filtered uninstall registry entries; Ubuntu WSL2 tool/package queries. This is not an exhaustive drive-wide absence proof.",
+    "runtime_effect": "Ubuntu was stopped in the first WSL list. wsl -d Ubuntu --exec sh ... started it for inspection; subsequent list reported Running. No WSL install/update/shutdown or distro configuration was performed.",
+    "limitations": [
+      "No C++20 compile/link smoke test was run.",
+      "No Qt Windows kit found inside bounded search; a custom unsearched prefix remains possible.",
+      "Qt Linux package/version and pkg-config availability do not prove that this project builds or its GUI launches.",
+      "WSLg environment and directory presence do not establish a working rendered GUI.",
+      "REA MCP/JDK/Ghidra are outside this subtask and are verified by the coordinating investigator.",
+      "Only selected toolchain environment variables were inspected; no ambient environment dump was saved.",
+      "Only official XML/directory/HEAD/checksum metadata and framework/toolchain docs were fetched for the proposal. No Qt binary archive, Qt installer or original Explorer++ source was downloaded."
+    ]
+  },
+  "windows": {
+    "os": {
+      "caption": "Microsoft Windows 11 Home",
+      "architecture": "x64",
+      "build": "26200",
+      "version": "10.0.26200",
+      "wsl_reported_version": "10.0.26200.9711"
+    },
+    "physical_memory_bytes": 34281861120,
+    "visual_studio": {
+      "display_name": "Visual Studio Build Tools 2026",
+      "product_version": "18.9.2",
+      "installation_version": "18.9.12120.119",
+      "path": "C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools",
+      "vswhere_path": "C:\\Program Files (x86)\\Microsoft Visual Studio\\Installer\\vswhere.exe",
+      "is_complete": true,
+      "is_launchable": true,
+      "reboot_required": false,
+      "additional_discovered_tree": "C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders"
+    },
+    "msvc": {
+      "status": "installed_not_on_current_PATH",
+      "toolset_directory_version": "14.51.36231",
+      "compiler_version": "19.51.36256",
+      "target": "x64",
+      "path": "C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\VC\\Tools\\MSVC\\14.51.36231\\bin\\Hostx64\\x64\\cl.exe",
+      "vcvars64": "C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\VC\\Auxiliary\\Build\\vcvars64.bat",
+      "version_probe_exit_code": 2,
+      "version_probe_note": "cl /Bv printed the compiler/pass versions and D8003 because no source was supplied. It was a version probe, not a successful build."
+    },
+    "cmake": {
+      "status": "installed_not_on_current_PATH",
+      "version": "4.3.1-msvc1",
+      "path": "C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+      "ctest_version": "4.3.1-msvc1",
+      "cpack_version": "4.3.1-msvc1"
+    },
+    "ninja": {
+      "status": "installed_not_on_current_PATH",
+      "version": "1.13.2",
+      "path": "C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\Ninja\\ninja.exe"
+    },
+    "qt6": {
+      "status": "not_found_in_audited_locations",
+      "version": null,
+      "development_prefix": null,
+      "gui_test_status": "not_run",
+      "checked_absent_roots": [
+        "C:\\Qt",
+        "C:\\dev\\Qt",
+        "C:\\Program Files\\Qt",
+        "C:\\Program Files (x86)\\Qt",
+        "C:\\Users\\hhh\\Qt",
+        "C:\\Users\\hhh\\AppData\\Local\\Programs\\Qt"
+      ],
+      "no_current_path_commands": [
+        "qmake",
+        "qmake6",
+        "qtpaths",
+        "qtpaths6",
+        "windeployqt"
+      ],
+      "registry_note": "HKCU Software/QtProject exists and has QMake and OrganizationDefaults children, but inspected keys exposed no installation prefix. This is not SDK evidence."
+    },
+    "windows_sdk": {
+      "directory_version": "10.0.26100.0",
+      "installed_package_version": "10.1.26100.8249",
+      "path": "C:\\Program Files (x86)\\Windows Kits\\10",
+      "rc_mt_file_version": "10.0.26100.8249",
+      "headers_and_libraries_directories_present": true,
+      "rc": "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\10.0.26100.0\\x64\\rc.exe",
+      "mt": "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\10.0.26100.0\\x64\\mt.exe"
+    },
+    "tools": {
+      "git": {
+        "version": "2.55.0.windows.3",
+        "path": "C:\\Program Files\\Git\\cmd\\git.exe"
+      },
+      "python": {
+        "version": "3.14.7",
+        "path": "C:\\Python314\\python.exe"
+      },
+      "clang_format": {
+        "version": "22.1.3",
+        "path": "C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\Llvm\\x64\\bin\\clang-format.exe"
+      },
+      "clang_tidy": {
+        "version": "22.1.3",
+        "path": "C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\Llvm\\x64\\bin\\clang-tidy.exe"
+      },
+      "xperf": {
+        "version": "10.0.26100.8249",
+        "path": "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\xperf.exe",
+        "executed": false
+      },
+      "wpr": {
+        "version": "10.0.26100.8249",
+        "path": "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\wpr.exe",
+        "executed": false
+      },
+      "cdb": {
+        "status": "not_found_at_selected_sdk_path",
+        "path": "C:\\Program Files (x86)\\Windows Kits\\10\\Debuggers\\x64\\cdb.exe"
+      },
+      "python_packages_not_installed_in_selected_python": [
+        "psutil",
+        "pywinauto",
+        "pyautogui",
+        "Pillow",
+        "PySide6",
+        "PyQt6",
+        "aqtinstall"
+      ]
+    },
+    "selected_toolchain_variables_all_unset": [
+      "QTDIR",
+      "QT_HOME",
+      "QT_HOST_PATH",
+      "Qt6_DIR",
+      "CMAKE_PREFIX_PATH",
+      "VCPKG_ROOT",
+      "VSINSTALLDIR",
+      "VCToolsInstallDir",
+      "WindowsSdkDir"
+    ],
+    "runtime_registration": {
+      "vc_x64_runtime": "14.51.36247",
+      "verification": "Registry metadata only; actual application dependency resolution and runtime smoke test not performed."
+    }
+  },
+  "linux": {
+    "status": "existing_WSL2_distribution_usable_for_build_attempt",
+    "wsl_version": "3.0.3.0",
+    "wslg_version": "1.0.79",
+    "distro": "Ubuntu",
+    "distro_pretty_name": "Ubuntu 24.04.1 LTS",
+    "architecture": "x86_64",
+    "kernel": "6.18.54.1-microsoft-standard-WSL2",
+    "tools": {
+      "cmake": {
+        "version": "3.28.3",
+        "package_version": "3.28.3-1build7",
+        "path": "/usr/bin/cmake"
+      },
+      "ninja": {
+        "version": "1.11.1",
+        "package_version": "1.11.1-2",
+        "path": "/usr/bin/ninja"
+      },
+      "gxx": {
+        "version": "13.3.0",
+        "path": "/usr/bin/g++"
+      },
+      "qt6": {
+        "version": "6.4.2",
+        "base_dev_package_version": "6.4.2+dfsg-21.1build5",
+        "prefix": "/usr",
+        "cmake_prefix": "/usr/lib/x86_64-linux-gnu/cmake/Qt6",
+        "cmake_prefix_evidence": "Observed Qt6Config.cmake, Qt6WidgetsConfig.cmake, Qt6TestConfig.cmake and Qt6ConcurrentConfig.cmake present in this prefix via read-only test -f.",
+        "qmake": "/usr/bin/qmake6",
+        "qtpaths": "/usr/bin/qtpaths6",
+        "pkg_config_confirmed_modules": [
+          "Qt6Core",
+          "Qt6Gui",
+          "Qt6Widgets",
+          "Qt6Test",
+          "Qt6Concurrent"
+        ],
+        "base_dev_installed": true,
+        "base_dev_tools_installed": true,
+        "qml_development_package_status": "not returned by selected dpkg-query; not independently tested"
+      },
+      "git": "/usr/bin/git",
+      "python3": "/usr/bin/python3",
+      "pkg_config": "/usr/bin/pkg-config"
+    },
+    "tools_not_on_path": [
+      "clang++",
+      "clang-format",
+      "clang-tidy",
+      "Xvfb"
+    ],
+    "display": {
+      "DISPLAY": "set",
+      "WAYLAND_DISPLAY": "set",
+      "wslg_directory": "present",
+      "actual_GUI_execution": "not_run"
+    },
+    "actual_project_build": "not_run",
+    "actual_project_tests": "not_run"
+  },
+  "minimal_install_proposal": {
+    "status": "proposal_only_requires_prior_user_approval_under_requirements_section_14_6",
+    "version": "Qt 6.8.3",
+    "kit": "Windows x64 msvc2022_64",
+    "package_version": "6.8.3-0-202503201308",
+    "prefix": "C:\\dev\\Windows_fileexplore\\tools\\qt",
+    "sdk_prefix": "C:\\dev\\Windows_fileexplore\\tools\\qt\\6.8.3\\msvc2022_64",
+    "download_cache": "C:\\dev\\Windows_fileexplore\\tools\\qt\\downloads",
+    "proposed_paths_currently_exist": false,
+    "free_bytes_on_C_at_check": 79257694208,
+    "archives": [
+      {
+        "module": "qtbase",
+        "url": "https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/qt6_683/qt6_683/qt.qt6.683.win64_msvc2022_64/6.8.3-0-202503201308qtbase-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z",
+        "compressed_bytes": 39484220,
+        "sha1": "ab0bd2551618f7128ef30c6d74fe45b6a76e2296"
+      },
+      {
+        "module": "qttools",
+        "url": "https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/qt6_683/qt6_683/qt.qt6.683.win64_msvc2022_64/6.8.3-0-202503201308qttools-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z",
+        "compressed_bytes": 25405796,
+        "sha1": "25956e4f72a3b054235a2c6a00c88ba7e7927971"
+      }
+    ],
+    "total_download_bytes": 64890016,
+    "total_download_mib": 61.883941650390625,
+    "intended_components": [
+      "Qt6 Core",
+      "Qt6 Gui",
+      "Qt6 Widgets",
+      "Qt6 Test",
+      "Qt6 Concurrent",
+      "CMake package configurations",
+      "moc/uic/rcc and related base build tools",
+      "qttools deployment tools including windeployqt, subject to archive inventory verification"
+    ],
+    "archive_content_status": "Expected module ownership from Qt distribution layout; no archive payload fetched/listed. Must verify exact files and dependencies before promotion and must not claim successful SDK setup before configure/build/test/runtime.",
+    "installer_dependency_distinction": "The full Qt online-installer package declares Qt Creator/docs/examples dependencies. Proposed selective archive extraction is deliberately not the full installer dependency closure and must be described as a minimal SDK subset.",
+    "extractor": {
+      "path": "C:\\Windows\\System32\\tar.exe",
+      "version": "bsdtar 3.8.9 / libarchive 3.8.9",
+      "lzma": "5.8.3",
+      "support": "Upstream documents 7z reading; actual extraction of selected archives remains untested.",
+      "additional_extractor_install_planned": false
+    },
+    "compiler_compatibility": "Qt 6.8's tested Windows compiler is MSVC2022. Microsoft documents MSVC2022/2026 ABI compatibility with newer linker/runtime conditions. Building Qt6.8.3 prebuilt libraries with installed MSVC19.51 is an inference to validate, not a Qt-tested-toolchain claim.",
+    "planned_actions_after_approval": [
+      "Download exactly the two official archive URLs to the workspace-local downloads directory; verify bytes and official SHA1 sidecars, and record computed SHA256.",
+      "List each archive with existing Windows tar; reject absolute paths or escaping members and confirm only expected SDK content. Verify expected Qt6 component CMake files, DLL/import-library/header/tool identities.",
+      "Extract to a new staging directory below tools\\qt. Refuse overwrite of any pre-existing SDK prefix; preserve that directory and prepare a reviewed backup/replacement plan if state changes before execution.",
+      "Inspect relocatability using explicit qmake/qtpaths queries; apply only narrowly needed prefix configuration inside the new SDK if required, recording changes. Promote the validated new SDK under the requested prefix.",
+      "Set Qt/CMake/Ninja/MSVC locations only in dedicated child build environments. Do not modify user or machine PATH or registry.",
+      "Run the same C++20/Qt6 Widgets/Test/Concurrent configure/build/test/runtime smoke checks for both A and B workspaces with the same SDK and compiler. Record hashes/versions, all failures, and GUI/deployment limitations."
+    ],
+    "exclusions": [
+      "Qt Creator",
+      "documentation/examples/source packages",
+      "QML/Quick/qtdeclarative",
+      "WebEngine",
+      "MinGW/Android/iOS kits",
+      "replacement MSVC/CMake/Ninja",
+      "unrelated software installation",
+      "system-wide environment changes"
+    ],
+    "resource_bounds": {
+      "download_bytes": 64890016,
+      "subset_expanded_bytes": null,
+      "full_package_expanded_metadata_upper_bound_bytes": 2054629621,
+      "note": "Upper bound is derived from aggregate metadata and excludes staging copies, filesystem overhead and future build outputs. It is not a measured subset size."
+    },
+    "linux_install_needed_for_initial_Widgets_build_attempt": false,
+    "baseline_parity": "A and B must receive identical OS/toolchain/Qt versions and flags, fixtures and runtime inputs. Their difference is REA information access; this toolchain proposal must not introduce an A/B environment difference.",
+    "changes_applied": []
+  },
+  "probe_failures": [
+    {
+      "id": "initial-inventory-parser-error",
+      "outcome": "PowerShell rejected the pipeline after foreach at parse time; no inventory commands executed in that failed invocation.",
+      "corrected_by": "Initial inventory was rerun with an explicit inventory array before ConvertTo-Json."
+    },
+    {
+      "id": "linux-readonly-inventory",
+      "outcome": "The first shell script used double quotes around dpkg-query's ${...} format, so sh reported Bad substitution after identifying tool paths. Replaced by single-quoted dpkg format in linux-tool-versions."
+    },
+    {
+      "id": "windows-tool-versions",
+      "outcome": "PowerShell splatted a scalar string as individual characters in the dynamic argument list, so version probes failed. MSVC accidentally reached its linker with B/v operands and failed LNK1181 before producing an executable. Subsequent explicit Test-Path checks found no B.exe/B.obj/B.ilk/B.pdb. Replaced by direct Python subprocess argument arrays."
+    },
+    {
+      "id": "toolchain-relevant-final",
+      "outcome": "The first SDK path list concatenated into one malformed combined string. No SDK absence conclusion was taken from that result; repeated with literal paths in sdk-tools-corrected."
+    }
+  ],
+  "raw_command_records": [
+    {
+      "id": "windows-named-install-inventory",
+      "command": "$roots = @('C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools','C:\\Program Files\\Microsoft Visual Studio\\18','C:\\tools','C:\\dev\\tools','C:\\vcpkg\\installed','C:\\dev\\vcpkg\\installed','C:\\Users\\hhh\\Qt','C:\\Users\\hhh\\AppData\\Local\\Programs\\Qt','C:\\Users\\hhh\\AppData\\Local\\Programs\\CMake'); foreach ($r in $roots) { if (Test-Path -LiteralPath $r) { Write-Output $r; rg --files -uuu $r -g cl.exe -g cmake.exe -g ninja.exe -g qmake.exe -g qtpaths.exe -g Qt6Config.cmake -g Qt6CoreConfigVersion.cmake -g windeployqt.exe -g clang-format.exe -g clang-tidy.exe -g ctest.exe -g cpack.exe -g vcvars64.bat -g VsDevCmd.bat -g dumpbin.exe -g rc.exe -g mt.exe } else { Write-Output ('ABSENT: ' + $r) } }; Get-ChildItem -LiteralPath 'C:\\Program Files (x86)\\Windows Kits\\10\\Include' -Directory | Select-Object -ExpandProperty Name; Get-ChildItem -LiteralPath 'C:\\Program Files (x86)\\Windows Kits\\10\\Lib' -Directory | Select-Object -ExpandProperty Name; Get-ChildItem -LiteralPath 'HKCU:\\Software\\QtProject' | Select-Object -ExpandProperty Name",
+      "result": {
+        "chunk_id": "f76c8b",
+        "wall_time_seconds": 0.7658855,
+        "exit_code": 0,
+        "original_token_count": 1038,
+        "output": "C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\r\nC:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\Common7\\Tools\\VsDevCmd.bat\nC:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\VC\\Auxiliary\\Build\\vcvars64.bat\nC:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\VC\\Tools\\MSVC\\14.51.36231\\bin\\Hostx86\\x86\\dumpbin.exe\nC:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\VC\\Tools\\MSVC\\14.51.36231\\bin\\Hostx86\\x86\\cl.exe\nC:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\VC\\Tools\\MSVC\\14.51.36231\\bin\\Hostx86\\x64\\dumpbin.exe\nC:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\VC\\Tools\\MSVC\\14.51.36231\\bin\\Hostx86\\x64\\cl.exe\nC:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\VC\\Tools\\MSVC\\14.51.36231\\bin\\Hostx64\\x86\\dumpbin.exe\nC:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\VC\\Tools\\MSVC\\14.51.36231\\bin\\Hostx64\\x86\\cl.exe\nC:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\VC\\Tools\\MSVC\\14.51.36231\\bin\\Hostx64\\x64\\cl.exe\nC:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\VC\\Tools\\MSVC\\14.51.36231\\bin\\Hostx64\\x64\\dumpbin.exe\nC:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\Ninja\\ninja.exe\nC:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\ctest.exe\nC:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cpack.exe\nC:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe\nC:\\Program Files\\Microsoft Visual Studio\\18\r\nC:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\Common7\\Tools\\VsDevCmd.bat\nC:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Auxiliary\\Build\\vcvars64.bat\nC:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.51.36231\\bin\\Hostx86\\x86\\dumpbin.exe\nC:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.51.36231\\bin\\Hostx86\\x86\\cl.exe\nC:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.51.36231\\bin\\Hostx86\\x64\\dumpbin.exe\nC:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.51.36231\\bin\\Hostx86\\x64\\cl.exe\nC:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.51.36231\\bin\\Hostx64\\x86\\dumpbin.exe\nC:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.51.36231\\bin\\Hostx64\\x86\\cl.exe\nC:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.51.36231\\bin\\Hostx64\\x64\\cl.exe\nC:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.51.36231\\bin\\Hostx64\\x64\\dumpbin.exe\nC:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\Llvm\\x64\\bin\\clang-tidy.exe\nC:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\Llvm\\x64\\bin\\clang-format.exe\nC:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\Llvm\\ARM64\\bin\\clang-tidy.exe\nC:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\Llvm\\ARM64\\bin\\clang-format.exe\nC:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\SDK\\ScopeCppSDK\\vc15\\VC\\bin\\dumpbin.exe\nC:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\SDK\\ScopeCppSDK\\vc15\\VC\\bin\\cl.exe\nC:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\SDK\\ScopeCppSDK\\vc15\\SDK\\bin\\rc.exe\nC:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\Ninja\\ninja.exe\nC:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\ctest.exe\nC:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cpack.exe\nC:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe\nABSENT: C:\\tools\r\nABSENT: C:\\dev\\tools\r\nABSENT: C:\\vcpkg\\installed\r\nABSENT: C:\\dev\\vcpkg\\installed\r\nABSENT: C:\\Users\\hhh\\Qt\r\nABSENT: C:\\Users\\hhh\\AppData\\Local\\Programs\\Qt\r\nABSENT: C:\\Users\\hhh\\AppData\\Local\\Programs\\CMake\r\n10.0.26100.0\r\n10.0.26100.0\r\nHKEY_CURRENT_USER\\Software\\QtProject\\OrganizationDefaults\r\nHKEY_CURRENT_USER\\Software\\QtProject\\QMake\r\n"
+      }
+    },
+    {
+      "id": "linux-readonly-inventory",
+      "command": "@'\nimport subprocess,json\nargv=['C:\\\\Windows\\\\System32\\\\wsl.exe','-d','Ubuntu','--exec','sh','-c','uname -a; cat /etc/os-release; for t in cmake ninja g++ clang++ qmake6 qtpaths6 pkg-config git python3 clang-format clang-tidy Xvfb; do command -v \"$t\" || true; done; dpkg-query -W -f=\"${binary:Package} ${Version} ${db:Status-Abbrev}\\\\n\" cmake ninja-build g++ qt6-base-dev qt6-base-dev-tools qt6-declarative-dev qt6-tools-dev-tools libqt6widgets6 libqt6core6t64 libqt6core6 2>/dev/null; test -n \"$DISPLAY\" && printf \"DISPLAY=set\\\\n\"; test -n \"$WAYLAND_DISPLAY\" && printf \"WAYLAND_DISPLAY=set\\\\n\"; test -d /mnt/wslg && printf \"WSLg_directory=present\\\\n\"']\nr=subprocess.run(argv,stdout=subprocess.PIPE,stderr=subprocess.PIPE,timeout=50)\nprint(json.dumps({'argv':argv,'returncode':r.returncode,'stdout':r.stdout.decode('utf-8',errors='replace'),'stderr':r.stderr.decode('utf-8',errors='replace')},ensure_ascii=False))\n'@ | & 'C:\\Python314\\python.exe' -",
+      "result": {
+        "chunk_id": "bbf6ec",
+        "wall_time_seconds": 7.130966,
+        "exit_code": 0,
+        "original_token_count": 357,
+        "output": "{\"argv\": [\"C:\\\\Windows\\\\System32\\\\wsl.exe\", \"-d\", \"Ubuntu\", \"--exec\", \"sh\", \"-c\", \"uname -a; cat /etc/os-release; for t in cmake ninja g++ clang++ qmake6 qtpaths6 pkg-config git python3 clang-format clang-tidy Xvfb; do command -v \\\"$t\\\" || true; done; dpkg-query -W -f=\\\"${binary:Package} ${Version} ${db:Status-Abbrev}\\\\n\\\" cmake ninja-build g++ qt6-base-dev qt6-base-dev-tools qt6-declarative-dev qt6-tools-dev-tools libqt6widgets6 libqt6core6t64 libqt6core6 2>/dev/null; test -n \\\"$DISPLAY\\\" && printf \\\"DISPLAY=set\\\\n\\\"; test -n \\\"$WAYLAND_DISPLAY\\\" && printf \\\"WAYLAND_DISPLAY=set\\\\n\\\"; test -d /mnt/wslg && printf \\\"WSLg_directory=present\\\\n\\\"\"], \"returncode\": 2, \"stdout\": \"Linux DESKTOP-2FRTTQP 6.18.54.1-microsoft-standard-WSL2 #1 SMP PREEMPT_DYNAMIC Tue Oct  6 19:13:07 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux\\nPRETTY_NAME=\\\"Ubuntu 24.04.1 LTS\\\"\\nNAME=\\\"Ubuntu\\\"\\nVERSION_ID=\\\"24.04\\\"\\nVERSION=\\\"24.04.1 LTS (Noble Numbat)\\\"\\nVERSION_CODENAME=noble\\nID=ubuntu\\nID_LIKE=debian\\nHOME_URL=\\\"https://www.ubuntu.com/\\\"\\nSUPPORT_URL=\\\"https://help.ubuntu.com/\\\"\\nBUG_REPORT_URL=\\\"https://bugs.launchpad.net/ubuntu/\\\"\\nPRIVACY_POLICY_URL=\\\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\\\"\\nUBUNTU_CODENAME=noble\\nLOGO=ubuntu-logo\\n/usr/bin/cmake\\n/usr/bin/ninja\\n/usr/bin/g++\\n/usr/bin/qmake6\\n/usr/bin/qtpaths6\\n/usr/bin/pkg-config\\n/usr/bin/git\\n/usr/bin/python3\\n\", \"stderr\": \"sh: 1: Bad substitution\\n\"}\r\n"
+      }
+    },
+    {
+      "id": "windows-tool-versions",
+      "command": "$paths = @('C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\VC\\Tools\\MSVC\\14.51.36231\\bin\\Hostx64\\x64\\cl.exe','C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe','C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\Ninja\\ninja.exe','C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\Llvm\\x64\\bin\\clang-format.exe','C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\Llvm\\x64\\bin\\clang-tidy.exe'); foreach ($p in $paths) { $args = if ($p -like '*\\cl.exe') { @('/Bv') } else { @('--version') }; Write-Output $p; & $p @args }; & 'C:\\Program Files\\Git\\cmd\\git.exe' --version; & 'C:\\Python314\\python.exe' --version; $registry=@('HKCU:\\Software\\QtProject\\QMake','HKCU:\\Software\\QtProject\\OrganizationDefaults'); foreach ($p in $registry) { Write-Output $p; Get-ItemProperty -LiteralPath $p | Select-Object -Property * -ExcludeProperty PSPath,PSParentPath,PSChildName,PSDrive,PSProvider | ConvertTo-Json -Depth 6 }; $roots=@('C:\\','C:\\dev','C:\\Users\\hhh','C:\\Users\\hhh\\AppData\\Local\\Programs'); foreach ($p in $roots) { Get-ChildItem -LiteralPath $p -Directory -ErrorAction SilentlyContinue | Where-Object { $_.Name -match '(?i)qt|msys|mingw|vcpkg|cmake' } | Select-Object FullName }",
+      "result": {
+        "chunk_id": "9989a3",
+        "wall_time_seconds": 1.1546937,
+        "exit_code": 0,
+        "original_token_count": 3503,
+        "output": "C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\VC\\Tools\\MSVC\\14.51.36231\\bin\\Hostx64\\x64\\cl.exe\r\nMicrosoft (R) C/C++ Optimizing Compiler Version 19.51.36256 for x64\r\nCopyright (c) Microsoft Corporation. All rights reserved.\r\n\r\ncl : \uba85\ub839\uc904 warning D9002 : \uc54c \uc218 \uc5c6\ub294 '/' \uc635\uc158\uc744 \ubb34\uc2dc\ud569\ub2c8\ub2e4.\r\ncl : \uba85\ub839\uc904 warning D9024 : \uc778\uc2dd\ud560 \uc218 \uc5c6\ub294 \uc18c\uc2a4 \ud30c\uc77c \ud615\uc2dd 'B'\uc785\ub2c8\ub2e4. \uac1c\uccb4 \ud30c\uc77c\uc774 \uc120\ud0dd\ub429\ub2c8\ub2e4.\r\ncl : \uba85\ub839\uc904 warning D9024 : \uc778\uc2dd\ud560 \uc218 \uc5c6\ub294 \uc18c\uc2a4 \ud30c\uc77c \ud615\uc2dd 'v'\uc785\ub2c8\ub2e4. \uac1c\uccb4 \ud30c\uc77c\uc774 \uc120\ud0dd\ub429\ub2c8\ub2e4.\r\nMicrosoft (R) Incremental Linker Version 14.51.36256.0\r\nCopyright (C) Microsoft Corporation.  All rights reserved.\r\n\r\n/out:B.exe \r\nB \r\nv \r\nLINK : fatal error LNK1181: 'B.obj' \uc785\ub825 \ud30c\uc77c\uc744 \uc5f4 \uc218 \uc5c6\uc2b5\ub2c8\ub2e4.\r\nC:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe\r\nCMake Warning:\n  Ignoring extra path from command line:\n\n   \"n\"\n\n\nCMake Error: Unknown argument -\nCMake Error: Run 'cmake --help' for all supported options.\nC:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\Ninja\\ninja.exe\r\nusage: ninja [options] [targets...]\r\n\r\nif targets are unspecified, builds the 'default' target (see manual).\r\n\r\noptions:\r\n  --version      print ninja version (\"1.13.2\")\r\n  -v, --verbose  show all command lines while building\r\n  --quiet        don't show progress status, just command output\r\n\r\n  -C DIR   change to DIR before doing anything else\r\n  -f FILE  specify input build file [default=build.ninja]\r\n\r\n  -j N     run N jobs in parallel (0 means infinity) [default=14 on this system]\r\n  -k N     keep going until N jobs fail (0 means infinity) [default=1]\r\n  -l N     do not start new jobs if the load average is greater than N\r\n  -n       dry run (don't run commands but act like they succeeded)\r\n\r\n  -d MODE  enable debugging (use '-d list' to list modes)\r\n  -t TOOL  run a subtool (use '-t list' to list subtools)\r\n    terminates toplevel options; further flags are passed to the tool\r\n  -w FLAG  adjust warnings (use '-w list' to list warnings)\r\nC:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\Llvm\\x64\\bin\\clang-format.exe\r\nv: no such file or directory\r\ne: no such file or directory\r\nr: no such file or directory\r\ns: no such file or directory\r\ni: no such file or directory\r\no: no such file or directory\r\nn: no such file or directory\r\nC:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\Llvm\\x64\\bin\\clang-tidy.exe\r\nError while trying to load a compilation database:\r\nCould not auto-detect compilation database for file \"-\"\r\nNo compilation database found in C:\\dev\\Windows_fileexplore or any parent directory\r\nfixed-compilation-database: Error while opening fixed database: no such file or directory\r\njson-compilation-database: Error while opening JSON database: no such file or directory\r\nRunning without flags.\r\nError: no checks enabled.\r\nUSAGE: clang-tidy.exe [options] <source0> [... <sourceN>]\n\nOPTIONS:\n\nGeneric Options:\n\n  --help                           - Display available options (--help-hidden for more)\n  --version                        - Display the version of this program\n\nclang-tidy options:\n\n  --allow-no-checks                - Allow empty enabled checks. This suppresses\n                                     the \"no checks enabled\" error when disabling\n                                     all of the checks.\n  --checks=<string>                - Comma-separated list of globs with optional '-'\n                                     prefix. Globs are processed in order of\n                                     appearance in the list. Globs without '-'\n                                     prefix add checks with matching names to the\n                                     set, globs with the '-' prefix remove checks\n                                     with matching names from the set of enabled\n                                     checks. This option's value is appended to the\n                                     value of the 'Checks' option in .clang-tidy\n                                     file, if any.\n  --config=<string>                - Specifies a configuration in YAML/JSON format:\n                                       -config=\"{Checks: '*',\n                                                 CheckOptions: {x: y}}\"\n                                     When the value is empty, clang-tidy will\n                                     attempt to find a file named .clang-tidy for\n                                     each source file in its parent directories.\n  --config-file=<string>           - Specify the path of .clang-tidy or custom config file:\n                                      e.g. --config-file=/some/path/myTidyConfigFile\n                                     This option internally works exactly the same way as\n                                      --config option after reading specified config file.\n                                     Use either --config-file or --config, not both.\n  --dump-config                    - Dumps configuration in the YAML format to\n                                     stdout. This option can be used along with a\n                                     file name (and '--' if the file is outside of a\n                                     project with configured compilation database).\n                                     The configuration used for this file will be\n                                     printed.\n                                     Use along with -checks=* to include\n                                     configuration of all checks.\n  --enable-check-profile           - Enable per-check timing profiles, and print a\n                                     report to stderr.\n  --enable-module-headers-parsing  - Enables preprocessor-level module header parsing\n                                     for C++20 and above, empowering specific checks\n                                     to detect macro definitions within modules. This\n                                     feature may cause performance and parsing issues\n                                     and is therefore considered experimental.\n  --exclude-header-filter=<string> - Regular expression matching the names of the\n                                     headers to exclude diagnostics from. Diagnostics\n                                     from the main file of each translation unit are\n                                     always displayed.\n                                     Must be used together with --header-filter.\n                                     Can be used together with -line-filter.\n                                     This option overrides the 'ExcludeHeaderFilterRegex'\n                                     option in .clang-tidy file, if any.\n  --experimental-custom-checks     - Enable experimental clang-query based\n                                     custom checks.\n                                     see https://clang.llvm.org/extra/clang-tidy/QueryBasedCustomChecks.html.\n  --explain-config                 - For each enabled check explains, where it is\n                                     enabled, i.e. in clang-tidy binary, command\n                                     line or a specific configuration file.\n  --export-fixes=<filename>        - YAML file to store suggested fixes in. The\n                                     stored fixes can be applied to the input source\n                                     code with clang-apply-replacements.\n  --extra-arg=<string>             - Additional argument to append to the compiler command line\n  --extra-arg-before=<string>      - Additional argument to prepend to the compiler command line\n  --fix                            - Apply suggested fixes. Without -fix-errors\n                                     clang-tidy will bail out if any compilation\n                                     errors were found.\n  --fix-errors                     - Apply suggested fixes even if compilation\n                                     errors were found. If compiler errors have\n                                     attached fix-its, clang-tidy will apply them as\n                                     well.\n  --fix-notes                      - If a warning has no fix, but a single fix can\n                                     be found through an associated diagnostic note,\n                                     apply the fix.\n                                     Specifying this flag will implicitly enable the\n                                     '--fix' flag.\n  --format-style=<string>          - Style for formatting code around applied fixes:\n                                       - 'none' (default) turns off formatting\n                                       - 'file' (literally 'file', not a placeholder)\n                                         uses .clang-format file in the closest parent\n                                         directory\n                                       - '{ <json> }' specifies options inline, e.g.\n                                         -format-style='{BasedOnStyle: llvm, IndentWidth: 8}'\n                                       - 'llvm', 'google', 'webkit', 'mozilla'\n                                     See clang-format documentation for the up-to-date\n                                     information about formatting styles and options.\n                                     This option overrides the 'FormatStyle` option in\n                                     .clang-tidy file, if any.\n  --header-filter=<string>         - Regular expression matching the names of the\n                                     headers to output diagnostics from. The default\n                                     value is '.*', i.e. diagnostics from all non-system\n                                     headers are displayed by default. Diagnostics\n                                     from the main file of each translation unit are\n                                     always displayed.\n                                     Can be used together with -line-filter.\n                                     This option overrides the 'HeaderFilterRegex'\n                                     option in .clang-tidy file, if any.\n  --line-filter=<string>           - List of files and line ranges to output diagnostics from.\n                                     The range is inclusive on both ends. Can be used together\n                                     with -header-filter. The format of the list is a JSON\n                                     array of objects. For example:\n                                     \n                                       [\n                                         {\"name\":\"file1.cpp\",\"lines\":[[1,3],[5,7]]},\n                                         {\"name\":\"file2.h\"}\n                                       ]\n                                     \n                                     This will output diagnostics from 'file1.cpp' only for\n                                     the line ranges [1,3] and [5,7], as well as all from the\n                                     entire 'file2.h'.\n  --list-checks                    - List all enabled checks and exit. Use with\n                                     -checks=* to list all available checks.\n  --load=<pluginfilename>          - Load the specified plugin\n  -p <string>                      - Build path\n  --quiet                          - Run clang-tidy in quiet mode. This suppresses\n                                     printing statistics about ignored warnings and\n                                     warnings treated as errors if the respective\n                                     options are specified.\n  --removed-arg=<string>           - List of arguments to remove from the command\n                                     line sent to the compiler. Please note that\n                                     removing arguments might change the semantic\n                                     of the analyzed code, possibly leading to\n                                     compiler errors, false positives or\n                                     false negatives. This option is applied \n                                     before --extra-arg and --extra-arg-before\n  --store-check-profile=<prefix>   - By default reports are printed in tabulated\n                                     format to stderr. When this option is passed,\n                                     these per-TU profiles are instead stored as JSON.\n  --system-headers                 - Display the errors from system headers.\n                                     This option overrides the 'SystemHeaders' option\n                                     in .clang-tidy file, if any.\n  --use-color                      - Use colors in diagnostics. If not set, colors\n                                     will be used if the terminal connected to\n                                     standard output supports colors.\n                                     This option overrides the 'UseColor' option in\n                                     .clang-tidy file, if any.\n  --verify-config                  - Check the config files to ensure each check and\n                                     option is recognized without running any checks.\n  --vfsoverlay=<filename>          - Overlay the virtual filesystem described by file\n                                     over the real file system.\n  --warnings-as-errors=<string>    - Upgrades warnings to errors. Same format as\n                                     '-checks'.\n                                     This option's value is appended to the value of\n                                     the 'WarningsAsErrors' option in .clang-tidy\n                                     file, if any.\ngit version 2.55.0.windows.3\nPython 3.14.7\r\nHKCU:\\Software\\QtProject\\QMake\r\nHKCU:\\Software\\QtProject\\OrganizationDefaults\r\n\r\nFullName\r\n--------\r\nC:\\Users\\hhh\\.qt_material\r\n\r\n"
+      }
+    },
+    {
+      "id": "linux-tool-versions",
+      "command": "@'\nimport subprocess,json\nscript=r'''uname -a\ncat /etc/os-release\nfor t in cmake ninja g++ clang++ qmake6 qtpaths6 pkg-config git python3 clang-format clang-tidy Xvfb; do p=$(command -v \"$t\") || p=absent; printf '%s=%s\\n' \"$t\" \"$p\"; done\ndpkg-query -W -f='${binary:Package} ${Version} ${db:Status-Abbrev}\\n' cmake ninja-build g++ qt6-base-dev qt6-base-dev-tools qt6-declarative-dev qt6-tools-dev-tools libqt6widgets6 libqt6core6t64 libqt6core6 2>/dev/null\ncmake --version\nninja --version\ng++ --version\nqmake6 -query\nqtpaths6 --query\npkg-config --modversion Qt6Core Qt6Widgets Qt6Test\nif test -n \"$DISPLAY\"; then printf 'DISPLAY=set\\n'; else printf 'DISPLAY=unset\\n'; fi\nif test -n \"$WAYLAND_DISPLAY\"; then printf 'WAYLAND_DISPLAY=set\\n'; else printf 'WAYLAND_DISPLAY=unset\\n'; fi\nif test -d /mnt/wslg; then printf 'WSLg_directory=present\\n'; else printf 'WSLg_directory=absent\\n'; fi\n'''\nargv=['C:\\\\Windows\\\\System32\\\\wsl.exe','-d','Ubuntu','--exec','sh','-c',script]\nr=subprocess.run(argv,stdout=subprocess.PIPE,stderr=subprocess.PIPE,timeout=50)\nprint(json.dumps({'argv':argv,'returncode':r.returncode,'stdout':r.stdout.decode('utf-8',errors='replace'),'stderr':r.stderr.decode('utf-8',errors='replace')},ensure_ascii=False))\nfor opt in [['--status'],['--list','--verbose'],['--version']]:\n r=subprocess.run(['C:\\\\Windows\\\\System32\\\\wsl.exe']+opt,stdout=subprocess.PIPE,stderr=subprocess.PIPE,timeout=10)\n print(json.dumps({'argv':['wsl.exe']+opt,'returncode':r.returncode,'stdout':r.stdout.decode('utf-16le',errors='replace'),'stderr':r.stderr.decode('utf-16le',errors='replace')},ensure_ascii=False))\n'@ | & 'C:\\Python314\\python.exe' -",
+      "result": {
+        "chunk_id": "30492a",
+        "wall_time_seconds": 4.2170369,
+        "exit_code": 0,
+        "original_token_count": 1250,
+        "output": "{\"argv\": [\"C:\\\\Windows\\\\System32\\\\wsl.exe\", \"-d\", \"Ubuntu\", \"--exec\", \"sh\", \"-c\", \"uname -a\\ncat /etc/os-release\\nfor t in cmake ninja g++ clang++ qmake6 qtpaths6 pkg-config git python3 clang-format clang-tidy Xvfb; do p=$(command -v \\\"$t\\\") || p=absent; printf '%s=%s\\\\n' \\\"$t\\\" \\\"$p\\\"; done\\ndpkg-query -W -f='${binary:Package} ${Version} ${db:Status-Abbrev}\\\\n' cmake ninja-build g++ qt6-base-dev qt6-base-dev-tools qt6-declarative-dev qt6-tools-dev-tools libqt6widgets6 libqt6core6t64 libqt6core6 2>/dev/null\\ncmake --version\\nninja --version\\ng++ --version\\nqmake6 -query\\nqtpaths6 --query\\npkg-config --modversion Qt6Core Qt6Widgets Qt6Test\\nif test -n \\\"$DISPLAY\\\"; then printf 'DISPLAY=set\\\\n'; else printf 'DISPLAY=unset\\\\n'; fi\\nif test -n \\\"$WAYLAND_DISPLAY\\\"; then printf 'WAYLAND_DISPLAY=set\\\\n'; else printf 'WAYLAND_DISPLAY=unset\\\\n'; fi\\nif test -d /mnt/wslg; then printf 'WSLg_directory=present\\\\n'; else printf 'WSLg_directory=absent\\\\n'; fi\\n\"], \"returncode\": 0, \"stdout\": \"Linux DESKTOP-2FRTTQP 6.18.54.1-microsoft-standard-WSL2 #1 SMP PREEMPT_DYNAMIC Tue Oct  6 19:13:07 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux\\nPRETTY_NAME=\\\"Ubuntu 24.04.1 LTS\\\"\\nNAME=\\\"Ubuntu\\\"\\nVERSION_ID=\\\"24.04\\\"\\nVERSION=\\\"24.04.1 LTS (Noble Numbat)\\\"\\nVERSION_CODENAME=noble\\nID=ubuntu\\nID_LIKE=debian\\nHOME_URL=\\\"https://www.ubuntu.com/\\\"\\nSUPPORT_URL=\\\"https://help.ubuntu.com/\\\"\\nBUG_REPORT_URL=\\\"https://bugs.launchpad.net/ubuntu/\\\"\\nPRIVACY_POLICY_URL=\\\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\\\"\\nUBUNTU_CODENAME=noble\\nLOGO=ubuntu-logo\\ncmake=/usr/bin/cmake\\nninja=/usr/bin/ninja\\ng++=/usr/bin/g++\\nclang++=absent\\nqmake6=/usr/bin/qmake6\\nqtpaths6=/usr/bin/qtpaths6\\npkg-config=/usr/bin/pkg-config\\ngit=/usr/bin/git\\npython3=/usr/bin/python3\\nclang-format=absent\\nclang-tidy=absent\\nXvfb=absent\\ncmake 3.28.3-1build7 ii \\ng++ 4:13.2.0-7ubuntu1 ii \\nlibqt6core6  un \\nlibqt6core6t64:amd64 6.4.2+dfsg-21.1build5 ii \\nlibqt6widgets6  un \\nninja-build 1.11.1-2 ii \\nqt6-base-dev:amd64 6.4.2+dfsg-21.1build5 ii \\nqt6-base-dev-tools 6.4.2+dfsg-21.1build5 ii \\ncmake version 3.28.3\\n\\nCMake suite maintained and supported by Kitware (kitware.com/cmake).\\n1.11.1\\ng++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0\\nCopyright (C) 2023 Free Software Foundation, Inc.\\nThis is free software; see the source for copying conditions.  There is NO\\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\\n\\nQT_SYSROOT:\\nQT_INSTALL_PREFIX:/usr\\nQT_INSTALL_ARCHDATA:/usr/lib/x86_64-linux-gnu/qt6\\nQT_INSTALL_DATA:/usr/share/qt6\\nQT_INSTALL_DOCS:/usr/share/qt6/doc\\nQT_INSTALL_HEADERS:/usr/include/x86_64-linux-gnu/qt6\\nQT_INSTALL_LIBS:/usr/lib/x86_64-linux-gnu\\nQT_INSTALL_LIBEXECS:/usr/lib/qt6/libexec\\nQT_INSTALL_BINS:/usr/lib/qt6/bin\\nQT_INSTALL_TESTS:/usr/tests\\nQT_INSTALL_PLUGINS:/usr/lib/x86_64-linux-gnu/qt6/plugins\\nQT_INSTALL_QML:/usr/lib/x86_64-linux-gnu/qt6/qml\\nQT_INSTALL_TRANSLATIONS:/usr/share/qt6/translations\\nQT_INSTALL_CONFIGURATION:\\nQT_INSTALL_EXAMPLES:/usr/lib/x86_64-linux-gnu/qt6/examples\\nQT_INSTALL_DEMOS:/usr/lib/x86_64-linux-gnu/qt6/examples\\nQT_HOST_PREFIX:/usr\\nQT_HOST_DATA:/usr/lib/x86_64-linux-gnu/qt6\\nQT_HOST_BINS:/usr/lib/qt6/bin\\nQT_HOST_LIBEXECS:/usr/lib/qt6/libexec\\nQT_HOST_LIBS:/usr/lib/x86_64-linux-gnu\\nQMAKE_SPEC:linux-g++\\nQMAKE_XSPEC:linux-g++\\nQMAKE_VERSION:3.1\\nQT_VERSION:6.4.2\\nQT_SYSROOT:\\nQT_INSTALL_PREFIX:/usr\\nQT_INSTALL_ARCHDATA:/usr/lib/x86_64-linux-gnu/qt6\\nQT_INSTALL_DATA:/usr/share/qt6\\nQT_INSTALL_DOCS:/usr/share/qt6/doc\\nQT_INSTALL_HEADERS:/usr/include/x86_64-linux-gnu/qt6\\nQT_INSTALL_LIBS:/usr/lib/x86_64-linux-gnu\\nQT_INSTALL_LIBEXECS:/usr/lib/qt6/libexec\\nQT_INSTALL_BINS:/usr/lib/qt6/bin\\nQT_INSTALL_TESTS:/usr/tests\\nQT_INSTALL_PLUGINS:/usr/lib/x86_64-linux-gnu/qt6/plugins\\nQT_INSTALL_QML:/usr/lib/x86_64-linux-gnu/qt6/qml\\nQT_INSTALL_TRANSLATIONS:/usr/share/qt6/translations\\nQT_INSTALL_CONFIGURATION:\\nQT_INSTALL_EXAMPLES:/usr/lib/x86_64-linux-gnu/qt6/examples\\nQT_INSTALL_DEMOS:/usr/lib/x86_64-linux-gnu/qt6/examples\\nQT_HOST_PREFIX:/usr\\nQT_HOST_DATA:/usr/lib/x86_64-linux-gnu/qt6\\nQT_HOST_BINS:/usr/lib/qt6/bin\\nQT_HOST_LIBEXECS:/usr/lib/qt6/libexec\\nQT_HOST_LIBS:/usr/lib/x86_64-linux-gnu\\nQMAKE_SPEC:linux-g++\\nQMAKE_XSPEC:linux-g++\\nQMAKE_VERSION:3.1\\nQT_VERSION:6.4.2\\n6.4.2\\n6.4.2\\n6.4.2\\nDISPLAY=set\\nWAYLAND_DISPLAY=set\\nWSLg_directory=present\\n\", \"stderr\": \"\"}\r\n{\"argv\": [\"wsl.exe\", \"--status\"], \"returncode\": 0, \"stdout\": \"\ufffd\u2ebb \ufffd\ufffd\ufffd\ufffd: Ubuntu\\r\\n\ufffd\u2ebb \ufffd\ufffd\ufffd\ufffd: 2\\r\\n\", \"stderr\": \"\"}\r\n{\"argv\": [\"wsl.exe\", \"--list\", \"--verbose\"], \"returncode\": 0, \"stdout\": \"  NAME              STATE           VERSION\\r\\n* Ubuntu            Running         2\\r\\n  docker-desktop    Stopped         2\\r\\n\", \"stderr\": \"\"}\r\n{\"argv\": [\"wsl.exe\", \"--version\"], \"returncode\": 0, \"stdout\": \"WSL \ufffd\ufffd\ufffd\ufffd: 3.0.3.0\\r\\n\u013f\ufffd\ufffd \ufffd\ufffd\ufffd\ufffd: 6.18.54.1-1\\r\\nWSLg \ufffd\ufffd\ufffd\ufffd: 1.0.79\\r\\nMSRDC \ufffd\ufffd\ufffd\ufffd: 1.2.7391\\r\\nDirect3D \ufffd\ufffd\ufffd\ufffd: 1.611.1-81528511\\r\\nDXCore \ufffd\ufffd\ufffd\ufffd: 10.0.26100.1-240331-1435.ge-release\\r\\nWindows \ufffd\ufffd\ufffd\ufffd: 10.0.26200.9711\\r\\n\", \"stderr\": \"\"}\r\n"
+      }
+    },
+    {
+      "id": "windows-tool-versions-corrected",
+      "command": "@'\nimport subprocess,json\nprobes=[\n [r'C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\VC\\Tools\\MSVC\\14.51.36231\\bin\\Hostx64\\x64\\cl.exe','/Bv'],\n [r'C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe','--version'],\n [r'C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\Ninja\\ninja.exe','--version'],\n [r'C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\ctest.exe','--version'],\n [r'C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cpack.exe','--version'],\n [r'C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\Llvm\\x64\\bin\\clang-format.exe','--version'],\n [r'C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\Llvm\\x64\\bin\\clang-tidy.exe','--version'],\n]\nfor argv in probes:\n r=subprocess.run(argv,stdout=subprocess.PIPE,stderr=subprocess.PIPE,timeout=15)\n print(json.dumps({'argv':argv,'returncode':r.returncode,'stdout':r.stdout.decode('utf-8',errors='replace'),'stderr':r.stderr.decode('utf-8',errors='replace')},ensure_ascii=False))\n'@ | & 'C:\\Python314\\python.exe' -",
+      "result": {
+        "chunk_id": "37faa3",
+        "wall_time_seconds": 0.6249277,
+        "exit_code": 0,
+        "original_token_count": 825,
+        "output": "{\"argv\": [\"C:\\\\Program Files (x86)\\\\Microsoft Visual Studio\\\\18\\\\BuildTools\\\\VC\\\\Tools\\\\MSVC\\\\14.51.36231\\\\bin\\\\Hostx64\\\\x64\\\\cl.exe\", \"/Bv\"], \"returncode\": 2, \"stdout\": \"\", \"stderr\": \"Microsoft (R) C/C++ Optimizing Compiler Version 19.51.36256 for x64\\r\\nCopyright (c) Microsoft Corporation. All rights reserved.\\r\\n\\r\\n\ufffd\ufffd\ufffd\ufffd\ufffd\u03f7\ufffd \ufffd\u043d\ufffd:\\r\\n C:\\\\Program Files (x86)\\\\Microsoft Visual Studio\\\\18\\\\BuildTools\\\\VC\\\\Tools\\\\MSVC\\\\14.51.36231\\\\bin\\\\Hostx64\\\\x64\\\\cl.exe:        \ufffd\ufffd\ufffd\ufffd 19.51.36256.0\\r\\n C:\\\\Program Files (x86)\\\\Microsoft Visual Studio\\\\18\\\\BuildTools\\\\VC\\\\Tools\\\\MSVC\\\\14.51.36231\\\\bin\\\\Hostx64\\\\x64\\\\c1.dll:        \ufffd\ufffd\ufffd\ufffd 19.51.36256.0\\r\\n C:\\\\Program Files (x86)\\\\Microsoft Visual Studio\\\\18\\\\BuildTools\\\\VC\\\\Tools\\\\MSVC\\\\14.51.36231\\\\bin\\\\Hostx64\\\\x64\\\\c1xx.dll:      \ufffd\ufffd\ufffd\ufffd 19.51.36256.0\\r\\n C:\\\\Program Files (x86)\\\\Microsoft Visual Studio\\\\18\\\\BuildTools\\\\VC\\\\Tools\\\\MSVC\\\\14.51.36231\\\\bin\\\\Hostx64\\\\x64\\\\c2.dll:        \ufffd\ufffd\ufffd\ufffd 19.51.36256.0\\r\\n C:\\\\Program Files (x86)\\\\Microsoft Visual Studio\\\\18\\\\BuildTools\\\\VC\\\\Tools\\\\MSVC\\\\14.51.36231\\\\bin\\\\Hostx64\\\\x64\\\\c1xx.dll:      \ufffd\ufffd\ufffd\ufffd 19.51.36256.0\\r\\n C:\\\\Program Files (x86)\\\\Microsoft Visual Studio\\\\18\\\\BuildTools\\\\VC\\\\Tools\\\\MSVC\\\\14.51.36231\\\\bin\\\\Hostx64\\\\x64\\\\link.exe:      \ufffd\ufffd\ufffd\ufffd 14.51.36256.0\\r\\n C:\\\\Program Files (x86)\\\\Microsoft Visual Studio\\\\18\\\\BuildTools\\\\VC\\\\Tools\\\\MSVC\\\\14.51.36231\\\\bin\\\\Hostx64\\\\x64\\\\mspdb140.dll:  \ufffd\ufffd\ufffd\ufffd 14.51.36256.0\\r\\n C:\\\\Program Files (x86)\\\\Microsoft Visual Studio\\\\18\\\\BuildTools\\\\VC\\\\Tools\\\\MSVC\\\\14.51.36231\\\\bin\\\\Hostx64\\\\x64\\\\1042\\\\clui.dll: \ufffd\ufffd\ufffd\ufffd 19.51.36256.0\\r\\n\\r\\ncl : \ufffd\ufffd\ufffd\ufffd\ufffd\ufffd error D8003 : \ufffd\u04bd\ufffd \ufffd\ufffd\ufffd\ufffd \ufffd\u0338\ufffd\ufffd\ufffd \ufffd\ufffd\ufffd\ufffd\ufffd\u03f4\ufffd.\\r\\n\"}\r\n{\"argv\": [\"C:\\\\Program Files (x86)\\\\Microsoft Visual Studio\\\\18\\\\BuildTools\\\\Common7\\\\IDE\\\\CommonExtensions\\\\Microsoft\\\\CMake\\\\CMake\\\\bin\\\\cmake.exe\", \"--version\"], \"returncode\": 0, \"stdout\": \"cmake version 4.3.1-msvc1\\n\\nCMake suite maintained and supported by Kitware (kitware.com/cmake).\\n\", \"stderr\": \"\"}\r\n{\"argv\": [\"C:\\\\Program Files (x86)\\\\Microsoft Visual Studio\\\\18\\\\BuildTools\\\\Common7\\\\IDE\\\\CommonExtensions\\\\Microsoft\\\\CMake\\\\Ninja\\\\ninja.exe\", \"--version\"], \"returncode\": 0, \"stdout\": \"1.13.2\\r\\n\", \"stderr\": \"\"}\r\n{\"argv\": [\"C:\\\\Program Files (x86)\\\\Microsoft Visual Studio\\\\18\\\\BuildTools\\\\Common7\\\\IDE\\\\CommonExtensions\\\\Microsoft\\\\CMake\\\\CMake\\\\bin\\\\ctest.exe\", \"--version\"], \"returncode\": 0, \"stdout\": \"ctest version 4.3.1-msvc1\\n\\nCMake suite maintained and supported by Kitware (kitware.com/cmake).\\n\", \"stderr\": \"\"}\r\n{\"argv\": [\"C:\\\\Program Files (x86)\\\\Microsoft Visual Studio\\\\18\\\\BuildTools\\\\Common7\\\\IDE\\\\CommonExtensions\\\\Microsoft\\\\CMake\\\\CMake\\\\bin\\\\cpack.exe\", \"--version\"], \"returncode\": 0, \"stdout\": \"cpack version 4.3.1-msvc1\\n\\nCMake suite maintained and supported by Kitware (kitware.com/cmake).\\n\", \"stderr\": \"\"}\r\n{\"argv\": [\"C:\\\\Program Files\\\\Microsoft Visual Studio\\\\18\\\\Insiders\\\\VC\\\\Tools\\\\Llvm\\\\x64\\\\bin\\\\clang-format.exe\", \"--version\"], \"returncode\": 0, \"stdout\": \"clang-format version 22.1.3 (https://github.com/llvm/llvm-project e9846648fd6183ee6d8cbdb4502213fcf902a211)\\n\", \"stderr\": \"\"}\r\n{\"argv\": [\"C:\\\\Program Files\\\\Microsoft Visual Studio\\\\18\\\\Insiders\\\\VC\\\\Tools\\\\Llvm\\\\x64\\\\bin\\\\clang-tidy.exe\", \"--version\"], \"returncode\": 0, \"stdout\": \"LLVM (http://llvm.org/):\\n  LLVM version 22.1.3\\n  Optimized build.\\n\", \"stderr\": \"\"}\r\n"
+      }
+    },
+    {
+      "id": "toolchain-relevant-final",
+      "command": "$toolchainVariables = @('QTDIR','QT_HOME','QT_HOST_PATH','Qt6_DIR','CMAKE_PREFIX_PATH','VCPKG_ROOT','VSINSTALLDIR','VCToolsInstallDir','WindowsSdkDir'); $vars = @(foreach ($n in $toolchainVariables) { [pscustomobject]@{name=$n; value=[Environment]::GetEnvironmentVariable($n,'Process')} }); $sdk='C:\\Program Files (x86)\\Windows Kits\\10'; $paths = @($sdk+'\\bin\\10.0.26100.0\\x64\\rc.exe',$sdk+'\\bin\\10.0.26100.0\\x64\\mt.exe',$sdk+'\\Debuggers\\x64\\cdb.exe',$sdk+'\\Windows Performance Toolkit\\xperf.exe',$sdk+'\\Windows Performance Toolkit\\wpr.exe'); $tools=@(foreach ($p in $paths) { [pscustomobject]@{path=$p; exists=(Test-Path -LiteralPath $p); version=$(if (Test-Path -LiteralPath $p) { (Get-Item -LiteralPath $p).VersionInfo.FileVersion })} }); $unexpectedArtifacts=@(foreach ($n in @('B.exe','B.obj','B.ilk','B.pdb')) { [pscustomobject]@{path=('C:\\dev\\Windows_fileexplore\\'+$n); exists=(Test-Path -LiteralPath ('C:\\dev\\Windows_fileexplore\\'+$n))} }); [pscustomobject]@{selected_toolchain_variables=$vars; sdk_tools=$tools; failed_probe_artifact_check=$unexpectedArtifacts; requirements_sha256=(Get-FileHash -LiteralPath 'C:\\dev\\Windows_fileexplore\\docs\\requirements.md' -Algorithm SHA256).Hash; timestamp_seoul=[TimeZoneInfo]::ConvertTimeBySystemTimeZoneId([DateTimeOffset]::Now,'Korea Standard Time').ToString('o')} | ConvertTo-Json -Depth 7; @'\nimport importlib.metadata,json\nnames=['psutil','pywinauto','pyautogui','Pillow','PySide6','PyQt6','aqtinstall']\nr={}\nfor n in names:\n try:r[n]=importlib.metadata.version(n)\n except importlib.metadata.PackageNotFoundError:r[n]=None\nprint(json.dumps(r))\n'@ | & 'C:\\Python314\\python.exe' -",
+      "result": {
+        "chunk_id": "d28dad",
+        "wall_time_seconds": 0.6990485,
+        "exit_code": 0,
+        "original_token_count": 452,
+        "output": "{\r\n  \"selected_toolchain_variables\": [\r\n    {\r\n      \"name\": \"QTDIR\",\r\n      \"value\": null\r\n    },\r\n    {\r\n      \"name\": \"QT_HOME\",\r\n      \"value\": null\r\n    },\r\n    {\r\n      \"name\": \"QT_HOST_PATH\",\r\n      \"value\": null\r\n    },\r\n    {\r\n      \"name\": \"Qt6_DIR\",\r\n      \"value\": null\r\n    },\r\n    {\r\n      \"name\": \"CMAKE_PREFIX_PATH\",\r\n      \"value\": null\r\n    },\r\n    {\r\n      \"name\": \"VCPKG_ROOT\",\r\n      \"value\": null\r\n    },\r\n    {\r\n      \"name\": \"VSINSTALLDIR\",\r\n      \"value\": null\r\n    },\r\n    {\r\n      \"name\": \"VCToolsInstallDir\",\r\n      \"value\": null\r\n    },\r\n    {\r\n      \"name\": \"WindowsSdkDir\",\r\n      \"value\": null\r\n    }\r\n  ],\r\n  \"sdk_tools\": [\r\n    {\r\n      \"path\": \"C:\\\\Program Files (x86)\\\\Windows Kits\\\\10\\\\bin\\\\10.0.26100.0\\\\x64\\\\rc.exe C:\\\\Program Files (x86)\\\\Windows Kits\\\\10\\\\bin\\\\10.0.26100.0\\\\x64\\\\mt.exe C:\\\\Program Files (x86)\\\\Windows Kits\\\\10\\\\Debuggers\\\\x64\\\\cdb.exe C:\\\\Program Files (x86)\\\\Windows Kits\\\\10\\\\Windows Performance Toolkit\\\\xperf.exe C:\\\\Program Files (x86)\\\\Windows Kits\\\\10\\\\Windows Performance Toolkit\\\\wpr.exe\",\r\n      \"exists\": false,\r\n      \"version\": null\r\n    }\r\n  ],\r\n  \"failed_probe_artifact_check\": [\r\n    {\r\n      \"path\": \"C:\\\\dev\\\\Windows_fileexplore\\\\B.exe\",\r\n      \"exists\": false\r\n    },\r\n    {\r\n      \"path\": \"C:\\\\dev\\\\Windows_fileexplore\\\\B.obj\",\r\n      \"exists\": false\r\n    },\r\n    {\r\n      \"path\": \"C:\\\\dev\\\\Windows_fileexplore\\\\B.ilk\",\r\n      \"exists\": false\r\n    },\r\n    {\r\n      \"path\": \"C:\\\\dev\\\\Windows_fileexplore\\\\B.pdb\",\r\n      \"exists\": false\r\n    }\r\n  ],\r\n  \"requirements_sha256\": \"76B659EC0594607E02B1818683CCC826A7AF2C8DFF6583888852D351E3890C88\",\r\n  \"timestamp_seoul\": \"2026-10-21T23:04:43.0470334+09:00\"\r\n}\r\n{\"psutil\": null, \"pywinauto\": null, \"pyautogui\": null, \"Pillow\": null, \"PySide6\": null, \"PyQt6\": null, \"aqtinstall\": null}\r\n"
+      }
+    },
+    {
+      "id": "sdk-tools-corrected",
+      "command": "$paths = @('C:\\Program Files (x86)\\Windows Kits\\10\\bin\\10.0.26100.0\\x64\\rc.exe','C:\\Program Files (x86)\\Windows Kits\\10\\bin\\10.0.26100.0\\x64\\mt.exe','C:\\Program Files (x86)\\Windows Kits\\10\\Debuggers\\x64\\cdb.exe','C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\xperf.exe','C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\wpr.exe'); $tools=@(foreach ($p in $paths) { [pscustomobject]@{path=$p; exists=(Test-Path -LiteralPath $p); version=$(if (Test-Path -LiteralPath $p) { (Get-Item -LiteralPath $p).VersionInfo.FileVersion })} }); $tools | ConvertTo-Json -Depth 6; Get-CimInstance Win32_ComputerSystem | Select-Object SystemType,TotalPhysicalMemory; Get-CimInstance Win32_Processor | Select-Object Name,NumberOfCores,NumberOfLogicalProcessors",
+      "result": {
+        "chunk_id": "f22615",
+        "wall_time_seconds": 2.011977,
+        "exit_code": 0,
+        "original_token_count": 253,
+        "output": "[\r\n  {\r\n    \"path\": \"C:\\\\Program Files (x86)\\\\Windows Kits\\\\10\\\\bin\\\\10.0.26100.0\\\\x64\\\\rc.exe\",\r\n    \"exists\": true,\r\n    \"version\": \"10.0.26100.8249 (WinBuild.160101.0800)\"\r\n  },\r\n  {\r\n    \"path\": \"C:\\\\Program Files (x86)\\\\Windows Kits\\\\10\\\\bin\\\\10.0.26100.0\\\\x64\\\\mt.exe\",\r\n    \"exists\": true,\r\n    \"version\": \"10.0.26100.8249 (WinBuild.160101.0800)\"\r\n  },\r\n  {\r\n    \"path\": \"C:\\\\Program Files (x86)\\\\Windows Kits\\\\10\\\\Debuggers\\\\x64\\\\cdb.exe\",\r\n    \"exists\": false,\r\n    \"version\": null\r\n  },\r\n  {\r\n    \"path\": \"C:\\\\Program Files (x86)\\\\Windows Kits\\\\10\\\\Windows Performance Toolkit\\\\xperf.exe\",\r\n    \"exists\": true,\r\n    \"version\": \"10.0.26100.8249 (WinBuild.160101.0800)\"\r\n  },\r\n  {\r\n    \"path\": \"C:\\\\Program Files (x86)\\\\Windows Kits\\\\10\\\\Windows Performance Toolkit\\\\wpr.exe\",\r\n    \"exists\": true,\r\n    \"version\": \"10.0.26100.8249 (WinBuild.160101.0800)\"\r\n  }\r\n]\r\n\r\nSystemType   TotalPhysicalMemory\r\n----------   -------------------\r\nx64-based PC         34281861120\r\n                                \r\n\r\n"
+      }
+    },
+    {
+      "id": "qt-minimal-archive-metadata",
+      "command": "@'\nimport urllib.request,xml.etree.ElementTree as ET,json,re,hashlib\nbase='https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/qt6_683/qt6_683/'\nbody=urllib.request.urlopen(base+'Updates.xml',timeout=30).read()\np=next(p for p in ET.fromstring(body).findall('PackageUpdate') if p.findtext('Name')=='qt.qt6.683.win64_msvc2022_64')\nprint(json.dumps({'metadata_url':base+'Updates.xml','metadata_sha256':hashlib.sha256(body).hexdigest(),'package_xml':ET.tostring(p,encoding='unicode')},ensure_ascii=False))\nfolder=base+p.findtext('Name')+'/'\nhtml=urllib.request.urlopen(folder,timeout=30).read().decode('utf-8')\nlinks=re.findall(r'href=\"([^\"]+)\"',html)\nfor name in links:\n if name.startswith(p.findtext('Version')) and ('qtbase-' in name or 'qttools-' in name) and name.endswith('.7z'):\n  url=folder+name\n  req=urllib.request.Request(url,method='HEAD')\n  with urllib.request.urlopen(req,timeout=30) as r: head=dict(r.headers)\n  sha1url=url+'.sha1'\n  try: sha1=urllib.request.urlopen(sha1url,timeout=30).read(512).decode().strip()\n  except Exception as e: sha1='unavailable: '+str(e)\n  print(json.dumps({'archive_url':url,'headers':head,'sha1_url':sha1url,'sha1':sha1}))\n'@ | & 'C:\\Python314\\python.exe' -",
+      "result": {
+        "chunk_id": "69cb50",
+        "wall_time_seconds": 2.0630091,
+        "exit_code": 0,
+        "original_token_count": 1109,
+        "output": "{\"metadata_url\": \"https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/qt6_683/qt6_683/Updates.xml\", \"metadata_sha256\": \"b3aaf7ad9c12edd792c1afbe675646fdafa83d9e00854109bf463d300778a21e\", \"package_xml\": \"<PackageUpdate>\\n  <Name>qt.qt6.683.win64_msvc2022_64</Name>\\n  <DisplayName>MSVC 2022 64-bit</DisplayName>\\n  <Description>Qt 6.8.3 Prebuilt Components for MSVC 2022 64-bit</Description>\\n  <Version>6.8.3-0-202503201308</Version>\\n  <ReleaseDate>2025-03-20</ReleaseDate>\\n  <Dependencies>qt.tools.qtcreator, qt.qt6.683.doc, qt.qt6.683.examples</Dependencies>\\n  <AutoDependOn />\\n  <Default>false</Default>\\n  <Script>installscript.qs</Script>\\n  <SortingPriority>590</SortingPriority>\\n  <DownloadableArchives>qtbase-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z, qtsvg-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z, qtdeclarative-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z, qttools-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z, qttranslations-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z, d3dcompiler_47-x64.7z, opengl32sw-64-mesa_11_2_2-signed_sha256.7z</DownloadableArchives>\\n  <UpdateFile CompressedSize=\\\"222292292\\\" OS=\\\"Any\\\" UncompressedSize=\\\"2054629621\\\" />\\n  <Operations>\\n   <Operation name=\\\"Extract\\\">\\n    <Argument>@TargetDir@/6.8.3/msvc2022_64</Argument>\\n    <Argument>qtbase-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z</Argument>\\n   </Operation>\\n   <Operation name=\\\"Extract\\\">\\n    <Argument>@TargetDir@/6.8.3/msvc2022_64</Argument>\\n    <Argument>qtsvg-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z</Argument>\\n   </Operation>\\n   <Operation name=\\\"Extract\\\">\\n    <Argument>@TargetDir@/6.8.3/msvc2022_64</Argument>\\n    <Argument>qtdeclarative-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z</Argument>\\n   </Operation>\\n   <Operation name=\\\"Extract\\\">\\n    <Argument>@TargetDir@/6.8.3/msvc2022_64</Argument>\\n    <Argument>qttools-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z</Argument>\\n   </Operation>\\n   <Operation name=\\\"Extract\\\">\\n    <Argument>@TargetDir@/6.8.3/msvc2022_64</Argument>\\n    <Argument>qttranslations-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z</Argument>\\n   </Operation>\\n   <Operation name=\\\"Extract\\\">\\n    <Argument>@TargetDir@/6.8.3/msvc2022_64/bin</Argument>\\n    <Argument>d3dcompiler_47-x64.7z</Argument>\\n   </Operation>\\n   <Operation name=\\\"Extract\\\">\\n    <Argument>@TargetDir@/6.8.3/msvc2022_64/bin</Argument>\\n    <Argument>opengl32sw-64-mesa_11_2_2-signed_sha256.7z</Argument>\\n   </Operation>\\n  </Operations>\\n  <SHA1>c388ba8ac1a2e7b40b7903b142af0b9b4d0176c1</SHA1>\\n </PackageUpdate>\\n \"}\r\n{\"archive_url\": \"https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/qt6_683/qt6_683/qt.qt6.683.win64_msvc2022_64/6.8.3-0-202503201308qttools-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z\", \"headers\": {\"Date\": \"Wed, 21 Oct 2026 14:07:36 GMT\", \"Server\": \"Apache/2.4.61 (Unix) OpenSSL/3.0.13\", \"Last-Modified\": \"Tue, 25 Mar 2025 10:52:28 GMT\", \"ETag\": \"\\\"183a964-63128845426e1\\\"\", \"Accept-Ranges\": \"bytes\", \"Content-Length\": \"25405796\", \"Connection\": \"close\", \"Content-Type\": \"application/x-7z-compressed\"}, \"sha1_url\": \"https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/qt6_683/qt6_683/qt.qt6.683.win64_msvc2022_64/6.8.3-0-202503201308qttools-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z.sha1\", \"sha1\": \"25956e4f72a3b054235a2c6a00c88ba7e7927971\"}\r\n{\"archive_url\": \"https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/qt6_683/qt6_683/qt.qt6.683.win64_msvc2022_64/6.8.3-0-202503201308qtbase-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z\", \"headers\": {\"Date\": \"Wed, 21 Oct 2026 14:07:39 GMT\", \"Server\": \"Apache/2.4.61 (Unix) OpenSSL/3.0.13\", \"Last-Modified\": \"Tue, 25 Mar 2025 10:52:14 GMT\", \"ETag\": \"\\\"25a7b3c-63128837aaeee\\\"\", \"Accept-Ranges\": \"bytes\", \"Content-Length\": \"39484220\", \"Connection\": \"close\", \"Content-Type\": \"application/x-7z-compressed\"}, \"sha1_url\": \"https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/qt6_683/qt6_683/qt.qt6.683.win64_msvc2022_64/6.8.3-0-202503201308qtbase-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z.sha1\", \"sha1\": \"ab0bd2551618f7128ef30c6d74fe45b6a76e2296\"}\r\n"
+      }
+    },
+    {
+      "id": "archive-extractor-readiness",
+      "command": "& 'C:\\Windows\\System32\\tar.exe' --version; @'\nimport subprocess,json\nscript=r'''for t in 7z 7zz 7za 7zr bsdtar tar; do p=$(command -v \"$t\") || p=absent; printf '%s=%s\\n' \"$t\" \"$p\"; done\ndpkg-query -W -f='${binary:Package} ${Version} ${db:Status-Abbrev}\\n' p7zip p7zip-full 7zip libarchive-tools 2>/dev/null\n'''\nr=subprocess.run([r'C:\\Windows\\System32\\wsl.exe','-d','Ubuntu','--exec','sh','-c',script],stdout=subprocess.PIPE,stderr=subprocess.PIPE,timeout=20)\nprint(json.dumps({'returncode':r.returncode,'script':script,'stdout':r.stdout.decode(),'stderr':r.stderr.decode()}))\n'@ | & 'C:\\Python314\\python.exe' -",
+      "result": {
+        "chunk_id": "17c40b",
+        "wall_time_seconds": 5.2093257,
+        "exit_code": 0,
+        "original_token_count": 124,
+        "output": "bsdtar 3.8.9 - libarchive 3.8.9 zlib/1.2.13.1-motley liblzma/5.8.3 bz2lib/1.0.8 libzstd/1.5.7 cng/2.0 libb2/bundled \r\n{\"returncode\": 1, \"script\": \"for t in 7z 7zz 7za 7zr bsdtar tar; do p=$(command -v \\\"$t\\\") || p=absent; printf '%s=%s\\\\n' \\\"$t\\\" \\\"$p\\\"; done\\ndpkg-query -W -f='${binary:Package} ${Version} ${db:Status-Abbrev}\\\\n' p7zip p7zip-full 7zip libarchive-tools 2>/dev/null\\n\", \"stdout\": \"7z=absent\\n7zz=absent\\n7za=absent\\n7zr=absent\\nbsdtar=absent\\ntar=/usr/bin/tar\\n\", \"stderr\": \"\"}\r\n"
+      }
+    },
+    {
+      "id": "qt-official-metadata",
+      "command": "@'\nimport urllib.request,xml.etree.ElementTree as ET,json,subprocess,os\nurl='https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/qt6_683/qt6_683/Updates.xml'\nwith urllib.request.urlopen(url,timeout=30) as r:\n body=r.read()\n print(json.dumps({'url':url,'status':r.status,'bytes':len(body),'content_type':r.headers.get('Content-Type')}))\nroot=ET.fromstring(body)\nfor p in root.findall('PackageUpdate'):\n name=p.findtext('Name','')\n if 'msvc2022_64' in name and (name.count('.') < 6 or any(s in name for s in ('qtbase','qttools'))):\n  d={c.tag:c.text for c in p if c.tag not in ['UpdateFile']}\n  d['UpdateFile']=[dict(x.attrib) for x in p.findall('UpdateFile')]\n  print(json.dumps(d,ensure_ascii=False))\n'@ | & 'C:\\Python314\\python.exe' -; $commands=@('7z','7za','7zr','tar'); foreach ($n in $commands) { $found=@(Get-Command $n -ErrorAction SilentlyContinue); [pscustomobject]@{name=$n; paths=@($found | ForEach-Object {$_.Source})} | ConvertTo-Json -Compress }; $roots=@('C:\\Program Files\\7-Zip','C:\\Program Files (x86)\\7-Zip','C:\\Program Files\\Git\\usr\\bin'); foreach ($r in $roots) { if (Test-Path -LiteralPath $r) { rg --files -uuu $r -g 7z.exe -g 7za.exe -g 7zr.exe -g bsdtar.exe -g tar.exe } }",
+      "result": {
+        "chunk_id": "bd3a8b",
+        "wall_time_seconds": 5.8463486,
+        "exit_code": 0,
+        "original_token_count": 5593,
+        "output": "Warning: truncated output (original token count: 5593)\nTotal output lines: 39\n\n{\"url\": \"https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/qt6_683/qt6_683/Updates.xml\", \"status\": 200, \"bytes\": 305632, \"content_type\": \"application/xml\"}\r\n{\"Name\": \"qt.qt6.683.addons.qt3d.win64_msvc2022_64\", \"DisplayName\": \"Qt 3D module for MSVC 2022 64-bit\", \"Description\": null, \"Version\": \"6.8.3-0-202503201308\", \"ReleaseDate\": \"2025-03-20\", \"AutoDependOn\": \"qt.qt6.683.addons.qt3d, qt.qt6.683.win64_msvc2022_64\", \"Dependencies\": \"qt.qt6.683.win64_msvc2022_64\", \"Virtual\": \"true\", \"SortingPriority\": null, \"DownloadableArchives\": \"qt3d-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z\", \"Operations\": \"\\n   \", \"SHA1\": \"72e5c7b9cfb90260759e6e6139bb335ea5c8edb4\", \"UpdateFile\": [{\"CompressedSize\": \"8266000\", \"OS\": \"Any\", \"UncompressedSize\": \"69853963\"}]}\r\n{\"Name\": \"qt.qt6.683.addons.qt5compat.win64_msvc2022_64\", \"DisplayName\": \"Qt 5 Compatibility module for MSVC 2022 64-bit\", \"Description\": null, \"Version\": \"6.8.3-0-202503201308\", \"ReleaseDate\": \"2025-03-20\", \"AutoDependOn\": \"qt.qt6.683.addons.qt5compat, qt.qt6.683.win64_msvc2022_64\", \"Dependencies\": \"qt.qt6.683.win64_msvc2022_64\", \"Virtual\": \"true\", \"SortingPriority\": null, \"DownloadableArchives\": \"qt5compat-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z\", \"Operations\": \"\\n   \", \"SHA1\": \"21668c367507f9561a79e529cb0f6001db6048ed\", \"UpdateFile\": [{\"CompressedSize\": \"1168624\", \"OS\": \"Any\", \"UncompressedSize\": \"7306032\"}]}\r\n{\"Name\": \"qt.qt6.683.addons.qtactiveqt.win64_msvc2022_64\", \"DisplayName\": \"Active Qt for MSVC 2022 64-bit\", \"Description\": null, \"Version\": \"6.8.3-0-202503201308\", \"ReleaseDate\": \"2025-03-20\", \"AutoDependOn\": \"qt.qt6.683.addons.qtactiveqt, qt.qt6.683.win64_msvc2022_64\", \"Dependencies\": \"qt.qt6.683.win64_msvc2022_64\", \"Virtual\": \"true\", \"SortingPriority\": null, \"DownloadableArchives\": \"qtactiveqt-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z\", \"Operations\": \"\\n   \", \"SHA1\": \"e8eda15a69ed51d3c80512401a4d3453aa702dbc\", \"UpdateFile\": [{\"CompressedSize\": \"8034868\", \"OS\": \"Any\", \"UncompressedSize\": \"63184824\"}]}\r\n{\"Name\": \"qt.qt6.683.addons.qtcharts.win64_msvc2022_64\", \"DisplayName\": \"Qt Charts for MSVC 2022 64-bit\", \"Description\": null, \"Version\": \"6.8.3-0-202503201308\", \"ReleaseDate\": \"2025-03-20\", \"AutoDependOn\": \"qt.qt6.683.addons.qtcharts, qt.qt6.683.win64_msvc2022_64\", \"Dependencies\": \"qt.qt6.683.win64_msvc2022_64\", \"Virtual\": \"true\", \"SortingPriority\": null, \"DownloadableArchives\": \"qtcharts-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z\", \"Operations\": \"\\n   \", \"SHA1\": \"694ac5ddea6c0b5e0d06bd961932a4f3f8b3ae6b\", \"UpdateFile\": [{\"CompressedSize\": \"1779071\", \"OS\": \"Any\", \"UncompressedSize\": \"15873562\"}]}\r\n{\"Name\": \"qt.qt6.683.addons.qtconnectivity.win64_msvc2022_64\", \"DisplayName\": \"Qt Connectivity for MSVC 2022 64-bit\", \"Description\": null, \"Version\": \"6.8.3-0-202503201308\", \"ReleaseDate\": \"2025-03-20\", \"AutoDependOn\": \"qt.qt6.683.addons.qtconnectivity, qt.qt6.683.win64_msvc2022_64\", \"Dependencies\": \"qt.qt6.683.win64_msvc2022_64\", \"Virtual\": \"true\", \"SortingPriority\": null, \"DownloadableArchives\": \"qtconnectivity-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z\", \"Operations\": \"\\n   \", \"SHA1\": \"93f3fb346c3e0865737abaa2c2fa146b4fff7e4f\", \"UpdateFile\": [{\"CompressedSize\": \"1007441\", \"OS\": \"Any\", \"UncompressedSize\": \"7184224\"}]}\r\n{\"Name\": \"qt.qt6.683.addons.qtdatavis3d.win64_msvc2022_64\", \"DisplayName\": \"Qt Data Visualization for MSVC 2022 64-bit\", \"Description\": null, \"Version\": \"6.8.3-0-202503201308\", \"ReleaseDate\": \"2025-03-20\", \"AutoDependOn\": \"qt.qt6.683.addons.qtdatavis3d, qt.qt6.683.win64_msvc2022_64\", \"Dependencies\": \"qt.qt6.683.win64_msvc2022_64\", \"Virtual\": \"true\", \"SortingPriority\": null, \"DownloadableArchives\": \"qtdatavis3d-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z\", \"Operations\": \"\\n   \", \"SHA1\": \"687765ded77e58cd3b317658aa30d92493014d8d\", \"UpdateFile\": [{\"CompressedSize\": \"1243791\", \"OS\": \"Any\", \"UncompressedSize\": \"9967907\"}]}\r\n{\"Name\": \"qt.qt6.683.addons.qtgraphs.win64_msvc2022_64\", \"DisplayName\": \"Qt Graphs for MSVC 2022 64-bit\", \"Description\": null, \"Version\": \"6.8.3-0-202503201308\", \"ReleaseDate\": \"2025-03-20\", \"AutoDependOn\": \"qt.qt6.683.addons.qtgraphs, qt.qt6.683.win64_msvc2022_64\", \"Dependencies\": \"qt.qt6.683.win64_msvc2022_64\", \"Virtual\": \"true\", \"SortingPriority\": null, \"DownloadableArchives\": \"qtgraphs-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z\", \"Operations\": \"\\n   \", \"SHA1\": \"2c68685a8bd2e3324fd19afb726317353be677da\", \"UpdateFile\": [{\"CompressedSize\": \"1665829\", \"OS\": \"Any\", \"UncompressedSize\": \"13519694\"}]}\r\n{\"Name\": \"qt.qt6.683.addons.qtgrpc.win64_msvc2022_64\", \"DisplayName\": \"Qt Protobuf and Qt GRPC for MSVC 2022 64-bit\", \"Description\": null, \"Version\": \"6.8.3-0-202503201308\", \"ReleaseDate\": \"2025-03-20\", \"AutoDependOn\": \"qt.qt6.683.addons.qtgrpc, qt.qt6.683.win64_msvc2022_64\", \"Dependencies\": \"qt.qt6.683.win64_msvc2022_64\", \"Virtual\": \"true\", \"SortingPriority\": null, \"DownloadableArchives\": \"qtgrpc-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z\", \"Operations\": \"\\n   \", \"SHA1\": \"ef8d39a1d5487c995a811e2bd8ce1fede3b8dc19\", \"UpdateFile\": [{\"CompressedSize\": \"6897586\", \"OS\": \"Any\", \"UncompressedSize\": \"83951697\"}]}\r\n{\"Name\": \"qt.qt6.683.addons.qthttpserver.win64_msvc2022_64\", \"DisplayName\": \"Qt HTTP Server for MSVC 2022 64-bit\", \"Description\": null, \"Version\": \"6.8.3-0-202503201308\", \"ReleaseDate\": \"2025-03-20\", \"AutoDependOn\": \"qt.qt6.683.addons.qthttpserver, qt.qt6.683.win64_msvc2022_64\", \"Dependencies\": \"qt.qt6.683.win64_msvc2022_64\", \"Virtual\": \"true\", \"SortingPriority\": null, \"DownloadableArchives\": \"qthttpserver-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z\", \"Operations\": \"\\n   \", \"SHA1\": \"fddc5616474d25419b0649eb467d873d1e22bf7a\", \"UpdateFile\": [{\"CompressedSize\": \"199303\", \"OS\": \"Any\", \"UncompressedSize\": \"1158807\"}]}\r\n{\"Name\": \"qt.qt6.683.addons.qtimageformats.win64_msvc2022_64\", \"DisplayName\": \"Qt Image Formats for MSVC 2022 64-bit\", \"Description\": null, \"Version\": \"6.8.3-0-202503201308\", \"ReleaseDate\": \"2025-03-20\", \"AutoDependOn\": \"qt.qt6.683.addons.qtimageformats, qt.qt6.683.win64_msvc2022_64\", \"Dependencies\": \"qt.qt6.683.win64_msvc2022_64\", \"Virtual\": \"true\", \"SortingPriority\": null, \"DownloadableArchives\": \"qtimageformats-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z\", \"Operations\": \"\\n   \", \"SHA1\": \"db9f1ca84cef81fcd8851f747883232ed0592956\", \"UpdateFile\": [{\"CompressedSize\": \"805567\", \"OS\": \"Any\", \"UncompressedSize\": \"4543779\"}]}\r\n{\"Name\": \"qt.qt6.683.addons.qtlanguageserver.win64_msvc2022_64\", \"DisplayName\": \"Qt language Server for MSVC 2022 64-bit\", \"Description\": null, \"Version\": \"6.8.3-0-202503201308\", \"ReleaseDate\": \"2025-03-20\", \"AutoDependOn\": \"qt.qt6.683.addons.qtlanguageserver, qt.qt6.683.win64_msvc2022_64\", \"Dependencies\": \"qt.qt6.683.win64_msvc2022_64\", \"Virtual\": \"true\", \"SortingPriority\": null, \"DownloadableArchives\": \"qtlanguageserver-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z\", \"Operations\": \"\\n   \", \"SHA1\": \"38ad829d0ddafc8ec1df1b5208f6d82616949e4f\", \"UpdateFile\": [{\"CompressedSize\": \"9936455\", \"OS\": \"Any\", \"UncompressedSize\": \"136038785\"}]}\r\n{\"Name\": \"qt.qt6.683.addons.qtlocation.win64_msvc2022_64\", \"DisplayName\": \"Qt Location for MSVC 2022 64-bit\", \"Description\": null, \"Version\": \"6.8.3-0-202503201308\", \"ReleaseDate\": \"2025-03-20\", \"AutoDependOn\": \"qt.qt6.683.addons.qtlocation, qt.qt6.683.win64_msvc2022_64\", \"Dependencies\": \"qt.qt6.683.win64_msvc2022_64\", \"Virtual\": \"true\", \"SortingPriority\": null, \"DownloadableArchives\": \"qtlocation-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z\", \"Operations\": \"\\n   \", \"SHA1\": \"423bde4c09406622af3a929380d060d648fd1b20\", \"UpdateFile\": [{\"CompressedSize\": \"1596187\", \"OS\": \"Any\", \"UncompressedSize\": \"12888077\"}]}\r\n{\"Name\": \"qt.qt6.683.addons.qtlottie.win64_msvc2022_64\", \"DisplayName\": \"Qt Lottie Animation for MSVC 2022 64-bit\", \"Description\": null, \"Version\": \"6.8.3-0-202503201308\", \"ReleaseDate\": \"2025-03-20\", \"AutoDependOn\": \"qt.qt6.683.addons.qtlottie, qt.qt6.683.win64_msvc2022_64\", \"Dependencies\": \"qt.qt6.683.win64_msvc2022_64\", \"Virtual\": \"true\", \"SortingPriority\": null, \"DownloadableArchives\": \"qtlottie-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z\", \"Operations\": \"\\n   \", \"SHA1\": \"cbfba086e5af79297c78e43746757161bfd81488\", \"UpdateFile\": [{\"CompressedSize\": \"350326\", \"OS\": \"Any\", \"UncompressedSize\": \"2282177\"}]}\r\n{\"Name\": \"qt.qt6.683.addons.qtmultimedia.win64_msvc2022_64\", \"DisplayName\": \"Qt Multimedia for MSVC 2022 64-bit\", \"Description\": null, \"Version\": \"6.8.3-0-202503201308\", \"ReleaseDate\": \"2025-03-20\", \"AutoDependOn\": \"qt.qt6.683.addons.qtmultimedia, qt.qt6.683.win64_msvc2022_64\", \"Dependencies\": \"qt.qt6.683.win64_msvc2022_64\", \"Virtual\": \"true\", \"SortingPriority\": null, \"DownloadableArchives\": \"qtmultimedia-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z\", \"Operations\": \"\\n   \", \"SHA1\": \"22c36e934bab74414945cbe6c7b45a750987b7dd\", \"UpdateFile\": [{\"CompressedSize\": \"38435559\", \"OS\": \"Any\", \"UncompressedSize\": \"385883345\"}]}\r\n{\"Name\": \"qt.qt6.683.addons.qtnetworkauth.win64_msvc2022_64\", \"DisplayName\": \"Qt Network Authorization for MSVC 2022 64-bit\", \"Description\": null, \"Version\": \"6.8.3-0-202503201308\", \"ReleaseDate\": \"2025-03-20\", \"AutoDependOn\": \"qt.qt6.683.addons.qtnetworkauth, qt.qt6.683.win64_msvc2022_64\", \"Dependencies\": \"qt.qt6.683.win64_msvc2022_64\", \"Virtual\": \"true\", \"SortingPriority\": null, \"DownloadableArchives\": \"qtnetworkauth-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z\", \"Operations\": \"\\n   \", \"SHA1\": \"9ca9cb8969802939d68f39806714e50a33d7a790\", \"UpdateFile\": [{\"CompressedSize\": \"215535\", \"OS\": \"Any\", \"UncompressedSize\": \"1365191\"}]}\r\n{\"Name\": \"qt.qt6.683.addons.qtpositioning.win64_msvc2022_64\", \"DisplayName\": \"Qt Positioning for MSVC 2022 64-bit\", \"Description\": null, \"Version\": \"6.8.3-0-202503201308\", \"Rele\u2026593 tokens truncated\u2026CompressedSize\": \"3942842\", \"OS\": \"Any\", \"UncompressedSize\": \"5195371\"}]}\r\n{\"Name\": \"qt.qt6.683.addons.qtquicktimeline.win64_msvc2022_64\", \"DisplayName\": \"Qt Quick Timeline for MSVC 2022 64-bit\", \"Description\": null, \"Version\": \"6.8.3-0-202503201308\", \"ReleaseDate\": \"2025-03-20\", \"AutoDependOn\": \"qt.qt6.683.addons.qtquicktimeline, qt.qt6.683.win64_msvc2022_64\", \"Dependencies\": \"qt.qt6.683.win64_msvc2022_64\", \"Virtual\": \"true\", \"SortingPriority\": null, \"DownloadableArchives\": \"qtquicktimeline-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z\", \"Operations\": \"\\n   \", \"SHA1\": \"77f67f9d3595ca6900ef411cffe8ea4c2a64778c\", \"UpdateFile\": [{\"CompressedSize\": \"204631\", \"OS\": \"Any\", \"UncompressedSize\": \"1648572\"}]}\r\n{\"Name\": \"qt.qt6.683.addons.qtremoteobjects.win64_msvc2022_64\", \"DisplayName\": \"Qt Remote Objects for MSVC 2022 64-bit\", \"Description\": null, \"Version\": \"6.8.3-0-202503201308\", \"ReleaseDate\": \"2025-03-20\", \"AutoDependOn\": \"qt.qt6.683.addons.qtremoteobjects, qt.qt6.683.win64_msvc2022_64\", \"Dependencies\": \"qt.qt6.683.win64_msvc2022_64\", \"Virtual\": \"true\", \"SortingPriority\": null, \"DownloadableArchives\": \"qtremoteobjects-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z\", \"Operations\": \"\\n   \", \"SHA1\": \"ae1ff7bae5cb426fd4f2e3dc1a9222428597f955\", \"UpdateFile\": [{\"CompressedSize\": \"885487\", \"OS\": \"Any\", \"UncompressedSize\": \"5537866\"}]}\r\n{\"Name\": \"qt.qt6.683.addons.qtscxml.win64_msvc2022_64\", \"DisplayName\": \"Qt State Machine for MSVC 2022 64-bit\", \"Description\": null, \"Version\": \"6.8.3-0-202503201308\", \"ReleaseDate\": \"2025-03-20\", \"AutoDependOn\": \"qt.qt6.683.addons.qtscxml, qt.qt6.683.win64_msvc2022_64\", \"Dependencies\": \"qt.qt6.683.win64_msvc2022_64\", \"Virtual\": \"true\", \"SortingPriority\": null, \"DownloadableArchives\": \"qtscxml-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z\", \"Operations\": \"\\n   \", \"SHA1\": \"c67358160a80efe143ddb5f7952ce1fc7d62e15a\", \"UpdateFile\": [{\"CompressedSize\": \"1108358\", \"OS\": \"Any\", \"UncompressedSize\": \"8379181\"}]}\r\n{\"Name\": \"qt.qt6.683.addons.qtsensors.win64_msvc2022_64\", \"DisplayName\": \"Qt Sensors for MSVC 2022 64-bit\", \"Description\": null, \"Version\": \"6.8.3-0-202503201308\", \"ReleaseDate\": \"2025-03-20\", \"AutoDependOn\": \"qt.qt6.683.addons.qtsensors, qt.qt6.683.win64_msvc2022_64\", \"Dependencies\": \"qt.qt6.683.win64_msvc2022_64\", \"Virtual\": \"true\", \"SortingPriority\": null, \"DownloadableArchives\": \"qtsensors-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z\", \"Operations\": \"\\n   \", \"SHA1\": \"1be55c607bf815ca3ffcf46ff93d6f2004e03db1\", \"UpdateFile\": [{\"CompressedSize\": \"567171\", \"OS\": \"Any\", \"UncompressedSize\": \"5437675\"}]}\r\n{\"Name\": \"qt.qt6.683.addons.qtserialbus.win64_msvc2022_64\", \"DisplayName\": \"Qt SerialBus for MSVC 2022 64-bit\", \"Description\": null, \"Version\": \"6.8.3-0-202503201308\", \"ReleaseDate\": \"2025-03-20\", \"AutoDependOn\": \"qt.qt6.683.addons.qtserialbus, qt.qt6.683.win64_msvc2022_64\", \"Dependencies\": \"qt.qt6.683.win64_msvc2022_64\", \"Virtual\": \"true\", \"SortingPriority\": null, \"DownloadableArchives\": \"qtserialbus-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z\", \"Operations\": \"\\n   \", \"SHA1\": \"e345481a4345398dc8a74b91934ffebdba7e470b\", \"UpdateFile\": [{\"CompressedSize\": \"640273\", \"OS\": \"Any\", \"UncompressedSize\": \"4530323\"}]}\r\n{\"Name\": \"qt.qt6.683.addons.qtserialport.win64_msvc2022_64\", \"DisplayName\": \"Qt SerialPort for MSVC 2022 64-bit\", \"Description\": null, \"Version\": \"6.8.3-0-202503201308\", \"ReleaseDate\": \"2025-03-20\", \"AutoDependOn\": \"qt.qt6.683.addons.qtserialport, qt.qt6.683.win64_msvc2022_64\", \"Dependencies\": \"qt.qt6.683.win64_msvc2022_64\", \"Virtual\": \"true\", \"SortingPriority\": null, \"DownloadableArchives\": \"qtserialport-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z\", \"Operations\": \"\\n   \", \"SHA1\": \"885881f329d9c824c686397ed37f5b8d04e11745\", \"UpdateFile\": [{\"CompressedSize\": \"150515\", \"OS\": \"Any\", \"UncompressedSize\": \"821348\"}]}\r\n{\"Name\": \"qt.qt6.683.addons.qtshadertools.win64_msvc2022_64\", \"DisplayName\": \"Qt Shader Tools for MSVC 2022 64-bit\", \"Description\": null, \"Version\": \"6.8.3-0-202503201308\", \"ReleaseDate\": \"2025-03-20\", \"AutoDependOn\": \"qt.qt6.683.addons.qtshadertools, qt.qt6.683.win64_msvc2022_64\", \"Dependencies\": \"qt.qt6.683.win64_msvc2022_64\", \"Virtual\": \"true\", \"SortingPriority\": null, \"DownloadableArchives\": \"qtshadertools-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z\", \"Operations\": \"\\n   \", \"SHA1\": \"da1b1db8fea391e371a13df06f988475339dd388\", \"UpdateFile\": [{\"CompressedSize\": \"3017694\", \"OS\": \"Any\", \"UncompressedSize\": \"16860547\"}]}\r\n{\"Name\": \"qt.qt6.683.addons.qtspeech.win64_msvc2022_64\", \"DisplayName\": \"Qt Speech for msvc2022_64-bit\", \"Description\": null, \"Version\": \"6.8.3-0-202503201308\", \"ReleaseDate\": \"2025-03-20\", \"AutoDependOn\": \"qt.qt6.683.addons.qtspeech, qt.qt6.683.win64_msvc2022_64\", \"Dependencies\": \"qt.qt6.683.win64_msvc2022_64\", \"Virtual\": \"true\", \"SortingPriority\": null, \"DownloadableArchives\": \"qtspeech-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z\", \"Operations\": \"\\n   \", \"SHA1\": \"efe48fb4ba6a2932fb0cd0de601abbff36a3d6c7\", \"UpdateFile\": [{\"CompressedSize\": \"463140\", \"OS\": \"Any\", \"UncompressedSize\": \"3373227\"}]}\r\n{\"Name\": \"qt.qt6.683.addons.qtvirtualkeyboard.win64_msvc2022_64\", \"DisplayName\": \"Qt Virtual Keyboard for MSVC 2022 64-bit\", \"Description\": null, \"Version\": \"6.8.3-0-202503201308\", \"ReleaseDate\": \"2025-03-20\", \"AutoDependOn\": \"qt.qt6.683.addons.qtvirtualkeyboard, qt.qt6.683.win64_msvc2022_64\", \"Dependencies\": \"qt.qt6.683.win64_msvc2022_64\", \"Virtual\": \"true\", \"SortingPriority\": null, \"DownloadableArchives\": \"qtvirtualkeyboard-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z\", \"Operations\": \"\\n   \", \"SHA1\": \"7ef8890a2c2c6db1f9ae24e75795d65bd7b03d2d\", \"UpdateFile\": [{\"CompressedSize\": \"2965547\", \"OS\": \"Any\", \"UncompressedSize\": \"16809583\"}]}\r\n{\"Name\": \"qt.qt6.683.addons.qtwebchannel.win64_msvc2022_64\", \"DisplayName\": \"Qt WebChannel for MSVC 2022 64-bit\", \"Description\": null, \"Version\": \"6.8.3-0-202503201308\", \"ReleaseDate\": \"2025-03-20\", \"AutoDependOn\": \"qt.qt6.683.addons.qtwebchannel, qt.qt6.683.win64_msvc2022_64\", \"Dependencies\": \"qt.qt6.683.win64_msvc2022_64\", \"Virtual\": \"true\", \"SortingPriority\": null, \"DownloadableArchives\": \"qtwebchannel-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z\", \"Operations\": \"\\n   \", \"SHA1\": \"55491f7eca183c4f817fe29bf9aa3aa0d8a65eaf\", \"UpdateFile\": [{\"CompressedSize\": \"291209\", \"OS\": \"Any\", \"UncompressedSize\": \"1931012\"}]}\r\n{\"Name\": \"qt.qt6.683.addons.qtwebsockets.win64_msvc2022_64\", \"DisplayName\": \"Qt WebSockets for MSVC 2022 64-bit\", \"Description\": null, \"Version\": \"6.8.3-0-202503201308\", \"ReleaseDate\": \"2025-03-20\", \"AutoDependOn\": \"qt.qt6.683.addons.qtwebsockets, qt.qt6.683.win64_msvc2022_64\", \"Dependencies\": \"qt.qt6.683.win64_msvc2022_64\", \"Virtual\": \"true\", \"SortingPriority\": null, \"DownloadableArchives\": \"qtwebsockets-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z\", \"Operations\": \"\\n   \", \"SHA1\": \"41fe9016ba3bcd7e88018989f3a6e3ed06214f03\", \"UpdateFile\": [{\"CompressedSize\": \"267023\", \"OS\": \"Any\", \"UncompressedSize\": \"1703343\"}]}\r\n{\"Name\": \"qt.qt6.683.addons.qtwebview.win64_msvc2022_64\", \"DisplayName\": \"Qt WebView for MSVC 2022 64-bit\", \"Description\": null, \"Version\": \"6.8.3-0-202503201308\", \"ReleaseDate\": \"2025-03-20\", \"AutoDependOn\": \"qt.qt6.683.addons.qtwebview, qt.qt6.683.win64_msvc2022_64\", \"Dependencies\": \"qt.qt6.683.win64_msvc2022_64\", \"Virtual\": \"true\", \"SortingPriority\": null, \"DownloadableArchives\": \"qtwebview-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z\", \"Operations\": \"\\n   \", \"SHA1\": \"fb67f88add5c1582b483cc39c682f2ad0ad3599b\", \"UpdateFile\": [{\"CompressedSize\": \"200675\", \"OS\": \"Any\", \"UncompressedSize\": \"1624174\"}]}\r\n{\"Name\": \"qt.qt6.683.debug_info.win64_msvc2022_64\", \"DisplayName\": \"Desktop MSVC 2022 64-bit debug information files\", \"Description\": \"Qt 6.8.3 debug information files for Desktop MSVC 2022 64-bit\", \"Version\": \"6.8.3-0-202503201308\", \"ReleaseDate\": \"2025-03-20\", \"AutoDependOn\": \"qt.qt6.683.debug_info, qt.qt6.683.win64_msvc2022_64\", \"Dependencies\": \"qt.qt6.683.win64_msvc2022_64\", \"Virtual\": \"true\", \"SortingPriority\": \"2\", \"DownloadableArchives\": \"qtbase-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64-debug-symbols.7z, qtsvg-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64-debug-symbols.7z, qtdeclarative-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64-debug-symbols.7z, qttools-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64-debug-symbols.7z\", \"Operations\": \"\\n   \", \"SHA1\": \"0ce7a6e5bb98c6a4333e955cde9e0861b5849157\", \"UpdateFile\": [{\"CompressedSize\": \"501026371\", \"OS\": \"Any\", \"UncompressedSize\": \"3392737440\"}]}\r\n{\"Name\": \"qt.qt6.683.win64_msvc2022_64\", \"DisplayName\": \"MSVC 2022 64-bit\", \"Description\": \"Qt 6.8.3 Prebuilt Components for MSVC 2022 64-bit\", \"Version\": \"6.8.3-0-202503201308\", \"ReleaseDate\": \"2025-03-20\", \"Dependencies\": \"qt.tools.qtcreator, qt.qt6.683.doc, qt.qt6.683.examples\", \"AutoDependOn\": null, \"Default\": \"false\", \"Script\": \"installscript.qs\", \"SortingPriority\": \"590\", \"DownloadableArchives\": \"qtbase-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z, qtsvg-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z, qtdeclarative-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z, qttools-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z, qttranslations-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z, d3dcompiler_47-x64.7z, opengl32sw-64-mesa_11_2_2-signed_sha256.7z\", \"Operations\": \"\\n   \", \"SHA1\": \"c388ba8ac1a2e7b40b7903b142af0b9b4d0176c1\", \"UpdateFile\": [{\"CompressedSize\": \"222292292\", \"OS\": \"Any\", \"UncompressedSize\": \"2054629621\"}]}\r\n{\"name\":\"7z\",\"paths\":[]}\r\n{\"name\":\"7za\",\"paths\":[]}\r\n{\"name\":\"7zr\",\"paths\":[]}\r\n{\"name\":\"tar\",\"paths\":[\"C:\\\\WINDOWS\\\\system32\\\\tar.exe\"]}\r\nC:\\Program Files\\Git\\usr\\bin\\tar.exe\n"
+      }
+    },
+    {
+      "id": "qt-proposed-prefix-check",
+      "command": "$proposedPaths=@('C:\\dev\\Windows_fileexplore\\tools\\qt','C:\\dev\\Windows_fileexplore\\tools\\qt\\6.8.3\\msvc2022_64','C:\\dev\\Windows_fileexplore\\tools\\qt\\downloads'); $paths=@(foreach ($p in $proposedPaths) { [pscustomobject]@{path=$p; exists=(Test-Path -LiteralPath $p)} }); [pscustomobject]@{proposed_paths=$paths; free_bytes_on_C=(Get-PSDrive -Name C).Free; timestamp_seoul=[TimeZoneInfo]::ConvertTimeBySystemTimeZoneId([DateTimeOffset]::Now,'Korea Standard Time').ToString('o')} | ConvertTo-Json -Depth 5",
+      "result": {
+        "chunk_id": "37a509",
+        "wall_time_seconds": 0.507339,
+        "exit_code": 0,
+        "original_token_count": 112,
+        "output": "{\r\n  \"proposed_paths\": [\r\n    {\r\n      \"path\": \"C:\\\\dev\\\\Windows_fileexplore\\\\tools\\\\qt\",\r\n      \"exists\": false\r\n    },\r\n    {\r\n      \"path\": \"C:\\\\dev\\\\Windows_fileexplore\\\\tools\\\\qt\\\\6.8.3\\\\msvc2022_64\",\r\n      \"exists\": false\r\n    },\r\n    {\r\n      \"path\": \"C:\\\\dev\\\\Windows_fileexplore\\\\tools\\\\qt\\\\downloads\",\r\n      \"exists\": false\r\n    }\r\n  ],\r\n  \"free_bytes_on_C\": 79257694208,\r\n  \"timestamp_seoul\": \"2026-10-21T23:08:47.2539659+09:00\"\r\n}\r\n"
+      }
+    },
+    {
+      "id": "initial-windows-inventory-corrected",
+      "command": "$names = @('cl','cmake','ninja','qmake','qmake6','qtpaths','qtpaths6','windeployqt','git','python','py','clang-format','clang-tidy','wsl'); $commands = @(foreach ($n in $names) { $c = @(Get-Command $n -ErrorAction SilentlyContinue); [pscustomobject]@{name=$n; paths=@($c | ForEach-Object { $_.Source })} }); $os = Get-CimInstance Win32_OperatingSystem | Select-Object Caption,Version,BuildNumber,OSArchitecture; $vswhere = 'C:\\Program Files (x86)\\Microsoft Visual Studio\\Installer\\vswhere.exe'; $vs = if (Test-Path -LiteralPath $vswhere) { & $vswhere -all -products '*' -format json } else { 'vswhere:not-found' }; $roots = @('C:\\Qt','C:\\dev\\Qt','C:\\Program Files\\Qt','C:\\Program Files (x86)\\Qt','C:\\Program Files\\CMake','C:\\Program Files\\Microsoft Visual Studio','C:\\Program Files (x86)\\Microsoft Visual Studio','C:\\Program Files (x86)\\Windows Kits\\10'); $inventory = @(foreach ($r in $roots) { [pscustomobject]@{root=$r; exists=(Test-Path -LiteralPath $r); children=@(if (Test-Path -LiteralPath $r) { Get-ChildItem -LiteralPath $r -Directory | Select-Object -ExpandProperty Name })} }); [pscustomobject]@{commands=$commands; os=$os; vswhere_output=$vs; roots=$inventory} | ConvertTo-Json -Depth 8",
+      "result_summary": "exit 0; PATH/OS/vswhere/root findings recorded in windows."
+    },
+    {
+      "id": "initial-registry-and-wsl-inventory",
+      "command": "$registryPaths = @('HKLM:\\SOFTWARE\\Kitware\\CMake','HKLM:\\SOFTWARE\\WOW6432Node\\Kitware\\CMake','HKCU:\\Software\\Kitware\\CMake','HKLM:\\SOFTWARE\\Microsoft\\Windows Kits\\Installed Roots','HKCU:\\Software\\QtProject','HKCU:\\Software\\Qt'); $registry = @(foreach ($p in $registryPaths) { [pscustomobject]@{path=$p; exists=(Test-Path -LiteralPath $p); properties=$(if (Test-Path -LiteralPath $p) { Get-ItemProperty -LiteralPath $p | Select-Object -Property * -ExcludeProperty PSPath,PSParentPath,PSChildName,PSDrive,PSProvider })} }); $uninstallRoots=@('HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall','HKLM:\\SOFTWARE\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall','HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall'); $programs = @(foreach ($p in $uninstallRoots) { if (Test-Path -LiteralPath $p) { Get-ChildItem -LiteralPath $p | ForEach-Object { $v=Get-ItemProperty -LiteralPath $_.PSPath; if ($v.DisplayName -match '^(Qt|CMake|Microsoft Visual (Studio|C\\+\\+)|Ninja|Windows Software Development Kit|Windows SDK)') { $v | Select-Object DisplayName,DisplayVersion,InstallLocation,Publisher } } } }); [pscustomobject]@{registry=$registry; installed_programs=$programs} | ConvertTo-Json -Depth 8; & 'C:\\Windows\\System32\\wsl.exe' --status; & 'C:\\Windows\\System32\\wsl.exe' --list --verbose; & 'C:\\Windows\\System32\\wsl.exe' --version",
+      "result_summary": "exit 0; Windows SDK package 10.1.26100.8249 and C++ runtime 14.51.36247 registered; Qt/CMake registrations not found except uninformative HKCU QtProject key. First WSL listing showed Ubuntu and docker-desktop Stopped; Ubuntu default WSL2. WSL output encoding repaired via direct UTF-16LE decoding in later probe."
+    },
+    {
+      "id": "linux-cmake-components",
+      "command": "@'\nimport subprocess,json\nscript=r'''pkg-config --modversion Qt6Core Qt6Gui Qt6Widgets Qt6Test Qt6Concurrent\nfor p in /usr/lib/x86_64-linux-gnu/cmake/Qt6/Qt6Config.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt6Widgets/Qt6WidgetsConfig.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt6Test/Qt6TestConfig.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt6Concurrent/Qt6ConcurrentConfig.cmake; do if test -f \"$p\"; then printf 'present=%s\\n' \"$p\"; else printf 'absent=%s\\n' \"$p\"; fi; done\n'''\nr=subprocess.run([r'C:\\Windows\\System32\\wsl.exe','-d','Ubuntu','--exec','sh','-c',script],stdout=subprocess.PIPE,stderr=subprocess.PIPE,timeout=20)\nprint(json.dumps({'script':script,'returncode':r.returncode,'stdout':r.stdout.decode(),'stderr':r.stderr.decode()}))\n'@ | & 'C:\\Python314\\python.exe' -",
+      "result": {
+        "chunk_id": "1d75fc",
+        "wall_time_seconds": 4.3213871,
+        "exit_code": 0,
+        "original_token_count": 205,
+        "output": "{\"script\": \"pkg-config --modversion Qt6Core Qt6Gui Qt6Widgets Qt6Test Qt6Concurrent\\nfor p in /usr/lib/x86_64-linux-gnu/cmake/Qt6/Qt6Config.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt6Widgets/Qt6WidgetsConfig.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt6Test/Qt6TestConfig.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt6Concurrent/Qt6ConcurrentConfig.cmake; do if test -f \\\"$p\\\"; then printf 'present=%s\\\\n' \\\"$p\\\"; else printf 'absent=%s\\\\n' \\\"$p\\\"; fi; done\\n\", \"returncode\": 0, \"stdout\": \"6.4.2\\n6.4.2\\n6.4.2\\n6.4.2\\n6.4.2\\npresent=/usr/lib/x86_64-linux-gnu/cmake/Qt6/Qt6Config.cmake\\npresent=/usr/lib/x86_64-linux-gnu/cmake/Qt6Widgets/Qt6WidgetsConfig.cmake\\npresent=/usr/lib/x86_64-linux-gnu/cmake/Qt6Test/Qt6TestConfig.cmake\\npresent=/usr/lib/x86_64-linux-gnu/cmake/Qt6Concurrent/Qt6ConcurrentConfig.cmake\\n\", \"stderr\": \"\"}\r\n"
+      }
+    },
+    {
+      "id": "initial-windows-inventory-parser-error",
+      "command": "$names = @('cl','cmake','ninja','qmake','qmake6','qtpaths','qtpaths6','windeployqt','git','python','py','clang-format','clang-tidy','wsl'); foreach ($n in $names) { $c = Get-Command $n -ErrorAction SilentlyContinue; [pscustomobject]@{name=$n; paths=@($c | ForEach-Object { $_.Source })} }; Get-CimInstance Win32_OperatingSystem | Select-Object Caption,Version,BuildNumber,OSArchitecture; $vswhere = 'C:\\Program Files (x86)\\Microsoft Visual Studio\\Installer\\vswhere.exe'; if (Test-Path -LiteralPath $vswhere) { & $vswhere -all -products '*' -format json } else { Write-Output 'vswhere:not-found' }; $roots = @('C:\\Qt','C:\\dev\\Qt','C:\\Program Files\\Qt','C:\\Program Files (x86)\\Qt','C:\\Program Files\\CMake','C:\\Program Files\\Microsoft Visual Studio','C:\\Program Files (x86)\\Microsoft Visual Studio','C:\\Program Files (x86)\\Windows Kits\\10'); foreach ($r in $roots) { [pscustomobject]@{root=$r; exists=(Test-Path -LiteralPath $r); children=@(if (Test-Path -LiteralPath $r) { Get-ChildItem -LiteralPath $r -Directory | Select-Object -ExpandProperty Name })} } | ConvertTo-Json -Depth 6",
+      "result_summary": "exit 1; PowerShell parser rejected empty pipe element before executing body."
+    }
+  ],
+  "official_metadata": {
+    "metadata_url": "https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/qt6_683/qt6_683/Updates.xml",
+    "metadata_sha256": "b3aaf7ad9c12edd792c1afbe675646fdafa83d9e00854109bf463d300778a21e",
+    "selected_package_xml": "<PackageUpdate>\n  <Name>qt.qt6.683.win64_msvc2022_64</Name>\n  <DisplayName>MSVC 2022 64-bit</DisplayName>\n  <Description>Qt 6.8.3 Prebuilt Components for MSVC 2022 64-bit</Description>\n  <Version>6.8.3-0-202503201308</Version>\n  <ReleaseDate>2025-03-20</ReleaseDate>\n  <Dependencies>qt.tools.qtcreator, qt.qt6.683.doc, qt.qt6.683.examples</Dependencies>\n  <AutoDependOn />\n  <Default>false</Default>\n  <Script>installscript.qs</Script>\n  <SortingPriority>590</SortingPriority>\n  <DownloadableArchives>qtbase-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z, qtsvg-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z, qtdeclarative-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z, qttools-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z, qttranslations-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z, d3dcompiler_47-x64.7z, opengl32sw-64-mesa_11_2_2-signed_sha256.7z</DownloadableArchives>\n  <UpdateFile CompressedSize=\"222292292\" OS=\"Any\" UncompressedSize=\"2054629621\" />\n  <Operations>\n   <Operation name=\"Extract\">\n    <Argument>@TargetDir@/6.8.3/msvc2022_64</Argument>\n    <Argument>qtbase-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z</Argument>\n   </Operation>\n   <Operation name=\"Extract\">\n    <Argument>@TargetDir@/6.8.3/msvc2022_64</Argument>\n    <Argument>qtsvg-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z</Argument>\n   </Operation>\n   <Operation name=\"Extract\">\n    <Argument>@TargetDir@/6.8.3/msvc2022_64</Argument>\n    <Argument>qtdeclarative-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z</Argument>\n   </Operation>\n   <Operation name=\"Extract\">\n    <Argument>@TargetDir@/6.8.3/msvc2022_64</Argument>\n    <Argument>qttools-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z</Argument>\n   </Operation>\n   <Operation name=\"Extract\">\n    <Argument>@TargetDir@/6.8.3/msvc2022_64</Argument>\n    <Argument>qttranslations-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z</Argument>\n   </Operation>\n   <Operation name=\"Extract\">\n    <Argument>@TargetDir@/6.8.3/msvc2022_64/bin</Argument>\n    <Argument>d3dcompiler_47-x64.7z</Argument>\n   </Operation>\n   <Operation name=\"Extract\">\n    <Argument>@TargetDir@/6.8.3/msvc2022_64/bin</Argument>\n    <Argument>opengl32sw-64-mesa_11_2_2-signed_sha256.7z</Argument>\n   </Operation>\n  </Operations>\n  <SHA1>c388ba8ac1a2e7b40b7903b142af0b9b4d0176c1</SHA1>\n </PackageUpdate>\n ",
+    "archives": [
+      {
+        "module": "qtbase",
+        "url": "https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/qt6_683/qt6_683/qt.qt6.683.win64_msvc2022_64/6.8.3-0-202503201308qtbase-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z",
+        "compressed_bytes": 39484220,
+        "sha1": "ab0bd2551618f7128ef30c6d74fe45b6a76e2296",
+        "sha1_url": "https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/qt6_683/qt6_683/qt.qt6.683.win64_msvc2022_64/6.8.3-0-202503201308qtbase-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z.sha1",
+        "payload_fetched": false,
+        "archive_contents_verified": false
+      },
+      {
+        "module": "qttools",
+        "url": "https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/qt6_683/qt6_683/qt.qt6.683.win64_msvc2022_64/6.8.3-0-202503201308qttools-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z",
+        "compressed_bytes": 25405796,
+        "sha1": "25956e4f72a3b054235a2c6a00c88ba7e7927971",
+        "sha1_url": "https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/qt6_683/qt6_683/qt.qt6.683.win64_msvc2022_64/6.8.3-0-202503201308qttools-Windows-Windows_11_23H2-MSVC2022-Windows-Windows_11_23H2-X86_64.7z.sha1",
+        "payload_fetched": false,
+        "archive_contents_verified": false
+      }
+    ],
+    "archives_total_compressed_bytes": 64890016,
+    "full_installer_package": {
+      "compressed_bytes": 222292292,
+      "uncompressed_bytes": 2054629621,
+      "dependencies": [
+        "qt.tools.qtcreator",
+        "qt.qt6.683.doc",
+        "qt.qt6.683.examples"
+      ]
+    },
+    "per_archive_uncompressed_bytes": null,
+    "per_archive_uncompressed_size_note": "Updates.xml provides only the aggregate for all seven package archives. Selected two archive expanded sizes were not read or measured; 2,054,629,621 bytes is the metadata aggregate for the full seven-archive package, not a measurement of this subset."
+  },
+  "references": [
+    {
+      "url": "https://doc.qt.io/qt-6.8/supported-platforms.html",
+      "claim": "Qt 6.8 lists Windows 11 x86_64 with MSVC 2022; installed 2026 toolset is outside that named tested compiler."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/cpp/porting/binary-compat-2015-2017?view=msvc-170",
+      "claim": "Microsoft documents ABI compatibility including Visual Studio 2022 and 2026 subject to using a sufficiently recent linker/runtime and other restrictions."
+    },
+    {
+      "url": "https://github.com/libarchive/libarchive/blob/master/README.md",
+      "claim": "Upstream libarchive documents 7-Zip reading; extracting these specific Qt archives with the installed Windows bsdtar remains untested."
+    },
+    {
+      "url": "https://doc.qt.io/qt-6.8/qtwidgets-index.html",
+      "claim": "Widgets CMake target is Qt6::Widgets."
+    },
+    {
+      "url": "https://doc.qt.io/qt-6.8/qtconcurrent-index.html",
+      "claim": "Concurrent CMake target is Qt6::Concurrent."
+    },
+    {
+      "url": "https://doc.qt.io/qt-6.8/qttest-index.html",
+      "claim": "Test CMake target is Qt6::Test; keep the same Qt test library version used at build."
+    }
+  ],
+  "latest_update": {
+    "at": "2026-10-21T23:39:08+09:00",
+    "status": "approved-project-local-Qt6.8.3-installed-and-environment-smoke-passed",
+    "sdk_prefix": "C:\\dev\\Windows_fileexplore\\tools\\qt\\6.8.3\\msvc2022_64",
+    "archive_bytes": 64890016,
+    "expanded_regular_file_bytes": 384010023,
+    "ctest_passed": 1,
+    "qt_test_slots_passed": 3,
+    "native_desktop_UI_verified": false,
+    "system_PATH_registry_changes": false,
+    "details": "docs/evaluation/qt-setup.md",
+    "historical_audit_note": "Original pre-install audit findings/proposal and command records below are preserved as historical evidence."
+  }
+}
