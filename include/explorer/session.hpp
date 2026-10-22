@@ -27,6 +27,8 @@ struct TabState {
     SortSpec sort;
     std::optional<Error> error;
     bool loading = false;
+    bool recursive = false, recursiveResults = false;
+    QStringList searchWarnings, watchedDirectories;
     qint64 deriveMilliseconds = 0;
     std::shared_ptr<std::stop_source> stop;
     std::shared_ptr<std::atomic<quint64>> examined;
@@ -49,6 +51,8 @@ class ExplorerSession : public QObject {
     void up(quint64 id);
     void refresh(quint64 id);
     void setSearch(quint64 id, const QString &query);
+    void setRecursiveSearch(quint64 id, bool enabled);
+    void cancelSearch(quint64 id);
     void setSort(quint64 id, SortSpec sort);
     void setSelection(quint64 id, QSet<QString> keys);
     void openEntry(quint64 id, const QString &key);

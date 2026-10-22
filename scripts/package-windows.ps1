@@ -20,6 +20,14 @@ foreach($arg in @('--release','--no-translations','--no-plugins','--no-compiler-
 $process=[Diagnostics.Process]::new();$process.StartInfo=$info
 try{[void]$process.Start();$stdout=$process.StandardOutput.ReadToEndAsync();$stderr=$process.StandardError.ReadToEndAsync();$process.WaitForExit();$outText=$stdout.GetAwaiter().GetResult();$errText=$stderr.GetAwaiter().GetResult();[IO.File]::WriteAllText((Join-Path $output 'deployment.log'),$outText+$errText);if($process.ExitCode-ne 0){throw "windeployqt failed: $($process.ExitCode)"}}finally{$process.Dispose()}
 foreach($plugin in @('platforms\qwindows.dll','styles\qmodernwindowsstyle.dll')){$target=Join-Path $output $plugin;[IO.Directory]::CreateDirectory((Split-Path -Parent $target))|Out-Null;Copy-Item -LiteralPath (Join-Path $qt ('plugins\'+$plugin)) -Destination $target}
+foreach($imagePlugin in @('qgif.dll','qico.dll','qjpeg.dll')) {
+    $imageSource=Join-Path $qt ('plugins\imageformats\'+$imagePlugin)
+    if(Test-Path -LiteralPath $imageSource) {
+        $imageTarget=Join-Path $output ('imageformats\'+$imagePlugin)
+        [IO.Directory]::CreateDirectory((Split-Path -Parent $imageTarget))|Out-Null
+        Copy-Item -LiteralPath $imageSource -Destination $imageTarget
+    }
+}
 Get-ChildItem -LiteralPath $runtime -Filter '*.dll' -File|ForEach-Object{Copy-Item -LiteralPath $_.FullName -Destination $output}
 Copy-Item -LiteralPath (Join-Path $project 'docs\evaluation\qt-licenses') -Destination (Join-Path $output 'licenses') -Recurse
 Copy-Item -LiteralPath (Join-Path $project 'docs\evaluation\qt-attributions') -Destination (Join-Path $output 'qt-attributions') -Recurse

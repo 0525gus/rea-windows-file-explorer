@@ -50,3 +50,9 @@ Windows 전용 실제 ACL 시험은 Linux에서 적용되지 않는다. macOS �
 원본 소스는 초기 구현·보고서 freeze commit `64032d766cf634fe00b45aa0d8c951878e0ef5c3` 및 A/B snapshot 재해시 후에만 Phase 6에서 획득·열람했다. [검증 기록](verification/phase6-freeze-verification.json)→[승인된 ACL 복원](verification/phase6-access.json)→[source 획득](verification/source-acquisition.json) 순서를 보존한다. 초기 분석·제품·snapshot에 사후 source 지식을 소급 반영하지 않았다. A/B는 별도 컨텍스트와 입력 지침으로 분리했으며 같은 사용자 아래의 강제 권한 격리는 확보하지 못했다. 정확한 모델 배포 ID·토큰/API 과금은 접근할 수 없어 미측정으로 남긴다.
 
 Qt는 동적 링크를 사용한다. 배포 전 [외부 구성요소·라이선스 기록](docs/evaluation/dependencies.md)을 확인한다. 원본 Explorer++ 실행파일·Qt SDK·빌드 산출물·검증용 원본 소스는 Git에 포함하지 않는다.
+
+## 추가 기능 구현
+
+즐겨찾기, 설정·탭 복원, 변경 자동 반영, 미리보기, 인라인 이름 변경, 상세·재귀 검색, 목록 썸네일, Undo/Redo, Windows 네이티브 메뉴와 Shell 특수 위치 탐색을 추가했다. 사용법과 남은 범위는 [현재 기능 안내](docs/current-features.md)를 참고한다. 이번 변경은 테스트 없이 구현했으며 기존 동결 평가 결과와 구분한다.
+
+현재 구현·빌드·실제 UI 확인·미완료 항목은 [작업 상태](docs/work-status-20261022.md)에 분리해 기록했다.

@@ -1,4 +1,5 @@
 #include "explorer/platform.hpp"
+#include "shell_services.hpp"
 #include "../common/file_operations.hpp"
 #ifndef STRICT_TYPED_ITEMIDS
 #define STRICT_TYPED_ITEMIDS
@@ -366,6 +367,10 @@ NativeOperations operationHooks() {
                          file.errorString(), static_cast<qint64>(file.error()), {}};
         return Unit{};
     };
+    hooks.trashWithReceipt = [](const QString &path, const Node &expected) {
+        return windows_shell::recycle(path, expected.identity);
+    };
+    hooks.restoreTrash = windows_shell::restore;
     return hooks;
 }
 std::optional<qint64> modified(const FILETIME &time) {
@@ -420,6 +425,15 @@ Error cancelled(const Location &location, const QVector<Entry> &entries) {
 class WindowsPlatform final : public IPlatform {
   public:
     Result<Location> parseLocation(const QString &input) const override {
+        if (input.startsWith("shell:", Qt::CaseInsensitive) || input.startsWith("shell-item:") || input.startsWith("::{")) {
+            auto result = windows_shell::parse(input);
+            if (!failure(result) && std::get<Location>(result).kind == Location::Kind::Directory) {
+                auto &location = std::get<Location>(result);
+                location.identity = identity(location.path);
+                location.key = location.path;
+            }
+            return result;
+        }
         if (input.isEmpty() || input.contains(QChar(u'\0')) || input.startsWith(QStringLiteral("\\\\.\\")))
             return Error{ErrorCode::InvalidPath,
                          QStringLiteral("parse"),
@@ -458,6 +472,8 @@ class WindowsPlatform final : public IPlatform {
     }
 
     Result<std::optional<Location>> parent(const Location &location) const override {
+        if (location.kind == Location::Kind::Shell)
+            return windows_shell::parent(location);
         if (location.kind == Location::Kind::Drives)
             return std::optional<Location>{};
         QString path = QDir::toNativeSeparators(location.path);
@@ -485,6 +501,8 @@ class WindowsPlatform final : public IPlatform {
 
     Result<Listing> list(const Location &location, std::stop_token stop,
                          ProgressSink progress) const override {
+        if (location.kind == Location::Kind::Shell)
+            return windows_shell::list(location, stop, std::move(progress), metadata);
         Location currentLocation = location;
         if (currentLocation.kind == Location::Kind::Directory)
             currentLocation.identity = identity(location.path);
@@ -691,6 +709,8 @@ class WindowsPlatform final : public IPlatform {
     }
 
     Result<Unit> open(const Entry &entry) const override {
+        if (entry.shell)
+            return windows_shell::open(entry);
         const QString native = apiPath(entry.path);
         if (GetFileAttributesW(wide(native)) == INVALID_FILE_ATTRIBUTES)
             return winError(QStringLiteral("open"), entry.path, GetLastError());
@@ -729,12 +749,24 @@ class WindowsPlatform final : public IPlatform {
 
     Capabilities capabilities() const override {
         Capabilities result;
+        result.nativeMenu = result.shellLocations = true;
         result.open = result.copy = result.move = result.recycle = result.rename = result.mkdir = true;
         return result;
     }
     OperationReport execute(const OperationRequest &request, std::stop_token stop,
                             OperationProgressSink progress) const override {
         return operations_->execute(request, stop, std::move(progress));
+    }
+    OperationHistory operationHistory() const override { return operations_->history(); }
+    OperationReport replayOperation(bool redo, std::stop_token stop, OperationProgressSink sink) const override {
+        return operations_->replay(redo, stop, std::move(sink));
+    }
+    Result<Unit> showContextMenu(const Location &location, const QVector<Entry> &entries,
+                                 quintptr owner, QPoint position) const override {
+        return windows_shell::menu(location, entries, owner, position);
+    }
+    QImage thumbnail(const Entry &entry, int edge) const override {
+        return windows_shell::thumbnail(entry, edge);
     }
     Result<Unit> retryCleanup(const QString &path) const override {
         return operations_->retryCleanup(path);

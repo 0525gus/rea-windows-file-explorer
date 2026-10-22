@@ -2,10 +2,81 @@
 #include <QElapsedTimer>
 #include <QFutureWatcher>
 #include <QHash>
+#include <QFileInfo>
+#include <QDir>
 #include <QTimer>
 #include <QtConcurrentRun>
 #include <algorithm>
 namespace explorer {
+namespace {
+Result<Listing> recursiveListing(const std::shared_ptr<IPlatform> &adapter, const Location &root,
+                                 const QString &query, std::stop_token stop,
+                                 const std::shared_ptr<std::atomic<quint64>> &progress) {
+    if (root.kind != Location::Kind::Directory)
+        return Error{ErrorCode::Unsupported, "Recursive search", root.path,
+                     "Search subfolders requires a filesystem folder"};
+    Listing result{root, {}, true};
+    QVector<Location> pending{root};
+    QSet<QString> visited;
+    quint64 bytes = 0, pendingBytes = 0, examined = 0;
+    auto warning = [&](const QString &text) {
+        if (result.warnings.size() < 20) result.warnings.push_back(text);
+    };
+    while (!pending.isEmpty()) {
+        if (stop.stop_requested())
+            return Error{ErrorCode::Cancelled, "Recursive search", root.path, "Search cancelled"};
+        const auto location = pending.takeLast();
+        const quint64 locationBytes = sizeof(Location) + 2ULL * (location.path.size() + location.key.size() + location.identity.size());
+        pendingBytes = pendingBytes >= locationBytes ? pendingBytes - locationBytes : 0;
+        const auto key = location.identity.isEmpty() ? location.key : location.identity;
+        if (visited.contains(key)) continue;
+        visited.insert(key);
+        if (visited.size() > 100000) {
+            warning("Search stopped at the 100000 folder limit; results are incomplete");
+            break;
+        }
+        auto listed = adapter->list(location, stop, [progress, examined](const Progress &p) {
+            progress->store(examined + p.examined);
+        });
+        if (const auto *error = failure(listed)) {
+            if (error->code == ErrorCode::Cancelled) return *error;
+            if (location == root) return *error;
+            warning(location.path + ": " + error->message);
+            continue;
+        }
+        const auto &listing = std::get<Listing>(listed);
+        if (location == root) result.location = listing.location;
+        if (!listing.complete) {
+            warning(location.path + ": incomplete directory listing skipped");
+            continue;
+        }
+        if (result.watchedDirectories.size() < 384)
+            result.watchedDirectories.push_back(location.path);
+        examined += listing.entries.size();
+        progress->store(examined);
+        for (const auto &entry : filterEntries(listing.entries, query)) {
+            bytes += sizeof(Entry) + 2ULL * (entry.path.size() + entry.name.size() + entry.identity.size() + entry.key.size());
+            if (result.entries.size() >= 100000 || bytes > 64ULL * 1024 * 1024) {
+                warning("Search result limit reached (100000 items / 64 MiB); results are incomplete");
+                return result;
+            }
+            result.entries.push_back(entry);
+        }
+        for (const auto &entry : listing.entries) {
+            if (!entry.directory || entry.link || entry.shell) continue;
+            const quint64 locationBytes = sizeof(Location) + 2ULL * (entry.path.size() + entry.key.size() + entry.identity.size());
+            if (pending.size() >= 100000 || pendingBytes + locationBytes > 16ULL * 1024 * 1024) {
+                warning("Search pending-folder limit reached; some subfolders were skipped");
+                continue;
+            }
+            pending.push_back({Location::Kind::Directory, entry.path, entry.path, entry.key, entry.name, entry.identity});
+            pendingBytes += locationBytes;
+        }
+    }
+    return result;
+}
+}
+
 ExplorerSession::ExplorerSession(std::shared_ptr<IPlatform> platform, QObject *parent)
     : QObject(parent), platform_(std::move(platform)) {
     pool_.setMaxThreadCount(std::clamp(QThread::idealThreadCount(), 1, 4));
@@ -86,11 +157,13 @@ void ExplorerSession::request(quint64 id, std::variant<QString, Location> input,
     const auto stop = state->stop->get_token();
     const auto progress = state->examined;
     const auto adapter = platform_;
+    const bool recursive = isRefresh && state->recursive && !state->query.isEmpty();
+    const auto query = state->query;
     ++active_;
     emit tabChanged(id);
     auto *watcher = new QFutureWatcher<Result<Listing>>(this);
     connect(watcher, &QFutureWatcher<Result<Listing>>::finished, this,
-            [this, watcher, id, generation, historyCursor, isRefresh] {
+            [this, watcher, id, generation, historyCursor, isRefresh, recursive] {
                 const auto result = watcher->result();
                 watcher->deleteLater();
                 --active_;
@@ -115,6 +188,9 @@ void ExplorerSession::request(quint64 id, std::variant<QString, Location> input,
                                 current->query.clear();
                             current->location = listing.location;
                             current->entries = listing.entries;
+                            current->recursiveResults = recursive;
+                            current->searchWarnings = listing.warnings;
+                            current->watchedDirectories = listing.watchedDirectories;
                             if (historyCursor >= 0)
                                 current->history.commitCursor(historyCursor);
                             else if (!isRefresh)
@@ -133,7 +209,7 @@ void ExplorerSession::request(quint64 id, std::variant<QString, Location> input,
                     emit shutdownFinished();
             });
     watcher->setFuture(QtConcurrent::run(
-        &pool_, [adapter, input = std::move(input), stop, progress, parent]() -> Result<Listing> {
+        &pool_, [adapter, input = std::move(input), stop, progress, parent, recursive, query]() -> Result<Listing> {
             Result<Location> parsed = std::holds_alternative<QString>(input)
                                           ? adapter->parseLocation(std::get<QString>(input))
                                           : Result<Location>(std::get<Location>(input));
@@ -152,6 +228,8 @@ void ExplorerSession::request(quint64 id, std::variant<QString, Location> input,
                              QStringLiteral("browse"),
                              {},
                              QStringLiteral("Request superseded.")};
+            if (recursive)
+                return recursiveListing(adapter, std::get<Location>(parsed), query, stop, progress);
             return adapter->list(std::get<Location>(parsed), stop,
                                  [progress](const Progress &value) { progress->store(value.examined); });
         }));
@@ -186,9 +264,26 @@ void ExplorerSession::refresh(quint64 id) {
 void ExplorerSession::setSearch(quint64 id, const QString &query) {
     if (auto *state = mutableTab(id)) {
         state->query = query;
+        if (state->recursive || state->recursiveResults) {
+            request(id, state->location, -1, true);
+            return;
+        }
         derive(*state);
         emit tabChanged(id);
     }
+}
+void ExplorerSession::setRecursiveSearch(quint64 id, bool enabled) {
+    if (auto *state = mutableTab(id); state && state->recursive != enabled) {
+        state->recursive = enabled;
+        if (!state->query.isEmpty() || state->recursiveResults)
+            request(id, state->location, -1, true);
+        else
+            emit tabChanged(id);
+    }
+}
+void ExplorerSession::cancelSearch(quint64 id) {
+    if (auto *state = mutableTab(id); state && state->stop && state->loading)
+        state->stop->request_stop();
 }
 void ExplorerSession::setSort(quint64 id, SortSpec sort) {
     if (auto *state = mutableTab(id)) {
@@ -301,6 +396,12 @@ bool ExplorerSession::beginOperation(OperationRequest request) {
             emit shutdownFinished();
     });
     watcher->setFuture(QtConcurrent::run(&pool_, [adapter, request = std::move(request), monitor, stop] {
+        auto sink = [monitor](const OperationProgress &progress) {
+            std::lock_guard lock(monitor->mutex);
+            monitor->progress = progress;
+        };
+        if (request.kind == OperationKind::Undo || request.kind == OperationKind::Redo)
+            return adapter->replayOperation(request.kind == OperationKind::Redo, stop, sink);
         return adapter->execute(request, stop, [monitor](const OperationProgress &progress) {
             std::lock_guard lock(monitor->mutex);
             monitor->progress = progress;

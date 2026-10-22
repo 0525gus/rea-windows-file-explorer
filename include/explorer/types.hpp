@@ -32,7 +32,7 @@ template <class T> const Error *failure(const Result<T> &value) {
     return std::get_if<Error>(&value);
 }
 struct Location {
-    enum class Kind { Drives, Directory };
+    enum class Kind { Drives, Directory, Shell };
     Kind kind = Kind::Drives;
     QString callerInput, path, key = QStringLiteral("drives"), label = QStringLiteral("This PC");
     QString identity{};
@@ -46,11 +46,13 @@ struct Entry {
     bool link = false;
     std::optional<quint64> sizeBytes;
     std::optional<qint64> modifiedMs;
+    bool shell = false;
 };
 struct Listing {
     Location location;
     QVector<Entry> entries;
     bool complete = true;
+    QStringList warnings{}, watchedDirectories{};
 };
 struct Progress {
     quint64 examined = 0;
@@ -64,8 +66,9 @@ struct Capabilities {
     bool recycle = false;
     bool rename = false;
     bool mkdir = false;
+    bool nativeMenu = false, shellLocations = false;
 };
-enum class OperationKind { Copy, Move, Recycle, Rename, CreateDirectory };
+enum class OperationKind { Copy, Move, Recycle, Rename, CreateDirectory, Undo, Redo };
 enum class ConflictPolicy { Fail, KeepBoth };
 struct OperationRequest {
     OperationKind kind = OperationKind::Copy;
@@ -87,11 +90,16 @@ struct OperationProgress {
     QString currentPath, phase;
 };
 using OperationProgressSink = std::function<void(const OperationProgress &)>;
+struct OperationHistory {
+    bool canUndo = false, canRedo = false;
+    QString undoLabel, redoLabel;
+};
 struct OperationReport {
     OperationKind kind = OperationKind::Copy;
     QVector<ItemOutcome> items;
     bool cancelled = false;
     QStringList cleanupPending{};
+    QString historyWarning;
 };
 QString operationName(OperationKind kind);
 enum class SortColumn { Name, Size, Modified };

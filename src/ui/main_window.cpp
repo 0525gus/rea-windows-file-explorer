@@ -9,6 +9,11 @@
 #include <QDropEvent>
 #include <QElapsedTimer>
 #include <QFileInfo>
+#include <QFile>
+#include <QFileSystemWatcher>
+#include <QImageReader>
+#include <QPlainTextEdit>
+#include <QSettings>
 #include <QFocusEvent>
 #include <QFutureWatcher>
 #include <QHBoxLayout>
@@ -46,6 +51,7 @@
 #include <QVBoxLayout>
 #include <QtConcurrentRun>
 #include <limits>
+#include <utility>
 namespace explorer {
 namespace {
 template <class Base> class TransferView final : public Base {
@@ -262,6 +268,11 @@ class AddressEdit final : public QLineEdit {
     void setLocation(const Location &location) {
         committed_ = location.kind == Location::Kind::Drives ? QStringLiteral("This PC") : location.path;
         parts_.clear();
+        if (location.kind == Location::Kind::Shell) {
+            parts_.push_back({location.label, location.path});
+            update();
+            return;
+        }
         QString current = committed_;
         while (!current.isEmpty() && parts_.size() < 256) {
             const QDir directory(current);
@@ -357,6 +368,54 @@ QString sizeText(std::optional<quint64> bytes) {
            QStringLiteral(" GB");
 }
 } // namespace
+namespace {
+QString thumbnailKey(const Entry &entry) {
+    return entry.path + QChar('\n') + entry.identity + QChar('\n') +
+        QString::number(entry.modifiedMs.value_or(0)) + ':' + QString::number(entry.sizeBytes.value_or(0));
+}
+QImage imageThumbnail(const Entry &entry, int edge) {
+    if (entry.directory || entry.link || entry.shell) return {};
+    QFileInfo info(entry.path);
+    if (!info.isFile() || info.size() > 32 * 1024 * 1024) return {};
+    QImageReader reader(entry.path);
+    const auto size = reader.size();
+    if (!size.isValid() || qint64(size.width()) * size.height() > 32000000) return {};
+    reader.setAutoTransform(true);
+    reader.setScaledSize(size.scaled(edge, edge, Qt::KeepAspectRatio));
+    return reader.read();
+}
+}
+EntryModel::EntryModel(QObject *parent) : QAbstractTableModel(parent) {
+    thumbnailPool_.setMaxThreadCount(2);
+}
+EntryModel::~EntryModel() {
+    thumbnailPool_.waitForDone();
+}
+void EntryModel::setThumbnailsEnabled(bool enabled) {
+    thumbnailsEnabled_ = enabled;
+    if (rowCount()) emit dataChanged(index(0,0), index(rowCount()-1,0), {Qt::DecorationRole});
+}
+void EntryModel::requestThumbnail(const Entry &entry) {
+    const auto key = thumbnailKey(entry);
+    if (thumbnailPending_.contains(key) || thumbnailPending_.size() >= 8) return;
+    thumbnailPending_.insert(key);
+    const auto provider = thumbnailProvider;
+    auto *watcher = new QFutureWatcher<QImage>(this);
+    connect(watcher, &QFutureWatcher<QImage>::finished, this, [this, watcher, key] {
+        const auto image = watcher->result();
+        watcher->deleteLater();
+        thumbnailPending_.remove(key);
+        auto *pixmap = new QPixmap(QPixmap::fromImage(image));
+        const int cost = qMax(1, int(image.sizeInBytes() / 1024));
+        thumbnails_.insert(key, pixmap, cost);
+        if (rowCount()) emit dataChanged(index(0,0), index(rowCount()-1,0), {Qt::DecorationRole});
+    });
+    watcher->setFuture(QtConcurrent::run(&thumbnailPool_, [entry, provider] {
+        auto image = imageThumbnail(entry, 128);
+        if (image.isNull() && provider) image = provider(entry, 128);
+        return image;
+    }));
+}
 QVariant EntryModel::data(const QModelIndex &index, int role) const {
     const auto *value = entry(index.row());
     if (!value || !index.isValid())
@@ -364,19 +423,29 @@ QVariant EntryModel::data(const QModelIndex &index, int role) const {
     if (role == Qt::UserRole)
         return value->key;
     if (role == Qt::UserRole + 1)
-        return value->path;
+        return value->shell ? QVariant() : QVariant(value->path);
 #ifdef Q_OS_WIN
     // Shell type names follow the host language. An explicit system Hangul
     // family avoids the measured first-paint fallback scan in this column.
     if (role == Qt::FontRole && index.column() == 2)
         return QFont(QStringLiteral("Malgun Gothic"));
 #endif
-    if (role == Qt::DecorationRole && index.column() == 0)
+    if (role == Qt::DecorationRole && index.column() == 0) {
+        if (thumbnailsEnabled_) {
+            if (const auto *image = thumbnails_.object(thumbnailKey(*value))) {
+                if (!image->isNull()) return QIcon(*image);
+            } else {
+                const_cast<EntryModel *>(this)->requestThumbnail(*value);
+            }
+        }
         return lineIcon(value->directory ? "folder" : "file", QColor("#dddddd"), 96);
+    }
     if (role == Qt::TextAlignmentRole && index.column() == 3)
         return static_cast<int>(Qt::AlignRight | Qt::AlignVCenter);
     if (role == Qt::ToolTipRole)
         return value->path + (value->link ? QStringLiteral("\nSymbolic link / reparse point") : QString());
+    if (role == Qt::EditRole && index.column() == 0)
+        return value->name;
     if (role != Qt::DisplayRole)
         return {};
     switch (index.column()) {
@@ -408,8 +477,24 @@ void EntryModel::setEntries(QVector<Entry> entries) {
 const Entry *EntryModel::entry(int row) const {
     return row >= 0 && row < entries_.size() ? &entries_[row] : nullptr;
 }
+bool EntryModel::setData(const QModelIndex &index, const QVariant &value, int role) {
+    const auto *item = entry(index.row());
+    if (!index.isValid() || index.column() != 0 || role != Qt::EditRole || !item || !renameEntry)
+        return false;
+    const auto name = value.toString();
+    if (name == item->name)
+        return true;
+    const auto source = *item;
+    return renameEntry(source, name);
+}
 Qt::ItemFlags EntryModel::flags(const QModelIndex &index) const {
-    return QAbstractTableModel::flags(index) | (index.isValid() ? Qt::ItemIsDragEnabled : Qt::NoItemFlags);
+    auto flags = QAbstractTableModel::flags(index);
+    if (index.isValid()) {
+        flags |= Qt::ItemIsDragEnabled;
+        if (index.column() == 0 && renameEntry)
+            flags |= Qt::ItemIsEditable;
+    }
+    return flags;
 }
 QToolButton *MainWindow::makeButton(const QString &symbol, const QString &label, QWidget *parent) {
     auto *button = new QToolButton(parent);
@@ -428,6 +513,7 @@ MainWindow::MainWindow(std::shared_ptr<IPlatform> platform, QWidget *parent)
     resize(1240, 860);
     setMinimumSize(960, 600);
     treePool_.setMaxThreadCount(2);
+    previewPool_.setMaxThreadCount(1);
     auto *root = new QWidget(this);
     auto *layout = new QVBoxLayout(root);
     layout->setContentsMargins(0, 0, 0, 0);
@@ -585,6 +671,38 @@ MainWindow::MainWindow(std::shared_ptr<IPlatform> platform, QWidget *parent)
     addPlace("Downloads", "downloads", QStandardPaths::DownloadLocation, QColor("#7ad4be"));
     addPlace("Documents", "file", QStandardPaths::DocumentsLocation, QColor("#82b8ec"));
     addPlace("Pictures", "pictures", QStandardPaths::PicturesLocation, QColor("#b5a4e7"));
+    favoritesRoot_ = new QTreeWidgetItem(tree_, QStringList{"Favorites"});
+    favoritesRoot_->setIcon(0, lineIcon("folder"));
+    favoritesRoot_->setExpanded(true);
+    favorites_ = QSettings().value("favorites").toStringList();
+    rebuildFavorites();
+    tree_->setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(tree_, &QWidget::customContextMenuRequested, this, [this](const QPoint &pos) {
+        auto *item = tree_->itemAt(pos);
+        if (!item || item->parent() != favoritesRoot_)
+            return;
+        const auto path = item->data(0, Qt::UserRole + 1).toString();
+        QMenu menu(this);
+        auto *remove = menu.addAction("Remove from favorites");
+        if (menu.exec(tree_->viewport()->mapToGlobal(pos)) == remove) {
+            favorites_.removeAll(path);
+            QSettings().setValue("favorites", favorites_);
+            rebuildFavorites();
+        }
+    });
+    if (platform_->capabilities().shellLocations) {
+        auto *shellRoot = new QTreeWidgetItem(tree_, QStringList{"Windows Shell"});
+        for (const auto &place : QVector<QPair<QString, QString>>{
+                 {"Desktop namespace", "shell:Desktop"}, {"Recycle Bin", "shell:RecycleBinFolder"},
+                 {"Network", "shell:NetworkPlacesFolder"}, {"Libraries", "shell:Libraries"},
+                 {"Control Panel", "shell:ControlPanelFolder"}, {"Applications", "shell:AppsFolder"}}) {
+            auto *item = new QTreeWidgetItem(shellRoot, QStringList{place.first});
+            item->setData(0, Qt::UserRole + 1, place.second);
+            item->setIcon(0, lineIcon("folder"));
+            new QTreeWidgetItem(item, QStringList{"…"});
+        }
+        shellRoot->setExpanded(true);
+    }
     auto *computer = new QTreeWidgetItem(tree_, QStringList{"This PC"});
     computer->setIcon(0, lineIcon("drive"));
     computer->setData(0, Qt::UserRole, QStringLiteral("drives"));
@@ -597,7 +715,27 @@ MainWindow::MainWindow(std::shared_ptr<IPlatform> platform, QWidget *parent)
     table_->setObjectName("fileList");
     table_->setAccessibleName("Files");
     model_ = new EntryModel(this);
+    model_->thumbnailProvider = [adapter = platform_](const Entry &entry, int edge) {
+        return adapter->thumbnail(entry, edge);
+    };
     table_->setModel(model_);
+    model_->renameEntry = [this](const Entry &entry, const QString &name) {
+        const auto *state = session_->tab(currentTabId());
+        if (!state || state->loading || state->location.kind != Location::Kind::Directory ||
+            session_->operationState().running || !platform_->capabilities().rename)
+            return false;
+        OperationRequest request;
+        request.kind = OperationKind::Rename;
+        request.sources = {entry};
+        auto parent = platform_->parseLocation(QFileInfo(entry.path).absolutePath());
+        if (const auto *error = failure(parent)) {
+            QMessageBox::warning(this, "Rename", error->message);
+            return false;
+        }
+        request.destination = std::get<Location>(parent);
+        request.name = name;
+        return startOperation(std::move(request));
+    };
     icons_ = new TransferView<QListView>(views_);
     icons_->setObjectName("iconList");
     icons_->setAccessibleName("Files icon or list view");
@@ -607,6 +745,9 @@ MainWindow::MainWindow(std::shared_ptr<IPlatform> platform, QWidget *parent)
     icons_->setSelectionMode(QAbstractItemView::ExtendedSelection);
     icons_->setEditTriggers(QAbstractItemView::NoEditTriggers);
     icons_->setResizeMode(QListView::Adjust);
+    icons_->setUniformItemSizes(true);
+    icons_->setLayoutMode(QListView::Batched);
+    icons_->setBatchSize(128);
     icons_->setMovement(QListView::Static);
     views_->addWidget(table_);
     views_->addWidget(icons_);
@@ -660,6 +801,12 @@ MainWindow::MainWindow(std::shared_ptr<IPlatform> platform, QWidget *parent)
     detailMeta_->setWordWrap(true);
     detailMeta_->setStyleSheet("color:#b5b5b5;");
     detailLayout->addWidget(detailMeta_);
+    previewText_ = new QPlainTextEdit(details_);
+    previewText_->setReadOnly(true);
+    previewText_->setMaximumHeight(240);
+    previewText_->setObjectName("textPreview");
+    previewText_->hide();
+    detailLayout->addWidget(previewText_);
     detailLayout->addStretch();
     splitter_->addWidget(tree_);
     splitter_->addWidget(views_);
@@ -742,8 +889,15 @@ QMenu{background:#292929;border:1px solid #454545;padding:6px;}QMenu::item{paddi
     connect(refresh, &QToolButton::clicked, this, [this] { session_->refresh(currentTabId()); });
     connect(address_, &QLineEdit::returnPressed, this, &MainWindow::navigateAddress);
     connect(search_, &QLineEdit::textChanged, this, [this](const QString &value) {
-        if (!updating_)
-            session_->setSearch(currentTabId(), value);
+        if (!updating_) {
+            searchTab_ = currentTabId();
+            pendingSearch_ = value;
+            if (const auto *tab = session_->tab(searchTab_)) searchGeneration_ = tab->generation;
+            if (const auto *tab = session_->tab(searchTab_); tab && tab->recursive)
+                searchTimer_.start();
+            else
+                session_->setSearch(searchTab_, value);
+        }
     });
     connect(table_, &QTableView::doubleClicked, this, &MainWindow::activateRow);
     connect(icons_, &QListView::doubleClicked, this, &MainWindow::activateRow);
@@ -767,6 +921,8 @@ QMenu{background:#292929;border:1px solid #454545;padding:6px;}QMenu::item{paddi
     connect(tree_, &QTreeWidget::itemExpanded, this, &MainWindow::requestTree);
     connect(tree_, &QTreeWidget::itemClicked, this, [this](QTreeWidgetItem *item, int) {
         const auto path = item->data(0, Qt::UserRole + 1).toString();
+        if (path.isEmpty())
+            return;
         if (path == "drives")
             session_->navigate(currentTabId(), Location{});
         else if (!path.isEmpty())
@@ -807,7 +963,10 @@ QMenu{background:#292929;border:1px solid #454545;padding:6px;}QMenu::item{paddi
     const auto fileShortcut = [this](const QString &key, auto action) {
         auto *value = new QShortcut(QKeySequence(key), views_);
         value->setContext(Qt::WidgetWithChildrenShortcut);
-        connect(value, &QShortcut::activated, this, action);
+        connect(value, &QShortcut::activated, this, [action] {
+            if (qobject_cast<QLineEdit *>(QApplication::focusWidget())) return;
+            action();
+        });
     };
     fileShortcut("Ctrl+C", [this] { copySelection(false); });
     fileShortcut("Ctrl+X", [this] { copySelection(true); });
@@ -834,13 +993,120 @@ QMenu{background:#292929;border:1px solid #454545;padding:6px;}QMenu::item{paddi
             renderOperation();
     });
     progressTimer_.start();
-    session_->createTab();
+    searchTimer_.setSingleShot(true);
+    searchTimer_.setInterval(250);
+    connect(&searchTimer_, &QTimer::timeout, this, [this] {
+        if (const auto *tab = session_->tab(searchTab_); tab && tab->generation == searchGeneration_)
+            session_->setSearch(searchTab_, pendingSearch_);
+    });
+    auto *searchOptions = search_->addAction(lineIcon("folder"), QLineEdit::LeadingPosition);
+    searchOptions->setToolTip("Search scope and filters");
+    connect(searchOptions, &QAction::triggered, this, [this] {
+        QMenu menu(this);
+        auto *recursive = menu.addAction("Search subfolders");
+        recursive->setCheckable(true);
+        if (const auto *tab = session_->tab(currentTabId())) recursive->setChecked(tab->recursive);
+        connect(recursive, &QAction::toggled, this, [this](bool enabled) {
+            if (searchTimer_.isActive()) {
+                searchTimer_.stop();
+                session_->setSearch(searchTab_, pendingSearch_);
+            }
+            session_->setRecursiveSearch(currentTabId(), enabled);
+        });
+        connect(menu.addAction("Cancel search"), &QAction::triggered, this,
+                [this] { searchTimer_.stop(); session_->cancelSearch(currentTabId()); });
+        connect(menu.addAction("Filter examples"), &QAction::triggered, this, [this] {
+            QMessageBox::information(this, "Search filters",
+                "? ext:png,jpg\n? type:file size:>1mb\n? after:2026-01-01 before:2026-12-31\n? name:\"meeting notes\"\n\nEnable Search subfolders to search the directory tree.");
+        });
+        menu.exec(search_->mapToGlobal(QPoint(0, search_->height())));
+    });
+    auto *cancelSearch = new QShortcut(QKeySequence(Qt::Key_Escape), search_);
+    cancelSearch->setContext(Qt::WidgetShortcut);
+    connect(cancelSearch, &QShortcut::activated, this, [this] { searchTimer_.stop(); session_->cancelSearch(currentTabId()); });
+    fileShortcut("Ctrl+Z", [this] { replayOperation(false); });
+    fileShortcut("Ctrl+Y", [this] { replayOperation(true); });
+    fileShortcut("Ctrl+Shift+Z", [this] { replayOperation(true); });
+    for (auto *view : {static_cast<QAbstractItemView *>(table_), static_cast<QAbstractItemView *>(icons_)}) {
+        view->setContextMenuPolicy(Qt::CustomContextMenu);
+        connect(view, &QWidget::customContextMenuRequested, this,
+                [this, view](const QPoint &pos) { showFileMenu(view, pos); });
+    }
+    search_->setToolTip("Search names, or use ? ext:png type:file size:>1mb after:2026-01-01 name");
+    shortcut(QKeySequence("Ctrl+D"), [this] { toggleFavorite(); });
+    fileWatcher_ = new QFileSystemWatcher(this);
+    watchTimer_.setSingleShot(true);
+    watchTimer_.setInterval(350);
+    auto changed = [this](const QString &path) {
+        changedPaths_.insert(path);
+        watchTimer_.start();
+    };
+    connect(fileWatcher_, &QFileSystemWatcher::directoryChanged, this, changed);
+    connect(fileWatcher_, &QFileSystemWatcher::fileChanged, this, changed);
+    connect(&watchTimer_, &QTimer::timeout, this, [this] {
+        if (closing_)
+            return;
+        if (session_->operationState().running ||
+            (qobject_cast<QLineEdit *>(QApplication::focusWidget()) &&
+             views_->isAncestorOf(QApplication::focusWidget()))) {
+            watchTimer_.start();
+            return;
+        }
+        const auto paths = std::exchange(changedPaths_, {});
+        QVector<quint64> refresh;
+        for (const auto &tab : session_->tabs()) {
+            bool dirty = false;
+            for (const auto &path : paths)
+                dirty |= tab.location.path == path || tab.location.path == QFileInfo(path).absolutePath() ||
+                         tab.watchedDirectories.contains(path) ||
+                         tab.watchedDirectories.contains(QFileInfo(path).absolutePath());
+            if (!dirty)
+                continue;
+            if (tab.loading)
+                changedPaths_.unite(paths);
+            else
+                refresh.push_back(tab.id);
+        }
+        for (const auto id : refresh)
+            session_->refresh(id);
+        if (!changedPaths_.isEmpty())
+            watchTimer_.start();
+    });
+    previewTimer_.setSingleShot(true);
+    previewTimer_.setInterval(120);
+    connect(&previewTimer_, &QTimer::timeout, this, &MainWindow::loadPreview);
+    QSettings settings;
+    model_->setThumbnailsEnabled(settings.value("window/thumbnails", true).toBool());
+    restoreGeometry(settings.value("window/geometry").toByteArray());
+    splitter_->restoreState(settings.value("window/splitter").toByteArray());
+    table_->horizontalHeader()->restoreState(settings.value("window/header").toByteArray());
+    details_->setVisible(settings.value("window/details", true).toBool());
+    const int defaultView = qBound(0, settings.value("window/view", 0).toInt(), 2);
+    const auto savedTabs = settings.value("tabs").toStringList().mid(0, 20);
+    const auto recursiveModes = settings.value("tabOptions/recursive").toList();
+    const auto savedViews = settings.value("tabOptions/views").toList();
+    int restoredIndex = 0;
+    if (savedTabs.isEmpty())
+        session_->createTab();
+    else
+        for (const auto &path : savedTabs) {
+            const auto id = session_->createTab();
+            setViewMode(restoredIndex < savedViews.size() ? qBound(0, savedViews[restoredIndex].toInt(), 2) : defaultView);
+            session_->setRecursiveSearch(id, restoredIndex < recursiveModes.size() && recursiveModes[restoredIndex].toBool());
+            ++restoredIndex;
+            if (!path.isEmpty() && (path.startsWith("shell:", Qt::CaseInsensitive) || path.startsWith("shell-item:") ||
+                                   path.startsWith("::{") || QFileInfo(path).isDir()))
+                session_->navigate(id, path);
+        }
+    setViewMode(savedTabs.isEmpty() ? defaultView : viewModes_.value(currentTabId(), defaultView));
+    tabs_->setCurrentIndex(qBound(0, settings.value("window/activeTab", 0).toInt(), tabs_->count() - 1));
     computer->setExpanded(true);
 }
 MainWindow::~MainWindow() {
     for (const auto &stop : treeStops_)
         stop->request_stop();
     treePool_.waitForDone();
+    previewPool_.waitForDone();
 }
 quint64 MainWindow::currentTabId() const {
     return tabs_->currentIndex() < 0 ? 0 : tabs_->tabData(tabs_->currentIndex()).toULongLong();
@@ -889,6 +1155,8 @@ void MainWindow::render(quint64 id) {
     for (int i = 0; i < tabs_->count(); ++i)
         if (tabs_->tabData(i).toULongLong() == id)
             tabs_->setTabText(i, state->loading ? QStringLiteral("Loading…") : state->location.label);
+    if (fileWatcher_)
+        syncWatches();
     if (id != currentTabId())
         return;
     if (viewMode_ != viewModes_.value(id, 0))
@@ -901,9 +1169,10 @@ void MainWindow::render(quint64 id) {
                               ? state->pendingInput
                               : (state->location.kind == Location::Kind::Drives ? QStringLiteral("This PC")
                                                                                 : state->location.path));
-    search_->setText(state->query);
+    if (!(searchTimer_.isActive() && searchTab_ == id && searchGeneration_ == state->generation))
+        search_->setText(state->query);
     static_cast<AddressEdit *>(address_)->setLocation(state->location);
-    search_->setPlaceholderText("Search " + state->location.label);
+    search_->setPlaceholderText((state->recursive ? "Search subfolders in " : "Search ") + state->location.label);
     model_->setEntries(state->visible);
     for (int row = 0; row < model_->rowCount(); ++row)
         if (state->selection.contains(model_->entry(row)->key))
@@ -916,10 +1185,12 @@ void MainWindow::render(quint64 id) {
     back_->setEnabled(state->history.canBack() && !state->loading);
     forward_->setEnabled(state->history.canForward() && !state->loading);
     up_->setEnabled(state->location.kind != Location::Kind::Drives && !state->loading);
-    error_->setVisible(state->error.has_value());
+    error_->setVisible(state->error.has_value() || !state->searchWarnings.isEmpty());
     if (state->error)
         error_->setText(errorCodeName(state->error->code) + QStringLiteral(" — ") + state->error->message +
                         QStringLiteral("  Previous folder remains available. Correct the address or retry."));
+    if (!state->error && !state->searchWarnings.isEmpty())
+        error_->setText(state->searchWarnings.join("\n"));
     progress_->setVisible(state->loading);
     status_->setText(state->loading ? QStringLiteral("Loading…")
                                     : QStringLiteral("%1 items%2")
@@ -970,12 +1241,16 @@ void MainWindow::updateSelection() {
     const bool writable =
         state && !state->loading && state->location.kind == Location::Kind::Directory && !busy;
     newFolder_->setEnabled(writable && caps.mkdir);
-    cut_->setEnabled(!keys.isEmpty() && !busy && caps.move);
-    copy_->setEnabled(!keys.isEmpty() && caps.copy);
+    const auto entries = selectedEntries();
+    const bool filesystemSelection = !entries.isEmpty() && std::all_of(entries.cbegin(), entries.cend(),
+        [](const Entry &entry) { return !entry.shell; });
+    cut_->setEnabled(filesystemSelection && !busy && caps.move && writable);
+    copy_->setEnabled(filesystemSelection && caps.copy && state && state->location.kind == Location::Kind::Directory);
     rename_->setEnabled(writable && keys.size() == 1 && caps.rename);
-    recycle_->setEnabled(!keys.isEmpty() && !busy && caps.recycle);
+    recycle_->setEnabled(filesystemSelection && writable && caps.recycle);
     const auto *mime = QApplication::clipboard()->mimeData();
     paste_->setEnabled(writable && mime && mime->hasUrls() && caps.copy);
+    requestPreview(keys.size() == 1 && single && !single->shell ? single : nullptr);
     if (!state || state->loading)
         return;
     if (!keys.isEmpty()) {
@@ -1054,7 +1329,12 @@ void MainWindow::closeEvent(QCloseEvent *event) {
     event->ignore();
     if (closing_)
         return;
+    saveSettings();
     closing_ = true;
+    watchTimer_.stop();
+    searchTimer_.stop();
+    previewTimer_.stop();
+    ++previewGeneration_;
     setEnabled(false);
     for (const auto &stop : treeStops_)
         stop->request_stop();
@@ -1096,6 +1376,18 @@ void MainWindow::showViewsMenu() {
         action->setChecked(mode == viewMode_);
         connect(action, &QAction::triggered, this, [this, mode] { setViewMode(mode); });
     }
+    menu.addSeparator();
+    auto *thumbnails = menu.addAction("File thumbnails");
+    thumbnails->setCheckable(true);
+    thumbnails->setChecked(QSettings().value("window/thumbnails", true).toBool());
+    connect(thumbnails, &QAction::toggled, this, [this](bool enabled) {
+        QSettings().setValue("window/thumbnails", enabled);
+        model_->setThumbnailsEnabled(enabled);
+    });
+    auto *details = menu.addAction("Preview and details pane");
+    details->setCheckable(true);
+    details->setChecked(details_->isVisible());
+    connect(details, &QAction::toggled, details_, &QWidget::setVisible);
     menu.exec(QCursor::pos());
 }
 QAbstractItemView *MainWindow::activeView() const {
@@ -1127,7 +1419,9 @@ QVector<Entry> MainWindow::selectedEntries() const {
 }
 void MainWindow::copySelection(bool cut) {
     auto entries = selectedEntries();
-    if (entries.isEmpty())
+    const auto *tab = session_->tab(currentTabId());
+    if (entries.isEmpty() || !tab || tab->loading || tab->location.kind != Location::Kind::Directory ||
+        std::any_of(entries.cbegin(), entries.cend(), [](const Entry &entry) { return entry.shell; }))
         return;
     clipboardEntries_ = std::move(entries);
     clipboardCut_ = cut;
@@ -1167,21 +1461,14 @@ void MainWindow::pasteSelection() {
     }
 }
 void MainWindow::renameSelection() {
-    const auto entries = selectedEntries();
+    const auto rows = table_->selectionModel()->selectedRows();
     const auto *state = session_->tab(currentTabId());
-    if (entries.size() != 1 || !state || state->loading)
+    if (rows.size() != 1 || !state || state->loading || !rename_->isEnabled())
         return;
-    bool accepted = false;
-    const auto name =
-        QInputDialog::getText(this, "Rename", "New name", QLineEdit::Normal, entries.first().name, &accepted);
-    if (!accepted)
-        return;
-    OperationRequest request;
-    request.kind = OperationKind::Rename;
-    request.sources = entries;
-    request.destination = state->location;
-    request.name = name;
-    startOperation(std::move(request));
+    auto *view = activeView();
+    view->setCurrentIndex(rows.first());
+    view->setFocus();
+    view->edit(rows.first());
 }
 void MainWindow::createDirectory() {
     const auto *state = session_->tab(currentTabId());
@@ -1201,7 +1488,10 @@ void MainWindow::createDirectory() {
 }
 void MainWindow::recycleSelection() {
     const auto entries = selectedEntries();
-    if (entries.isEmpty() || !platform_->capabilities().recycle)
+    const auto *tab = session_->tab(currentTabId());
+    if (entries.isEmpty() || !tab || tab->loading || tab->location.kind != Location::Kind::Directory ||
+        session_->operationState().running || !platform_->capabilities().recycle ||
+        std::any_of(entries.cbegin(), entries.cend(), [](const Entry &entry) { return entry.shell; }))
         return;
     QStringList paths;
     for (const auto &entry : entries)
@@ -1233,7 +1523,7 @@ bool MainWindow::acceptTransfer(const QMimeData *mime, Qt::DropAction action, in
         (operation.report && !operation.report->cleanupPending.isEmpty()) || closing_)
         return false;
     Location destination = state->location;
-    if (const auto *item = model_->entry(row); item && item->directory && !item->link)
+    if (const auto *item = model_->entry(row); item && item->directory && !item->link && !item->shell)
         destination = Location{
             Location::Kind::Directory, item->path, item->path, item->key, item->name, item->identity};
     const auto kind = action == Qt::MoveAction ? OperationKind::Move : OperationKind::Copy;
@@ -1356,6 +1646,8 @@ void MainWindow::renderOperation() {
             conflict &&
             (state.request.kind == OperationKind::Copy || state.request.kind == OperationKind::Move) &&
             state.report->cleanupPending.isEmpty());
+        if (!state.report->historyWarning.isEmpty())
+            errors.push_back(state.report->historyWarning);
         if (!errors.isEmpty())
             operationLabel_->setText(operationLabel_->text() + "\n" + errors.first());
         if (clipboardCut_ && state.request.kind == OperationKind::Move) {
@@ -1378,13 +1670,275 @@ void MainWindow::renderOperation() {
     }
     updateSelection();
 }
+void MainWindow::showNativeMenu(QVector<Entry> entries, Location location, QPoint position) {
+    if (session_->operationState().running)
+        return;
+    const auto result = platform_->showContextMenu(location, entries, quintptr(winId()), position);
+    if (const auto *error = failure(result))
+        QMessageBox::warning(this, "Windows context menu", error->message);
+    QVector<quint64> ids;
+    for (const auto &tab : session_->tabs()) ids.push_back(tab.id);
+    for (auto id : ids) session_->refresh(id);
+}
+void MainWindow::replayOperation(bool redo) {
+    if (session_->operationState().running || closing_) return;
+    const auto history = platform_->operationHistory();
+    if (redo ? !history.canRedo : !history.canUndo) return;
+    OperationRequest request;
+    request.kind = redo ? OperationKind::Redo : OperationKind::Undo;
+    startOperation(std::move(request));
+}
+void MainWindow::showFileMenu(QAbstractItemView *view, const QPoint &position) {
+    const auto index = view->indexAt(position);
+    if (index.isValid() && !view->selectionModel()->isSelected(index)) {
+        view->selectionModel()->setCurrentIndex(index,
+            QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
+        updateSelection();
+    } else if (!index.isValid()) {
+        view->clearSelection();
+    }
+    const auto entries = selectedEntries();
+    const auto *state = session_->tab(currentTabId());
+    if (!state)
+        return;
+    const auto location = state->location;
+    const auto point = view->viewport()->mapToGlobal(position);
+    const bool busy = session_->operationState().running;
+    if (platform_->capabilities().nativeMenu && (QApplication::keyboardModifiers() & Qt::ShiftModifier)) {
+        showNativeMenu(entries, location, point);
+        return;
+    }
+    QMenu menu(this);
+    if (platform_->capabilities().nativeMenu) {
+        auto *native = menu.addAction("Windows context menu… (Shift+right-click)");
+        native->setEnabled(!busy);
+        connect(native, &QAction::triggered, this, [this, entries, location, point] {
+            QTimer::singleShot(0, this, [this, entries, location, point] {
+                showNativeMenu(entries, location, point);
+            });
+        });
+        menu.addSeparator();
+    }
+    const auto history = busy ? OperationHistory{} : platform_->operationHistory();
+    auto *undo = menu.addAction("Undo " + history.undoLabel + "\tCtrl+Z");
+    auto *redo = menu.addAction("Redo " + history.redoLabel + "\tCtrl+Y");
+    undo->setEnabled(history.canUndo && !busy);
+    redo->setEnabled(history.canRedo && !busy);
+    connect(undo, &QAction::triggered, this, [this] { replayOperation(false); });
+    connect(redo, &QAction::triggered, this, [this] { replayOperation(true); });
+    menu.addSeparator();
+    if (!entries.isEmpty()) {
+        auto *open = menu.addAction("Open");
+        open->setEnabled(entries.size() == 1);
+        connect(open, &QAction::triggered, this, [this, entries] {
+            session_->openEntry(currentTabId(), entries.first().key);
+        });
+        if (entries.size() == 1 && entries.first().directory) {
+            const auto path = entries.first().path;
+            connect(menu.addAction("Open in new tab"), &QAction::triggered, this, [this, path] {
+                const auto id = session_->createTab();
+                session_->navigate(id, path);
+            });
+        }
+        if (entries.size() == 1 && state->recursiveResults) {
+            const auto parent = QFileInfo(entries.first().path).absolutePath();
+            connect(menu.addAction("Open containing folder in new tab"), &QAction::triggered, this,
+                [this, parent] {
+                    const auto id = session_->createTab();
+                    session_->navigate(id, parent);
+                });
+        }
+        menu.addSeparator();
+        auto addCommand = [&menu](const QString &label, QToolButton *button) {
+            auto *action = menu.addAction(label);
+            action->setEnabled(button->isEnabled());
+            QObject::connect(action, &QAction::triggered, button, &QToolButton::click);
+        };
+        addCommand("Cut", cut_);
+        addCommand("Copy", copy_);
+        addCommand("Rename", rename_);
+        addCommand("Move to Recycle Bin", recycle_);
+        connect(menu.addAction("Copy paths"), &QAction::triggered, this, [entries] {
+            QStringList paths;
+            for (const auto &entry : entries)
+                paths.push_back(entry.path);
+            QApplication::clipboard()->setText(paths.join('\n'));
+        });
+        connect(menu.addAction("Properties"), &QAction::triggered, this, [this, entries] {
+            QStringList text;
+            for (const auto &entry : entries.mid(0, 20))
+                text << entry.name + "\n" + entry.path + "\n" + entry.typeName + "\n" +
+                        sizeText(entry.sizeBytes) + "\nModified: " +
+                        (entry.modifiedMs ? QDateTime::fromMSecsSinceEpoch(*entry.modifiedMs).toString(Qt::ISODate)
+                                          : QStringLiteral("Unknown"));
+            QMessageBox::information(this, "Properties", text.join("\n\n"));
+        });
+    } else {
+        auto *paste = menu.addAction("Paste");
+        paste->setEnabled(paste_->isEnabled());
+        connect(paste, &QAction::triggered, paste_, &QToolButton::click);
+        auto *folder = menu.addAction("New folder");
+        folder->setEnabled(newFolder_->isEnabled());
+        connect(folder, &QAction::triggered, newFolder_, &QToolButton::click);
+        connect(menu.addAction("Refresh"), &QAction::triggered, this,
+                [this] { session_->refresh(currentTabId()); });
+    }
+    menu.addSeparator();
+    auto *favorite = menu.addAction(favorites_.contains(location.path)
+                                       ? "Remove current folder from favorites"
+                                       : "Add current folder to favorites (Ctrl+D)");
+    favorite->setEnabled(location.kind != Location::Kind::Drives);
+    connect(favorite, &QAction::triggered, this, &MainWindow::toggleFavorite);
+    menu.exec(view->viewport()->mapToGlobal(position));
+}
+void MainWindow::toggleFavorite() {
+    const auto *state = session_->tab(currentTabId());
+    if (!state || state->loading || state->location.kind == Location::Kind::Drives)
+        return;
+    const auto path = state->location.kind == Location::Kind::Shell ? state->location.path : QDir::cleanPath(state->location.path);
+    if (favorites_.contains(path))
+        favorites_.removeAll(path);
+    else
+        favorites_.push_back(path);
+    QSettings settings;
+    settings.setValue("favorites", favorites_);
+    auto labels = settings.value("favoriteLabels").toMap();
+    if (favorites_.contains(path)) labels.insert(path, state->location.label);
+    else labels.remove(path);
+    settings.setValue("favoriteLabels", labels);
+    rebuildFavorites();
+}
+void MainWindow::rebuildFavorites() {
+    qDeleteAll(favoritesRoot_->takeChildren());
+    const auto labels = QSettings().value("favoriteLabels").toMap();
+    for (const auto &path : favorites_) {
+        const auto name = labels.value(path, QFileInfo(path).fileName()).toString();
+        auto *item = new QTreeWidgetItem(favoritesRoot_, QStringList{name.isEmpty() ? path : name});
+        item->setData(0, Qt::UserRole + 1, path);
+        item->setToolTip(0, path);
+        item->setIcon(0, lineIcon("folder"));
+    }
+    favoritesRoot_->setExpanded(true);
+}
+void MainWindow::saveSettings() {
+    QSettings settings;
+    settings.setValue("window/geometry", saveGeometry());
+    settings.setValue("window/splitter", splitter_->saveState());
+    settings.setValue("window/header", table_->horizontalHeader()->saveState());
+    settings.setValue("window/details", details_->isVisible());
+    settings.setValue("window/view", viewMode_);
+    settings.setValue("window/activeTab", tabs_->currentIndex());
+    QStringList paths;
+    QVariantList recursiveModes, views;
+    for (const auto &tab : session_->tabs()) {
+        paths.push_back(tab.location.kind != Location::Kind::Drives ? tab.location.path : QString());
+        recursiveModes.push_back(tab.recursive);
+        views.push_back(viewModes_.value(tab.id, 0));
+    }
+    settings.setValue("tabs", paths);
+    settings.setValue("tabOptions/recursive", recursiveModes);
+    settings.setValue("tabOptions/views", views);
+}
+void MainWindow::syncWatches() {
+    if (closing_)
+        return;
+    QSet<QString> wanted;
+    for (const auto &tab : session_->tabs()) {
+        if (tab.location.kind == Location::Kind::Directory)
+            wanted.insert(tab.location.path);
+        for (const auto &path : tab.watchedDirectories) {
+            if (wanted.size() >= 512) break;
+            wanted.insert(path);
+        }
+    }
+    // Directory events cover create/delete/rename. Also monitor displayed files
+    // for in-place writes, with a bound on native watcher resources.
+    if (const auto *tab = session_->tab(currentTabId()))
+        for (const auto &entry : tab->entries) {
+            if (wanted.size() >= 512)
+                break;
+            if (!entry.directory && !entry.link)
+                wanted.insert(entry.path);
+        }
+    QSet<QString> existing;
+    for (const auto &path : fileWatcher_->directories()) existing.insert(path);
+    for (const auto &path : fileWatcher_->files()) existing.insert(path);
+    const auto remove = existing - wanted;
+    const auto add = wanted - existing;
+    if (!remove.isEmpty()) fileWatcher_->removePaths(remove.values());
+    if (!add.isEmpty()) fileWatcher_->addPaths(add.values());
+}
+void MainWindow::requestPreview(const Entry *entry) {
+    ++previewGeneration_;
+    previewText_->hide();
+    previewText_->clear();
+    previewPath_ = entry && !entry->directory && !entry->link ? entry->path : QString();
+    previewTimer_.stop();
+    if (!previewPath_.isEmpty())
+        previewTimer_.start();
+}
+void MainWindow::loadPreview() {
+    if (closing_ || previewPath_.isEmpty())
+        return;
+    if (previewBusy_) {
+        previewTimer_.start();
+        return;
+    }
+    struct Preview { QImage image; QString text; };
+    const auto path = previewPath_;
+    const auto generation = previewGeneration_;
+    previewBusy_ = true;
+    auto *watcher = new QFutureWatcher<Preview>(this);
+    connect(watcher, &QFutureWatcher<Preview>::finished, this, [this, watcher, generation] {
+        const auto preview = watcher->result();
+        watcher->deleteLater();
+        previewBusy_ = false;
+        if (closing_ || generation != previewGeneration_)
+            return;
+        if (!preview.image.isNull())
+            detailImage_->setPixmap(QPixmap::fromImage(preview.image));
+        if (!preview.text.isEmpty()) {
+            previewText_->setPlainText(preview.text);
+            previewText_->show();
+        }
+    });
+    watcher->setFuture(QtConcurrent::run(&previewPool_, [path]() -> Preview {
+        const QFileInfo info(path);
+        if (!info.isFile() || info.isSymLink() || info.size() > 32 * 1024 * 1024)
+            return {};
+        QImageReader reader(path);
+        const auto size = reader.size();
+        if (size.isValid() && qint64(size.width()) * size.height() <= 32000000) {
+            reader.setAutoTransform(true);
+            reader.setScaledSize(size.scaled(250, 180, Qt::KeepAspectRatio));
+            const auto image = reader.read();
+            if (!image.isNull())
+                return {image, {}};
+        }
+        const QStringList extensions{"txt", "md", "log", "json", "xml", "csv", "ini", "yaml",
+                                     "yml", "cpp", "hpp", "h", "c", "py", "js", "ts", "css",
+                                     "html", "sh", "ps1", "cmake"};
+        if (!extensions.contains(info.suffix().toLower()) && info.fileName() != "CMakeLists.txt")
+            return {};
+        QFile file(path);
+        if (!file.open(QIODevice::ReadOnly))
+            return {};
+        const auto bytes = file.read(32768);
+        if (bytes.contains('\0'))
+            return {};
+        return {{}, QString::fromUtf8(bytes) + (file.atEnd() ? QString() : QStringLiteral("\n… (preview truncated)"))};
+    }));
+}
 QJsonObject MainWindow::snapshot() const {
     QJsonObject result;
     const auto *state = session_->tab(currentTabId());
     if (!state)
         return result;
     result["path"] = state->location.path;
-    result["kind"] = state->location.kind == Location::Kind::Drives ? "drives" : "directory";
+    result["kind"] = state->location.kind == Location::Kind::Drives ? "drives" :
+                     state->location.kind == Location::Kind::Shell ? "shell" : "directory";
+    result["recursive_search"] = state->recursive;
+    result["search_warnings"] = QJsonArray::fromStringList(state->searchWarnings);
     result["loading"] = state->loading;
     result["count"] = state->visible.size();
     result["history_cursor"] = state->history.cursor();

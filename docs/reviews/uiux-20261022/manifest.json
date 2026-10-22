@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-22",
+  "scope": "UI/UX only; stopped at user request",
+  "executable_sha256": "bed522706f09308d128be4ba1188ecae605c5ae102d01dee6f50221785a3535b",
+  "evidence": {
+    "00-first-render.png": "c7e1fb395c1ded0a5cf7e48574d7ef1c8a82875d96f2a0b76aa0141b9ca7a7ac",
+    "01-details.json": "1c8e85131090cde27c0e703cc18f2fbce665b9ceadd29a6fc9d339c0f1302e05",
+    "01-details.png": "9d2acc8f9a52b87f605cd81b4bd37b63f9ac35f5ee3b9b35488c63d6049081f5",
+    "02-search.json": "96ad8de76988192e823120b1f94e8b9584f7d8ff86e57fa1e6cf5359c13935d7",
+    "02-search.png": "b22b4bcc6812b91dac8ad3eb404a30a2752da62b40f12fca8b0e64350b56901f",
+    "03-empty-search.json": "5df450be2e439de17e9ca27d0520f85907d420eea1136ff07199bdf083ded808",
+    "03-empty-search.png": "1791e7202c3b4155ee6b940bb7d0f1c32aabf064cabb0883ae59523fbe280f55",
+    "04-text-preview.json": "bd890aa48d0856ee7c19b62528d99c7a328c2fc3eee744ed2563ac07dc6737e0",
+    "04-text-preview.png": "365fc69250856964a82e36c27ae867a6b107b611fc14fcfa0c00f73ca7684d4f"
+  }
+}

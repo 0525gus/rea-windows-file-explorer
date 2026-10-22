@@ -1,6 +1,8 @@
 #pragma once
 #include "explorer/types.hpp"
 #include <memory>
+#include <QImage>
+#include <QPoint>
 #include <stop_token>
 namespace explorer {
 class IPlatform {
@@ -31,6 +33,18 @@ class IPlatform {
                                 {}});
         return report;
     }
+    virtual OperationHistory operationHistory() const { return {}; }
+    virtual OperationReport replayOperation(bool redo, std::stop_token = {}, OperationProgressSink = {}) const {
+        OperationReport report;
+        report.kind = redo ? OperationKind::Redo : OperationKind::Undo;
+        report.items.push_back({{}, {}, ItemStatus::Failed,
+            Error{ErrorCode::Unsupported, "operation history", {}, "No reversible operation is available"}, {}});
+        return report;
+    }
+    virtual Result<Unit> showContextMenu(const Location &, const QVector<Entry> &, quintptr, QPoint) const {
+        return Error{ErrorCode::Unsupported, "Shell menu", {}, "Native Shell menus are unavailable"};
+    }
+    virtual QImage thumbnail(const Entry &, int) const { return {}; }
     virtual Result<Unit> retryCleanup(const QString &) const {
         return Error{ErrorCode::Unsupported,
                      QStringLiteral("cleanup"),

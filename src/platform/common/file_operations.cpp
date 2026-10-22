@@ -6,6 +6,7 @@
 #include <QUuid>
 #include <filesystem>
 #include <limits>
+#include <algorithm>
 
 namespace explorer::platform_detail {
 namespace {
@@ -222,10 +223,12 @@ Result<Unit> FileOperations::retryCleanup(const QString &path) const {
 }
 
 OperationReport FileOperations::execute(const OperationRequest &request, std::stop_token stop,
-                                        OperationProgressSink sink) const {
+                                        OperationProgressSink sink, bool journal) const {
     std::lock_guard lock(mutex_);
     OperationReport report;
     report.kind = request.kind;
+    Batch batch{request.kind, {}};
+    quint64 journalBytes = 0;
     const auto rejectRequest = [&](Error error) {
         report.items.push_back({{}, {}, ItemStatus::Failed, std::move(error), {}});
         return report;
@@ -273,6 +276,8 @@ OperationReport FileOperations::execute(const OperationRequest &request, std::st
     };
     for (qsizetype index = 0; index < count; ++index) {
         ItemOutcome outcome;
+        std::optional<Change> recorded;
+        Tree beforeSnapshot;
         const Entry source = mkdir ? Entry{} : request.sources[index];
         outcome.sourcePath = source.path;
         auto failItem = [&](Error error) {
@@ -304,6 +309,8 @@ OperationReport FileOperations::execute(const OperationRequest &request, std::st
                     if (sourceTree.isEmpty() || sourceTree.first().node.identity != source.identity)
                         return problem(ErrorCode::Changed, source.path,
                                        QStringLiteral("Source identity changed"));
+                    if (journal && (request.kind == OperationKind::Move || request.kind == OperationKind::Rename))
+                        beforeSnapshot = sourceTree;
                     if (source.link)
                         return problem(ErrorCode::Unsupported, source.path,
                                        QStringLiteral("Link operations are unsupported"));
@@ -331,12 +338,32 @@ OperationReport FileOperations::execute(const OperationRequest &request, std::st
                     emitProgress(source.path, QStringLiteral("Moving to recycle/trash"));
                     if (stop.stop_requested())
                         return cancelled(source.path);
-                    return native_.recycle(source.path, sourceTree.first().node);
+                    if (!native_.trashWithReceipt)
+                        return native_.recycle(source.path, sourceTree.first().node);
+                    auto trashed = native_.trashWithReceipt(source.path, sourceTree.first().node);
+                    if (const auto *error = failure(trashed)) {
+                        if (!error->partialPaths.isEmpty()) {
+                            outcome.status = ItemStatus::Partial;
+                            outcome.retainedPaths = error->partialPaths;
+                        }
+                        return *error;
+                    }
+                    const auto receipt = std::get<TrashReceipt>(trashed);
+                    if (journal && !receipt.path.isEmpty()) {
+                        Tree relocated = sourceTree;
+                        for (auto &node : relocated) {
+                            const auto relative = QDir(source.path).relativeFilePath(node.path);
+                            node.path = relative == "." ? receipt.path : QDir(receipt.path).filePath(relative);
+                        }
+                        recorded = Change{request.kind, source.path, source.path, receipt, std::move(relocated), sourceTree, {}};
+                    }
+                    return Unit{};
                 }
                 auto destination = destinationValid();
                 if (const auto *error = failure(destination))
                     return *error;
-                const QString leaf = mkdir || request.kind == OperationKind::Rename
+                const QString leaf = mkdir || request.kind == OperationKind::Rename ||
+                                             (request.kind == OperationKind::Move && !request.name.isEmpty())
                                          ? request.name
                                          : QFileInfo(source.path).fileName();
                 if (!safeLeaf(leaf, native_.windowsPaths))
@@ -522,13 +549,223 @@ OperationReport FileOperations::execute(const OperationRequest &request, std::st
             } else
                 outcome.status = ItemStatus::Succeeded;
         }
+        if (journal && outcome.status == ItemStatus::Succeeded) {
+            if (!recorded && !outcome.destinationPath.isEmpty()) {
+                auto tree = snapshot(outcome.destinationPath, {});
+                if (!failure(tree)) {
+                    const auto after = std::get<Tree>(std::move(tree));
+                    recorded = Change{request.kind, source.path, outcome.destinationPath, {},
+                                      after, beforeSnapshot, after};
+                } else {
+                    report.historyWarning = "Some completed items could not be added to Undo history: " + failure(tree)->message;
+                }
+            }
+            if (recorded) {
+                quint64 addition = 0;
+                for (const auto *tree : {&recorded->expected, &recorded->beforeState, &recorded->afterState})
+                    for (const auto &node : *tree)
+                        addition += sizeof(OwnedNode) + 2ULL * (node.path.size() + node.node.identity.size());
+                if (addition <= maxManifestBytes - journalBytes) {
+                    journalBytes += addition;
+                    batch.changes.push_back(std::move(*recorded));
+                } else {
+                    report.historyWarning = "Some completed items exceed the 64 MiB Undo journal limit and cannot be undone";
+                }
+            }
+        }
         report.items.push_back(std::move(outcome));
         ++progress.completedItems;
         emitProgress(source.path, QStringLiteral("Item settled"));
+    }
+    if (journal && std::any_of(report.items.cbegin(), report.items.cend(), [](const ItemOutcome &item) {
+            return item.status == ItemStatus::Succeeded || item.status == ItemStatus::Partial;
+        }))
+        redo_.clear();
+    if (journal && !batch.changes.isEmpty()) {
+        undo_.push_back(std::move(batch));
+        // Journal manifests are bounded independently of operation size.
+        auto historyBytes = [&] {
+            quint64 bytes = 0;
+            for (const auto &entry : undo_)
+                for (const auto &change : entry.changes)
+                    for (const auto *tree : {&change.expected, &change.beforeState, &change.afterState})
+                        for (const auto &node : *tree)
+                            bytes += sizeof(OwnedNode) + 2ULL * (node.path.size() + node.node.identity.size());
+            return bytes;
+        };
+        while (undo_.size() > 50 || (undo_.size() > 1 && historyBytes() > maxManifestBytes))
+            undo_.removeFirst();
     }
     for (auto item = cleanup_.cbegin(); item != cleanup_.cend(); ++item)
         if (!report.cleanupPending.contains(item.key()))
             report.cleanupPending.push_back(item.key());
     return report;
 }
+OperationHistory FileOperations::history() const {
+    std::lock_guard lock(mutex_);
+    return {!undo_.isEmpty(), !redo_.isEmpty(),
+            undo_.isEmpty() ? QString() : operationName(undo_.last().kind),
+            redo_.isEmpty() ? QString() : operationName(redo_.last().kind)};
+}
+OperationReport FileOperations::replay(bool redo, std::stop_token stop, OperationProgressSink sink) const {
+    std::lock_guard lock(mutex_);
+    OperationReport report;
+    report.kind = redo ? OperationKind::Redo : OperationKind::Undo;
+    auto &from = redo ? redo_ : undo_;
+    auto &to = redo ? undo_ : redo_;
+    if (from.isEmpty()) {
+        report.items.push_back({{}, {}, ItemStatus::Failed,
+            problem(ErrorCode::Unsupported, {}, "No reversible operation is available"), {}});
+        return report;
+    }
+    auto batch = from.takeLast();
+    Batch remaining{batch.kind, {}}, completed{batch.kind, {}};
+    // Native cross-volume moves and restores can assign new filesystem IDs.
+    // Rebind only records for the exact previous object at the same restored path.
+    auto rebind = [&](const Tree &previous, const Tree &restored) {
+        QMap<QString, Node> newNodes;
+        for (const auto &node : restored) newNodes.insert(clean(node.path), node.node);
+        QMap<QString, Node> replacements;
+        for (const auto &node : previous) {
+            const auto found = newNodes.constFind(clean(node.path));
+            if (found != newNodes.cend() && found->directory == node.node.directory &&
+                (node.node.directory || (found->size == node.node.size && found->modified == node.node.modified)))
+                replacements.insert(clean(node.path) + '\n' + node.node.identity, *found);
+        }
+        auto update = [&](Batch &entry) {
+            for (auto &change : entry.changes)
+                for (auto *tree : {&change.expected, &change.beforeState, &change.afterState})
+                    for (auto &node : *tree) {
+                        const auto found = replacements.constFind(clean(node.path) + '\n' + node.node.identity);
+                        if (found != replacements.cend()) node.node = *found;
+                    }
+        };
+        for (auto &entry : undo_) update(entry);
+        for (auto &entry : redo_) update(entry);
+        update(batch);
+        update(remaining);
+        update(completed);
+    };
+    OperationProgress progress;
+    progress.totalItems = batch.changes.size();
+    for (qsizetype i = batch.changes.size(); i > 0; --i) {
+        auto change = batch.changes[i - 1];
+        const auto current = change.expected.isEmpty() ? QString() : change.expected.first().path;
+        ItemOutcome outcome{current, {}, ItemStatus::Failed, {}, {}};
+        auto run = [&]() -> Result<Unit> {
+            if (stop.stop_requested()) return cancelled(current);
+            auto checked = verify(change.expected, true);
+            if (const auto *error = failure(checked)) return *error;
+            const bool removal = change.kind == OperationKind::Recycle ? redo : !redo;
+            const bool trashOperation = change.kind == OperationKind::Copy ||
+                change.kind == OperationKind::CreateDirectory || change.kind == OperationKind::Recycle;
+            if (trashOperation && removal) {
+                if (!native_.trashWithReceipt)
+                    return problem(ErrorCode::Unsupported, current, "Trash restore receipts unavailable");
+                auto result = native_.trashWithReceipt(current, change.expected.first().node);
+                if (const auto *error = failure(result)) {
+                    if (!error->partialPaths.isEmpty()) {
+                        outcome.status = ItemStatus::Partial;
+                        outcome.retainedPaths = error->partialPaths;
+                    }
+                    return *error;
+                }
+                change.trash = std::get<TrashReceipt>(result);
+                if (change.trash.path.isEmpty()) {
+                    outcome.status = ItemStatus::Partial;
+                    return problem(ErrorCode::Io, current, "Item recycled but no restore receipt was returned");
+                }
+                for (auto &node : change.expected) {
+                    const auto relative = QDir(current).relativeFilePath(node.path);
+                    node.path = relative == "." ? change.trash.path : QDir(change.trash.path).filePath(relative);
+                }
+                outcome.destinationPath = change.trash.path;
+            } else if (trashOperation) {
+                if (!native_.restoreTrash)
+                    return problem(ErrorCode::Unsupported, current, "Trash restoration unavailable");
+                auto restored = native_.restoreTrash(change.trash, change.after);
+                if (const auto *error = failure(restored)) return *error;
+                outcome.destinationPath = std::get<QString>(restored);
+                auto tree = snapshot(outcome.destinationPath, {});
+                if (const auto *error = failure(tree)) {
+                    outcome.status = ItemStatus::Partial;
+                    outcome.retainedPaths << outcome.destinationPath;
+                    return *error;
+                }
+                auto restoredTree = std::get<Tree>(std::move(tree));
+                rebind(change.kind == OperationKind::Recycle ? change.beforeState : change.afterState, restoredTree);
+                change.expected = restoredTree;
+                if (change.kind == OperationKind::Recycle) change.beforeState = restoredTree;
+                else change.afterState = restoredTree;
+                // Shell may choose a collision-free name if another process creates
+                // the original destination between our check and native restore.
+                if (clean(change.after).compare(clean(outcome.destinationPath),
+                        native_.windowsPaths ? Qt::CaseInsensitive : Qt::CaseSensitive) != 0)
+                    report.historyWarning = "Restored with a collision-free name: " + outcome.destinationPath;
+                change.after = outcome.destinationPath;
+            } else {
+                const auto target = redo ? change.after : change.before;
+                auto parent = safeInspect(QFileInfo(target).absolutePath());
+                if (const auto *error = failure(parent)) return *error;
+                OperationRequest request;
+                request.kind = OperationKind::Move;
+                Entry source;
+                source.path = current;
+                source.identity = change.expected.first().node.identity;
+                source.directory = change.expected.first().node.directory;
+                source.name = QFileInfo(current).fileName();
+                request.sources = {source};
+                request.name = QFileInfo(target).fileName();
+                const auto parentPath = QFileInfo(target).absolutePath();
+                request.destination = {Location::Kind::Directory, parentPath, parentPath, parentPath,
+                                       QFileInfo(parentPath).fileName(), std::get<Node>(parent).identity};
+                auto moved = execute(request, stop, sink, false);
+                report.cleanupPending += moved.cleanupPending;
+                if (moved.items.isEmpty()) return problem(ErrorCode::Io, current, "Move returned no result");
+                const auto item = moved.items.first();
+                if (item.status != ItemStatus::Succeeded) {
+                    outcome.status = item.status;
+                    outcome.retainedPaths = item.retainedPaths;
+                    return item.error.value_or(problem(ErrorCode::Io, current, "History move failed"));
+                }
+                outcome.destinationPath = item.destinationPath;
+                auto tree = snapshot(item.destinationPath, {});
+                if (const auto *error = failure(tree)) {
+                    outcome.status = ItemStatus::Partial;
+                    outcome.retainedPaths << item.destinationPath;
+                    return *error;
+                }
+                auto restoredTree = std::get<Tree>(std::move(tree));
+                rebind(redo ? change.afterState : change.beforeState, restoredTree);
+                change.expected = restoredTree;
+                if (redo) change.afterState = restoredTree;
+                else change.beforeState = restoredTree;
+            }
+            return Unit{};
+        };
+        auto result = run();
+        if (const auto *error = failure(result)) {
+            outcome.error = *error;
+            if (error->code == ErrorCode::Cancelled) {
+                if (outcome.status != ItemStatus::Partial) outcome.status = ItemStatus::Cancelled;
+                report.cancelled = true;
+            }
+            // A partial mutation cannot be safely replayed automatically.
+            if (outcome.status != ItemStatus::Partial)
+                remaining.changes.prepend(std::move(change));
+        } else {
+            outcome.status = ItemStatus::Succeeded;
+            completed.changes.push_back(std::move(change));
+        }
+        report.items.push_back(std::move(outcome));
+        ++progress.completedItems;
+        progress.phase = operationName(report.kind);
+        progress.currentPath = current;
+        if (sink) sink(progress);
+    }
+    if (!remaining.changes.isEmpty()) from.push_back(std::move(remaining));
+    if (!completed.changes.isEmpty()) to.push_back(std::move(completed));
+    return report;
+}
+
 } // namespace explorer::platform_detail

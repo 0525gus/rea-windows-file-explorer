@@ -391,6 +391,32 @@ NativeOperations operationHooks() {
                          file.errorString(), static_cast<qint64>(file.error()), {}};
         return Unit{};
     };
+    hooks.trashWithReceipt = [](const QString &path, const Node &expected) -> Result<platform_detail::TrashReceipt> {
+        auto current = operationNode(path);
+        if (const auto *error = failure(current)) return *error;
+        if (std::get<Node>(current).identity != expected.identity || std::get<Node>(current).link)
+            return Error{ErrorCode::Changed, "Trash", path, "Source identity changed"};
+        QString trashed;
+        if (!QFile::moveToTrash(path, &trashed))
+            return Error{ErrorCode::Io, "Trash", path, "Could not move item to OS Trash"};
+        const QFileInfo trashInfo(trashed);
+        const auto metadata = QDir(trashInfo.absolutePath()).dirName() == "files"
+            ? QDir(trashInfo.absolutePath()).absoluteFilePath("../info/" + trashInfo.fileName() + ".trashinfo")
+            : QString();
+        return platform_detail::TrashReceipt{trashed, trashed, metadata};
+    };
+    hooks.restoreTrash = [move = hooks.moveNoReplace](const platform_detail::TrashReceipt &receipt,
+                                                     const QString &target) -> Result<QString> {
+        auto source = operationNode(receipt.path), parent = operationNode(QFileInfo(target).absolutePath());
+        if (const auto *error = failure(source)) return *error;
+        if (const auto *error = failure(parent)) return *error;
+        auto result = move(receipt.path, std::get<Node>(source), target, std::get<Node>(parent));
+        if (const auto *error = failure(result)) return *error;
+        if (!std::get<bool>(result))
+            return Error{ErrorCode::Unsupported, "Restore", target, "Trash restore crosses filesystems"};
+        if (!receipt.metadata.isEmpty()) QFile::remove(receipt.metadata);
+        return target;
+    };
     return hooks;
 }
 std::optional<qint64> modifiedMs(const struct stat &info) {
@@ -681,6 +707,10 @@ class PosixPlatform final : public IPlatform {
     OperationReport execute(const OperationRequest &request, std::stop_token stop,
                             OperationProgressSink progress) const override {
         return operations_->execute(request, stop, std::move(progress));
+    }
+    OperationHistory operationHistory() const override { return operations_->history(); }
+    OperationReport replayOperation(bool redo, std::stop_token stop, OperationProgressSink sink) const override {
+        return operations_->replay(redo, stop, std::move(sink));
     }
     Result<Unit> retryCleanup(const QString &path) const override {
         return operations_->retryCleanup(path);

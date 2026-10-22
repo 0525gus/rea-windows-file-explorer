@@ -2,6 +2,8 @@
 #include "explorer/session.hpp"
 #include <QAbstractTableModel>
 #include <QHash>
+#include <QCache>
+#include <QPixmap>
 #include <QJsonObject>
 #include <QMainWindow>
 #include <QTimer>
@@ -19,11 +21,16 @@ class QListView;
 class QStackedWidget;
 class QAbstractItemView;
 class QMimeData;
+class QFileSystemWatcher;
+class QPlainTextEdit;
 namespace explorer {
 class EntryModel : public QAbstractTableModel {
     Q_OBJECT
   public:
-    explicit EntryModel(QObject *parent = nullptr) : QAbstractTableModel(parent) {}
+    explicit EntryModel(QObject *parent = nullptr);
+    ~EntryModel() override;
+    std::function<QImage(const Entry &, int)> thumbnailProvider;
+    void setThumbnailsEnabled(bool enabled);
     int rowCount(const QModelIndex &parent = {}) const override {
         return parent.isValid() ? 0 : static_cast<int>(entries_.size());
     }
@@ -31,6 +38,8 @@ class EntryModel : public QAbstractTableModel {
         return parent.isValid() ? 0 : 4;
     }
     QVariant data(const QModelIndex &index, int role) const override;
+    bool setData(const QModelIndex &index, const QVariant &value, int role) override;
+    std::function<bool(const Entry &, const QString &)> renameEntry;
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
     void setEntries(QVector<Entry> entries);
     const Entry *entry(int row) const;
@@ -38,6 +47,11 @@ class EntryModel : public QAbstractTableModel {
 
   private:
     QVector<Entry> entries_;
+    void requestThumbnail(const Entry &entry);
+    QThreadPool thumbnailPool_;
+    QCache<QString, QPixmap> thumbnails_{16384};
+    QSet<QString> thumbnailPending_;
+    bool thumbnailsEnabled_ = true;
 };
 class MainWindow : public QMainWindow {
     Q_OBJECT
@@ -77,6 +91,15 @@ class MainWindow : public QMainWindow {
     bool acceptTransfer(const QMimeData *data, Qt::DropAction action, int row, bool internal);
     bool resolveTransfer(QStringList paths, Location destination, OperationKind kind);
     void renderOperation();
+    void showFileMenu(QAbstractItemView *view, const QPoint &position);
+    void toggleFavorite();
+    void rebuildFavorites();
+    void saveSettings();
+    void syncWatches();
+    void requestPreview(const Entry *entry);
+    void loadPreview();
+    void showNativeMenu(QVector<Entry> entries, Location location, QPoint position);
+    void replayOperation(bool redo);
     QVector<Entry> selectedEntries() const;
     QAbstractItemView *activeView() const;
     QToolButton *makeButton(const QString &symbol, const QString &label, QWidget *parent);
@@ -114,6 +137,18 @@ class MainWindow : public QMainWindow {
     QSplitter *splitter_;
     QTimer progressTimer_;
     QThreadPool treePool_;
+    QThreadPool previewPool_;
+    QFileSystemWatcher *fileWatcher_ = nullptr;
+    QPlainTextEdit *previewText_;
+    QTreeWidgetItem *favoritesRoot_;
+    QStringList favorites_;
+    QTimer watchTimer_, previewTimer_, searchTimer_;
+    quint64 searchTab_ = 0, searchGeneration_ = 0;
+    QString pendingSearch_;
+    QSet<QString> changedPaths_;
+    QString previewPath_;
+    quint64 previewGeneration_ = 0;
+    bool previewBusy_ = false;
     QHash<QString, std::shared_ptr<std::stop_source>> treeStops_;
     int treeActive_ = 0;
     bool closing_ = false, finalClose_ = false, updating_ = false;
