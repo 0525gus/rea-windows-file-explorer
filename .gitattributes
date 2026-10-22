@@ -1,4 +1,4 @@
 * text=auto eol=lf
-*.json -text
+*.json -text whitespace=cr-at-eol
 *.png -text
-docs/requirements.md -text
+docs/requirements.md -text whitespace=cr-at-eol

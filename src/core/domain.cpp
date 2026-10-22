@@ -1,6 +1,21 @@
 #include "explorer/types.hpp"
 #include <algorithm>
 namespace explorer {
+QString operationName(OperationKind kind) {
+    switch (kind) {
+    case OperationKind::Copy:
+        return QStringLiteral("Copy");
+    case OperationKind::Move:
+        return QStringLiteral("Move");
+    case OperationKind::Recycle:
+        return QStringLiteral("Move to Recycle Bin");
+    case OperationKind::Rename:
+        return QStringLiteral("Rename");
+    case OperationKind::CreateDirectory:
+        return QStringLiteral("New folder");
+    }
+    return QStringLiteral("File operation");
+}
 QString errorCodeName(ErrorCode code) {
     switch (code) {
     case ErrorCode::InvalidPath:

@@ -1,4 +1,5 @@
 #include "explorer/platform.hpp"
+#include "../common/file_operations.hpp"
 #ifndef STRICT_TYPED_ITEMIDS
 #define STRICT_TYPED_ITEMIDS
 #endif
@@ -6,7 +7,9 @@
 
 #include <QByteArray>
 #include <QDir>
+#include <QFile>
 #include <QFileInfo>
+#include <cstring>
 #include <limits>
 #include <memory>
 #include <shellapi.h>
@@ -16,6 +19,8 @@
 
 namespace explorer {
 namespace {
+using platform_detail::NativeOperations;
+using platform_detail::Node;
 constexpr quint64 listingBudget = 64ULL * 1024 * 1024;
 const wchar_t *wide(const QString &value) {
     return reinterpret_cast<const wchar_t *>(value.utf16());
@@ -59,6 +64,8 @@ Error winError(const QString &operation, const QString &input, DWORD code) {
         kind = ErrorCode::InvalidPath;
     else if (code == ERROR_FILENAME_EXCED_RANGE || code == ERROR_NOT_SUPPORTED)
         kind = ErrorCode::Unsupported;
+    else if (code == ERROR_ALREADY_EXISTS || code == ERROR_FILE_EXISTS)
+        kind = ErrorCode::Conflict;
     wchar_t *buffer = nullptr;
     FormatMessageW(FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM |
                        FORMAT_MESSAGE_IGNORE_INSERTS,
@@ -116,6 +123,250 @@ QString identity(const QString &path) {
     const QByteArray id(reinterpret_cast<const char *>(info.FileId.Identifier),
                         sizeof(info.FileId.Identifier));
     return QString::number(info.VolumeSerialNumber, 16) + QLatin1Char(':') + QString::fromLatin1(id.toHex());
+}
+Result<Node> nodeFromHandle(HANDLE handle, const QString &path) {
+    FILE_ID_INFO id{};
+    FILE_ATTRIBUTE_TAG_INFO attributes{};
+    FILE_STANDARD_INFO standard{};
+    FILETIME write{};
+    if (!GetFileInformationByHandleEx(handle, FileIdInfo, &id, sizeof(id)) ||
+        !GetFileInformationByHandleEx(handle, FileAttributeTagInfo, &attributes, sizeof(attributes)) ||
+        !GetFileInformationByHandleEx(handle, FileStandardInfo, &standard, sizeof(standard)) ||
+        !GetFileTime(handle, nullptr, nullptr, &write))
+        return winError(QStringLiteral("inspect operation object"), path, GetLastError());
+    const QByteArray bytes(reinterpret_cast<const char *>(id.FileId.Identifier),
+                           sizeof(id.FileId.Identifier));
+    const quint64 ticks = (static_cast<quint64>(write.dwHighDateTime) << 32) | write.dwLowDateTime;
+    return Node{QString::number(id.VolumeSerialNumber, 16) + QLatin1Char(':') +
+                    QString::fromLatin1(bytes.toHex()),
+                (attributes.FileAttributes & FILE_ATTRIBUTE_DIRECTORY) != 0,
+                (attributes.FileAttributes & FILE_ATTRIBUTE_REPARSE_POINT) != 0,
+                static_cast<quint64>(standard.EndOfFile.QuadPart), static_cast<qint64>(ticks)};
+}
+Result<Node> operationNode(const QString &path) {
+    const QString native = apiPath(QDir::toNativeSeparators(path));
+    Handle handle{CreateFileW(wide(native), FILE_READ_ATTRIBUTES,
+                              FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, nullptr, OPEN_EXISTING,
+                              FILE_FLAG_OPEN_REPARSE_POINT | FILE_FLAG_BACKUP_SEMANTICS, nullptr)};
+    if (handle.value == INVALID_HANDLE_VALUE)
+        return winError(QStringLiteral("inspect operation object"), path, GetLastError());
+    return nodeFromHandle(handle.value, path);
+}
+NativeOperations operationHooks() {
+    NativeOperations hooks;
+    hooks.windowsPaths = true;
+    hooks.inspect = operationNode;
+    hooks.createExclusive = [](const QString &path, bool directory) -> Result<Node> {
+        const QString native = apiPath(QDir::toNativeSeparators(path));
+        if (directory) {
+            if (!CreateDirectoryW(wide(native), nullptr))
+                return winError(QStringLiteral("create directory"), path, GetLastError());
+        } else {
+            Handle handle{CreateFileW(wide(native), GENERIC_READ | GENERIC_WRITE, 0, nullptr, CREATE_NEW,
+                                      FILE_ATTRIBUTE_NORMAL | FILE_FLAG_OPEN_REPARSE_POINT, nullptr)};
+            if (handle.value == INVALID_HANDLE_VALUE)
+                return winError(QStringLiteral("create staging file"), path, GetLastError());
+            auto node = nodeFromHandle(handle.value, path);
+            if (const auto *error = failure(node)) {
+                Error retained = *error;
+                retained.partialPaths << path;
+                return retained;
+            }
+            return node;
+        }
+        auto node = operationNode(path);
+        if (const auto *error = failure(node)) {
+            Error retained = *error;
+            retained.partialPaths << path;
+            return retained;
+        }
+        return node;
+    };
+    hooks.moveNoReplace = [](const QString &from, const Node &expected, const QString &to,
+                             const Node &destinationExpected) -> Result<bool> {
+        const QString source = apiPath(QDir::toNativeSeparators(from));
+        Handle handle{CreateFileW(wide(source), DELETE | FILE_READ_ATTRIBUTES, FILE_SHARE_READ, nullptr,
+                                  OPEN_EXISTING, FILE_FLAG_OPEN_REPARSE_POINT | FILE_FLAG_BACKUP_SEMANTICS,
+                                  nullptr)};
+        if (handle.value == INVALID_HANDLE_VALUE)
+            return winError(QStringLiteral("open rename source"), from, GetLastError());
+        auto inspected = nodeFromHandle(handle.value, from);
+        if (const auto *error = failure(inspected))
+            return *error;
+        const Node node = std::get<Node>(inspected);
+        if (expected.identity.isEmpty() || node.identity != expected.identity || node.link ||
+            node.directory != expected.directory ||
+            (!node.directory && (node.size != expected.size || node.modified != expected.modified)))
+            return Error{ErrorCode::Changed,
+                         QStringLiteral("move without replacement"),
+                         from,
+                         QStringLiteral("Rename source identity or contents changed"),
+                         0,
+                         {}};
+        const QString parent = QDir::toNativeSeparators(QFileInfo(to).absolutePath());
+        const QString parentNative = apiPath(parent);
+        Handle parentHandle{CreateFileW(wide(parentNative), FILE_READ_ATTRIBUTES | FILE_LIST_DIRECTORY,
+                                        FILE_SHARE_READ | FILE_SHARE_WRITE, nullptr, OPEN_EXISTING,
+                                        FILE_FLAG_OPEN_REPARSE_POINT | FILE_FLAG_BACKUP_SEMANTICS, nullptr)};
+        if (parentHandle.value == INVALID_HANDLE_VALUE)
+            return winError(QStringLiteral("open rename destination"), parent, GetLastError());
+        auto targetDirectory = nodeFromHandle(parentHandle.value, parent);
+        if (const auto *error = failure(targetDirectory))
+            return *error;
+        if (destinationExpected.identity.isEmpty() ||
+            std::get<Node>(targetDirectory).identity != destinationExpected.identity ||
+            std::get<Node>(targetDirectory).link || !std::get<Node>(targetDirectory).directory)
+            return Error{ErrorCode::Changed,
+                         QStringLiteral("move without replacement"),
+                         parent,
+                         QStringLiteral("Destination directory identity changed"),
+                         0,
+                         {}};
+        // The Win32 SetFileInformationByHandle boundary accepts the absolute
+        // target name with RootDirectory=null. Keep the checked parent handle
+        // open to deny its rename/delete, while the source stays handle-bound.
+        const QString targetName = apiPath(QDir::toNativeSeparators(to));
+        const size_t nameBytes = static_cast<size_t>(targetName.size()) * sizeof(wchar_t);
+        std::vector<unsigned char> storage(offsetof(FILE_RENAME_INFO, FileName) + nameBytes + sizeof(wchar_t),
+                                           0);
+        auto *rename = reinterpret_cast<FILE_RENAME_INFO *>(storage.data());
+        rename->ReplaceIfExists = FALSE;
+        rename->RootDirectory = nullptr;
+        rename->FileNameLength = static_cast<DWORD>(nameBytes);
+        std::memcpy(rename->FileName, wide(targetName), nameBytes);
+        if (SetFileInformationByHandle(handle.value, FileRenameInfo, rename,
+                                       static_cast<DWORD>(storage.size())))
+            return true;
+        const DWORD code = GetLastError();
+        if (code == ERROR_NOT_SAME_DEVICE)
+            return false;
+        auto error = winError(QStringLiteral("move without replacement"), to, code);
+        if (code == ERROR_ALREADY_EXISTS || code == ERROR_FILE_EXISTS)
+            error.code = ErrorCode::Conflict;
+        return error;
+    };
+    hooks.remove = [](const QString &path, const Node &expected, bool contents) -> Result<Unit> {
+        const QString native = apiPath(QDir::toNativeSeparators(path));
+        Handle handle{CreateFileW(
+            wide(native), DELETE | FILE_READ_ATTRIBUTES,
+            contents ? FILE_SHARE_READ : FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, nullptr,
+            OPEN_EXISTING, FILE_FLAG_OPEN_REPARSE_POINT | FILE_FLAG_BACKUP_SEMANTICS, nullptr)};
+        if (handle.value == INVALID_HANDLE_VALUE)
+            return winError(QStringLiteral("open cleanup object"), path, GetLastError());
+        auto current = nodeFromHandle(handle.value, path);
+        if (const auto *error = failure(current))
+            return *error;
+        const auto &node = std::get<Node>(current);
+        if (expected.identity.isEmpty() || node.identity != expected.identity || node.link ||
+            node.directory != expected.directory ||
+            (contents && !node.directory &&
+             (node.size != expected.size || node.modified != expected.modified)))
+            return Error{ErrorCode::Changed,
+                         QStringLiteral("owned cleanup"),
+                         path,
+                         QStringLiteral("Cleanup object identity changed"),
+                         0,
+                         {}};
+        FILE_DISPOSITION_INFO disposition{TRUE};
+        if (!SetFileInformationByHandle(handle.value, FileDispositionInfo, &disposition, sizeof(disposition)))
+            return winError(QStringLiteral("owned cleanup"), path, GetLastError());
+        return Unit{};
+    };
+    hooks.copyContents = [](const QString &source, const Node &expected, const QString &target,
+                            const Node &targetExpected, std::stop_token stop,
+                            const std::function<void(quint64)> &progress) -> Result<Unit> {
+        const QString sourceNative = apiPath(QDir::toNativeSeparators(source)),
+                      targetNative = apiPath(QDir::toNativeSeparators(target));
+        Handle input{CreateFileW(wide(sourceNative), GENERIC_READ | FILE_READ_ATTRIBUTES, FILE_SHARE_READ,
+                                 nullptr, OPEN_EXISTING,
+                                 FILE_FLAG_OPEN_REPARSE_POINT | FILE_FLAG_SEQUENTIAL_SCAN, nullptr)};
+        if (input.value == INVALID_HANDLE_VALUE)
+            return winError(QStringLiteral("read copy source"), source, GetLastError());
+        auto sourceNode = nodeFromHandle(input.value, source);
+        if (const auto *error = failure(sourceNode))
+            return *error;
+        const Node before = std::get<Node>(sourceNode);
+        if (before.identity != expected.identity || before.link || before.directory ||
+            before.size != expected.size || before.modified != expected.modified)
+            return Error{ErrorCode::Changed,
+                         QStringLiteral("copy"),
+                         source,
+                         QStringLiteral("Source changed before reading"),
+                         0,
+                         {}};
+        Handle output{CreateFileW(wide(targetNative), GENERIC_WRITE | FILE_READ_ATTRIBUTES, 0, nullptr,
+                                  OPEN_EXISTING, FILE_FLAG_OPEN_REPARSE_POINT, nullptr)};
+        if (output.value == INVALID_HANDLE_VALUE)
+            return winError(QStringLiteral("write staging copy"), target, GetLastError());
+        auto destinationNode = nodeFromHandle(output.value, target);
+        if (const auto *error = failure(destinationNode))
+            return *error;
+        const Node destination = std::get<Node>(destinationNode);
+        if (destination.identity != targetExpected.identity || destination.link || destination.directory)
+            return Error{ErrorCode::Changed,
+                         QStringLiteral("copy"),
+                         target,
+                         QStringLiteral("Staging object changed before writing"),
+                         0,
+                         {}};
+        QByteArray buffer(1024 * 1024, Qt::Uninitialized);
+        quint64 copied = 0;
+        while (true) {
+            if (stop.stop_requested())
+                return Error{ErrorCode::Cancelled,
+                             QStringLiteral("copy"),
+                             source,
+                             QStringLiteral("Copy cancelled"),
+                             0,
+                             {}};
+            DWORD read = 0;
+            if (!ReadFile(input.value, buffer.data(), static_cast<DWORD>(buffer.size()), &read, nullptr))
+                return winError(QStringLiteral("read copy source"), source, GetLastError());
+            if (!read)
+                break;
+            DWORD offset = 0;
+            while (offset < read) {
+                DWORD written = 0;
+                if (!WriteFile(output.value, buffer.constData() + offset, read - offset, &written, nullptr) ||
+                    written == 0)
+                    return winError(QStringLiteral("write staging copy"), target, GetLastError());
+                offset += written;
+            }
+            copied += read;
+            progress(read);
+        }
+        if (copied != expected.size)
+            return Error{ErrorCode::Changed,
+                         QStringLiteral("copy"),
+                         source,
+                         QStringLiteral("Source byte length changed"),
+                         0,
+                         {}};
+        FILETIME timestamp{static_cast<DWORD>(static_cast<quint64>(expected.modified)),
+                           static_cast<DWORD>(static_cast<quint64>(expected.modified) >> 32)};
+        if (!SetFileTime(output.value, nullptr, nullptr, &timestamp) || !FlushFileBuffers(output.value))
+            return winError(QStringLiteral("finish staging copy"), target, GetLastError());
+        return Unit{};
+    };
+    hooks.recycle = [](const QString &path, const Node &expected) -> Result<Unit> {
+        auto current = operationNode(path);
+        if (const auto *error = failure(current))
+            return *error;
+        if (std::get<Node>(current).identity != expected.identity || std::get<Node>(current).link)
+            return Error{ErrorCode::Changed,
+                         QStringLiteral("recycle"),
+                         path,
+                         QStringLiteral("Source identity changed"),
+                         0,
+                         {}};
+        // QFile's trash API returns false on failure; there is no permanent-delete fallback.
+        QFile file(path);
+        if (!file.moveToTrash())
+            return Error{ErrorCode::Io,      QStringLiteral("recycle"),         path,
+                         file.errorString(), static_cast<qint64>(file.error()), {}};
+        return Unit{};
+    };
+    return hooks;
 }
 std::optional<qint64> modified(const FILETIME &time) {
     const quint64 ticks = (static_cast<quint64>(time.dwHighDateTime) << 32) | time.dwLowDateTime;
@@ -203,7 +454,7 @@ class WindowsPlatform final : public IPlatform {
         QString label = QFileInfo(path).fileName();
         if (label.isEmpty())
             label = path;
-        return Location{Location::Kind::Directory, input, path, path, label};
+        return Location{Location::Kind::Directory, input, path, path, label, identity(path)};
     }
 
     Result<std::optional<Location>> parent(const Location &location) const override {
@@ -234,6 +485,9 @@ class WindowsPlatform final : public IPlatform {
 
     Result<Listing> list(const Location &location, std::stop_token stop,
                          ProgressSink progress) const override {
+        Location currentLocation = location;
+        if (currentLocation.kind == Location::Kind::Directory)
+            currentLocation.identity = identity(location.path);
         QVector<Entry> entries;
         quint64 bytes = 0;
         const auto append = [&](Entry entry) -> std::optional<Error> {
@@ -285,7 +539,7 @@ class WindowsPlatform final : public IPlatform {
                 if (auto error = append(std::move(entry)))
                     return *error;
             }
-            return Listing{location, std::move(entries), true};
+            return Listing{currentLocation, std::move(entries), true};
         }
         // Shell implementations may translate permission failures into an empty enumerator.
         // Require actual list-directory access before interpreting a Shell empty result.
@@ -325,7 +579,7 @@ class WindowsPlatform final : public IPlatform {
         if (FAILED(hr))
             return comError(QStringLiteral("enumerate folder"), location.callerInput, hr);
         if (!enumerator)
-            return Listing{location, {}, true};
+            return Listing{currentLocation, {}, true};
         while (true) {
             if (stop.stop_requested())
                 return cancelled(location, entries);
@@ -394,11 +648,46 @@ class WindowsPlatform final : public IPlatform {
         }
         if (stop.stop_requested())
             return cancelled(location, entries);
-        return Listing{location, std::move(entries), true};
+        return Listing{currentLocation, std::move(entries), true};
     }
 
     int compareNames(const QString &a, const QString &b) const override {
         return StrCmpLogicalW(wide(a), wide(b));
+    }
+
+    Result<Entry> inspectEntry(const QString &input) const override {
+        if (input.isEmpty() || input.contains(QChar(u'\0')))
+            return winError(QStringLiteral("inspect entry"), input, ERROR_INVALID_NAME);
+        const QString supplied = QDir::toNativeSeparators(input);
+        const DWORD needed = GetFullPathNameW(wide(supplied), 0, nullptr, nullptr);
+        if (!needed)
+            return winError(QStringLiteral("inspect entry"), input, GetLastError());
+        if (needed > 32768)
+            return winError(QStringLiteral("inspect entry"), input, ERROR_FILENAME_EXCED_RANGE);
+        std::vector<wchar_t> buffer(static_cast<size_t>(needed));
+        const DWORD length = GetFullPathNameW(wide(supplied), needed, buffer.data(), nullptr);
+        if (!length)
+            return winError(QStringLiteral("inspect entry"), input, GetLastError());
+        if (length >= needed)
+            return Error{ErrorCode::Changed,
+                         QStringLiteral("inspect entry"),
+                         input,
+                         QStringLiteral("Path resolution changed; retry"),
+                         0,
+                         {}};
+        Entry entry;
+        entry.path = QString::fromWCharArray(buffer.data(), static_cast<int>(length));
+        auto inspected = operationNode(entry.path);
+        if (const auto *error = failure(inspected))
+            return *error;
+        const Node node = std::get<Node>(inspected);
+        entry.key = entry.path;
+        entry.name = QFileInfo(entry.path).fileName();
+        entry.identity = node.identity;
+        entry.directory = node.directory;
+        entry.link = node.link;
+        metadata(entry);
+        return entry;
     }
 
     Result<Unit> open(const Entry &entry) const override {
@@ -440,9 +729,20 @@ class WindowsPlatform final : public IPlatform {
 
     Capabilities capabilities() const override {
         Capabilities result;
-        result.open = true;
+        result.open = result.copy = result.move = result.recycle = result.rename = result.mkdir = true;
         return result;
     }
+    OperationReport execute(const OperationRequest &request, std::stop_token stop,
+                            OperationProgressSink progress) const override {
+        return operations_->execute(request, stop, std::move(progress));
+    }
+    Result<Unit> retryCleanup(const QString &path) const override {
+        return operations_->retryCleanup(path);
+    }
+
+  private:
+    std::shared_ptr<platform_detail::FileOperations> operations_ =
+        std::make_shared<platform_detail::FileOperations>(operationHooks());
 };
 } // namespace
 std::shared_ptr<IPlatform> makePlatform() {

@@ -101,7 +101,7 @@ function Invoke-BuildStage([string]$StageName, [string[]]$Command) {
     finally { $process.Dispose() }
 }
 
-$configureCommand = @($cmake, '-S', $sourcePath, '-B', $buildPath, '-G', 'Ninja', "-DCMAKE_BUILD_TYPE=$Configuration", "-DCMAKE_PREFIX_PATH=$qtPath", "-DCMAKE_MAKE_PROGRAM=$ninja", "-DCMAKE_INSTALL_PREFIX=$(Join-Path $buildPath 'install')")
+$configureCommand = @($cmake, '-S', $sourcePath, '-B', $buildPath, '-G', 'Ninja', "-DCMAKE_BUILD_TYPE=$Configuration", '-DCMAKE_EXPORT_COMPILE_COMMANDS=ON', "-DCMAKE_PREFIX_PATH=$qtPath", "-DCMAKE_MAKE_PROGRAM=$ninja", "-DCMAKE_INSTALL_PREFIX=$(Join-Path $buildPath 'install')")
 if ($Fresh) { $configureCommand += '--fresh' }
 Invoke-BuildStage 'configure' $configureCommand
 Invoke-BuildStage 'build' @($cmake, '--build', $buildPath, '--config', $Configuration, '--parallel', '2')

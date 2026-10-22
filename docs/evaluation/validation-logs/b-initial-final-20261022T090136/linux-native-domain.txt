@@ -1,0 +1,12 @@
+********* Start testing of DomainTests *********
+Config: Using QtTest library 6.4.2, Qt 6.4.2 (x86_64-little_endian-lp64 shared (dynamic) release build; by GCC 13.2.0), ubuntu 24.04
+PASS   : DomainTests::initTestCase()
+PASS   : DomainTests::historyBoundariesAndSuccessfulBranch()
+PASS   : DomainTests::repeatedLocationUsesIdentityWithoutLosingForwardBranch()
+PASS   : DomainTests::unicodeLiteralSearchPreservesNamesAndMetadata()
+PASS   : DomainTests::directoryPriorityAndNaturalNamesBothDirections()
+PASS   : DomainTests::metadataSortKeepsUnknownLastAndNaturalTieBreakAscending()
+PASS   : DomainTests::tiesUseSourceNameThenKeyIndependentOfInputPermutation()
+PASS   : DomainTests::cleanupTestCase()
+Totals: 8 passed, 0 failed, 0 skipped, 0 blacklisted, 5ms
+********* Finished testing of DomainTests *********

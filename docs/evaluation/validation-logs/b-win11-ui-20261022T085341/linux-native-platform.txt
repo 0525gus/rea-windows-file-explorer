@@ -1,0 +1,17 @@
+********* Start testing of PlatformTests *********
+Config: Using QtTest library 6.4.2, Qt 6.4.2 (x86_64-little_endian-lp64 shared (dynamic) release build; by GCC 13.2.0), ubuntu 24.04
+PASS   : PlatformTests::initTestCase()
+PASS   : PlatformTests::emptyFolderIsCompleteAndCallerInputSurvives()
+PASS   : PlatformTests::allBulkAndUnicodeNamesAndMetadataMatchManifest(all-1200-bulk-files)
+PASS   : PlatformTests::allBulkAndUnicodeNamesAndMetadataMatchManifest(unicode-special-long-names)
+PASS   : PlatformTests::nonexistentAndInvalidPathsAreErrors()
+PASS   : PlatformTests::preCancelledListDoesNotReturnSuccess()
+SKIP   : PlatformTests::realDeniedSourceGateRemainsUnread() NTFS source-gate ACL is a Windows-only denial check; this is not Linux permission coverage.
+   Loc: [/mnt/c/dev/Windows_fileexplore/tests/platform_tests.cpp(178)]
+PASS   : PlatformTests::adapterNaturalComparatorOrdersNumbers()
+PASS   : PlatformTests::staleEntryOpenFailsBeforeDelegation(externally-deleted)
+PASS   : PlatformTests::staleEntryOpenFailsBeforeDelegation(same-path-different-object)
+PASS   : PlatformTests::directorySymlinkAndCycleAreFiniteAndIdentified()
+PASS   : PlatformTests::cleanupTestCase()
+Totals: 11 passed, 0 failed, 1 skipped, 0 blacklisted, 1258ms
+********* Finished testing of PlatformTests *********

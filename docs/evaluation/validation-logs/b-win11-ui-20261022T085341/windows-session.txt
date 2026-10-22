@@ -1,0 +1,17 @@
+********* Start testing of SessionTests *********
+Config: Using QtTest library 6.8.3, Qt 6.8.3 (x86_64-little_endian-llp64 shared (dynamic) release build; by MSVC 2022), windows 11
+PASS   : SessionTests::initTestCase()
+PASS   : SessionTests::successfulHistoryFailurePreservationAndBranch()
+PASS   : SessionTests::pendingParseFailureAndIncompleteListingKeepCommittedState()
+PASS   : SessionTests::supersededLateSuccessAndLateFailureCannotOverwriteCurrent()
+PASS   : SessionTests::tabsOwnIndependentHistorySearchSortAndSelection()
+PASS   : SessionTests::refreshSelectionRequiresMatchingKnownIdentity()
+PASS   : SessionTests::safeOpenDelegatesOnlyVisibleFileAndReportsRemovedItem()
+PASS   : SessionTests::delayedOpenIsOwnedThroughNavigationCloseAndShutdown()
+PASS   : SessionTests::closedTabWorkerIsRetainedAndShutdownWaitsForActualReturn()
+PASS   : SessionTests::globalOperationSurvivesTabCloseNavigationAndPreservesMixedReport()
+PASS   : SessionTests::cancelledOperationRemainsOwnedThroughShutdownAndLateCompletion()
+PASS   : SessionTests::cleanupRetryRetainsFailureRejectsForeignPathAndOwnsFinalization()
+PASS   : SessionTests::cleanupTestCase()
+Totals: 13 passed, 0 failed, 0 skipped, 0 blacklisted, 2367ms
+********* Finished testing of SessionTests *********

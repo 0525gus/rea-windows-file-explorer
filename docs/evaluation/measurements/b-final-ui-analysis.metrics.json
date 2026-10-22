@@ -1,0 +1,30 @@
+{
+  "argv": [
+    "C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\Llvm\\x64\\bin\\clang-tidy.exe",
+    "C:/dev/Windows_fileexplore/src/ui/main_window.cpp",
+    "--checks=-*,clang-analyzer-*",
+    "--quiet",
+    "-p",
+    "C:\\dev\\Windows_fileexplore\\build-windows",
+    "--extra-arg=/imsvcC:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\VC\\Tools\\MSVC\\14.51.36231\\include",
+    "--extra-arg=/imsvcC:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.26100.0\\ucrt",
+    "--extra-arg=/imsvcC:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.26100.0\\shared",
+    "--extra-arg=/imsvcC:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.26100.0\\um",
+    "--extra-arg=/imsvcC:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.26100.0\\winrt"
+  ],
+  "cwd": "C:\\dev\\Windows_fileexplore",
+  "started_at": "2026-10-22T09:03:05.555149+09:00",
+  "hidden": true,
+  "environment_persisted_by_runner": false,
+  "memory_definition": "Job Object PeakJobMemoryUsed: peak simultaneous committed memory for the assigned process and descendants; not resident working set.",
+  "pid": 22200,
+  "exit_code": 0,
+  "residual_owned_processes_terminated": 0,
+  "cpu_user_seconds": 14.90625,
+  "cpu_kernel_seconds": 0.625,
+  "cpu_family_seconds": 15.53125,
+  "total_family_processes": 2,
+  "active_family_processes_at_completion": 0,
+  "peak_family_committed_bytes": 531296256,
+  "elapsed_seconds": 16.133748000000196
+}

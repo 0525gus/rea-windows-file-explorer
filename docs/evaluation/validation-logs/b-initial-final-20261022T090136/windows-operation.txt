@@ -1,0 +1,28 @@
+********* Start testing of OperationTests *********
+Config: Using QtTest library 6.8.3, Qt 6.8.3 (x86_64-little_endian-llp64 shared (dynamic) release build; by MSVC 2022), windows 11
+QINFO  : OperationTests::initTestCase() Operation sandbox parent: C:/dev/Windows_fileexplore/test-data
+PASS   : OperationTests::initTestCase()
+PASS   : OperationTests::emptySourceRequestIsExplicitlyRejected()
+PASS   : OperationTests::copySingleAndMixedCollisionPreserveEverySource()
+PASS   : OperationTests::keepBothReturnsRealNewDestinationWithoutOverwriting()
+PASS   : OperationTests::multiMoveReportsEachItemAndPreservesCollisionSource()
+PASS   : OperationTests::destinationAppearingDuringCopyIsNeverOverwritten()
+PASS   : OperationTests::folderCopyMoveAndDescendantDestinationGuard()
+PASS   : OperationTests::renameCollisionInvalidLeafAndCreateDirectory()
+PASS   : OperationTests::staleSourceAndDestinationIdentitiesRefuseMutation()
+PASS   : OperationTests::copyCancellationPreservesOriginalAndAccountsForOwnedResidue()
+PASS   : OperationTests::preCancellationAndForeignCleanupNeverDeleteUserSelectedData()
+QINFO  : OperationTests::windowsRealCleanupFailureRetainsOwnershipAndRefusesReplacement() Real cleanup retained: C:/dev/Windows_fileexplore/test-data/runtime-operations-QNgHQt/destination/.rea-stage-193294ac-3390-47bb-9155-c0de70160ee1 native: 32 reason: 다른 프로세스가 파일을 사용 중이기 때문에 프로세스가 액세스 할 수 없습니다.
+QINFO  : OperationTests::windowsRealCleanupFailureRetainsOwnershipAndRefusesReplacement() Cleanup refused changed identity at: C:/dev/Windows_fileexplore/test-data/runtime-operations-QNgHQt/destination/.rea-stage-193294ac-3390-47bb-9155-c0de70160ee1
+PASS   : OperationTests::windowsRealCleanupFailureRetainsOwnershipAndRefusesReplacement()
+PASS   : OperationTests::windowsJunctionIsRejectedWithoutFollowingOwnedTarget(selected-directory-junction)
+PASS   : OperationTests::windowsJunctionIsRejectedWithoutFollowingOwnedTarget(junction-cycle-inside-selected-tree)
+SKIP   : OperationTests::copySymlinkMustNotFollowTarget(selected-symlink) Symlink fixture unavailable: A required privilege is not held by the client.
+C:\dev\Windows_fileexplore\tests\operation_tests.cpp(720) : failure location
+SKIP   : OperationTests::copySymlinkMustNotFollowTarget(link-inside-selected-directory) Symlink fixture unavailable: A required privilege is not held by the client.
+C:\dev\Windows_fileexplore\tests\operation_tests.cpp(720) : failure location
+SKIP   : OperationTests::recycleOnlyExplicitlyOptedInDisposableItem() Real recycle is opt-in: REA_TEST_RECYCLE_OWNED=1; default test run does not add to the user's bin.
+C:\dev\Windows_fileexplore\tests\operation_tests.cpp(740) : failure location
+PASS   : OperationTests::cleanupTestCase()
+Totals: 15 passed, 0 failed, 3 skipped, 0 blacklisted, 861ms
+********* Finished testing of OperationTests *********

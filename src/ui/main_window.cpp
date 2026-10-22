@@ -1,33 +1,123 @@
 #include "explorer/main_window.hpp"
 #include <QApplication>
+#include <QClipboard>
 #include <QCloseEvent>
 #include <QDateTime>
+#include <QDir>
+#include <QDrag>
+#include <QDragEnterEvent>
+#include <QDropEvent>
+#include <QElapsedTimer>
+#include <QFileInfo>
+#include <QFocusEvent>
 #include <QFutureWatcher>
 #include <QHBoxLayout>
 #include <QHeaderView>
 #include <QIcon>
+#include <QInputDialog>
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QLabel>
 #include <QLineEdit>
+#include <QListView>
 #include <QMenu>
+#include <QMessageBox>
+#include <QMimeData>
+#include <QMouseEvent>
 #include <QPainter>
 #include <QPainterPath>
+#include <QPersistentModelIndex>
 #include <QProgressBar>
+#include <QPushButton>
 #include <QShortcut>
 #include <QSignalBlocker>
 #include <QSplitter>
+#include <QStackedWidget>
+#include <QStandardPaths>
 #include <QStatusBar>
 #include <QStyle>
+#include <QStyleOptionFrame>
 #include <QTabBar>
 #include <QTableView>
 #include <QToolButton>
 #include <QTreeWidget>
+#include <QUrl>
+#include <QUuid>
 #include <QVBoxLayout>
 #include <QtConcurrentRun>
 #include <limits>
 namespace explorer {
 namespace {
+template <class Base> class TransferView final : public Base {
+  public:
+    using Base::Base;
+    std::function<bool(const QMimeData *, Qt::DropAction, int, bool)> receive;
+    void startDrag(Qt::DropActions) override {
+        QList<QUrl> urls;
+        QSet<QString> paths;
+        for (const auto &index : this->selectionModel()->selectedRows()) {
+            const auto path = index.data(Qt::UserRole + 1).toString();
+            if (!path.isEmpty() && !paths.contains(path)) {
+                paths.insert(path);
+                urls.push_back(QUrl::fromLocalFile(path));
+            }
+        }
+        if (urls.isEmpty())
+            return;
+        auto *mime = new QMimeData;
+        mime->setUrls(urls);
+        QDrag drag(this);
+        drag.setMimeData(mime);
+        drag.exec(Qt::CopyAction | Qt::MoveAction, Qt::CopyAction);
+    }
+    void dragEnterEvent(QDragEnterEvent *event) override {
+        if (event->mimeData()->hasUrls() && acceptsAction(event->dropAction(), event->possibleActions()))
+            event->acceptProposedAction();
+        else
+            event->ignore();
+    }
+    void dragMoveEvent(QDragMoveEvent *event) override {
+        if (event->mimeData()->hasUrls() && acceptsAction(event->dropAction(), event->possibleActions()))
+            event->acceptProposedAction();
+        else
+            event->ignore();
+    }
+    void dropEvent(QDropEvent *event) override {
+        if (!receive || !event->mimeData()->hasUrls()) {
+            event->ignore();
+            return;
+        }
+        const auto action = event->dropAction();
+        if (!acceptsAction(action, event->possibleActions()) ||
+            !receive(event->mimeData(), action, this->indexAt(event->position().toPoint()).row(),
+                     event->source() == this)) {
+            event->ignore();
+            return;
+        }
+        // The receiver owns filesystem mutation, including source removal. A
+        // Copy acknowledgement prevents a second deletion by the sender. On
+        // Windows TargetMove explicitly transfers that ownership when Copy is
+        // unavailable; other platforms cannot safely acknowledge Move alone.
+        event->setDropAction(event->possibleActions().testFlag(Qt::CopyAction) ? Qt::CopyAction
+                                                                               : Qt::TargetMoveAction);
+        event->accept();
+    }
+
+  private:
+    static bool acceptsAction(Qt::DropAction action, Qt::DropActions possible) {
+        if (action != Qt::CopyAction && action != Qt::MoveAction)
+            return false;
+        if (!possible.testFlag(action))
+            return false;
+        if (possible.testFlag(Qt::CopyAction))
+            return true;
+#ifdef Q_OS_WIN
+        return action == Qt::MoveAction;
+#else
+        return false;
+#endif
+    }
+};
 QIcon lineIcon(const QString &symbol, QColor color = QColor("#dddddd"), int dimension = 24) {
     static QHash<QString, QIcon> cache;
     const QString cacheKey = symbol + color.name(QColor::HexArgb) + QString::number(dimension);
@@ -60,6 +150,35 @@ QIcon lineIcon(const QString &symbol, QColor color = QColor("#dddddd"), int dime
     } else if (symbol == "plus") {
         p.drawLine(6, 12, 18, 12);
         p.drawLine(12, 6, 12, 18);
+    } else if (symbol == "copy") {
+        p.drawRoundedRect(QRectF(8, 5, 12, 15), 1, 1);
+        p.drawLine(4, 16, 4, 2);
+        p.drawLine(4, 2, 15, 2);
+    } else if (symbol == "cut") {
+        p.drawEllipse(QRectF(3, 14, 6, 6));
+        p.drawEllipse(QRectF(15, 14, 6, 6));
+        p.drawLine(7, 15, 18, 3);
+        p.drawLine(17, 15, 6, 3);
+    } else if (symbol == "paste") {
+        p.drawRoundedRect(QRectF(5, 5, 14, 16), 1, 1);
+        p.drawRoundedRect(QRectF(8, 2, 8, 5), 1, 1);
+        p.drawLine(9, 12, 16, 12);
+        p.drawLine(9, 16, 15, 16);
+    } else if (symbol == "rename") {
+        p.drawRoundedRect(QRectF(2, 7, 20, 11), 1, 1);
+        p.drawLine(14, 3, 14, 21);
+        p.drawLine(11, 3, 17, 3);
+        p.drawLine(11, 21, 17, 21);
+        p.drawLine(5, 14, 8, 10);
+        p.drawLine(8, 10, 11, 14);
+    } else if (symbol == "recycle") {
+        p.drawLine(4, 6, 20, 6);
+        p.drawLine(9, 3, 15, 3);
+        p.drawLine(6, 6, 7, 21);
+        p.drawLine(7, 21, 17, 21);
+        p.drawLine(17, 21, 18, 6);
+        p.drawLine(10, 10, 10, 17);
+        p.drawLine(14, 10, 14, 17);
     } else if (symbol == "close") {
         p.drawLine(7, 7, 17, 17);
         p.drawLine(17, 7, 7, 17);
@@ -84,8 +203,40 @@ QIcon lineIcon(const QString &symbol, QColor color = QColor("#dddddd"), int dime
         p.drawRoundedRect(QRectF(2, 6, 10, 5), 2, 2);
         p.setBrush(QColor("#f6c453"));
         p.drawRoundedRect(QRectF(2, 9, 20, 12), 2, 2);
+    } else if (symbol == "home") {
+        QPainterPath roof;
+        roof.moveTo(3, 11);
+        roof.lineTo(12, 3);
+        roof.lineTo(21, 11);
+        p.drawPath(roof);
+        p.drawRoundedRect(QRectF(6, 10, 12, 11), 1, 1);
+        p.drawRect(QRectF(10, 15, 4, 6));
+    } else if (symbol == "downloads") {
+        p.drawLine(12, 3, 12, 16);
+        p.drawLine(7, 11, 12, 16);
+        p.drawLine(17, 11, 12, 16);
+        p.drawLine(5, 17, 5, 21);
+        p.drawLine(5, 21, 19, 21);
+        p.drawLine(19, 21, 19, 17);
+    } else if (symbol == "desktop") {
+        p.drawRoundedRect(QRectF(3, 4, 18, 13), 1, 1);
+        p.drawLine(12, 17, 12, 21);
+        p.drawLine(7, 21, 17, 21);
+    } else if (symbol == "pictures") {
+        p.drawRoundedRect(QRectF(3, 4, 18, 16), 1, 1);
+        p.drawEllipse(QPointF(8, 9), 1.5, 1.5);
+        p.drawLine(4, 18, 11, 11);
+        p.drawLine(11, 11, 17, 18);
+        p.drawLine(14, 15, 18, 11);
+        p.drawLine(18, 11, 21, 15);
+    } else if (symbol == "search") {
+        p.drawEllipse(QRectF(4, 3, 12, 12));
+        p.drawLine(14, 14, 21, 21);
     } else if (symbol == "file") {
+        p.setBrush(QColor("#d4d8dd"));
+        p.setPen(QPen(QColor("#eeeeee"), 1));
         p.drawRoundedRect(QRectF(6, 3, 12, 18), 1, 1);
+        p.setPen(QPen(QColor("#647180"), 1.2));
         p.drawLine(9, 9, 15, 9);
         p.drawLine(9, 13, 15, 13);
         p.drawLine(9, 17, 13, 17);
@@ -101,6 +252,98 @@ QIcon lineIcon(const QString &symbol, QColor color = QColor("#dddddd"), int dime
     cache.insert(cacheKey, result);
     return result;
 }
+
+// Keep the editable, accessible value as the complete caller path. The unfocused
+// presentation displays clickable ancestors, each retaining its full path.
+class AddressEdit final : public QLineEdit {
+  public:
+    using QLineEdit::QLineEdit;
+    std::function<void(const QString &)> navigate;
+    void setLocation(const Location &location) {
+        committed_ = location.kind == Location::Kind::Drives ? QStringLiteral("This PC") : location.path;
+        parts_.clear();
+        QString current = committed_;
+        while (!current.isEmpty() && parts_.size() < 256) {
+            const QDir directory(current);
+            const auto label = directory.dirName();
+            parts_.prepend({directory.isRoot() ? QDir::toNativeSeparators(current) : label, current});
+            const auto parent = directory.absoluteFilePath(QStringLiteral(".."));
+            const auto cleaned = QDir::cleanPath(parent);
+            if (location.kind == Location::Kind::Drives || directory.isRoot() ||
+                cleaned == QDir::cleanPath(current))
+                break;
+            current = cleaned;
+        }
+        setToolTip(committed_);
+        update();
+    }
+
+  protected:
+    void paintEvent(QPaintEvent *event) override {
+        hits_.clear();
+        if (hasFocus() || text() != committed_ || parts_.isEmpty()) {
+            QLineEdit::paintEvent(event);
+            return;
+        }
+        QStyleOptionFrame option;
+        initStyleOption(&option);
+        QPainter painter(this);
+        style()->drawPrimitive(QStyle::PE_PanelLineEdit, &option, &painter, this);
+        lineIcon("drive").paint(&painter, QRect(12, (height() - 18) / 2, 18, 18));
+        const auto metrics = painter.fontMetrics();
+        int start = 0, used = 42;
+        for (const auto &part : parts_)
+            used += metrics.horizontalAdvance(part.first) + 27;
+        while (start + 1 < parts_.size() && used > width() - 24) {
+            used -= metrics.horizontalAdvance(parts_[start].first) + 27;
+            ++start;
+        }
+        int x = 42;
+        if (start) {
+            painter.setPen(QColor("#b7b7b7"));
+            painter.drawText(QRect(x, 0, 26, height()), Qt::AlignCenter, QStringLiteral("…"));
+            x += 30;
+        }
+        for (int i = start; i < parts_.size(); ++i) {
+            const int available = std::max(0, width() - x - 12);
+            const int labelWidth = std::min(metrics.horizontalAdvance(parts_[i].first) + 12, available);
+            const QRect bounds(x, 2, labelWidth, height() - 4);
+            painter.setPen(QColor("#e8e8e8"));
+            painter.drawText(bounds, Qt::AlignVCenter | Qt::AlignLeft,
+                             metrics.elidedText(parts_[i].first, Qt::ElideMiddle, labelWidth));
+            hits_.push_back({bounds, parts_[i].second});
+            x += labelWidth;
+            if (i + 1 < parts_.size()) {
+                painter.setPen(QColor("#aaaaaa"));
+                painter.drawText(QRect(x, 0, 18, height()), Qt::AlignCenter, QStringLiteral("›"));
+                x += 18;
+            }
+        }
+    }
+    void mousePressEvent(QMouseEvent *event) override {
+        // Qt gives a widget mouse focus before dispatching mousePressEvent.
+        // The hit map belongs to the last breadcrumb paint, not hasFocus().
+        if (event->button() == Qt::LeftButton && text() == committed_)
+            for (const auto &hit : hits_)
+                if (hit.first.contains(event->position().toPoint()) && navigate) {
+                    clearFocus();
+                    navigate(hit.second);
+                    event->accept();
+                    return;
+                }
+        QLineEdit::mousePressEvent(event);
+    }
+    void focusInEvent(QFocusEvent *event) override {
+        if (event->reason() != Qt::MouseFocusReason)
+            hits_.clear();
+        QLineEdit::focusInEvent(event);
+    }
+
+  private:
+    QString committed_;
+    QVector<QPair<QString, QString>> parts_;
+    QVector<QPair<QRect, QString>> hits_;
+};
 QString sizeText(std::optional<quint64> bytes) {
     if (!bytes)
         return QStringLiteral("Unknown");
@@ -122,8 +365,14 @@ QVariant EntryModel::data(const QModelIndex &index, int role) const {
         return value->key;
     if (role == Qt::UserRole + 1)
         return value->path;
+#ifdef Q_OS_WIN
+    // Shell type names follow the host language. An explicit system Hangul
+    // family avoids the measured first-paint fallback scan in this column.
+    if (role == Qt::FontRole && index.column() == 2)
+        return QFont(QStringLiteral("Malgun Gothic"));
+#endif
     if (role == Qt::DecorationRole && index.column() == 0)
-        return lineIcon(value->directory ? "folder" : "file");
+        return lineIcon(value->directory ? "folder" : "file", QColor("#dddddd"), 96);
     if (role == Qt::TextAlignmentRole && index.column() == 3)
         return static_cast<int>(Qt::AlignRight | Qt::AlignVCenter);
     if (role == Qt::ToolTipRole)
@@ -158,6 +407,9 @@ void EntryModel::setEntries(QVector<Entry> entries) {
 }
 const Entry *EntryModel::entry(int row) const {
     return row >= 0 && row < entries_.size() ? &entries_[row] : nullptr;
+}
+Qt::ItemFlags EntryModel::flags(const QModelIndex &index) const {
+    return QAbstractTableModel::flags(index) | (index.isValid() ? Qt::ItemIsDragEnabled : Qt::NoItemFlags);
 }
 QToolButton *MainWindow::makeButton(const QString &symbol, const QString &label, QWidget *parent) {
     auto *button = new QToolButton(parent);
@@ -213,18 +465,20 @@ MainWindow::MainWindow(std::shared_ptr<IPlatform> platform, QWidget *parent)
     refresh->setObjectName("refresh");
     for (auto *button : {back_, forward_, up_, refresh})
         nav->addWidget(button);
-    address_ = new QLineEdit(navigation);
+    auto *breadcrumb = new AddressEdit(navigation);
+    address_ = breadcrumb;
+    breadcrumb->navigate = [this](const QString &path) { session_->navigate(currentTabId(), path); };
     address_->setObjectName("address");
     address_->setAccessibleName("Address");
     address_->setClearButtonEnabled(false);
     address_->setMinimumWidth(250);
-    address_->addAction(lineIcon("drive"), QLineEdit::LeadingPosition);
     nav->addWidget(address_, 1);
     search_ = new QLineEdit(navigation);
     search_->setObjectName("search");
     search_->setAccessibleName("Search this folder");
     search_->setPlaceholderText("Search this folder");
     search_->setClearButtonEnabled(true);
+    search_->addAction(lineIcon("search"), QLineEdit::TrailingPosition);
     search_->setFixedWidth(265);
     nav->addWidget(search_);
     layout->addWidget(navigation);
@@ -234,17 +488,30 @@ MainWindow::MainWindow(std::shared_ptr<IPlatform> platform, QWidget *parent)
     commandLayout->setContentsMargins(14, 4, 14, 6);
     commandLayout->setSpacing(6);
     auto *fresh = makeButton("plus", "New folder", commands);
+    newFolder_ = fresh;
+    newFolder_->setObjectName("newFolder");
     fresh->setText("New");
     fresh->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
     fresh->setFixedWidth(92);
     fresh->setEnabled(false);
     commandLayout->addWidget(fresh);
-    for (const auto &pair : QVector<QPair<QString, QString>>{
-             {"✂", "Cut"}, {"□", "Copy"}, {"▣", "Paste"}, {"⌑", "Rename"}, {"♲", "Recycle"}}) {
+    QVector<QToolButton *> operationButtons;
+    for (const auto &pair : QVector<QPair<QString, QString>>{{"cut", "Cut"},
+                                                             {"copy", "Copy"},
+                                                             {"paste", "Paste"},
+                                                             {"rename", "Rename"},
+                                                             {"recycle", "Recycle"}}) {
         auto *button = makeButton(pair.first, pair.second, commands);
+        button->setObjectName(pair.first);
+        operationButtons.push_back(button);
         button->setEnabled(false);
         commandLayout->addWidget(button);
     }
+    cut_ = operationButtons[0];
+    copy_ = operationButtons[1];
+    paste_ = operationButtons[2];
+    rename_ = operationButtons[3];
+    recycle_ = operationButtons[4];
     auto *sort = makeButton("sort", "Sort", commands);
     sort->setText("Sort");
     sort->setFixedWidth(90);
@@ -262,6 +529,32 @@ MainWindow::MainWindow(std::shared_ptr<IPlatform> platform, QWidget *parent)
     details->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
     commandLayout->addWidget(details);
     layout->addWidget(commands);
+    auto *operationRow = new QWidget(root);
+    operationRow->setObjectName("operationRow");
+    auto *operationLayout = new QHBoxLayout(operationRow);
+    operationLayout->setContentsMargins(14, 3, 14, 3);
+    operationLabel_ = new QLabel(operationRow);
+    operationLabel_->setObjectName("operationStatus");
+    operationLabel_->setWordWrap(true);
+    operationLayout->addWidget(operationLabel_, 1);
+    operationProgress_ = new QProgressBar(operationRow);
+    operationProgress_->setObjectName("operationProgress");
+    operationProgress_->setMaximumWidth(170);
+    operationLayout->addWidget(operationProgress_);
+    cancelOperation_ = makeButton("close", "Cancel operation", operationRow);
+    cancelOperation_->setObjectName("cancelOperation");
+    operationLayout->addWidget(cancelOperation_);
+    retryCleanup_ = makeButton("refresh", "Retry owned cleanup", operationRow);
+    retryCleanup_->setObjectName("retryCleanup");
+    operationLayout->addWidget(retryCleanup_);
+    keepBoth_ = makeButton("copy", "Retry conflicts keeping both", operationRow);
+    keepBoth_->setObjectName("keepBoth");
+    keepBoth_->setText("Keep both");
+    keepBoth_->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+    keepBoth_->setFixedWidth(115);
+    operationLayout->addWidget(keepBoth_);
+    operationRow->hide();
+    layout->addWidget(operationRow);
     error_ = new QLabel(root);
     error_->setObjectName("errorBanner");
     error_->setWordWrap(true);
@@ -277,34 +570,74 @@ MainWindow::MainWindow(std::shared_ptr<IPlatform> platform, QWidget *parent)
     tree_->setMinimumWidth(155);
     tree_->setIndentation(18);
     tree_->setRootIsDecorated(true);
+    const auto addPlace = [this](const QString &name, const QString &symbol,
+                                 QStandardPaths::StandardLocation location, const QColor &color) {
+        const auto path = QStandardPaths::writableLocation(location);
+        if (path.isEmpty())
+            return;
+        auto *place = new QTreeWidgetItem(tree_, QStringList{name});
+        place->setIcon(0, lineIcon(symbol, color));
+        place->setData(0, Qt::UserRole + 1, path);
+        place->setToolTip(0, path);
+    };
+    addPlace("Home", "home", QStandardPaths::HomeLocation, QColor("#65b5ee"));
+    addPlace("Desktop", "desktop", QStandardPaths::DesktopLocation, QColor("#6ebcff"));
+    addPlace("Downloads", "downloads", QStandardPaths::DownloadLocation, QColor("#7ad4be"));
+    addPlace("Documents", "file", QStandardPaths::DocumentsLocation, QColor("#82b8ec"));
+    addPlace("Pictures", "pictures", QStandardPaths::PicturesLocation, QColor("#b5a4e7"));
     auto *computer = new QTreeWidgetItem(tree_, QStringList{"This PC"});
     computer->setIcon(0, lineIcon("drive"));
     computer->setData(0, Qt::UserRole, QStringLiteral("drives"));
     computer->setData(0, Qt::UserRole + 1, QStringLiteral("drives"));
-    treeItems_.insert("drives", computer);
     new QTreeWidgetItem(computer, QStringList{"Loading…"});
-    table_ = new QTableView(splitter_);
+    views_ = new QStackedWidget(splitter_);
+    views_->setObjectName("fileViews");
+    auto *transferTable = new TransferView<QTableView>(views_);
+    table_ = transferTable;
     table_->setObjectName("fileList");
     table_->setAccessibleName("Files");
     model_ = new EntryModel(this);
     table_->setModel(model_);
+    icons_ = new TransferView<QListView>(views_);
+    icons_->setObjectName("iconList");
+    icons_->setAccessibleName("Files icon or list view");
+    icons_->setModel(model_);
+    icons_->setModelColumn(0);
+    icons_->setSelectionModel(table_->selectionModel());
+    icons_->setSelectionMode(QAbstractItemView::ExtendedSelection);
+    icons_->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    icons_->setResizeMode(QListView::Adjust);
+    icons_->setMovement(QListView::Static);
+    views_->addWidget(table_);
+    views_->addWidget(icons_);
+    for (auto *fileView : QVector<QAbstractItemView *>{table_, icons_}) {
+        fileView->setDragEnabled(true);
+        fileView->setAcceptDrops(true);
+        fileView->setDropIndicatorShown(true);
+        fileView->setDragDropMode(QAbstractItemView::DragDrop);
+    }
+    transferTable->receive = [this](const QMimeData *mime, Qt::DropAction action, int row, bool internal) {
+        return acceptTransfer(mime, action, row, internal);
+    };
+    static_cast<TransferView<QListView> *>(icons_)->receive = transferTable->receive;
     table_->setSelectionBehavior(QAbstractItemView::SelectRows);
     table_->setSelectionMode(QAbstractItemView::ExtendedSelection);
     table_->setEditTriggers(QAbstractItemView::NoEditTriggers);
     table_->setShowGrid(false);
     table_->setAlternatingRowColors(false);
     table_->verticalHeader()->hide();
-    table_->verticalHeader()->setDefaultSectionSize(29);
-    table_->setIconSize(QSize(21, 21));
+    table_->verticalHeader()->setMinimumSectionSize(22);
+    table_->verticalHeader()->setDefaultSectionSize(22);
+    table_->setIconSize(QSize(17, 17));
     table_->horizontalHeader()->setDefaultAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     table_->horizontalHeader()->setHighlightSections(false);
     table_->horizontalHeader()->setSectionsClickable(true);
     table_->horizontalHeader()->setSortIndicatorShown(true);
-    table_->setColumnWidth(0, 310);
-    table_->setColumnWidth(1, 175);
-    table_->setColumnWidth(2, 145);
-    table_->setColumnWidth(3, 95);
-    table_->horizontalHeader()->setStretchLastSection(true);
+    table_->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);
+    table_->setColumnWidth(1, 160);
+    table_->setColumnWidth(2, 120);
+    table_->setColumnWidth(3, 80);
+    table_->horizontalHeader()->setStretchLastSection(false);
     table_->setMinimumWidth(410);
     details_ = new QWidget(splitter_);
     details_->setObjectName("detailsPane");
@@ -312,7 +645,9 @@ MainWindow::MainWindow(std::shared_ptr<IPlatform> platform, QWidget *parent)
     auto *detailLayout = new QVBoxLayout(details_);
     detailLayout->setContentsMargins(22, 32, 18, 20);
     auto *folderImage = new QLabel(details_);
-    folderImage->setPixmap(lineIcon("folder", QColor("#dddddd"), 94).pixmap(94, 94));
+    detailImage_ = folderImage;
+    folderImage->setPixmap(lineIcon("folder", QColor("#dddddd"), 96).pixmap(96, 96));
+    folderImage->setMinimumHeight(165);
     folderImage->setAlignment(Qt::AlignCenter);
     detailLayout->addWidget(folderImage);
     detailLayout->addSpacing(22);
@@ -327,10 +662,10 @@ MainWindow::MainWindow(std::shared_ptr<IPlatform> platform, QWidget *parent)
     detailLayout->addWidget(detailMeta_);
     detailLayout->addStretch();
     splitter_->addWidget(tree_);
-    splitter_->addWidget(table_);
+    splitter_->addWidget(views_);
     splitter_->addWidget(details_);
     splitter_->setStretchFactor(1, 1);
-    splitter_->setSizes({190, 790, 250});
+    splitter_->setSizes({175, 765, 300});
     layout->addWidget(splitter_, 1);
     status_ = new QLabel("Loading…", this);
     status_->setObjectName("status");
@@ -345,13 +680,14 @@ MainWindow::MainWindow(std::shared_ptr<IPlatform> platform, QWidget *parent)
     progress_->hide();
     statusBar()->addPermanentWidget(progress_);
     setStyleSheet(R"(
-QMainWindow,QWidget{background:#191919;color:#ededed;font-family:"Segoe UI";font-size:12px;}
+QMainWindow,QWidget{background:#191919;color:#ededed;font-family:"Segoe UI";font-size:13px;}
 QLabel{background:transparent;}
-QWidget#tabRow{background:#11181e;} QTabBar::tab{background:#171d23;color:#bdbdbd;min-width:145px;max-width:230px;padding:10px 14px;border-top-left-radius:8px;border-top-right-radius:8px;margin-right:3px;} QTabBar::tab:selected{background:#242424;color:white;}
+QWidget#tabRow{background:#11181e;} QTabBar::tab{background:#171d23;color:#bdbdbd;min-width:190px;max-width:230px;padding:8px 14px;border-top-left-radius:8px;border-top-right-radius:8px;margin-right:3px;} QTabBar::tab:selected{background:#242424;color:white;}
 QWidget#navigation{background:#202020;} QLineEdit{background:#2b2c30;border:1px solid transparent;border-radius:5px;padding:8px 10px;selection-background-color:#376899;} QLineEdit:focus{border-bottom:2px solid #75baff;}
 QWidget#commands{border-bottom:1px solid #343434;} QToolButton{border:0;border-radius:4px;padding:4px;color:#e0e0e0;} QToolButton:hover{background:#353535;}QToolButton:pressed{background:#414141;}QToolButton:disabled{color:#696969;}
-QTreeWidget{border:0;border-right:1px solid #333;padding-top:8px;background:#202020;outline:0;}QTreeWidget::item{padding:6px 4px;border-radius:4px;}QTreeWidget::item:selected{background:#3a3a3a;}QTreeWidget::item:hover{background:#303030;}
+QTreeWidget{border:0;border-right:1px solid #333;padding-top:8px;background:#202020;outline:0;}QTreeWidget::item{padding:5px 4px;border-radius:4px;}QTreeWidget::item:selected{background:#3a3a3a;}QTreeWidget::item:hover{background:#303030;}
 QTableView{border:0;background:#191919;selection-background-color:#344454;selection-color:white;outline:0;}QTableView::item{padding-left:7px;border:0;}QTableView::item:selected{background:#354756;} QHeaderView::section{background:#191919;color:#c8c8c8;border:0;border-right:1px solid #343434;border-bottom:1px solid #333;padding:7px 9px;text-align:left;}QHeaderView{background:#191919;}
+QListView{border:0;background:#191919;outline:0;}QListView::item{border:0;border-radius:4px;padding:3px;}QListView::item:selected{background:#354756;}QListView::item:hover{background:#303030;}
 QWidget#detailsPane{background:#202020;border-left:1px solid #333;}QStatusBar{background:#202020;border-top:1px solid #303030;}QStatusBar::item{border:0;}QLabel#errorBanner{background:#493b26;color:#ffe0ab;padding:10px 16px;border-bottom:1px solid #6a5437;}
 QSplitter::handle{background:#303030;width:1px;}QScrollBar:vertical{background:#1c1c1c;width:10px;}QScrollBar::handle:vertical{background:#555;border-radius:4px;min-height:25px;}QScrollBar::add-line:vertical,QScrollBar::sub-line:vertical{height:0;}
 QMenu{background:#292929;border:1px solid #454545;padding:6px;}QMenu::item{padding:7px 26px;}QMenu::item:selected{background:#414141;border-radius:3px;}
@@ -359,6 +695,35 @@ QMenu{background:#292929;border:1px solid #454545;padding:6px;}QMenu::item{paddi
     connect(session_, &ExplorerSession::tabsChanged, this, &MainWindow::syncTabs);
     connect(session_, &ExplorerSession::tabChanged, this, &MainWindow::render);
     connect(session_, &ExplorerSession::shutdownFinished, this, &MainWindow::finishClose);
+    connect(session_, &ExplorerSession::operationChanged, this, &MainWindow::renderOperation);
+    connect(cancelOperation_, &QToolButton::clicked, session_, &ExplorerSession::cancelOperation);
+    connect(retryCleanup_, &QToolButton::clicked, this, [this] {
+        const auto state = session_->operationState();
+        if (state.report && !state.report->cleanupPending.isEmpty())
+            session_->retryOperationCleanup(state.report->cleanupPending.first());
+    });
+    connect(keepBoth_, &QToolButton::clicked, this, [this] {
+        const auto state = session_->operationState();
+        if (!state.report)
+            return;
+        auto request = state.request;
+        request.sources.clear();
+        for (const auto &item : state.report->items)
+            if (item.error && item.error->code == ErrorCode::Conflict)
+                for (const auto &source : state.request.sources)
+                    if (source.path == item.sourcePath)
+                        request.sources.push_back(source);
+        request.conflict = ConflictPolicy::KeepBoth;
+        if (!request.sources.isEmpty())
+            startOperation(std::move(request));
+    });
+    connect(newFolder_, &QToolButton::clicked, this, &MainWindow::createDirectory);
+    connect(cut_, &QToolButton::clicked, this, [this] { copySelection(true); });
+    connect(copy_, &QToolButton::clicked, this, [this] { copySelection(false); });
+    connect(paste_, &QToolButton::clicked, this, &MainWindow::pasteSelection);
+    connect(rename_, &QToolButton::clicked, this, &MainWindow::renameSelection);
+    connect(recycle_, &QToolButton::clicked, this, &MainWindow::recycleSelection);
+    connect(QApplication::clipboard(), &QClipboard::dataChanged, this, &MainWindow::updateSelection);
     connect(add, &QToolButton::clicked, this, [this] { session_->createTab(); });
     connect(tabs_, &QTabBar::currentChanged, this, [this](int) {
         if (!updating_)
@@ -381,6 +746,7 @@ QMenu{background:#292929;border:1px solid #454545;padding:6px;}QMenu::item{paddi
             session_->setSearch(currentTabId(), value);
     });
     connect(table_, &QTableView::doubleClicked, this, &MainWindow::activateRow);
+    connect(icons_, &QListView::doubleClicked, this, &MainWindow::activateRow);
     connect(table_->selectionModel(), &QItemSelectionModel::selectionChanged, this, [this] {
         if (!updating_)
             updateSelection();
@@ -438,14 +804,34 @@ QMenu{background:#292929;border:1px solid #454545;padding:6px;}QMenu::item{paddi
     shortcut(QKeySequence("Ctrl+Tab"),
              [this] { tabs_->setCurrentIndex((tabs_->currentIndex() + 1) % tabs_->count()); });
     shortcut(QKeySequence("F5"), [this] { session_->refresh(currentTabId()); });
+    const auto fileShortcut = [this](const QString &key, auto action) {
+        auto *value = new QShortcut(QKeySequence(key), views_);
+        value->setContext(Qt::WidgetWithChildrenShortcut);
+        connect(value, &QShortcut::activated, this, action);
+    };
+    fileShortcut("Ctrl+C", [this] { copySelection(false); });
+    fileShortcut("Ctrl+X", [this] { copySelection(true); });
+    fileShortcut("Ctrl+V", [this] { pasteSelection(); });
+    fileShortcut("F2", [this] { renameSelection(); });
+    fileShortcut("Delete", [this] { recycleSelection(); });
+    fileShortcut("Ctrl+Shift+N", [this] { createDirectory(); });
+    fileShortcut("Ctrl+A", [this] { activeView()->selectAll(); });
+    shortcut(QKeySequence("Ctrl+Shift+1"), [this] { setViewMode(1); });
+    shortcut(QKeySequence("Ctrl+Shift+5"), [this] { setViewMode(2); });
+    shortcut(QKeySequence("Ctrl+Shift+6"), [this] { setViewMode(0); });
     auto *openShortcut = new QShortcut(QKeySequence(Qt::Key_Return), table_);
     openShortcut->setContext(Qt::WidgetShortcut);
     connect(openShortcut, &QShortcut::activated, this, [this] { activateRow(table_->currentIndex()); });
+    auto *openIcons = new QShortcut(QKeySequence(Qt::Key_Return), icons_);
+    openIcons->setContext(Qt::WidgetShortcut);
+    connect(openIcons, &QShortcut::activated, this, [this] { activateRow(icons_->currentIndex()); });
     progressTimer_.setInterval(120);
     connect(&progressTimer_, &QTimer::timeout, this, [this] {
         const auto *state = session_->tab(currentTabId());
         if (state && state->loading && state->examined)
             status_->setText(QStringLiteral("Loading… %1 items examined").arg(state->examined->load()));
+        if (session_->operationState().running)
+            renderOperation();
     });
     progressTimer_.start();
     session_->createTab();
@@ -495,6 +881,8 @@ void MainWindow::syncTabs() {
     render(currentTabId());
 }
 void MainWindow::render(quint64 id) {
+    QElapsedTimer elapsed;
+    elapsed.start();
     const auto *state = session_->tab(id);
     if (!state)
         return;
@@ -503,6 +891,8 @@ void MainWindow::render(quint64 id) {
             tabs_->setTabText(i, state->loading ? QStringLiteral("Loading…") : state->location.label);
     if (id != currentTabId())
         return;
+    if (viewMode_ != viewModes_.value(id, 0))
+        setViewMode(viewModes_.value(id, 0));
     updating_ = true;
     QSignalBlocker searchBlock(search_);
     QSignalBlocker selectionBlock(table_->selectionModel());
@@ -512,6 +902,7 @@ void MainWindow::render(quint64 id) {
                               : (state->location.kind == Location::Kind::Drives ? QStringLiteral("This PC")
                                                                                 : state->location.path));
     search_->setText(state->query);
+    static_cast<AddressEdit *>(address_)->setLocation(state->location);
     search_->setPlaceholderText("Search " + state->location.label);
     model_->setEntries(state->visible);
     for (int row = 0; row < model_->rowCount(); ++row)
@@ -537,11 +928,13 @@ void MainWindow::render(quint64 id) {
                                                    ? QString()
                                                    : QStringLiteral(" matching “%1”").arg(state->query)));
     detailName_->setText(state->location.label);
+    detailImage_->setPixmap(lineIcon("folder", QColor("#dddddd"), 96).pixmap(96, 96));
     detailMeta_->setText(
         QStringLiteral("%1 items\n\nSelect a file to see its details.").arg(state->visible.size()));
     setWindowTitle(state->location.label + QStringLiteral(" — REA Explorer"));
     updating_ = false;
     updateSelection();
+    lastRenderMilliseconds_ = elapsed.elapsed();
 }
 void MainWindow::navigateAddress() {
     session_->navigate(currentTabId(), address_->text());
@@ -572,9 +965,23 @@ void MainWindow::updateSelection() {
     }
     session_->setSelection(currentTabId(), keys);
     const auto *state = session_->tab(currentTabId());
+    const bool busy = session_->operationState().running;
+    const auto caps = platform_->capabilities();
+    const bool writable =
+        state && !state->loading && state->location.kind == Location::Kind::Directory && !busy;
+    newFolder_->setEnabled(writable && caps.mkdir);
+    cut_->setEnabled(!keys.isEmpty() && !busy && caps.move);
+    copy_->setEnabled(!keys.isEmpty() && caps.copy);
+    rename_->setEnabled(writable && keys.size() == 1 && caps.rename);
+    recycle_->setEnabled(!keys.isEmpty() && !busy && caps.recycle);
+    const auto *mime = QApplication::clipboard()->mimeData();
+    paste_->setEnabled(writable && mime && mime->hasUrls() && caps.copy);
     if (!state || state->loading)
         return;
     if (!keys.isEmpty()) {
+        detailImage_->setPixmap(
+            lineIcon(keys.size() == 1 && !single->directory ? "file" : "folder", QColor("#dddddd"), 96)
+                .pixmap(96, 96));
         status_->setText(QStringLiteral("%1 items   |   %2 selected%3")
                              .arg(model_->rowCount())
                              .arg(keys.size())
@@ -602,13 +1009,14 @@ void MainWindow::requestTree(QTreeWidgetItem *item) {
     ++treeActive_;
     const auto adapter = platform_;
     auto *watcher = new QFutureWatcher<Result<Listing>>(this);
-    connect(watcher, &QFutureWatcher<Result<Listing>>::finished, this, [this, watcher, key, stop] {
+    const QPersistentModelIndex itemIndex(tree_->indexFromItem(item));
+    connect(watcher, &QFutureWatcher<Result<Listing>>::finished, this, [this, watcher, key, stop, itemIndex] {
         const auto result = watcher->result();
         watcher->deleteLater();
         --treeActive_;
         treeStops_.remove(key);
         if (!closing_ && !stop->stop_requested()) {
-            auto *target = treeItems_.value(key, nullptr);
+            auto *target = itemIndex.isValid() ? tree_->itemFromIndex(itemIndex) : nullptr;
             if (target) {
                 qDeleteAll(target->takeChildren());
                 if (const auto *error = failure(result)) {
@@ -623,7 +1031,6 @@ void MainWindow::requestTree(QTreeWidgetItem *item) {
                             child->setData(0, Qt::UserRole, entry.key);
                             child->setData(0, Qt::UserRole + 1, entry.path);
                             child->setToolTip(0, entry.path);
-                            treeItems_.insert(entry.key, child);
                             if (!entry.link)
                                 new QTreeWidgetItem(child, QStringList{"…"});
                         }
@@ -682,14 +1089,294 @@ void MainWindow::showSortMenu() {
 }
 void MainWindow::showViewsMenu() {
     QMenu menu(this);
-    auto *details = menu.addAction("Details");
-    details->setCheckable(true);
-    details->setChecked(true);
-    auto *icons = menu.addAction("Icons");
-    icons->setEnabled(false);
-    auto *list = menu.addAction("List");
-    list->setEnabled(false);
+    const QStringList labels{"Details", "Icons", "List"};
+    for (int mode = 0; mode < labels.size(); ++mode) {
+        auto *action = menu.addAction(labels[mode]);
+        action->setCheckable(true);
+        action->setChecked(mode == viewMode_);
+        connect(action, &QAction::triggered, this, [this, mode] { setViewMode(mode); });
+    }
     menu.exec(QCursor::pos());
+}
+QAbstractItemView *MainWindow::activeView() const {
+    return viewMode_ == 0 ? static_cast<QAbstractItemView *>(table_) : icons_;
+}
+void MainWindow::setViewMode(int mode) {
+    if (mode < 0 || mode > 2)
+        return;
+    viewMode_ = mode;
+    viewModes_.insert(currentTabId(), mode);
+    if (mode == 0)
+        views_->setCurrentWidget(table_);
+    else {
+        icons_->setViewMode(mode == 1 ? QListView::IconMode : QListView::ListMode);
+        icons_->setIconSize(mode == 1 ? QSize(64, 64) : QSize(22, 22));
+        icons_->setGridSize(mode == 1 ? QSize(145, 110) : QSize());
+        icons_->setWordWrap(mode == 1);
+        icons_->setSpacing(mode == 1 ? 8 : 2);
+        views_->setCurrentWidget(icons_);
+    }
+    activeView()->setFocus();
+}
+QVector<Entry> MainWindow::selectedEntries() const {
+    QVector<Entry> entries;
+    for (const auto &index : table_->selectionModel()->selectedRows())
+        if (const auto *item = model_->entry(index.row()))
+            entries.push_back(*item);
+    return entries;
+}
+void MainWindow::copySelection(bool cut) {
+    auto entries = selectedEntries();
+    if (entries.isEmpty())
+        return;
+    clipboardEntries_ = std::move(entries);
+    clipboardCut_ = cut;
+    clipboardToken_ = QUuid::createUuid().toString();
+    auto *mime = new QMimeData;
+    QList<QUrl> urls;
+    for (const auto &entry : clipboardEntries_)
+        urls.push_back(QUrl::fromLocalFile(entry.path));
+    mime->setUrls(urls);
+    mime->setData("application/x-rea-explorer-clipboard", clipboardToken_.toUtf8());
+    // Windows Shell's registered Preferred DropEffect clipboard format.
+    QByteArray effect(4, '\0');
+    effect[0] = cut ? '\2' : '\1';
+    mime->setData("application/x-qt-windows-mime;value=\"Preferred DropEffect\"", effect);
+    QApplication::clipboard()->setMimeData(mime);
+    updateSelection();
+}
+void MainWindow::pasteSelection() {
+    const auto *state = session_->tab(currentTabId());
+    if (!state || state->loading || state->location.kind != Location::Kind::Directory)
+        return;
+    const auto *mime = QApplication::clipboard()->mimeData();
+    if (!mime)
+        return;
+    if (!clipboardEntries_.isEmpty() &&
+        mime->data("application/x-rea-explorer-clipboard") == clipboardToken_.toUtf8()) {
+        OperationRequest request;
+        request.kind = clipboardCut_ ? OperationKind::Move : OperationKind::Copy;
+        request.sources = clipboardEntries_;
+        request.destination = state->location;
+        startOperation(std::move(request));
+    } else {
+        const auto effect = mime->data("application/x-qt-windows-mime;value=\"Preferred DropEffect\"");
+        const bool move = effect.size() == 4 && effect[0] == '\2' && effect[1] == '\0' && effect[2] == '\0' &&
+                          effect[3] == '\0';
+        acceptTransfer(mime, move ? Qt::MoveAction : Qt::CopyAction, -1, false);
+    }
+}
+void MainWindow::renameSelection() {
+    const auto entries = selectedEntries();
+    const auto *state = session_->tab(currentTabId());
+    if (entries.size() != 1 || !state || state->loading)
+        return;
+    bool accepted = false;
+    const auto name =
+        QInputDialog::getText(this, "Rename", "New name", QLineEdit::Normal, entries.first().name, &accepted);
+    if (!accepted)
+        return;
+    OperationRequest request;
+    request.kind = OperationKind::Rename;
+    request.sources = entries;
+    request.destination = state->location;
+    request.name = name;
+    startOperation(std::move(request));
+}
+void MainWindow::createDirectory() {
+    const auto *state = session_->tab(currentTabId());
+    if (!state || state->loading || state->location.kind != Location::Kind::Directory)
+        return;
+    const auto destination = state->location;
+    bool accepted = false;
+    const auto name =
+        QInputDialog::getText(this, "New folder", "Folder name", QLineEdit::Normal, "New folder", &accepted);
+    if (!accepted)
+        return;
+    OperationRequest request;
+    request.kind = OperationKind::CreateDirectory;
+    request.destination = destination;
+    request.name = name;
+    startOperation(std::move(request));
+}
+void MainWindow::recycleSelection() {
+    const auto entries = selectedEntries();
+    if (entries.isEmpty() || !platform_->capabilities().recycle)
+        return;
+    QStringList paths;
+    for (const auto &entry : entries)
+        paths.push_back(entry.path);
+    if (QMessageBox::question(this, "Move to Recycle Bin",
+                              QStringLiteral("Move %1 selected items to the OS Recycle Bin?\n\n%2")
+                                  .arg(entries.size())
+                                  .arg(paths.mid(0, 12).join('\n')),
+                              QMessageBox::Yes | QMessageBox::Cancel,
+                              QMessageBox::Cancel) != QMessageBox::Yes)
+        return;
+    OperationRequest request;
+    request.kind = OperationKind::Recycle;
+    request.sources = entries;
+    startOperation(std::move(request));
+}
+bool MainWindow::startOperation(OperationRequest request) {
+    if (!session_->beginOperation(std::move(request))) {
+        QMessageBox::information(this, "File operation",
+                                 "Wait for the current operation or retry its retained cleanup first.");
+        return false;
+    }
+    return true;
+}
+bool MainWindow::acceptTransfer(const QMimeData *mime, Qt::DropAction action, int row, bool internal) {
+    const auto *state = session_->tab(currentTabId());
+    const auto operation = session_->operationState();
+    if (!state || state->loading || state->location.kind != Location::Kind::Directory || operation.running ||
+        (operation.report && !operation.report->cleanupPending.isEmpty()) || closing_)
+        return false;
+    Location destination = state->location;
+    if (const auto *item = model_->entry(row); item && item->directory && !item->link)
+        destination = Location{
+            Location::Kind::Directory, item->path, item->path, item->key, item->name, item->identity};
+    const auto kind = action == Qt::MoveAction ? OperationKind::Move : OperationKind::Copy;
+    if (internal) {
+        OperationRequest request;
+        request.kind = kind;
+        request.destination = destination;
+        request.sources = selectedEntries();
+        return !request.sources.isEmpty() && startOperation(std::move(request));
+    }
+    QStringList paths;
+    quint64 chars = 0;
+    for (const auto &url : mime->urls()) {
+        if (!url.isLocalFile()) {
+            QMessageBox::warning(this, "Unsupported drop", "Only local filesystem URLs can be transferred.");
+            return false;
+        }
+        const auto path = url.toLocalFile();
+        chars += static_cast<quint64>(path.size());
+        if (chars > 8 * 1024 * 1024 || paths.size() >= 20000) {
+            QMessageBox::warning(this, "Resource limit", "Transfer input exceeds the bounded path budget.");
+            return false;
+        }
+        paths.push_back(path);
+    }
+    return !paths.isEmpty() && resolveTransfer(std::move(paths), std::move(destination), kind);
+}
+bool MainWindow::resolveTransfer(QStringList paths, Location destination, OperationKind kind) {
+    if (closing_ || treeActive_ >= 8)
+        return false;
+    const auto adapter = platform_;
+    const auto token = QStringLiteral("transfer:") + QUuid::createUuid().toString();
+    auto stop = std::make_shared<std::stop_source>();
+    treeStops_.insert(token, stop);
+    ++treeActive_;
+    auto *watcher = new QFutureWatcher<Result<QVector<Entry>>>(this);
+    connect(watcher, &QFutureWatcher<Result<QVector<Entry>>>::finished, this,
+            [this, watcher, destination, kind, token] {
+                auto result = watcher->result();
+                watcher->deleteLater();
+                --treeActive_;
+                treeStops_.remove(token);
+                if (!closing_) {
+                    if (const auto *error = failure(result))
+                        QMessageBox::warning(this, errorCodeName(error->code), error->message);
+                    else {
+                        OperationRequest request;
+                        request.kind = kind;
+                        request.destination = destination;
+                        request.sources = std::get<QVector<Entry>>(std::move(result));
+                        startOperation(std::move(request));
+                    }
+                }
+                finishClose();
+            });
+    watcher->setFuture(
+        QtConcurrent::run(&treePool_, [adapter, paths = std::move(paths), stop]() -> Result<QVector<Entry>> {
+            QVector<Entry> entries;
+            for (const auto &path : paths) {
+                if (stop->stop_requested())
+                    return Error{ErrorCode::Cancelled, QStringLiteral("resolve transfer"), path,
+                                 QStringLiteral("Transfer cancelled before execution")};
+                auto item = adapter->inspectEntry(path);
+                if (const auto *error = failure(item))
+                    return *error;
+                entries.push_back(std::get<Entry>(std::move(item)));
+            }
+            return entries;
+        }));
+    return true;
+}
+void MainWindow::renderOperation() {
+    const auto state = session_->operationState();
+    auto *row = findChild<QWidget *>("operationRow");
+    row->setVisible(state.running || state.report.has_value());
+    cancelOperation_->setVisible(state.running);
+    retryCleanup_->setVisible(!state.running && state.report && !state.report->cleanupPending.isEmpty());
+    keepBoth_->hide();
+    operationProgress_->setVisible(state.running);
+    if (state.running) {
+        operationLabel_->setText(QStringLiteral("%1 · %2/%3 items · %4 copied\n%5")
+                                     .arg(operationName(state.request.kind))
+                                     .arg(state.progress.completedItems)
+                                     .arg(state.progress.totalItems)
+                                     .arg(sizeText(state.progress.completedBytes))
+                                     .arg(state.progress.currentPath));
+        if (state.progress.totalBytes && *state.progress.totalBytes) {
+            operationProgress_->setRange(0, 1000);
+            operationProgress_->setValue(
+                static_cast<int>(1000.0 * static_cast<double>(state.progress.completedBytes) /
+                                 static_cast<double>(*state.progress.totalBytes)));
+        } else
+            operationProgress_->setRange(0, 0);
+    } else if (state.report) {
+        int succeeded = 0, failed = 0, cancelled = 0;
+        QStringList errors;
+        bool conflict = false;
+        for (const auto &item : state.report->items) {
+            if (item.status == ItemStatus::Succeeded)
+                ++succeeded;
+            else if (item.status == ItemStatus::Cancelled)
+                ++cancelled;
+            else
+                ++failed;
+            if (item.error) {
+                errors.push_back(item.sourcePath + ": " + item.error->message);
+                conflict |= item.error->code == ErrorCode::Conflict;
+            }
+        }
+        operationLabel_->setText(QStringLiteral("%1: %2 succeeded, %3 failed/partial, %4 cancelled%5")
+                                     .arg(operationName(state.request.kind))
+                                     .arg(succeeded)
+                                     .arg(failed)
+                                     .arg(cancelled)
+                                     .arg(state.report->cleanupPending.isEmpty()
+                                              ? QString()
+                                              : QStringLiteral(" · Cleanup retained; retry required")));
+        operationLabel_->setToolTip(errors.join('\n'));
+        keepBoth_->setVisible(
+            conflict &&
+            (state.request.kind == OperationKind::Copy || state.request.kind == OperationKind::Move) &&
+            state.report->cleanupPending.isEmpty());
+        if (!errors.isEmpty())
+            operationLabel_->setText(operationLabel_->text() + "\n" + errors.first());
+        if (clipboardCut_ && state.request.kind == OperationKind::Move) {
+            const auto *mime = QApplication::clipboard()->mimeData();
+            if (mime && mime->data("application/x-rea-explorer-clipboard") == clipboardToken_.toUtf8()) {
+                QSet<QString> moved;
+                for (const auto &item : state.report->items)
+                    if (item.status == ItemStatus::Succeeded)
+                        moved.insert(item.sourcePath);
+                clipboardEntries_.erase(
+                    std::remove_if(clipboardEntries_.begin(), clipboardEntries_.end(),
+                                   [&](const auto &entry) { return moved.contains(entry.path); }),
+                    clipboardEntries_.end());
+                if (clipboardEntries_.isEmpty() && !moved.isEmpty()) {
+                    clipboardCut_ = false;
+                    QApplication::clipboard()->clear();
+                }
+            }
+        }
+    }
+    updateSelection();
 }
 QJsonObject MainWindow::snapshot() const {
     QJsonObject result;
@@ -702,6 +1389,22 @@ QJsonObject MainWindow::snapshot() const {
     result["count"] = state->visible.size();
     result["history_cursor"] = state->history.cursor();
     result["tab_count"] = session_->tabs().size();
+    result["view_mode"] = viewMode_;
+    const auto operation = session_->operationState();
+    result["operation_running"] = operation.running;
+    if (operation.report) {
+        QJsonArray items;
+        for (const auto &item : operation.report->items) {
+            QJsonObject value{{"source", item.sourcePath},
+                              {"destination", item.destinationPath},
+                              {"status", static_cast<int>(item.status)}};
+            if (item.error)
+                value["error"] = item.error->message;
+            items.append(value);
+        }
+        result["operation_report"] = items;
+        result["cleanup_pending"] = QJsonArray::fromStringList(operation.report->cleanupPending);
+    }
     if (state->error)
         result["error"] =
             QJsonObject{{"code", errorCodeName(state->error->code)}, {"message", state->error->message}};

@@ -1,0 +1,66 @@
+{
+    "count": 6,
+    "entries": [
+        {
+            "directory": false,
+            "identity": "3e1c60cf1c60842d:5a650d00000007000000000000000000",
+            "link": false,
+            "modified_ms": 1577844240000,
+            "name": "café.txt",
+            "path": "C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\unicode\\café.txt",
+            "size": 25
+        },
+        {
+            "directory": false,
+            "identity": "3e1c60cf1c60842d:5b650d00000007000000000000000000",
+            "link": false,
+            "modified_ms": 1577844300000,
+            "name": "long_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.txt",
+            "path": "C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\unicode\\long_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.txt",
+            "size": 185
+        },
+        {
+            "directory": false,
+            "identity": "3e1c60cf1c60842d:5c650d00000007000000000000000000",
+            "link": false,
+            "modified_ms": 1577844180000,
+            "name": "special_!@#$%^&()[]{}+=,;'.txt",
+            "path": "C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\unicode\\special_!@#$%^&()[]{}+=,;'.txt",
+            "size": 46
+        },
+        {
+            "directory": false,
+            "identity": "3e1c60cf1c60842d:5d650d00000007000000000000000000",
+            "link": false,
+            "modified_ms": 1577844120000,
+            "name": "공백 있는 이름.txt",
+            "path": "C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\unicode\\공백 있는 이름.txt",
+            "size": 40
+        },
+        {
+            "directory": false,
+            "identity": "3e1c60cf1c60842d:5e650d00000007000000000000000000",
+            "link": false,
+            "modified_ms": 1577844060000,
+            "name": "한글_특수문자_é_😀.txt",
+            "path": "C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\unicode\\한글_특수문자_é_😀.txt",
+            "size": 47
+        },
+        {
+            "directory": false,
+            "identity": "3e1c60cf1c60842d:5f650d00000007000000000000000000",
+            "link": false,
+            "modified_ms": 1577844000000,
+            "name": "한글_파일.txt",
+            "path": "C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\unicode\\한글_파일.txt",
+            "size": 33
+        }
+    ],
+    "history_cursor": 0,
+    "kind": "directory",
+    "loading": false,
+    "operation_running": false,
+    "path": "C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\unicode",
+    "tab_count": 1,
+    "view_mode": 0
+}

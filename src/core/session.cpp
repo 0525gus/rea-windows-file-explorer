@@ -1,4 +1,5 @@
 #include "explorer/session.hpp"
+#include <QElapsedTimer>
 #include <QFutureWatcher>
 #include <QHash>
 #include <QTimer>
@@ -10,6 +11,8 @@ ExplorerSession::ExplorerSession(std::shared_ptr<IPlatform> platform, QObject *p
     pool_.setMaxThreadCount(std::clamp(QThread::idealThreadCount(), 1, 4));
 }
 ExplorerSession::~ExplorerSession() {
+    if (operationStop_)
+        operationStop_->request_stop();
     for (auto &state : tabs_)
         if (state.stop)
             state.stop->request_stop();
@@ -46,6 +49,8 @@ void ExplorerSession::closeTab(quint64 id) {
     emit tabsChanged();
 }
 void ExplorerSession::derive(TabState &state) {
+    QElapsedTimer elapsed;
+    elapsed.start();
     state.visible = filterEntries(state.entries, state.query);
     const auto adapter = platform_;
     sortEntries(state.visible, state.sort,
@@ -54,6 +59,7 @@ void ExplorerSession::derive(TabState &state) {
     for (const auto &entry : state.visible)
         visibleKeys.insert(entry.key);
     state.selection.intersect(visibleKeys);
+    state.deriveMilliseconds = elapsed.elapsed();
 }
 void ExplorerSession::request(quint64 id, std::variant<QString, Location> input, int historyCursor,
                               bool isRefresh, bool parent) {
@@ -248,10 +254,86 @@ void ExplorerSession::shutdown() {
     if (closing_)
         return;
     closing_ = true;
+    if (operationStop_)
+        operationStop_->request_stop();
     for (auto &state : tabs_)
         if (state.stop)
             state.stop->request_stop();
     if (active_ == 0)
         QTimer::singleShot(0, this, &ExplorerSession::shutdownFinished);
+}
+OperationState ExplorerSession::operationState() const {
+    auto state = operation_;
+    if (operationMonitor_) {
+        std::lock_guard lock(operationMonitor_->mutex);
+        state.progress = operationMonitor_->progress;
+    }
+    return state;
+}
+bool ExplorerSession::beginOperation(OperationRequest request) {
+    if (closing_ || operation_.running || (operation_.report && !operation_.report->cleanupPending.isEmpty()))
+        return false;
+    operation_ = OperationState{};
+    operation_.running = true;
+    operation_.request = request;
+    operationMonitor_ = std::make_shared<OperationMonitor>();
+    operationStop_ = std::make_shared<std::stop_source>();
+    const auto monitor = operationMonitor_;
+    const auto stop = operationStop_->get_token();
+    const auto adapter = platform_;
+    ++active_;
+    emit operationChanged();
+    auto *watcher = new QFutureWatcher<OperationReport>(this);
+    connect(watcher, &QFutureWatcher<OperationReport>::finished, this, [this, watcher] {
+        operation_.report = watcher->result();
+        watcher->deleteLater();
+        --active_;
+        operation_.running = false;
+        emit operationChanged();
+        if (!closing_) {
+            QVector<quint64> ids;
+            for (const auto &state : tabs_)
+                ids.push_back(state.id);
+            for (auto id : ids)
+                refresh(id);
+        }
+        if (closing_ && active_ == 0)
+            emit shutdownFinished();
+    });
+    watcher->setFuture(QtConcurrent::run(&pool_, [adapter, request = std::move(request), monitor, stop] {
+        return adapter->execute(request, stop, [monitor](const OperationProgress &progress) {
+            std::lock_guard lock(monitor->mutex);
+            monitor->progress = progress;
+        });
+    }));
+    return true;
+}
+void ExplorerSession::cancelOperation() {
+    if (operationStop_)
+        operationStop_->request_stop();
+}
+void ExplorerSession::retryOperationCleanup(const QString &path) {
+    if (closing_ || operation_.running || !operation_.report ||
+        !operation_.report->cleanupPending.contains(path))
+        return;
+    operation_.running = true;
+    ++active_;
+    emit operationChanged();
+    const auto adapter = platform_;
+    auto *watcher = new QFutureWatcher<Result<Unit>>(this);
+    connect(watcher, &QFutureWatcher<Result<Unit>>::finished, this, [this, watcher, path] {
+        const auto result = watcher->result();
+        watcher->deleteLater();
+        --active_;
+        operation_.running = false;
+        if (!failure(result))
+            operation_.report->cleanupPending.removeAll(path);
+        else
+            operation_.report->items.push_back({{}, path, ItemStatus::Partial, *failure(result), {path}});
+        emit operationChanged();
+        if (closing_ && active_ == 0)
+            emit shutdownFinished();
+    });
+    watcher->setFuture(QtConcurrent::run(&pool_, [adapter, path] { return adapter->retryCleanup(path); }));
 }
 } // namespace explorer

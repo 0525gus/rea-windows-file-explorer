@@ -113,4 +113,3 @@ Official module declarations identify the applicable licensing alternatives for 
 Still unverified here: actual reconstructed product, native desktop appearance, package-on-clean-machine execution, full translation/font support, cancellation regressions for the build instrumentation, and a cold performance baseline. Linux's previously detected Qt6.4.2 environment was not modified or built by this setup.
 
 Experiment A and B must use the same installed Windows SDK/compiler/flags/fixtures. Providing both arms the same toolchain preserves the intended distinction in REA information access.
-

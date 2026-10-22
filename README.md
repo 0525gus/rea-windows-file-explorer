@@ -2,22 +2,29 @@
 
 C++20/Qt6 기반 Explorer++ 동작 재구현 실험이다. UI는 실제 Windows 11 탐색기 관찰을 참고한다. 원본 프로그램 코드나 UI 자산은 포함하지 않는다.
 
-현재 Phase 4 P0 검증 중이다. Windows 빌드와 네 개 자동화 suite가 통과했으며 실제 데스크톱에서 폴더 탐색·검색·파일 연결 프로그램 실행을 확인했다. P1 파일 관리 기능은 아직 구현하지 않았다. 전체 요구사항 완료나 원본의 완전한 복원을 주장하지 않는다. [전체 명세](docs/requirements.md), [검증 상태](docs/evaluation/p0-validation.md), [요구 추적표](docs/evaluation/requirements-matrix.md)를 함께 확인한다.
+현재 Phase 5 P1 구현·검증 중이다. Windows와 Linux native ext4의 P0/P1 회귀 suite가 실제 통과했으며, 파일시스템별 제한·성능·배포·최종 비교를 검증한다. 전체 요구사항 완료나 원본의 완전한 복원을 주장하지 않는다. [전체 명세](docs/requirements.md), [초기 결과](docs/evaluation/initial-report.md), [P1 검증](docs/evaluation/p1-validation.md), [요구 추적표](docs/evaluation/requirements-matrix.md)를 함께 확인한다.
 
 ## Windows 빌드와 실행
 
 필요 도구는 MSVC x64, CMake/Ninja, Qt6 Core/Gui/Widgets/Concurrent/Test다. 검증 환경과 프로젝트 내부 Qt 설치 위치는 [환경 기록](docs/evaluation/environment-audit.md), [Qt 설치 기록](docs/evaluation/qt-setup.md)에 있다. 아래 스크립트는 기존 도구를 사용하며 설치·시스템 PATH 변경을 하지 않는다.
 
 ```powershell
+python scripts/create_fixtures.py
 python scripts/create_fixtures.py --check
 .\scripts\build-windows.ps1 -RunTests
 .\tools\qt\6.8.3\msvc2022_64\bin\windeployqt.exe --release --no-translations .\build-windows\rea_explorer.exe
 .\build-windows\rea_explorer.exe
 ```
 
-QtTest 결과는 `build-windows/*-results.txt`와 `*-results.xml`, 단계별 명령·CPU·메모리·시간은 `build-windows/logs/`에 남는다. Windows 링크 권한 부족으로 건너뛴 시험은 통과로 계산하지 않는다. 배포 패키지 검증은 별도 단계다.
+QtTest 결과는 `build-windows/*-results.txt`와 `*-results.xml`, 단계별 명령·CPU·메모리·시간은 `build-windows/logs/`에 남는다. CMake가 app/test의 runtime DLL을 출력 폴더로 복사하고, build script는 테스트 plugin 경로를 선택한다. Windows 링크 권한 부족으로 건너뛴 시험은 통과로 계산하지 않는다. 배포 패키지 검증은 별도 단계다.
 
 UI의 주소창에 폴더를 입력하거나 왼쪽 트리를 선택한다. Alt+D/Ctrl+L은 주소, Ctrl+F는 현재 폴더 이름 검색, Ctrl+T/W/Tab은 탭 생성/닫기/전환, Alt+Left/Right/Up은 탐색, F5는 새로고침이다. 파일 더블클릭/Enter는 OS 기본 앱에 위임한다. 초기 P0는 자세히 보기와 현재 폴더 literal 검색을 제공한다.
+
+UI 디자인은 [실제 Windows 11 탐색기와 비교](docs/evaluation/ui-design-review.md)한다. Explorer++ 화면은 기능 동작 비교에만 사용한다. 포커스가 없는 주소창에서는 경로 조각을 클릭해 상위로 이동하고, Ctrl+L/Alt+D로 전체 경로를 편집한다. 왼쪽 바로가기는 실제 사용자 표준 폴더 경로를 사용한다.
+
+파일 목록에서 Ctrl/Shift로 선택하고 Ctrl+C/X/V, F2, Ctrl+Shift+N, Delete로 파일 관리를 요청한다. Delete는 확인 후 휴지통으로 보내며 영구삭제로 대체하지 않는다. 충돌은 덮어쓰지 않고 항목별 실패로 알리며 `Keep both`로 충돌 항목만 새 이름으로 재시도할 수 있다. 아이콘/목록/자세히 보기는 Ctrl+Shift+1/5/6 또는 View 메뉴로 바꾼다. 진행 중 작업은 탭을 바꿔도 유지되며 취소·정리 재시도 상태를 명시한다.
+
+`scripts/package-windows.ps1`는 새 dist 하위 폴더에 앱·Qt DLL/필요 플러그인·MSVC runtime·라이선스·앱 소스를 모으고 파일별 SHA256 manifest를 만든다. 설치 프로그램은 실행하지 않는다. `--screenshot`, `--snapshot`, `--view`, `--benchmark` 옵션은 자체 화면·모델·계측 결과를 지정 경로에 저장한다. benchmark는 최초 로딩과 동일 프로세스 5회 refresh를 기록하며 OS cache를 비우지 않는다.
 
 ## Linux 빌드
 

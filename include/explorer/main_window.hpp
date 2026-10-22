@@ -15,6 +15,10 @@ class QTableView;
 class QLabel;
 class QProgressBar;
 class QSplitter;
+class QListView;
+class QStackedWidget;
+class QAbstractItemView;
+class QMimeData;
 namespace explorer {
 class EntryModel : public QAbstractTableModel {
     Q_OBJECT
@@ -30,6 +34,7 @@ class EntryModel : public QAbstractTableModel {
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
     void setEntries(QVector<Entry> entries);
     const Entry *entry(int row) const;
+    Qt::ItemFlags flags(const QModelIndex &index) const override;
 
   private:
     QVector<Entry> entries_;
@@ -45,6 +50,10 @@ class MainWindow : public QMainWindow {
     quint64 currentTabId() const;
     void openPath(const QString &path);
     QJsonObject snapshot() const;
+    qint64 lastRenderMilliseconds() const {
+        return lastRenderMilliseconds_;
+    }
+    void setViewMode(int mode);
 
   protected:
     void closeEvent(QCloseEvent *event) override;
@@ -59,6 +68,17 @@ class MainWindow : public QMainWindow {
     void finishClose();
     void showSortMenu();
     void showViewsMenu();
+    void copySelection(bool cut);
+    void pasteSelection();
+    void renameSelection();
+    void createDirectory();
+    void recycleSelection();
+    bool startOperation(OperationRequest request);
+    bool acceptTransfer(const QMimeData *data, Qt::DropAction action, int row, bool internal);
+    bool resolveTransfer(QStringList paths, Location destination, OperationKind kind);
+    void renderOperation();
+    QVector<Entry> selectedEntries() const;
+    QAbstractItemView *activeView() const;
     QToolButton *makeButton(const QString &symbol, const QString &label, QWidget *parent);
     std::shared_ptr<IPlatform> platform_;
     ExplorerSession *session_;
@@ -67,21 +87,34 @@ class MainWindow : public QMainWindow {
     QLineEdit *search_;
     QTreeWidget *tree_;
     QTableView *table_;
+    QListView *icons_;
+    QStackedWidget *views_;
     EntryModel *model_;
     QLabel *status_;
     QLabel *detailName_;
     QLabel *detailMeta_;
+    QLabel *detailImage_;
     QLabel *error_;
     QProgressBar *progress_;
     QToolButton *back_;
     QToolButton *forward_;
     QToolButton *up_;
+    QToolButton *newFolder_, *cut_, *copy_, *paste_, *rename_, *recycle_;
+    QToolButton *cancelOperation_, *retryCleanup_;
+    QToolButton *keepBoth_;
+    QLabel *operationLabel_;
+    QProgressBar *operationProgress_;
+    QVector<Entry> clipboardEntries_;
+    QString clipboardToken_;
+    bool clipboardCut_ = false;
+    int viewMode_ = 0;
+    QHash<quint64, int> viewModes_;
+    qint64 lastRenderMilliseconds_ = 0;
     QWidget *details_;
     QSplitter *splitter_;
     QTimer progressTimer_;
     QThreadPool treePool_;
     QHash<QString, std::shared_ptr<std::stop_source>> treeStops_;
-    QHash<QString, QTreeWidgetItem *> treeItems_;
     int treeActive_ = 0;
     bool closing_ = false, finalClose_ = false, updating_ = false;
 };

@@ -1,0 +1,27 @@
+{
+  "argv": [
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\ctest.exe",
+    "--test-dir",
+    "C:\\dev\\Windows_fileexplore\\build-windows",
+    "--output-on-failure",
+    "--timeout",
+    "30",
+    "-C",
+    "Release"
+  ],
+  "cwd": "C:\\dev\\Windows_fileexplore",
+  "started_at": "2026-10-22T08:53:53.463695+09:00",
+  "hidden": true,
+  "environment_persisted_by_runner": false,
+  "memory_definition": "Job Object PeakJobMemoryUsed: peak simultaneous committed memory for the assigned process and descendants; not resident working set.",
+  "pid": 9996,
+  "exit_code": 0,
+  "residual_owned_processes_terminated": 0,
+  "cpu_user_seconds": 2.1875,
+  "cpu_kernel_seconds": 3.1875,
+  "cpu_family_seconds": 5.375,
+  "total_family_processes": 7,
+  "active_family_processes_at_completion": 0,
+  "peak_family_committed_bytes": 25022464,
+  "elapsed_seconds": 10.645601500000339
+}

@@ -4,8 +4,19 @@
 #include <QThreadPool>
 #include <atomic>
 #include <memory>
+#include <mutex>
 #include <stop_token>
 namespace explorer {
+struct OperationState {
+    bool running = false;
+    OperationRequest request;
+    OperationProgress progress;
+    std::optional<OperationReport> report;
+};
+struct OperationMonitor {
+    std::mutex mutex;
+    OperationProgress progress;
+};
 struct TabState {
     quint64 id = 0, generation = 0;
     Location location;
@@ -16,6 +27,7 @@ struct TabState {
     SortSpec sort;
     std::optional<Error> error;
     bool loading = false;
+    qint64 deriveMilliseconds = 0;
     std::shared_ptr<std::stop_source> stop;
     std::shared_ptr<std::atomic<quint64>> examined;
 };
@@ -40,6 +52,10 @@ class ExplorerSession : public QObject {
     void setSort(quint64 id, SortSpec sort);
     void setSelection(quint64 id, QSet<QString> keys);
     void openEntry(quint64 id, const QString &key);
+    bool beginOperation(OperationRequest request);
+    void cancelOperation();
+    void retryOperationCleanup(const QString &path);
+    OperationState operationState() const;
     void shutdown();
     bool idle() const {
         return active_ == 0;
@@ -51,6 +67,7 @@ class ExplorerSession : public QObject {
     void tabChanged(quint64 id);
     void tabsChanged();
     void shutdownFinished();
+    void operationChanged();
 
   private:
     TabState *mutableTab(quint64 id);
@@ -63,5 +80,8 @@ class ExplorerSession : public QObject {
     quint64 nextId_ = 1;
     int active_ = 0;
     bool closing_ = false;
+    OperationState operation_;
+    std::shared_ptr<OperationMonitor> operationMonitor_;
+    std::shared_ptr<std::stop_source> operationStop_;
 };
 } // namespace explorer

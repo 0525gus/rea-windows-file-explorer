@@ -1,0 +1,42 @@
+{
+  "verifiedFiles": 97,
+  "bytesUnmodified": true,
+  "strictJsonParseExceptions": [
+    {
+      "path": "cmake/3rdparty/kwin/qt_attribution.json",
+      "error": "Invalid control character at: line 14 column 65 (char 440)"
+    },
+    {
+      "path": "src/3rdparty/forkfd/qt_attribution.json",
+      "error": "Invalid control character at: line 12 column 55 (char 403)"
+    },
+    {
+      "path": "src/3rdparty/libpsl/qt_attribution.json",
+      "error": "Invalid control character at: line 6 column 72 (char 166)"
+    },
+    {
+      "path": "src/3rdparty/sha3/qt_attribution.json",
+      "error": "Invalid control character at: line 45 column 167 (char 2235)"
+    },
+    {
+      "path": "src/3rdparty/xcb/qt_attribution.json",
+      "error": "Invalid control character at: line 5 column 88 (char 166)"
+    },
+    {
+      "path": "src/corelib/text/qt_attribution.json",
+      "error": "Invalid control character at: line 13 column 80 (char 501)"
+    }
+  ],
+  "parsePolicy": "Raw source bytes are preserved. Inventory parser permits literal control characters in JSON string values where upstream files are not strict JSON.",
+  "separateLicenseFileAbsentIds": [
+    "md4",
+    "md5",
+    "sha1",
+    "siphash",
+    "sqlite",
+    "wintab",
+    "tika-mimetypes",
+    "unicode-character-database",
+    "unicode-cldr"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "argv": [
+    "C:\\dev\\Windows_fileexplore\\build-windows\\rea_explorer.exe",
+    "--path",
+    "C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\unicode",
+    "--screenshot",
+    "C:\\dev\\Windows_fileexplore\\docs\\observations\\screenshots\\rea-win11-aligned-unicode.png",
+    "--quit-after-render"
+  ],
+  "cwd": "C:\\dev\\Windows_fileexplore",
+  "started_at": "2026-10-22T08:52:48.386952+09:00",
+  "hidden": true,
+  "environment_persisted_by_runner": false,
+  "memory_definition": "Job Object PeakJobMemoryUsed: peak simultaneous committed memory for the assigned process and descendants; not resident working set.",
+  "pid": 23088,
+  "exit_code": 0,
+  "residual_owned_processes_terminated": 0,
+  "cpu_user_seconds": 0.359375,
+  "cpu_kernel_seconds": 0.265625,
+  "cpu_family_seconds": 0.625,
+  "total_family_processes": 1,
+  "active_family_processes_at_completion": 0,
+  "peak_family_committed_bytes": 47407104,
+  "elapsed_seconds": 0.7606474999993225
+}

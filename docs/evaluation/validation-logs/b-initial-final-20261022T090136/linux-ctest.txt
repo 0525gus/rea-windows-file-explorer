@@ -1,0 +1,78 @@
+Start testing: Oct 22 09:03 KST
+----------------------------------------------------------
+1/5 Testing: domain
+1/5 Test: domain
+Command: "/mnt/c/dev/Windows_fileexplore/build-linux/domain_tests" "-o" "/mnt/c/dev/Windows_fileexplore/build-linux/domain-results.txt,txt" "-o" "/mnt/c/dev/Windows_fileexplore/build-linux/domain-results.xml,junitxml"
+Directory: /mnt/c/dev/Windows_fileexplore/build-linux
+"domain" start time: Oct 22 09:03 KST
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"domain" end time: Oct 22 09:03 KST
+"domain" time elapsed: 00:00:00
+----------------------------------------------------------
+
+2/5 Testing: session
+2/5 Test: session
+Command: "/mnt/c/dev/Windows_fileexplore/build-linux/session_tests" "-o" "/mnt/c/dev/Windows_fileexplore/build-linux/session-results.txt,txt" "-o" "/mnt/c/dev/Windows_fileexplore/build-linux/session-results.xml,junitxml"
+Directory: /mnt/c/dev/Windows_fileexplore/build-linux
+"session" start time: Oct 22 09:03 KST
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   2.30 sec
+----------------------------------------------------------
+Test Passed.
+"session" end time: Oct 22 09:03 KST
+"session" time elapsed: 00:00:02
+----------------------------------------------------------
+
+3/5 Testing: platform
+3/5 Test: platform
+Command: "/mnt/c/dev/Windows_fileexplore/build-linux/platform_tests" "-o" "/mnt/c/dev/Windows_fileexplore/build-linux/platform-results.txt,txt" "-o" "/mnt/c/dev/Windows_fileexplore/build-linux/platform-results.xml,junitxml"
+Directory: /mnt/c/dev/Windows_fileexplore/build-linux
+"platform" start time: Oct 22 09:03 KST
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   1.26 sec
+----------------------------------------------------------
+Test Passed.
+"platform" end time: Oct 22 09:03 KST
+"platform" time elapsed: 00:00:01
+----------------------------------------------------------
+
+4/5 Testing: ui
+4/5 Test: ui
+Command: "/mnt/c/dev/Windows_fileexplore/build-linux/ui_tests" "-o" "/mnt/c/dev/Windows_fileexplore/build-linux/ui-results.txt,txt" "-o" "/mnt/c/dev/Windows_fileexplore/build-linux/ui-results.xml,junitxml"
+Directory: /mnt/c/dev/Windows_fileexplore/build-linux
+"ui" start time: Oct 22 09:03 KST
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =  17.93 sec
+----------------------------------------------------------
+Test Passed.
+"ui" end time: Oct 22 09:03 KST
+"ui" time elapsed: 00:00:17
+----------------------------------------------------------
+
+5/5 Testing: operation
+5/5 Test: operation
+Command: "/mnt/c/dev/Windows_fileexplore/build-linux/operation_tests" "-o" "/mnt/c/dev/Windows_fileexplore/build-linux/operation-results.txt,txt" "-o" "/mnt/c/dev/Windows_fileexplore/build-linux/operation-results.xml,junitxml"
+Directory: /mnt/c/dev/Windows_fileexplore/build-linux
+"operation" start time: Oct 22 09:03 KST
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.48 sec
+----------------------------------------------------------
+Test Passed.
+"operation" end time: Oct 22 09:03 KST
+"operation" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Oct 22 09:03 KST

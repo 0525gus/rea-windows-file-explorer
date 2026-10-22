@@ -1,0 +1,27 @@
+********* Start testing of OperationTests *********
+Config: Using QtTest library 6.4.2, Qt 6.4.2 (x86_64-little_endian-lp64 shared (dynamic) release build; by GCC 13.2.0), ubuntu 24.04
+QINFO  : OperationTests::initTestCase() Operation sandbox parent: /tmp
+PASS   : OperationTests::initTestCase()
+PASS   : OperationTests::emptySourceRequestIsExplicitlyRejected()
+PASS   : OperationTests::copySingleAndMixedCollisionPreserveEverySource()
+PASS   : OperationTests::keepBothReturnsRealNewDestinationWithoutOverwriting()
+PASS   : OperationTests::multiMoveReportsEachItemAndPreservesCollisionSource()
+PASS   : OperationTests::destinationAppearingDuringCopyIsNeverOverwritten()
+PASS   : OperationTests::folderCopyMoveAndDescendantDestinationGuard()
+PASS   : OperationTests::renameCollisionInvalidLeafAndCreateDirectory()
+PASS   : OperationTests::staleSourceAndDestinationIdentitiesRefuseMutation()
+PASS   : OperationTests::copyCancellationPreservesOriginalAndAccountsForOwnedResidue()
+PASS   : OperationTests::preCancellationAndForeignCleanupNeverDeleteUserSelectedData()
+SKIP   : OperationTests::windowsRealCleanupFailureRetainsOwnershipAndRefusesReplacement() Windows delete-sharing failure uses a real owned Win32 handle; no simulated OS result.
+   Loc: [/mnt/c/dev/Windows_fileexplore/tests/operation_tests.cpp(569)]
+SKIP   : OperationTests::windowsJunctionIsRejectedWithoutFollowingOwnedTarget(selected-directory-junction) Windows junction/reparse-point fixture is distinct from POSIX symlinks.
+   Loc: [/mnt/c/dev/Windows_fileexplore/tests/operation_tests.cpp(661)]
+SKIP   : OperationTests::windowsJunctionIsRejectedWithoutFollowingOwnedTarget(junction-cycle-inside-selected-tree) Windows junction/reparse-point fixture is distinct from POSIX symlinks.
+   Loc: [/mnt/c/dev/Windows_fileexplore/tests/operation_tests.cpp(661)]
+PASS   : OperationTests::copySymlinkMustNotFollowTarget(selected-symlink)
+PASS   : OperationTests::copySymlinkMustNotFollowTarget(link-inside-selected-directory)
+SKIP   : OperationTests::recycleOnlyExplicitlyOptedInDisposableItem() Real recycle is opt-in: REA_TEST_RECYCLE_OWNED=1; default test run does not add to the user's bin.
+   Loc: [/mnt/c/dev/Windows_fileexplore/tests/operation_tests.cpp(739)]
+PASS   : OperationTests::cleanupTestCase()
+Totals: 14 passed, 0 failed, 4 skipped, 0 blacklisted, 459ms
+********* Finished testing of OperationTests *********

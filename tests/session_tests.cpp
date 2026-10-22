@@ -55,6 +55,7 @@ template <class T> struct ControlledReply {
 };
 using Reply = ControlledReply<Listing>;
 using OpenReply = ControlledReply<Unit>;
+using JobReply = ControlledReply<OperationReport>;
 
 class ControlledPlatform final : public IPlatform {
   public:
@@ -71,12 +72,31 @@ class ControlledPlatform final : public IPlatform {
             reply->release();
         for (const auto &reply : allOpen_)
             reply->release();
+        for (const auto &reply : allJobs_)
+            reply->release();
+        for (const auto &reply : allCleanup_)
+            reply->release();
     }
     std::shared_ptr<OpenReply> prepareOpen(const QString &key, Result<Unit> result, bool blocked = false) {
         auto reply = std::make_shared<OpenReply>(std::move(result), blocked);
         std::lock_guard guard(mutex_);
         openReplies_[key] = reply;
         allOpen_.push_back(reply);
+        return reply;
+    }
+    std::shared_ptr<JobReply> prepareOperation(OperationReport report, bool blocked = false) {
+        auto reply = std::make_shared<JobReply>(std::move(report), blocked);
+        std::lock_guard guard(mutex_);
+        nextJob_ = reply;
+        allJobs_.push_back(reply);
+        return reply;
+    }
+    std::shared_ptr<OpenReply> prepareCleanup(const QString &path, Result<Unit> result,
+                                              bool blocked = false) {
+        auto reply = std::make_shared<OpenReply>(std::move(result), blocked);
+        std::lock_guard guard(mutex_);
+        cleanupReplies_[path] = reply;
+        allCleanup_.push_back(reply);
         return reply;
     }
     Result<Location> parseLocation(const QString &input) const override {
@@ -143,6 +163,59 @@ class ControlledPlatform final : public IPlatform {
         std::lock_guard guard(mutex_);
         return opened_;
     }
+    OperationReport execute(const OperationRequest &request, std::stop_token stop,
+                            OperationProgressSink progress) const override {
+        std::shared_ptr<JobReply> reply;
+        {
+            std::lock_guard guard(mutex_);
+            requests_.push_back(request);
+            reply = nextJob_;
+        }
+        if (!reply)
+            return {request.kind,
+                    {{QStringLiteral("unexpected"),
+                      {},
+                      ItemStatus::Failed,
+                      problem(ErrorCode::Unsupported, {})}}};
+        reply->started = true;
+        if (progress)
+            progress({0, quint64(request.sources.size()), 7, 21, QStringLiteral("controlled-source"),
+                      QStringLiteral("copy")});
+        {
+            std::unique_lock guard(reply->mutex);
+            reply->ready.wait(guard, [&] { return reply->released; });
+        }
+        reply->stopped = stop.stop_requested();
+        reply->returned = true;
+        return std::get<OperationReport>(reply->result);
+    }
+    Result<Unit> retryCleanup(const QString &path) const override {
+        std::shared_ptr<OpenReply> reply;
+        {
+            std::lock_guard guard(mutex_);
+            cleanupCalls_.push_back(path);
+            const auto found = cleanupReplies_.find(path);
+            if (found != cleanupReplies_.end())
+                reply = found->second;
+        }
+        if (!reply)
+            return problem(ErrorCode::Unsupported, path);
+        reply->started = true;
+        {
+            std::unique_lock guard(reply->mutex);
+            reply->ready.wait(guard, [&] { return reply->released; });
+        }
+        reply->returned = true;
+        return reply->result;
+    }
+    QVector<OperationRequest> requests() const {
+        std::lock_guard guard(mutex_);
+        return requests_;
+    }
+    QStringList cleanupCalls() const {
+        std::lock_guard guard(mutex_);
+        return cleanupCalls_;
+    }
     Capabilities capabilities() const override {
         return {true, false, false, false, false, false};
     }
@@ -154,6 +227,12 @@ class ControlledPlatform final : public IPlatform {
     std::map<QString, std::shared_ptr<OpenReply>> openReplies_;
     QVector<std::shared_ptr<OpenReply>> allOpen_;
     mutable QVector<Entry> opened_;
+    std::shared_ptr<JobReply> nextJob_;
+    QVector<std::shared_ptr<JobReply>> allJobs_;
+    std::map<QString, std::shared_ptr<OpenReply>> cleanupReplies_;
+    QVector<std::shared_ptr<OpenReply>> allCleanup_;
+    mutable QVector<OperationRequest> requests_;
+    mutable QStringList cleanupCalls_;
 };
 
 struct Harness {
@@ -423,6 +502,153 @@ class SessionTests final : public QObject {
         h.session->shutdown();
         QTest::qWait(10);
         QCOMPARE(shutdown.count(), 1);
+    }
+
+    void globalOperationSurvivesTabCloseNavigationAndPreservesMixedReport() {
+        Harness h;
+        h.platform->prepare(QStringLiteral("A"), listing(QStringLiteral("A")));
+        h.platform->prepare(QStringLiteral("B"), listing(QStringLiteral("B")));
+        h.platform->prepare(QStringLiteral("C"),
+                            listing(QStringLiteral("C"), {item(QStringLiteral("current"))}));
+        const auto a = h.session->createTab(loc(QStringLiteral("A")));
+        const auto b = h.session->createTab(loc(QStringLiteral("B")));
+        QTRY_VERIFY_WITH_TIMEOUT(h.session->idle(), 5000);
+        OperationReport expected;
+        expected.kind = OperationKind::Copy;
+        expected.items = {{QStringLiteral("one"), QStringLiteral("target/one"), ItemStatus::Succeeded},
+                          {QStringLiteral("two"), QStringLiteral("target/two"), ItemStatus::Failed,
+                           problem(ErrorCode::Conflict, QStringLiteral("two"))}};
+        const auto job = h.platform->prepareOperation(expected, true);
+        const OperationRequest request{OperationKind::Copy,
+                                       {item(QStringLiteral("one")), item(QStringLiteral("two"))},
+                                       loc(QStringLiteral("target"))};
+        QSignalSpy changed(h.session.get(), &ExplorerSession::operationChanged);
+        QVERIFY(h.session->beginOperation(request));
+        QTRY_VERIFY_WITH_TIMEOUT(job->started.load(), 5000);
+        QTRY_COMPARE_WITH_TIMEOUT(h.session->operationState().progress.completedBytes, quint64(7), 5000);
+        QVERIFY(!h.session->beginOperation(request));
+        h.session->closeTab(a);
+        h.session->navigate(b, QStringLiteral("C"));
+        QTRY_COMPARE_WITH_TIMEOUT(h.session->tab(b)->location.key, QStringLiteral("C"), 5000);
+        QVERIFY(!h.session->tab(a));
+        QVERIFY(h.session->operationState().running);
+        QVERIFY(!h.session->idle());
+        QCOMPARE(h.platform->requests().size(), 1);
+        QCOMPARE(h.platform->requests().first().sources.size(), 2);
+        QCOMPARE(h.platform->requests().first().sources.first().identity, QStringLiteral("identity"));
+        job->release();
+        QTRY_VERIFY_WITH_TIMEOUT(h.session->idle(), 5000);
+        QVERIFY(job->returned.load());
+        QVERIFY(!job->stopped.load());
+        const auto final = h.session->operationState();
+        QVERIFY(!final.running && final.report);
+        QCOMPARE(final.report->kind, OperationKind::Copy);
+        QCOMPARE(final.report->items.size(), 2);
+        QCOMPARE(final.report->items[0].status, ItemStatus::Succeeded);
+        QCOMPARE(final.report->items[1].status, ItemStatus::Failed);
+        QVERIFY(final.report->items[1].error);
+        QCOMPARE(final.report->items[1].error->code, ErrorCode::Conflict);
+        QCOMPARE(final.report->items[1].error->nativeCode, 37);
+        QCOMPARE(final.report->items[1].error->partialPaths, QStringList{QStringLiteral("partial-evidence")});
+        QCOMPARE(h.session->tab(b)->location.key, QStringLiteral("C"));
+        QCOMPARE(names(h.session->tab(b)->entries), QStringList{QStringLiteral("current")});
+        QVERIFY(changed.count() >= 2);
+    }
+
+    void cancelledOperationRemainsOwnedThroughShutdownAndLateCompletion() {
+        Harness h;
+        OperationReport expected;
+        expected.kind = OperationKind::Move;
+        expected.cancelled = true;
+        expected.items = {{QStringLiteral("one"),
+                           {},
+                           ItemStatus::Cancelled,
+                           problem(ErrorCode::Cancelled, QStringLiteral("one")),
+                           {QStringLiteral("owned-stage")}}};
+        expected.cleanupPending = {QStringLiteral("owned-stage")};
+        const auto job = h.platform->prepareOperation(expected, true);
+        const OperationRequest request{
+            OperationKind::Move, {item(QStringLiteral("one"))}, loc(QStringLiteral("target"))};
+        QVERIFY(h.session->beginOperation(request));
+        QTRY_VERIFY_WITH_TIMEOUT(job->started.load(), 5000);
+        h.session->cancelOperation();
+        QSignalSpy shutdown(h.session.get(), &ExplorerSession::shutdownFinished);
+        h.session->shutdown();
+        h.session->shutdown();
+        QVERIFY(!h.session->idle());
+        QVERIFY(h.session->operationState().running);
+        QVERIFY(!job->returned.load());
+        QCOMPARE(shutdown.count(), 0);
+        QVERIFY(!h.session->beginOperation(request));
+        job->release();
+        QTRY_VERIFY_WITH_TIMEOUT(h.session->idle(), 5000);
+        QTRY_COMPARE_WITH_TIMEOUT(shutdown.count(), 1, 5000);
+        QVERIFY(job->stopped.load() && job->returned.load());
+        const auto final = h.session->operationState();
+        QVERIFY(!final.running && final.report);
+        QVERIFY(final.report->cancelled);
+        QCOMPARE(final.report->items.size(), 1);
+        QCOMPARE(final.report->items.first().status, ItemStatus::Cancelled);
+        QCOMPARE(final.report->cleanupPending, QStringList{QStringLiteral("owned-stage")});
+        QCOMPARE(final.report->items.first().retainedPaths, QStringList{QStringLiteral("owned-stage")});
+        h.session->shutdown();
+        QTest::qWait(10);
+        QCOMPARE(shutdown.count(), 1);
+    }
+
+    void cleanupRetryRetainsFailureRejectsForeignPathAndOwnsFinalization() {
+        Harness h;
+        const auto owned = QStringLiteral("exclusive-owned-stage");
+        OperationReport expected;
+        expected.items = {{QStringLiteral("source"),
+                           {},
+                           ItemStatus::Partial,
+                           problem(ErrorCode::Io, QStringLiteral("source")),
+                           {owned}}};
+        expected.cleanupPending = {owned};
+        h.platform->prepareOperation(expected);
+        const OperationRequest request{
+            OperationKind::Copy, {item(QStringLiteral("source"))}, loc(QStringLiteral("target"))};
+        QVERIFY(h.session->beginOperation(request));
+        QTRY_VERIFY_WITH_TIMEOUT(h.session->idle(), 5000);
+        QVERIFY(!h.session->beginOperation(request));
+        h.session->retryOperationCleanup(QStringLiteral("foreign-path"));
+        QCOMPARE(h.platform->cleanupCalls().size(), 0);
+        const auto failed =
+            h.platform->prepareCleanup(owned, problem(ErrorCode::PermissionDenied, owned), true);
+        h.session->retryOperationCleanup(owned);
+        QTRY_VERIFY_WITH_TIMEOUT(failed->started.load(), 5000);
+        QVERIFY(!h.session->idle());
+        QVERIFY(h.session->operationState().running);
+        h.session->retryOperationCleanup(owned);
+        QCOMPARE(h.platform->cleanupCalls(), QStringList{owned});
+        failed->release();
+        QTRY_VERIFY_WITH_TIMEOUT(h.session->idle(), 5000);
+        auto state = h.session->operationState();
+        QVERIFY(state.report);
+        QCOMPARE(state.report->cleanupPending, QStringList{owned});
+        QVERIFY(
+            std::any_of(state.report->items.begin(), state.report->items.end(), [&](const ItemOutcome &item) {
+                return item.error && item.error->code == ErrorCode::PermissionDenied &&
+                       item.retainedPaths.contains(owned);
+            }));
+        QVERIFY(!h.session->beginOperation(request));
+        const auto success = h.platform->prepareCleanup(owned, Unit{}, true);
+        h.session->retryOperationCleanup(owned);
+        QTRY_VERIFY_WITH_TIMEOUT(success->started.load(), 5000);
+        QSignalSpy shutdown(h.session.get(), &ExplorerSession::shutdownFinished);
+        h.session->shutdown();
+        QVERIFY(!h.session->idle());
+        QCOMPARE(shutdown.count(), 0);
+        success->release();
+        QTRY_VERIFY_WITH_TIMEOUT(h.session->idle(), 5000);
+        QTRY_COMPARE_WITH_TIMEOUT(shutdown.count(), 1, 5000);
+        QVERIFY(success->returned.load());
+        state = h.session->operationState();
+        QVERIFY(state.report && state.report->cleanupPending.isEmpty());
+        QCOMPARE(h.platform->cleanupCalls(), (QStringList{owned, owned}));
+        QCOMPARE(state.report->items.first().retainedPaths,
+                 QStringList{owned}); // Earlier evidence remains intact.
     }
 };
 

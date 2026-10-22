@@ -1,0 +1,19 @@
+{
+  "argv": [
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\ctest.exe",
+    "--test-dir",
+    "C:\\dev\\Windows_fileexplore\\build-windows",
+    "--output-on-failure",
+    "--timeout",
+    "30"
+  ],
+  "cwd": "C:\\dev\\Windows_fileexplore",
+  "started_at": "2026-10-22T08:42:24.279367+09:00",
+  "hidden": true,
+  "environment_persisted_by_runner": false,
+  "memory_definition": "Job Object PeakJobMemoryUsed: peak simultaneous committed memory for the assigned process and descendants; not resident working set.",
+  "pid": 15208,
+  "error": "Owned process family exceeded 60.0 seconds",
+  "exit_code": 1,
+  "elapsed_seconds": 60.00019800000155
+}

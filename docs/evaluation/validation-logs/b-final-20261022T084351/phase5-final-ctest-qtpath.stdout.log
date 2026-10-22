@@ -1,0 +1,15 @@
+Test project C:/dev/Windows_fileexplore/build-windows
+    Start 1: domain
+1/5 Test #1: domain ...........................   Passed    0.03 sec
+    Start 2: session
+2/5 Test #2: session ..........................   Passed    2.38 sec
+    Start 3: platform
+3/5 Test #3: platform .........................   Passed    1.09 sec
+    Start 4: ui
+4/5 Test #4: ui ...............................   Passed    5.62 sec
+    Start 5: operation
+5/5 Test #5: operation ........................   Passed    0.91 sec
+
+100% tests passed, 0 tests failed out of 5
+
+Total Test time (real) =  10.09 sec

@@ -1,0 +1,45 @@
+{
+    "heartbeat_interval_ms": 5,
+    "maximum_gui_heartbeat_gap_ms": 338,
+    "os_file_cache": "not flushed; coldness unknown",
+    "qt_version": "6.8.3",
+    "samples": [
+        {
+            "count": 1200,
+            "elapsed_ms": 1364,
+            "kind": "first-listing",
+            "names_sha256": "ff84bde034b35b40f6a7d8ef0e85c04966d069644ac12ea9db0408591d4fa8b0"
+        },
+        {
+            "count": 1200,
+            "elapsed_ms": 959,
+            "kind": "warm-refresh",
+            "names_sha256": "ff84bde034b35b40f6a7d8ef0e85c04966d069644ac12ea9db0408591d4fa8b0"
+        },
+        {
+            "count": 1200,
+            "elapsed_ms": 952,
+            "kind": "warm-refresh",
+            "names_sha256": "ff84bde034b35b40f6a7d8ef0e85c04966d069644ac12ea9db0408591d4fa8b0"
+        },
+        {
+            "count": 1200,
+            "elapsed_ms": 921,
+            "kind": "warm-refresh",
+            "names_sha256": "ff84bde034b35b40f6a7d8ef0e85c04966d069644ac12ea9db0408591d4fa8b0"
+        },
+        {
+            "count": 1200,
+            "elapsed_ms": 935,
+            "kind": "warm-refresh",
+            "names_sha256": "ff84bde034b35b40f6a7d8ef0e85c04966d069644ac12ea9db0408591d4fa8b0"
+        },
+        {
+            "count": 1200,
+            "elapsed_ms": 980,
+            "kind": "warm-refresh",
+            "names_sha256": "ff84bde034b35b40f6a7d8ef0e85c04966d069644ac12ea9db0408591d4fa8b0"
+        }
+    ],
+    "scope": "GUI ready listing including model derivation; excludes process/Qt initialization; no other applications included"
+}

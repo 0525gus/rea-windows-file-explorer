@@ -1,0 +1,26 @@
+{
+  "argv": [
+    "C:\\dev\\Windows_fileexplore\\build-windows\\rea_explorer.exe",
+    "--path",
+    "C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\bulk",
+    "--view",
+    "list",
+    "--benchmark",
+    "C:\\dev\\Windows_fileexplore\\docs\\evaluation\\measurements\\b-bulk-list-profile.json"
+  ],
+  "cwd": "C:\\dev\\Windows_fileexplore",
+  "started_at": "2026-10-22T08:22:43.143451+09:00",
+  "hidden": true,
+  "environment_persisted_by_runner": false,
+  "memory_definition": "Job Object PeakJobMemoryUsed: peak simultaneous committed memory for the assigned process and descendants; not resident working set.",
+  "pid": 23252,
+  "exit_code": 0,
+  "residual_owned_processes_terminated": 0,
+  "cpu_user_seconds": 1.640625,
+  "cpu_kernel_seconds": 4.6875,
+  "cpu_family_seconds": 6.328125,
+  "total_family_processes": 2,
+  "active_family_processes_at_completion": 0,
+  "peak_family_committed_bytes": 29401088,
+  "elapsed_seconds": 6.097813200001838
+}

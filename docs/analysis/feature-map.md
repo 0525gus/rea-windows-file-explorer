@@ -82,3 +82,18 @@ OPEN-DISPATCH의 가상 slot `+0x70`은 관찰되지만 그 동적 대상이 항
 현재는 P0 전체의 분석 질문·부분 근거·미확인 이유를 정리한 상태다. 아직 실동작과 내부 경로의 연결이 없는 이벤트·정렬 적용·기록/탭·오류 동작을 성공으로 셀 수 없다. Phase 2 게이트는 원본 runtime 관찰 및 그 한계의 정리까지 확인한 뒤 상위 작업에서 판정한다.
 
 다음 입력은 동일 해시 원본의 안정된 GUI 관찰 기록과 14필수 시나리오 결과, 실제 이벤트/가상 dispatch 추가 근거, 분석 불가의 구체적인 도구/표현 한계이다. 이후에만 Phase 3 인터페이스 의미와 기능별 `REA 근거 기반` 범위를 확정한다. P1/P2 전체 범위는 [요구사항 매트릭스](../evaluation/requirements-matrix.md)에 유지하며, 여기서 다루지 않은 기능은 완료로 간주하지 않는다.
+
+## Phase 5 — 실제 추가 분석이 바꾼 범위
+
+2026-10-22. 위 표는 Phase 2 정적 snapshot의 당시 지식 범위다. 현재 제품 실행·시험 상태는 [요구사항 matrix](../evaluation/requirements-matrix.md)와 각 validation ledger에서 별도로 판정한다. 새 [7-record bundle](evidence/phase5-static-bundle.json), SHA-256 `ca22b54b47faaffe852ff1792d6c41159940eec6bc3bc5aaab6db0c1d3f304fe`의 [정확 index](evidence/phase5-index.json)를 재검토했다. 보충 바이트/SDK 확인·정적 호출도식·신뢰 한계는 [P1 findings](p1-static-findings.md)에 있다. 여기서는 새 분석으로 늘어난 주장만 기록하며 실행 성공을 추가하지 않는다.
+
+| 기능/질문 | 실제로 늘어난 REA 근거 | 아직 연결되지 않은 범위·구현 기여 |
+|---|---|---|
+| FR-17 drop 위임 | `/records/0`, `ev_310285058c0ce8daa50f2c6faca0f50f2825c986b78c11dc5b5f699671a293c5`: 기존 Drop→`0x1401a5190` 이후 mode1의 Shell binder→interface 요청→가상 호출 경로. 요청 GUID의 EXE 바이트와 SDK를 대조하면 `IDropTarget`의 DragEnter/Drop/DragLeave/Release로 도출된다. | 실제 drop 데이터/효과·전송 성공·mode0 `0x1401a5340` 본문·등록/해제 수명주기 미확인. 재구현의 Qt DnD/작업 engine을 이 Windows interface 경로의 복원이라고 하지 않는다. |
+| FR-14 새 메뉴 이후 rename 시작 | `/records/2` 문자열 xref와 `/records/5`, `ev_d6ad1767529c187facc939124d6ffb493741502ece24df1138b74b7b9447fcf8`: 실제 포함 함수 `0x1400838a0`이 조건 param3=1/3에서 `0x14017d7a0`을 직접 호출한다. `/records/1`, `ev_3590de16dd81838b0547537203010b4af00ee09da2ded56601c5078d4a15bf69`: PIDL에 맞는 row를 찾아 `0x1076=LVM_EDITLABELW`를 보내며 없으면 pending PIDL을 보관한다. | **편집 시작만 확보**했다. 가상 callback slot 대상·pending 소비자·일반 F2·편집 승인/취소·실제 rename commit·충돌/권한 실패는 미확인이다. 재구현 Rename은 identity/no-replace 안전 계약과 일반 OS API 기반이며 이 부분 결과로 FR-14 전체를 REA 기반 완료로 바꾸지 않는다. |
+| FR-15 mkdir 라이브러리 경로 | `/records/3`, `/records/4`, `/records/6`: `CreateDirectoryW` 직접 caller `0x140206a50`에서 boost filesystem 오류 문자열·재귀·GetLastError·결과/예외 분기 확보. callers는 자기 자신/`0x140213270`/`0x1402158e0`이다. 주 Evidence `ev_d02eb737073be324983326bce97b6b69d10cc582c9adecdf88667ef7e2ff24d2`. | 원본 **New Folder UI→wrapper 연결은 없다**. 재구현 mkdir의 staging/identity/no-replace 정책은 새 일반 API 설계다. 원본 UI 성공이나 그 오류 정책을 복원했다고 하지 않는다. |
+| FR-11/12 copy/move | 기존 `0x1401a7630`의 SHFileOperationW MOVE/COPY selector·abort/name mapping 근거는 유지한다. | 새 staging chunk copy·no-replace commit·source/destination identity·cleanup retry가 원본에도 있었다는 증거는 없다. 재구현의 이 안전 정책은 일반 API/새 설계다. |
+| FR-13 recycle·삭제 | 이번 7개 기록은 delete/recycle command 실행 API를 추가로 확보하지 않았다. | `QFile::moveToTrash` 사용은 일반 Qt/OS API 기반이다. 기존 RecycleBin 이름·MOVE/COPY wrapper를 delete/recycle 실행 근거로 사용하지 않는다. |
+| FR-16/18/19/20 | 이번 분석은 선택·보기 모드·일반 단축키·진행 상태의 전체 내부 handler를 새로 복원하지 않았다. | 해당 UI/공통 작업 모델의 구현과 실제 시험은 별도 일반 API/관찰·AI 설계 기여로 기록한다. 이 분석 문서만으로 성공 판정하지 않는다. |
+
+새 pseudocode·call graph도 Ghidra 표현이며 원본 소스나 런타임 trace가 아니다. x64 vtable/SDK 해석과 GUID raw-byte 확인을 실제 REA 관찰에서 도출한 관계로 구분했다. 역사적인 미확인 문장을 나중에 확보한 소스 지식으로 소급 수정하지 않는다. 원본 소스와 실험 A 구현에는 접근하지 않았다.

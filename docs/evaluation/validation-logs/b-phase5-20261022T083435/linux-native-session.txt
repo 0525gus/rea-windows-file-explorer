@@ -1,0 +1,17 @@
+********* Start testing of SessionTests *********
+Config: Using QtTest library 6.4.2, Qt 6.4.2 (x86_64-little_endian-lp64 shared (dynamic) release build; by GCC 13.2.0), ubuntu 24.04
+PASS   : SessionTests::initTestCase()
+PASS   : SessionTests::successfulHistoryFailurePreservationAndBranch()
+PASS   : SessionTests::pendingParseFailureAndIncompleteListingKeepCommittedState()
+PASS   : SessionTests::supersededLateSuccessAndLateFailureCannotOverwriteCurrent()
+PASS   : SessionTests::tabsOwnIndependentHistorySearchSortAndSelection()
+PASS   : SessionTests::refreshSelectionRequiresMatchingKnownIdentity()
+PASS   : SessionTests::safeOpenDelegatesOnlyVisibleFileAndReportsRemovedItem()
+PASS   : SessionTests::delayedOpenIsOwnedThroughNavigationCloseAndShutdown()
+PASS   : SessionTests::closedTabWorkerIsRetainedAndShutdownWaitsForActualReturn()
+PASS   : SessionTests::globalOperationSurvivesTabCloseNavigationAndPreservesMixedReport()
+PASS   : SessionTests::cancelledOperationRemainsOwnedThroughShutdownAndLateCompletion()
+PASS   : SessionTests::cleanupRetryRetainsFailureRejectsForeignPathAndOwnsFinalization()
+PASS   : SessionTests::cleanupTestCase()
+Totals: 13 passed, 0 failed, 0 skipped, 0 blacklisted, 2254ms
+********* Finished testing of SessionTests *********

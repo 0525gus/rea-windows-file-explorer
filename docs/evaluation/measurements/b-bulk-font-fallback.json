@@ -1,0 +1,77 @@
+{
+    "heartbeat_interval_ms": 5,
+    "maximum_gui_heartbeat_gap_ms": 333,
+    "os_file_cache": "not flushed; coldness unknown",
+    "qt_version": "6.8.3",
+    "samples": [
+        {
+            "count": 1200,
+            "derive_ms": 1,
+            "elapsed_ms": 1008,
+            "kind": "first-listing",
+            "maximum_gui_gap_ms": 10,
+            "names_sha256": "ff84bde034b35b40f6a7d8ef0e85c04966d069644ac12ea9db0408591d4fa8b0",
+            "render_ms": 2
+        },
+        {
+            "count": 1200,
+            "derive_ms": 1,
+            "elapsed_ms": 1009,
+            "kind": "warm-refresh",
+            "maximum_gui_gap_ms": 333,
+            "names_sha256": "ff84bde034b35b40f6a7d8ef0e85c04966d069644ac12ea9db0408591d4fa8b0",
+            "render_ms": 0
+        },
+        {
+            "count": 1200,
+            "derive_ms": 1,
+            "elapsed_ms": 1070,
+            "kind": "warm-refresh",
+            "maximum_gui_gap_ms": 11,
+            "names_sha256": "ff84bde034b35b40f6a7d8ef0e85c04966d069644ac12ea9db0408591d4fa8b0",
+            "render_ms": 0
+        },
+        {
+            "count": 1200,
+            "derive_ms": 1,
+            "elapsed_ms": 1021,
+            "kind": "warm-refresh",
+            "maximum_gui_gap_ms": 9,
+            "names_sha256": "ff84bde034b35b40f6a7d8ef0e85c04966d069644ac12ea9db0408591d4fa8b0",
+            "render_ms": 0
+        },
+        {
+            "count": 1200,
+            "derive_ms": 1,
+            "elapsed_ms": 999,
+            "kind": "warm-refresh",
+            "maximum_gui_gap_ms": 14,
+            "names_sha256": "ff84bde034b35b40f6a7d8ef0e85c04966d069644ac12ea9db0408591d4fa8b0",
+            "render_ms": 0
+        },
+        {
+            "count": 1200,
+            "derive_ms": 2,
+            "elapsed_ms": 1115,
+            "kind": "warm-refresh",
+            "maximum_gui_gap_ms": 11,
+            "names_sha256": "ff84bde034b35b40f6a7d8ef0e85c04966d069644ac12ea9db0408591d4fa8b0",
+            "render_ms": 0
+        }
+    ],
+    "scope": "GUI ready listing including model derivation; excludes process/Qt initialization; no other applications included",
+    "slow_gui_events": [
+        {
+            "class": "QWidget",
+            "elapsed_ms": 329,
+            "event_type": 12,
+            "object": "qt_scrollarea_viewport"
+        },
+        {
+            "class": "explorer::MainWindow",
+            "elapsed_ms": 331,
+            "event_type": 77,
+            "object": "explorerWindow"
+        }
+    ]
+}

@@ -1,0 +1,21 @@
+{
+  "argv": [
+    "C:\\dev\\Windows_fileexplore\\artifacts\\original\\Explorer++.exe",
+    "C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\bulk"
+  ],
+  "cwd": "C:\\dev\\Windows_fileexplore",
+  "started_at": "2026-10-22T08:45:57.373739+09:00",
+  "hidden": true,
+  "environment_persisted_by_runner": false,
+  "memory_definition": "Job Object PeakJobMemoryUsed: peak simultaneous committed memory for the assigned process and descendants; not resident working set.",
+  "pid": 14764,
+  "exit_code": 0,
+  "residual_owned_processes_terminated": 0,
+  "cpu_user_seconds": 6.328125,
+  "cpu_kernel_seconds": 14.078125,
+  "cpu_family_seconds": 20.40625,
+  "total_family_processes": 1,
+  "active_family_processes_at_completion": 0,
+  "peak_family_committed_bytes": 26980352,
+  "elapsed_seconds": 84.73473609999928
+}

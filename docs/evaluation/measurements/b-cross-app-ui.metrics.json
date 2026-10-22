@@ -1,0 +1,24 @@
+{
+  "argv": [
+    "C:\\dev\\Windows_fileexplore\\build-windows\\rea_explorer.exe",
+    "-qwindowgeometry",
+    "1120x900+1300+80",
+    "--path",
+    "C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\unicode"
+  ],
+  "cwd": "C:\\dev\\Windows_fileexplore",
+  "started_at": "2026-10-22T08:57:31.697197+09:00",
+  "hidden": true,
+  "environment_persisted_by_runner": false,
+  "memory_definition": "Job Object PeakJobMemoryUsed: peak simultaneous committed memory for the assigned process and descendants; not resident working set.",
+  "pid": 25444,
+  "exit_code": 0,
+  "residual_owned_processes_terminated": 0,
+  "cpu_user_seconds": 2.859375,
+  "cpu_kernel_seconds": 2.09375,
+  "cpu_family_seconds": 4.953125,
+  "total_family_processes": 1,
+  "active_family_processes_at_completion": 0,
+  "peak_family_committed_bytes": 44867584,
+  "elapsed_seconds": 141.3517342999985
+}

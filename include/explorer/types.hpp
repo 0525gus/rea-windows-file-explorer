@@ -24,7 +24,7 @@ struct Error {
     ErrorCode code = ErrorCode::Io;
     QString operation, input, message;
     qint64 nativeCode = 0;
-    QStringList partialPaths;
+    QStringList partialPaths{};
 };
 struct Unit {};
 template <class T> using Result = std::variant<T, Error>;
@@ -35,6 +35,7 @@ struct Location {
     enum class Kind { Drives, Directory };
     Kind kind = Kind::Drives;
     QString callerInput, path, key = QStringLiteral("drives"), label = QStringLiteral("This PC");
+    QString identity{};
     bool operator==(const Location &other) const {
         return kind == other.kind && key == other.key;
     }
@@ -64,6 +65,35 @@ struct Capabilities {
     bool rename = false;
     bool mkdir = false;
 };
+enum class OperationKind { Copy, Move, Recycle, Rename, CreateDirectory };
+enum class ConflictPolicy { Fail, KeepBoth };
+struct OperationRequest {
+    OperationKind kind = OperationKind::Copy;
+    QVector<Entry> sources;
+    Location destination;
+    QString name;
+    ConflictPolicy conflict = ConflictPolicy::Fail;
+};
+enum class ItemStatus { Succeeded, Failed, Cancelled, Partial };
+struct ItemOutcome {
+    QString sourcePath, destinationPath;
+    ItemStatus status = ItemStatus::Failed;
+    std::optional<Error> error;
+    QStringList retainedPaths{};
+};
+struct OperationProgress {
+    quint64 completedItems = 0, totalItems = 0, completedBytes = 0;
+    std::optional<quint64> totalBytes;
+    QString currentPath, phase;
+};
+using OperationProgressSink = std::function<void(const OperationProgress &)>;
+struct OperationReport {
+    OperationKind kind = OperationKind::Copy;
+    QVector<ItemOutcome> items;
+    bool cancelled = false;
+    QStringList cleanupPending{};
+};
+QString operationName(OperationKind kind);
 enum class SortColumn { Name, Size, Modified };
 struct SortSpec {
     SortColumn column = SortColumn::Name;

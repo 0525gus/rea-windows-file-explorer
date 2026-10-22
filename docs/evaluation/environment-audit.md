@@ -103,4 +103,3 @@ The first inventory invocation had a PowerShell parser error; the corrected arra
 The proper `cl /Bv` probe printed version information then returned D8003 / exit 2 because no source input was supplied. It was not a successful compilation. Raw probe failures are retained instead of being reported as passing checks.
 
 Outstanding: Windows Qt addition approval and actual SDK verification; actual Windows/Linux builds and GUI behavior; packaged deployment; exact selected-archive expanded footprint; MSVC/Qt interoperability smoke test; application CPU/peak-memory measurements. This audit does not satisfy Phase 1's REA function/pseudocode gate or any implementation gate.
-

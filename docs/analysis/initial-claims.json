@@ -1,0 +1,1674 @@
+{
+  "schema_version": 1,
+  "ledger_kind": "B_initial_claims_before_original_source_access",
+  "created_at_utc": "2026-10-21T23:48:16.217554+00:00",
+  "target": {
+    "path": "artifacts/original/Explorer++.exe",
+    "file_version": "1.4.0.2293",
+    "sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+    "address_space": "Preferred image VA at image base 0x140000000; not traced runtime addresses. EXTERNAL labels retain REA namespace."
+  },
+  "scope": {
+    "original_source_downloaded": false,
+    "original_source_read": false,
+    "experiment_A_read": false,
+    "new_REA_queries_in_this_task": false,
+    "source_gate_status_path": "docs/analysis/source-gate-status.json",
+    "source_access_authorized_by_this_ledger": false,
+    "source_gate_note": "Use root-verified Phase 6 freeze manifest before any later source access. Historical target-manifest source_access.acl_isolation is stale; current gate status is separate.",
+    "historical_docs_note": "Phase2/Phase5 reports are snapshots. Later external observations are listed separately and do not retroactively resolve native dispatch."
+  },
+  "interpretation_rules": {
+    "observed": "An explicit value/call/body/byte in retained REA representation; no execution implied. External UI observations are separately catalogued.",
+    "derived": "Relationship or SDK/ABI meaning derived from observed facts; original source names/types remain unverified.",
+    "inferred": "Supported role hypothesis with an unresolved identity/dispatch step.",
+    "unknown": "The positive behavior/internal implementation is unresolved; supporting anchors are leads, not proof or evidence of feature absence.",
+    "confidence_scale": [
+      "high",
+      "medium",
+      "low",
+      "unknown"
+    ],
+    "confidence_note": "Confidence applies only to the narrow initial_assertion, not feature completeness or runtime fidelity. No numeric probabilities were invented.",
+    "coverage_note": "All 25 investigation questions remain partial or unresolved; no complete end-to-end RE claim is made.",
+    "source_comparison_rule": "Keep question IDs, assertions and initial confidence immutable in the initial freeze. Put later source findings/corrections in a successor comparison keyed by question_id. Unknowns are coverage gaps, not automatically correct negatives. Do not double-count related questions as independent proof."
+  },
+  "input_snapshots": [
+    {
+      "path": "docs/requirements.md",
+      "bytes": 20875,
+      "sha256": "76b659ec0594607e02b1818683ccc826a7af2c8dff6583888852d351e3890c88"
+    },
+    {
+      "path": "docs/analysis/target-manifest.json",
+      "bytes": 1339,
+      "sha256": "34c0a6e17589d9ffcf9bda7294f2952b8882a464b2c5ea925c34e745f90293db"
+    },
+    {
+      "path": "docs/analysis/file-navigation.md",
+      "bytes": 11117,
+      "sha256": "8cf56ef7b29cf3a3fef460940db42cd8e6d2800427de57e327c74a56d7914413"
+    },
+    {
+      "path": "docs/analysis/feature-map.md",
+      "bytes": 17147,
+      "sha256": "a5c4484037ce08d431fffce3d32c624d1909615d96eb6a7b254e3b740ff9a0af"
+    },
+    {
+      "path": "docs/analysis/shell-integration.md",
+      "bytes": 18830,
+      "sha256": "69c1d0025fd9f3e05b555bb231dc2fc9632267e6fa4c9780e939a9acc6df1938"
+    },
+    {
+      "path": "docs/analysis/p1-static-findings.md",
+      "bytes": 7789,
+      "sha256": "6ebed3a6f335bc5251f8ffe973cbc9491970d350b2b66a4d194d3840285cf2bd"
+    },
+    {
+      "path": "docs/analysis/p1-investigation-leads.md",
+      "bytes": 7685,
+      "sha256": "9ba50c30336d6e245c4f8b5b9f2aeabffe8ccdc80eef6f48922996d7ffe9b4f5"
+    },
+    {
+      "path": "docs/analysis/phase2-validation.md",
+      "bytes": 6774,
+      "sha256": "25f843b8fe478806d0ba20b4371fcd134bad73397e48969c4177f6f0b78f4c4d"
+    },
+    {
+      "path": "docs/analysis/source-gate-status.json",
+      "bytes": 736,
+      "sha256": "a7ee8c247d15f9515a4eabf1556927bc9a0179883e5416dcf07dfa194f1bbcb1"
+    },
+    {
+      "path": "docs/analysis/evidence/phase2-index.json",
+      "bytes": 33088,
+      "sha256": "a5ca4175a8c07d8b71858246e60b94171dcf1d30a645c673ab969fbd87240c52"
+    },
+    {
+      "path": "docs/analysis/evidence/phase5-index.json",
+      "bytes": 1877,
+      "sha256": "984a41428b6ebdc55efcac745652dd73568818ec20666128d69623bceb56c45f"
+    },
+    {
+      "path": "docs/observations/original-runtime.json",
+      "bytes": 116668,
+      "sha256": "20417984a2960b463c8f2e867513aa28a50768d91b2af0fb9284c272f9c529a6"
+    },
+    {
+      "path": "docs/observations/behavior-summary.md",
+      "bytes": 5067,
+      "sha256": "2add54061de4571dbc574bbea1ce76ac26253bcf302f3d9e0354f4473c0070ac"
+    }
+  ],
+  "evidence_bundles": [
+    {
+      "path": "docs/analysis/evidence/phase2-inventory-bundle.json",
+      "recorded_sha256": "57abafb1e0ae4b60c0f6177e3bd12a8630479ef1d26c13a5c5164e6119e8e2fc",
+      "hash_authority": "Existing compact index; no new full-bundle parse/hash in this task."
+    },
+    {
+      "path": "docs/analysis/evidence/phase2-static-bundle.json",
+      "recorded_sha256": "0fa335949accc46b85f05360ffe6b3897e6caec8f0d1ec6a26b2e59be521b08a",
+      "hash_authority": "Existing shell-integration.md snapshot."
+    },
+    {
+      "path": "docs/analysis/evidence/phase5-static-bundle.json",
+      "recorded_sha256": "ca22b54b47faaffe852ff1792d6c41159940eec6bc3bc5aaab6db0c1d3f304fe",
+      "hash_authority": "Existing compact index; no new full-bundle parse/hash in this task."
+    }
+  ],
+  "evidence_catalog": [
+    {
+      "evidence_id": "ev_50ab84a04ebad94e6d070a5cb6e766d51c217f8fedd274611e0977c2966e691f",
+      "operation": "procedure_pseudo_code",
+      "parameters": {
+        "procedure": "0x140163000"
+      },
+      "index_path": "docs/analysis/evidence/phase2-index.json",
+      "index_json_pointer": "/records/29",
+      "bundle_path": "docs/analysis/evidence/phase2-inventory-bundle.json",
+      "bundle_record_pointer": null,
+      "bundle_record_locator": "Select exact evidence_id; index and bundle ordinals must not be interchanged.",
+      "provider": "ghidra",
+      "authority": "shipped-artifact",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6"
+    },
+    {
+      "evidence_id": "ev_dda9e3cd0223a56b86fb96b1bd0cda24603bfc4ebb30e7c377fb9d37211eb59a",
+      "operation": "procedure_pseudo_code",
+      "parameters": {
+        "procedure": "0x1401637d0"
+      },
+      "index_path": "docs/analysis/evidence/phase2-index.json",
+      "index_json_pointer": "/records/69",
+      "bundle_path": "docs/analysis/evidence/phase2-inventory-bundle.json",
+      "bundle_record_pointer": null,
+      "bundle_record_locator": "Select exact evidence_id; index and bundle ordinals must not be interchanged.",
+      "provider": "ghidra",
+      "authority": "shipped-artifact",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6"
+    },
+    {
+      "evidence_id": "ev_970afdb1e01530bd6f56243d9b23602e2e49bcb97da429a299e5735aea76d983",
+      "operation": "analyze_function",
+      "parameters": {
+        "procedure": "0x140163e80"
+      },
+      "index_path": "docs/analysis/evidence/phase2-index.json",
+      "index_json_pointer": "/records/46",
+      "bundle_path": "docs/analysis/evidence/phase2-inventory-bundle.json",
+      "bundle_record_pointer": null,
+      "bundle_record_locator": "Select exact evidence_id; index and bundle ordinals must not be interchanged.",
+      "provider": "ghidra",
+      "authority": "shipped-artifact",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6"
+    },
+    {
+      "evidence_id": "ev_b5c90d2767ee7b130372791fff1943bfd5c31d22346fc9bd8629eab4851984b5",
+      "operation": "procedure_pseudo_code",
+      "parameters": {
+        "procedure": "0x140196040"
+      },
+      "index_path": "docs/analysis/evidence/phase2-index.json",
+      "index_json_pointer": "/records/58",
+      "bundle_path": "docs/analysis/evidence/phase2-inventory-bundle.json",
+      "bundle_record_pointer": null,
+      "bundle_record_locator": "Select exact evidence_id; index and bundle ordinals must not be interchanged.",
+      "provider": "ghidra",
+      "authority": "shipped-artifact",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6"
+    },
+    {
+      "evidence_id": "ev_d78530ba1c86efa71b59082a69058bbf2ed65812dc94582a0122b17ef8b4ae4d",
+      "operation": "analyze_function",
+      "parameters": {
+        "procedure": "0x140164210"
+      },
+      "index_path": "docs/analysis/evidence/phase2-index.json",
+      "index_json_pointer": "/records/66",
+      "bundle_path": "docs/analysis/evidence/phase2-inventory-bundle.json",
+      "bundle_record_pointer": null,
+      "bundle_record_locator": "Select exact evidence_id; index and bundle ordinals must not be interchanged.",
+      "provider": "ghidra",
+      "authority": "shipped-artifact",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6"
+    },
+    {
+      "evidence_id": "ev_5789646dfa42e9b7e7c55f126f896bf0c0bcb2c68fd829af391ad03a75fb9587",
+      "operation": "procedure_pseudo_code",
+      "parameters": {
+        "procedure": "0x140164150"
+      },
+      "index_path": "docs/analysis/evidence/phase2-index.json",
+      "index_json_pointer": "/records/33",
+      "bundle_path": "docs/analysis/evidence/phase2-inventory-bundle.json",
+      "bundle_record_pointer": null,
+      "bundle_record_locator": "Select exact evidence_id; index and bundle ordinals must not be interchanged.",
+      "provider": "ghidra",
+      "authority": "shipped-artifact",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6"
+    },
+    {
+      "evidence_id": "ev_512fac631346b5b0b2002630f4e7866dcc9d09e85d1b1e1028f1ce6e3da7d5e9",
+      "operation": "procedure_pseudo_code",
+      "parameters": {
+        "procedure": "0x1401646b0"
+      },
+      "index_path": "docs/analysis/evidence/phase2-index.json",
+      "index_json_pointer": "/records/30",
+      "bundle_path": "docs/analysis/evidence/phase2-inventory-bundle.json",
+      "bundle_record_pointer": null,
+      "bundle_record_locator": "Select exact evidence_id; index and bundle ordinals must not be interchanged.",
+      "provider": "ghidra",
+      "authority": "shipped-artifact",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6"
+    },
+    {
+      "evidence_id": "ev_1c1de14f1975484a69e66424814c9bb7d8893e2f7f3d06286946632232ce7931",
+      "operation": "procedure_pseudo_code",
+      "parameters": {
+        "procedure": "0x140185140"
+      },
+      "index_path": "docs/analysis/evidence/phase2-index.json",
+      "index_json_pointer": "/records/12",
+      "bundle_path": "docs/analysis/evidence/phase2-inventory-bundle.json",
+      "bundle_record_pointer": null,
+      "bundle_record_locator": "Select exact evidence_id; index and bundle ordinals must not be interchanged.",
+      "provider": "ghidra",
+      "authority": "shipped-artifact",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6"
+    },
+    {
+      "evidence_id": "ev_6d53c388db0f2309c950c6f8ae03df1cea77e16a554f01279e9f72a598427998",
+      "operation": "procedure_pseudo_code",
+      "parameters": {
+        "procedure": "0x140184520"
+      },
+      "index_path": "docs/analysis/evidence/phase2-index.json",
+      "index_json_pointer": "/records/39",
+      "bundle_path": "docs/analysis/evidence/phase2-inventory-bundle.json",
+      "bundle_record_pointer": null,
+      "bundle_record_locator": "Select exact evidence_id; index and bundle ordinals must not be interchanged.",
+      "provider": "ghidra",
+      "authority": "shipped-artifact",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6"
+    },
+    {
+      "evidence_id": "ev_0f8f55bb4e0a6a4642c3b1702ea0b408d40e95047ab851a1d1a8d0e36cd56e5c",
+      "operation": "procedure_pseudo_code",
+      "parameters": {
+        "procedure": "0x14017cc30"
+      },
+      "index_path": "docs/analysis/evidence/phase2-index.json",
+      "index_json_pointer": "/records/7",
+      "bundle_path": "docs/analysis/evidence/phase2-inventory-bundle.json",
+      "bundle_record_pointer": null,
+      "bundle_record_locator": "Select exact evidence_id; index and bundle ordinals must not be interchanged.",
+      "provider": "ghidra",
+      "authority": "shipped-artifact",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6"
+    },
+    {
+      "evidence_id": "ev_2251f131d8da55a7a67f60bc1157152f7522fb3bfb6cecae9d319d93a866fc9b",
+      "operation": "xrefs",
+      "parameters": {
+        "address": "0x1401637d0"
+      },
+      "index_path": "docs/analysis/evidence/phase2-index.json",
+      "index_json_pointer": "/records/14",
+      "bundle_path": "docs/analysis/evidence/phase2-inventory-bundle.json",
+      "bundle_record_pointer": null,
+      "bundle_record_locator": "Select exact evidence_id; index and bundle ordinals must not be interchanged.",
+      "provider": "ghidra",
+      "authority": "shipped-artifact",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6"
+    },
+    {
+      "evidence_id": "ev_5fc10eb96f7eda2603ca88973c7aba18349a2aebdef5611ae106a193e7d28a0a",
+      "operation": "procedure_callers",
+      "parameters": {
+        "procedure": "0x1401637d0"
+      },
+      "index_path": "docs/analysis/evidence/phase2-index.json",
+      "index_json_pointer": "/records/36",
+      "bundle_path": "docs/analysis/evidence/phase2-inventory-bundle.json",
+      "bundle_record_pointer": null,
+      "bundle_record_locator": "Select exact evidence_id; index and bundle ordinals must not be interchanged.",
+      "provider": "ghidra",
+      "authority": "shipped-artifact",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6"
+    },
+    {
+      "evidence_id": "ev_fc2e69129dd48e48cb15ae6d6d6d7a724a1e2e67dda942c84297943ce2bde8cf",
+      "operation": "procedure_pseudo_code",
+      "parameters": {
+        "procedure": "0x1400bce20"
+      },
+      "index_path": "docs/analysis/evidence/phase2-index.json",
+      "index_json_pointer": "/records/72",
+      "bundle_path": "docs/analysis/evidence/phase2-inventory-bundle.json",
+      "bundle_record_pointer": null,
+      "bundle_record_locator": "Select exact evidence_id; index and bundle ordinals must not be interchanged.",
+      "provider": "ghidra",
+      "authority": "shipped-artifact",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6"
+    },
+    {
+      "evidence_id": "ev_369e8cb0f86b0a7f29c9cff2149e791629aa707c191c9780fbd8754d0783694b",
+      "operation": "procedure_pseudo_code",
+      "parameters": {
+        "procedure": "0x1400bd5c0"
+      },
+      "index_path": "docs/analysis/evidence/phase2-index.json",
+      "index_json_pointer": "/records/20",
+      "bundle_path": "docs/analysis/evidence/phase2-inventory-bundle.json",
+      "bundle_record_pointer": null,
+      "bundle_record_locator": "Select exact evidence_id; index and bundle ordinals must not be interchanged.",
+      "provider": "ghidra",
+      "authority": "shipped-artifact",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6"
+    },
+    {
+      "evidence_id": "ev_ae2fe1c352f9575a7c6dd213a4fc95c525cb3eed73dcc29cdef028da1493c53a",
+      "operation": "read_bytes",
+      "parameters": {
+        "address": "0x1402e19e0",
+        "length": 168
+      },
+      "index_path": "docs/analysis/evidence/phase2-index.json",
+      "index_json_pointer": "/records/54",
+      "bundle_path": "docs/analysis/evidence/phase2-inventory-bundle.json",
+      "bundle_record_pointer": null,
+      "bundle_record_locator": "Select exact evidence_id; index and bundle ordinals must not be interchanged.",
+      "provider": "ghidra",
+      "authority": "shipped-artifact",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6"
+    },
+    {
+      "evidence_id": "ev_e62a9ea2c70c21a4c3c64bcd43f12bb17fdaab6ebf7c34d5469753bf8751d56a",
+      "operation": "procedure_pseudo_code",
+      "parameters": {
+        "procedure": "0x1400d0280"
+      },
+      "index_path": "docs/analysis/evidence/phase2-index.json",
+      "index_json_pointer": "/records/70",
+      "bundle_path": "docs/analysis/evidence/phase2-inventory-bundle.json",
+      "bundle_record_pointer": null,
+      "bundle_record_locator": "Select exact evidence_id; index and bundle ordinals must not be interchanged.",
+      "provider": "ghidra",
+      "authority": "shipped-artifact",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6"
+    },
+    {
+      "evidence_id": "ev_db4a1bcf15da634cb92bf7b176fe59912ef93abe6dd6399870b961fd51995856",
+      "operation": "procedure_pseudo_code",
+      "parameters": {
+        "procedure": "0x1400d04c0"
+      },
+      "index_path": "docs/analysis/evidence/phase2-index.json",
+      "index_json_pointer": "/records/68",
+      "bundle_path": "docs/analysis/evidence/phase2-inventory-bundle.json",
+      "bundle_record_pointer": null,
+      "bundle_record_locator": "Select exact evidence_id; index and bundle ordinals must not be interchanged.",
+      "provider": "ghidra",
+      "authority": "shipped-artifact",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6"
+    },
+    {
+      "evidence_id": "ev_186ca57c3ba8682e09cbc461075806eaaafffbcdc081f8997e7dead3522771df",
+      "operation": "analyze_function",
+      "parameters": {
+        "procedure": "0x1400d23f0"
+      },
+      "index_path": "docs/analysis/evidence/phase2-index.json",
+      "index_json_pointer": "/records/11",
+      "bundle_path": "docs/analysis/evidence/phase2-inventory-bundle.json",
+      "bundle_record_pointer": null,
+      "bundle_record_locator": "Select exact evidence_id; index and bundle ordinals must not be interchanged.",
+      "provider": "ghidra",
+      "authority": "shipped-artifact",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6"
+    },
+    {
+      "evidence_id": "ev_6884eda4b24742b2232eb7b958dbf5baa41a979bca4d8695c6141190d055a83c",
+      "operation": "procedure_pseudo_code",
+      "parameters": {
+        "procedure": "0x1400d2490"
+      },
+      "index_path": "docs/analysis/evidence/phase2-index.json",
+      "index_json_pointer": "/records/37",
+      "bundle_path": "docs/analysis/evidence/phase2-inventory-bundle.json",
+      "bundle_record_pointer": null,
+      "bundle_record_locator": "Select exact evidence_id; index and bundle ordinals must not be interchanged.",
+      "provider": "ghidra",
+      "authority": "shipped-artifact",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6"
+    },
+    {
+      "evidence_id": "ev_0551af17abc1dd9d36c43496a11b0b0a0ea3764d5ee54f306e823eb779465c65",
+      "operation": "procedure_pseudo_code",
+      "parameters": {
+        "procedure": "0x1400d2590"
+      },
+      "index_path": "docs/analysis/evidence/phase2-index.json",
+      "index_json_pointer": "/records/1",
+      "bundle_path": "docs/analysis/evidence/phase2-inventory-bundle.json",
+      "bundle_record_pointer": null,
+      "bundle_record_locator": "Select exact evidence_id; index and bundle ordinals must not be interchanged.",
+      "provider": "ghidra",
+      "authority": "shipped-artifact",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6"
+    },
+    {
+      "evidence_id": "ev_b4e0b8a1e8e4f42957490f2d0cd7a2580e22290d486c92dbbbe7384cc23eaada",
+      "operation": "procedure_pseudo_code",
+      "parameters": {
+        "procedure": "0x1400d26a0"
+      },
+      "index_path": "docs/analysis/evidence/phase2-index.json",
+      "index_json_pointer": "/records/57",
+      "bundle_path": "docs/analysis/evidence/phase2-inventory-bundle.json",
+      "bundle_record_pointer": null,
+      "bundle_record_locator": "Select exact evidence_id; index and bundle ordinals must not be interchanged.",
+      "provider": "ghidra",
+      "authority": "shipped-artifact",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6"
+    },
+    {
+      "evidence_id": "ev_1833fa2545dcaf1a16f796fe9e11fad0146e3cb7b969facef4aaa36ac1720255",
+      "operation": "analyze_function",
+      "parameters": {
+        "procedure": "0x140171ba0"
+      },
+      "index_path": "docs/analysis/evidence/phase2-index.json",
+      "index_json_pointer": "/records/10",
+      "bundle_path": "docs/analysis/evidence/phase2-inventory-bundle.json",
+      "bundle_record_pointer": null,
+      "bundle_record_locator": "Select exact evidence_id; index and bundle ordinals must not be interchanged.",
+      "provider": "ghidra",
+      "authority": "shipped-artifact",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6"
+    },
+    {
+      "evidence_id": "ev_c575f01e0e8efd6219b1f6ecd377ea9f403a63d2f9acfde0d41b3e66545e711f",
+      "operation": "procedure_pseudo_code",
+      "parameters": {
+        "procedure": "0x1401a9b10"
+      },
+      "index_path": "docs/analysis/evidence/phase2-index.json",
+      "index_json_pointer": "/records/63",
+      "bundle_path": "docs/analysis/evidence/phase2-inventory-bundle.json",
+      "bundle_record_pointer": null,
+      "bundle_record_locator": "Select exact evidence_id; index and bundle ordinals must not be interchanged.",
+      "provider": "ghidra",
+      "authority": "shipped-artifact",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6"
+    },
+    {
+      "evidence_id": "ev_00f7b5c1c1047b786d6223366e6c431e3cd45a79c9e712fddea05acb7593234c",
+      "operation": "procedure_pseudo_code",
+      "parameters": {
+        "procedure": "0x140187350"
+      },
+      "index_path": "docs/analysis/evidence/phase2-index.json",
+      "index_json_pointer": "/records/0",
+      "bundle_path": "docs/analysis/evidence/phase2-inventory-bundle.json",
+      "bundle_record_pointer": null,
+      "bundle_record_locator": "Select exact evidence_id; index and bundle ordinals must not be interchanged.",
+      "provider": "ghidra",
+      "authority": "shipped-artifact",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6"
+    },
+    {
+      "evidence_id": "ev_ad5bbad86afa46a4b572689342731c57a99e7187d7debd76b73c4777ab343088",
+      "operation": "procedure_pseudo_code",
+      "parameters": {
+        "procedure": "0x140173350"
+      },
+      "index_path": "docs/analysis/evidence/phase2-index.json",
+      "index_json_pointer": "/records/53",
+      "bundle_path": "docs/analysis/evidence/phase2-inventory-bundle.json",
+      "bundle_record_pointer": null,
+      "bundle_record_locator": "Select exact evidence_id; index and bundle ordinals must not be interchanged.",
+      "provider": "ghidra",
+      "authority": "shipped-artifact",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6"
+    },
+    {
+      "evidence_id": "ev_4c770e0ef421600e4990c877f3b1d379ef2c340a46be06fe60594956a558b748",
+      "operation": "procedure_pseudo_code",
+      "parameters": {
+        "procedure": "0x140172c10"
+      },
+      "index_path": "docs/analysis/evidence/phase2-index.json",
+      "index_json_pointer": "/records/27",
+      "bundle_path": "docs/analysis/evidence/phase2-inventory-bundle.json",
+      "bundle_record_pointer": null,
+      "bundle_record_locator": "Select exact evidence_id; index and bundle ordinals must not be interchanged.",
+      "provider": "ghidra",
+      "authority": "shipped-artifact",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6"
+    },
+    {
+      "evidence_id": "ev_a6af60e3bd61d7cca2e8d3255e23dbddbe9bcb8f3147c26c54e7dca7ae1a66e9",
+      "operation": "procedure_pseudo_code",
+      "parameters": {
+        "procedure": "0x1401a7630"
+      },
+      "index_path": "docs/analysis/evidence/phase2-index.json",
+      "index_json_pointer": "/records/52",
+      "bundle_path": "docs/analysis/evidence/phase2-inventory-bundle.json",
+      "bundle_record_pointer": null,
+      "bundle_record_locator": "Select exact evidence_id; index and bundle ordinals must not be interchanged.",
+      "provider": "ghidra",
+      "authority": "shipped-artifact",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6"
+    },
+    {
+      "evidence_id": "ev_9d6c8203a6f21e8874ef16abf2322c683057a24632a7f2bd42a51d0f0fc15fa9",
+      "operation": "read_bytes",
+      "parameters": {
+        "address": "0x1402ec068",
+        "length": 56
+      },
+      "index_path": "docs/analysis/evidence/phase2-index.json",
+      "index_json_pointer": "/records/48",
+      "bundle_path": "docs/analysis/evidence/phase2-inventory-bundle.json",
+      "bundle_record_pointer": null,
+      "bundle_record_locator": "Select exact evidence_id; index and bundle ordinals must not be interchanged.",
+      "provider": "ghidra",
+      "authority": "shipped-artifact",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6"
+    },
+    {
+      "evidence_id": "ev_31296ff49e6986f663c9eec54c8e921bfe7b11f3b67dd3ac52f33412313e5a2f",
+      "operation": "procedure_pseudo_code",
+      "parameters": {
+        "procedure": "0x140178e80"
+      },
+      "index_path": "docs/analysis/evidence/phase2-index.json",
+      "index_json_pointer": "/records/19",
+      "bundle_path": "docs/analysis/evidence/phase2-inventory-bundle.json",
+      "bundle_record_pointer": null,
+      "bundle_record_locator": "Select exact evidence_id; index and bundle ordinals must not be interchanged.",
+      "provider": "ghidra",
+      "authority": "shipped-artifact",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6"
+    },
+    {
+      "evidence_id": "ev_c65a9ef46e64126efcd4fd66683bad189aab555ee43b763ffbecaf61838499f4",
+      "operation": "procedure_pseudo_code",
+      "parameters": {
+        "procedure": "0x140179270"
+      },
+      "index_path": "docs/analysis/evidence/phase2-index.json",
+      "index_json_pointer": "/records/64",
+      "bundle_path": "docs/analysis/evidence/phase2-inventory-bundle.json",
+      "bundle_record_pointer": null,
+      "bundle_record_locator": "Select exact evidence_id; index and bundle ordinals must not be interchanged.",
+      "provider": "ghidra",
+      "authority": "shipped-artifact",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6"
+    },
+    {
+      "evidence_id": "ev_37033ee2017621418f12890bb629601cfcc8fa391268e48485698cbb8c59fd5b",
+      "operation": "procedure_pseudo_code",
+      "parameters": {
+        "procedure": "0x140179920"
+      },
+      "index_path": "docs/analysis/evidence/phase2-index.json",
+      "index_json_pointer": "/records/21",
+      "bundle_path": "docs/analysis/evidence/phase2-inventory-bundle.json",
+      "bundle_record_pointer": null,
+      "bundle_record_locator": "Select exact evidence_id; index and bundle ordinals must not be interchanged.",
+      "provider": "ghidra",
+      "authority": "shipped-artifact",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6"
+    },
+    {
+      "evidence_id": "ev_bcf098d43636ed7566f5a1628c11403e9db45a26d563a614a0d81fea21369d00",
+      "operation": "list_names",
+      "parameters": {},
+      "index_path": "docs/analysis/evidence/phase2-index.json",
+      "index_json_pointer": "/records/62",
+      "bundle_path": "docs/analysis/evidence/phase2-inventory-bundle.json",
+      "bundle_record_pointer": null,
+      "bundle_record_locator": "Select exact evidence_id; index and bundle ordinals must not be interchanged.",
+      "provider": "ghidra",
+      "authority": "shipped-artifact",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6"
+    },
+    {
+      "evidence_id": "ev_310285058c0ce8daa50f2c6faca0f50f2825c986b78c11dc5b5f699671a293c5",
+      "operation": "analyze_function",
+      "parameters": {
+        "procedure": "0x1401a5190"
+      },
+      "index_path": "docs/analysis/evidence/phase5-index.json",
+      "index_json_pointer": "/records/0",
+      "bundle_path": "docs/analysis/evidence/phase5-static-bundle.json",
+      "bundle_record_pointer": "/records/0",
+      "bundle_record_locator": "Use bundle_record_pointer in the named bundle.",
+      "provider": "ghidra",
+      "authority": "shipped-artifact",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6"
+    },
+    {
+      "evidence_id": "ev_3590de16dd81838b0547537203010b4af00ee09da2ded56601c5078d4a15bf69",
+      "operation": "analyze_function",
+      "parameters": {
+        "procedure": "0x14017d7a0"
+      },
+      "index_path": "docs/analysis/evidence/phase5-index.json",
+      "index_json_pointer": "/records/1",
+      "bundle_path": "docs/analysis/evidence/phase5-static-bundle.json",
+      "bundle_record_pointer": "/records/1",
+      "bundle_record_locator": "Use bundle_record_pointer in the named bundle.",
+      "provider": "ghidra",
+      "authority": "shipped-artifact",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6"
+    },
+    {
+      "evidence_id": "ev_abecdf049b50525419cd881abfc4e7bf11baf6e90d6a2a11ecf5c47b246bd777",
+      "operation": "xrefs",
+      "parameters": {
+        "address": "0x1402de930"
+      },
+      "index_path": "docs/analysis/evidence/phase5-index.json",
+      "index_json_pointer": "/records/2",
+      "bundle_path": "docs/analysis/evidence/phase5-static-bundle.json",
+      "bundle_record_pointer": "/records/2",
+      "bundle_record_locator": "Use bundle_record_pointer in the named bundle.",
+      "provider": "ghidra",
+      "authority": "shipped-artifact",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6"
+    },
+    {
+      "evidence_id": "ev_d02eb737073be324983326bce97b6b69d10cc582c9adecdf88667ef7e2ff24d2",
+      "operation": "analyze_function",
+      "parameters": {
+        "procedure": "0x140206a50"
+      },
+      "index_path": "docs/analysis/evidence/phase5-index.json",
+      "index_json_pointer": "/records/4",
+      "bundle_path": "docs/analysis/evidence/phase5-static-bundle.json",
+      "bundle_record_pointer": "/records/4",
+      "bundle_record_locator": "Use bundle_record_pointer in the named bundle.",
+      "provider": "ghidra",
+      "authority": "shipped-artifact",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6"
+    },
+    {
+      "evidence_id": "ev_d6ad1767529c187facc939124d6ffb493741502ece24df1138b74b7b9447fcf8",
+      "operation": "analyze_function",
+      "parameters": {
+        "procedure": "0x1400838c0"
+      },
+      "index_path": "docs/analysis/evidence/phase5-index.json",
+      "index_json_pointer": "/records/5",
+      "bundle_path": "docs/analysis/evidence/phase5-static-bundle.json",
+      "bundle_record_pointer": "/records/5",
+      "bundle_record_locator": "Use bundle_record_pointer in the named bundle.",
+      "provider": "ghidra",
+      "authority": "shipped-artifact",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6"
+    },
+    {
+      "evidence_id": "ev_f1f139d2219b76f8e4b0217c2bf95367a67567c36e4bb53c78c8868cdb17d913",
+      "operation": "procedure_callers",
+      "parameters": {
+        "procedure": "0x140206a50"
+      },
+      "index_path": "docs/analysis/evidence/phase5-index.json",
+      "index_json_pointer": "/records/6",
+      "bundle_path": "docs/analysis/evidence/phase5-static-bundle.json",
+      "bundle_record_pointer": "/records/6",
+      "bundle_record_locator": "Use bundle_record_pointer in the named bundle.",
+      "provider": "ghidra",
+      "authority": "shipped-artifact",
+      "target_sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6"
+    }
+  ],
+  "external_observation_catalog": [
+    {
+      "observation_id": "OBS-001",
+      "path": "docs/observations/original-runtime.json",
+      "json_pointer": "/records/0",
+      "action": "Address set to fixture read-only then Enter",
+      "time": "2026-10-21T14:21:10.090Z",
+      "evidence_class": "external_ui_observation_not_REA_native_call_trace"
+    },
+    {
+      "observation_id": "OBS-002-settled",
+      "path": "docs/observations/original-runtime.json",
+      "json_pointer": "/records/2",
+      "action": "Refresh after folder navigation completed",
+      "time": "2026-10-21T14:21:19.770Z",
+      "evidence_class": "external_ui_observation_not_REA_native_call_trace"
+    },
+    {
+      "observation_id": "OBS-003-settled",
+      "path": "docs/observations/original-runtime.json",
+      "json_pointer": "/records/4",
+      "action": "Settled Back navigation state",
+      "time": "2026-10-21T14:21:58.002Z",
+      "evidence_class": "external_ui_observation_not_REA_native_call_trace"
+    },
+    {
+      "observation_id": "OBS-004",
+      "path": "docs/observations/original-runtime.json",
+      "json_pointer": "/records/5",
+      "action": "Ctrl+T create tab from read-only",
+      "time": "2026-10-21T14:22:16.050Z",
+      "evidence_class": "external_ui_observation_not_REA_native_call_trace"
+    },
+    {
+      "observation_id": "OBS-005",
+      "path": "docs/observations/original-runtime.json",
+      "json_pointer": "/records/6",
+      "action": "Navigate second tab to Unicode folder; settled",
+      "time": "2026-10-21T14:23:52.084Z",
+      "evidence_class": "external_ui_observation_not_REA_native_call_trace"
+    },
+    {
+      "observation_id": "OBS-006",
+      "path": "docs/observations/original-runtime.json",
+      "json_pointer": "/records/7",
+      "action": "Switch first tab back; retains read-only while second remains unicode",
+      "time": "2026-10-21T14:24:23.358Z",
+      "evidence_class": "external_ui_observation_not_REA_native_call_trace"
+    },
+    {
+      "observation_id": "OBS-007",
+      "path": "docs/observations/original-runtime.json",
+      "json_pointer": "/records/8",
+      "action": "Double-click bulk folder; settled",
+      "time": "2026-10-21T14:24:43.989Z",
+      "evidence_class": "external_ui_observation_not_REA_native_call_trace"
+    },
+    {
+      "observation_id": "OBS-008",
+      "path": "docs/observations/original-runtime.json",
+      "json_pointer": "/records/9",
+      "action": "View > Details (menu command 60005)",
+      "time": "2026-10-21T14:26:02.193Z",
+      "evidence_class": "external_ui_observation_not_REA_native_call_trace"
+    },
+    {
+      "observation_id": "OBS-009",
+      "path": "docs/observations/original-runtime.json",
+      "json_pointer": "/records/10",
+      "action": "Click Size column",
+      "time": "2026-10-21T14:26:10.843Z",
+      "evidence_class": "external_ui_observation_not_REA_native_call_trace"
+    },
+    {
+      "observation_id": "OBS-010-settled",
+      "path": "docs/observations/original-runtime.json",
+      "json_pointer": "/records/12",
+      "action": "Settled Date Modified sort",
+      "time": "2026-10-21T14:26:30.565Z",
+      "evidence_class": "external_ui_observation_not_REA_native_call_trace"
+    },
+    {
+      "observation_id": "OBS-011",
+      "path": "docs/observations/original-runtime.json",
+      "json_pointer": "/records/13",
+      "action": "Settled Name sort; Details columns, folders pane collapsed for fixture-only screenshot",
+      "time": "2026-10-21T14:27:14.542Z",
+      "evidence_class": "external_ui_observation_not_REA_native_call_trace"
+    },
+    {
+      "observation_id": "OBS-012",
+      "path": "docs/observations/original-runtime.json",
+      "json_pointer": "/records/14",
+      "action": "Attempt nonexistent fixture path; delayed error observation",
+      "time": "2026-10-21T14:27:43.856Z",
+      "evidence_class": "external_ui_observation_not_REA_native_call_trace"
+    },
+    {
+      "observation_id": "OBS-013",
+      "path": "docs/observations/original-runtime.json",
+      "json_pointer": "/records/15",
+      "action": "Search filename 한글 within Unicode fixture; Search Subfolders checkbox initially checked, no child folders",
+      "time": "2026-10-21T14:30:13.587Z",
+      "evidence_class": "external_ui_observation_not_REA_native_call_trace"
+    },
+    {
+      "observation_id": "OBS-015",
+      "path": "docs/observations/original-runtime.json",
+      "json_pointer": "/records/17",
+      "action": "Resumed UI after user question; screenshot-coordinate double-click café.txt (Unicode fixture) then delayed window inventory",
+      "time": "2026-10-21T14:51:48.530Z",
+      "evidence_class": "external_ui_observation_not_REA_native_call_trace"
+    },
+    {
+      "observation_id": "OBS-016",
+      "path": "docs/observations/original-runtime.json",
+      "json_pointer": "/records/18",
+      "action": "Alt+Up from unicode to read-only, followed Alt+Left; settled Back state",
+      "time": "2026-10-21T14:52:15.812Z",
+      "evidence_class": "external_ui_observation_not_REA_native_call_trace"
+    },
+    {
+      "observation_id": "OBS-017",
+      "path": "docs/observations/original-runtime.json",
+      "json_pointer": "/records/19",
+      "action": "Alt+Right from unicode returns read-only; settled",
+      "time": "2026-10-21T14:52:29.998Z",
+      "evidence_class": "external_ui_observation_not_REA_native_call_trace"
+    },
+    {
+      "observation_id": "OBS-018",
+      "path": "docs/observations/original-runtime.json",
+      "json_pointer": "/records/20",
+      "action": "Ctrl+Tab switches read-only second tab to retained bulk first tab; settled",
+      "time": "2026-10-21T15:07:28.309Z",
+      "evidence_class": "external_ui_observation_not_REA_native_call_trace"
+    },
+    {
+      "observation_id": "OBS-019",
+      "path": "docs/observations/original-runtime.json",
+      "json_pointer": "/records/21",
+      "action": "Ctrl+W closes bulk current tab; remaining read-only tab preserved; settled",
+      "time": "2026-10-21T15:07:40.114Z",
+      "evidence_class": "external_ui_observation_not_REA_native_call_trace"
+    },
+    {
+      "observation_id": "OBS-020",
+      "path": "docs/observations/original-runtime.json",
+      "json_pointer": "/records/22",
+      "action": "Toolbar New Folder in owned runtime-original-p1 directory",
+      "time": "2026-10-21T23:36:40.293Z",
+      "evidence_class": "external_ui_observation_not_REA_native_call_trace"
+    },
+    {
+      "observation_id": "OBS-021",
+      "path": "docs/observations/original-runtime.json",
+      "json_pointer": "/records/23",
+      "action": "Native New Folder and F2 Unicode rename in disposable directory",
+      "time": "2026-10-21T23:38:04.418Z",
+      "evidence_class": "external_ui_observation_not_REA_native_call_trace"
+    },
+    {
+      "observation_id": "OBS-022",
+      "path": "docs/observations/original-runtime.json",
+      "json_pointer": "/records/24",
+      "action": "Ctrl+C file, Home/Enter into destination, Ctrl+V without address text input",
+      "time": "2026-10-21T23:42:00.031Z",
+      "evidence_class": "external_ui_observation_not_REA_native_call_trace"
+    }
+  ],
+  "claims": [
+    {
+      "question_id": "RE02-PATH",
+      "requirement_id": "RE-02",
+      "question": "How is a requested folder represented and passed into browsing?",
+      "initial_assertion": "The recovered parse helper turns a path string into a PIDL with SHParseDisplayName; the recovered browse body takes a PIDL. The UI-to-virtual-dispatch edge is unresolved.",
+      "epistemic_status": "derived",
+      "initial_confidence": "high",
+      "initial_basis": "Explicit calls/arguments in Ghidra pseudocode support PIDL transport, without recovering original C++ signatures.",
+      "evidence_ids": [
+        "ev_50ab84a04ebad94e6d070a5cb6e766d51c217f8fedd274611e0977c2966e691f",
+        "ev_dda9e3cd0223a56b86fb96b1bd0cda24603bfc4ebb30e7c377fb9d37211eb59a",
+        "ev_2251f131d8da55a7a67f60bc1157152f7522fb3bfb6cecae9d319d93a866fc9b",
+        "ev_5fc10eb96f7eda2603ca88973c7aba18349a2aebdef5611ae106a193e7d28a0a"
+      ],
+      "addresses": [
+        "0x140163000",
+        "0x1401637d0",
+        "0x1402ec0a8"
+      ],
+      "external_observation_ids": [
+        "OBS-001"
+      ],
+      "supplemental_basis": [],
+      "unresolved": [
+        "Address-bar command to parse helper mapping.",
+        "Virtual dispatch target connecting parse and browse.",
+        "Special Shell namespace policy."
+      ],
+      "question_coverage": "partial",
+      "source_verification_question": "Which same-version source functions match these addresses, and how do address input and virtual browse dispatch pass PIDLs?",
+      "related_question_ids": [],
+      "source_comparison_status": "not_started_source_unread"
+    },
+    {
+      "question_id": "RE02-ENUM",
+      "requirement_id": "RE-02",
+      "question": "Which owner enumerates folder children?",
+      "initial_assertion": "Browse directly calls the enumeration helper; the helper binds a Shell folder and invokes COM slots consistent with EnumObjects, IEnumIDList::Next, GetAttributesOf and GetDisplayNameOf.",
+      "epistemic_status": "derived",
+      "initial_confidence": "high",
+      "initial_basis": "Direct helper calls are observed; COM method names are derived from x64 SDK slot order.",
+      "evidence_ids": [
+        "ev_dda9e3cd0223a56b86fb96b1bd0cda24603bfc4ebb30e7c377fb9d37211eb59a",
+        "ev_970afdb1e01530bd6f56243d9b23602e2e49bcb97da429a299e5735aea76d983",
+        "ev_b5c90d2767ee7b130372791fff1943bfd5c31d22346fc9bd8629eab4851984b5"
+      ],
+      "addresses": [
+        "0x1401637d0",
+        "0x140163e80",
+        "0x140196040"
+      ],
+      "external_observation_ids": [],
+      "supplemental_basis": [],
+      "unresolved": [
+        "ENUM relationship coverage is partial with six unresolved callees.",
+        "The ENUM pseudocode omits a binder out argument; apparent null use is not a demonstrated runtime defect.",
+        "All flags/settings and virtual items are not mapped."
+      ],
+      "question_coverage": "partial",
+      "source_verification_question": "Does same-version source use Shell folder binding/enumeration here, with which flags, out parameters and child iteration conditions?",
+      "related_question_ids": [],
+      "source_comparison_status": "not_started_source_unread"
+    },
+    {
+      "question_id": "RE02-METADATA",
+      "requirement_id": "RE-02",
+      "question": "Where do per-item metadata and internal IDs come from?",
+      "initial_assertion": "The recovered metadata helper combines/clones PIDLs, resolves a filesystem path, queries FindFirstFileW data and returns an increasing item ID; root/query-failure branches populate fallback values.",
+      "epistemic_status": "derived",
+      "initial_confidence": "high",
+      "initial_basis": "Ghidra shows ILCombine/ILClone, FindFirstFileW/FindClose, attribute/time/size copies and fallback branches.",
+      "evidence_ids": [
+        "ev_970afdb1e01530bd6f56243d9b23602e2e49bcb97da429a299e5735aea76d983",
+        "ev_d78530ba1c86efa71b59082a69058bbf2ed65812dc94582a0122b17ef8b4ae4d"
+      ],
+      "addresses": [
+        "0x140164210",
+        "0x140163e80"
+      ],
+      "external_observation_ids": [
+        "OBS-005",
+        "OBS-008",
+        "OBS-011"
+      ],
+      "supplemental_basis": [],
+      "unresolved": [
+        "Exact original data types/class field names.",
+        "Meaning and display of unavailable metadata for every Shell item.",
+        "Failure fallback is not access-denied UX evidence."
+      ],
+      "question_coverage": "partial",
+      "source_verification_question": "Which source item structure/helper owns PIDLs, FindData, IDs and root/error fallback, and which fields reach the visible columns?",
+      "related_question_ids": [],
+      "source_comparison_status": "not_started_source_unread"
+    },
+    {
+      "question_id": "RE02-LIST",
+      "requirement_id": "RE-02",
+      "question": "How do enumerated items become visible rows?",
+      "initial_assertion": "The browse path clears the current list, enumerates, then materializes queued IDs into Unicode ListView insert messages; queue producer/consumer linkage is derived from shared fields.",
+      "epistemic_status": "derived",
+      "initial_confidence": "medium",
+      "initial_basis": "QUEUE and MATERIALIZE share offsets +0xa80/+0xa88; MATERIALIZE sends 0x104d, interpreted through the SDK as Unicode item insertion.",
+      "evidence_ids": [
+        "ev_dda9e3cd0223a56b86fb96b1bd0cda24603bfc4ebb30e7c377fb9d37211eb59a",
+        "ev_5789646dfa42e9b7e7c55f126f896bf0c0bcb2c68fd829af391ad03a75fb9587",
+        "ev_512fac631346b5b0b2002630f4e7866dcc9d09e85d1b1e1028f1ce6e3da7d5e9",
+        "ev_0f8f55bb4e0a6a4642c3b1702ea0b408d40e95047ab851a1d1a8d0e36cd56e5c"
+      ],
+      "addresses": [
+        "0x1401637d0",
+        "0x140164150",
+        "0x1401646b0",
+        "0x14017cc30"
+      ],
+      "external_observation_ids": [
+        "OBS-002-settled",
+        "OBS-007"
+      ],
+      "supplemental_basis": [],
+      "unresolved": [
+        "Original queue/container types and ownership.",
+        "Threading, final sort application and complete large-list responsiveness.",
+        "GROUP helper is not established as the user selection-event handler."
+      ],
+      "question_coverage": "partial",
+      "source_verification_question": "Which source queue/materialization functions match the addresses, and how are row insertion, grouping, selection and threading sequenced?",
+      "related_question_ids": [],
+      "source_comparison_status": "not_started_source_unread"
+    },
+    {
+      "question_id": "RE02-SORT",
+      "requirement_id": "RE-02",
+      "question": "Which comparison policy and direction are recovered?",
+      "initial_assertion": "A comparator branches between natural-name, FILETIME and 64-bit size comparisons, uses name fallback on ties and conditionally reverses the result. Natural-name comparison calls StrCmpLogicalW.",
+      "epistemic_status": "derived",
+      "initial_confidence": "high",
+      "initial_basis": "Recovered comparator field branches and explicit API calls support the narrow comparison mechanisms.",
+      "evidence_ids": [
+        "ev_1c1de14f1975484a69e66424814c9bb7d8893e2f7f3d06286946632232ce7931",
+        "ev_6d53c388db0f2309c950c6f8ae03df1cea77e16a554f01279e9f72a598427998"
+      ],
+      "addresses": [
+        "0x140185140",
+        "0x140184520"
+      ],
+      "external_observation_ids": [
+        "OBS-009",
+        "OBS-010-settled",
+        "OBS-011"
+      ],
+      "supplemental_basis": [],
+      "unresolved": [
+        "Actual column-click to sort-application handler.",
+        "Exact ascending flag, folder priority and final tie order.",
+        "Six-row runtime ordering does not establish all locale/type cases."
+      ],
+      "question_coverage": "partial",
+      "source_verification_question": "Which source sort modes/fields correspond to these branches, how is direction applied, and where are the comparator and folder/tie policies selected?",
+      "related_question_ids": [],
+      "source_comparison_status": "not_started_source_unread"
+    },
+    {
+      "question_id": "RE02-ERROR",
+      "requirement_id": "RE-02",
+      "question": "How does browse failure propagate to user-visible state?",
+      "initial_assertion": "The complete failure-propagation and error-UX path is unknown; HRESULT branches and metadata fallback alone do not establish it.",
+      "epistemic_status": "unknown",
+      "initial_confidence": "unknown",
+      "initial_basis": "BIND/ENUM have failure branches; BROWSE pseudocode does not clearly show the final error response.",
+      "evidence_ids": [
+        "ev_dda9e3cd0223a56b86fb96b1bd0cda24603bfc4ebb30e7c377fb9d37211eb59a",
+        "ev_970afdb1e01530bd6f56243d9b23602e2e49bcb97da429a299e5735aea76d983",
+        "ev_b5c90d2767ee7b130372791fff1943bfd5c31d22346fc9bd8629eab4851984b5",
+        "ev_d78530ba1c86efa71b59082a69058bbf2ed65812dc94582a0122b17ef8b4ae4d"
+      ],
+      "addresses": [
+        "0x1401637d0",
+        "0x140163e80",
+        "0x140196040",
+        "0x140164210"
+      ],
+      "external_observation_ids": [
+        "OBS-012"
+      ],
+      "supplemental_basis": [],
+      "unresolved": [
+        "Permission-denied and disappearing-directory behavior.",
+        "Which layer preserves/restores prior location/list/history.",
+        "Message, beep and error recovery policy."
+      ],
+      "question_coverage": "unresolved",
+      "source_verification_question": "How do original browse errors propagate through navigation/UI, and which code preserves state or reports denied/missing paths?",
+      "related_question_ids": [],
+      "source_comparison_status": "not_started_source_unread"
+    },
+    {
+      "question_id": "RE03-DOUBLECLICK",
+      "requirement_id": "RE-03",
+      "question": "What links folder double-click to internal browsing?",
+      "initial_assertion": "The native notification-to-dispatch-to-browse connection remains unknown. A Shell-attribute activation dispatcher and a separate browse pipeline are candidate components.",
+      "epistemic_status": "unknown",
+      "initial_confidence": "unknown",
+      "initial_basis": "Dispatcher pseudocode contains internal/virtual/Shell activation branches; external folder navigation was separately observed.",
+      "evidence_ids": [
+        "ev_fc2e69129dd48e48cb15ae6d6d6d7a724a1e2e67dda942c84297943ce2bde8cf",
+        "ev_dda9e3cd0223a56b86fb96b1bd0cda24603bfc4ebb30e7c377fb9d37211eb59a"
+      ],
+      "addresses": [
+        "0x1400bce20",
+        "0x1401637d0"
+      ],
+      "external_observation_ids": [
+        "OBS-002-settled",
+        "OBS-007"
+      ],
+      "supplemental_basis": [],
+      "unresolved": [
+        "Double-click notification handler and selected-item extraction.",
+        "Dynamic target of slot +0x70.",
+        "Exact branch for ordinary filesystem folders."
+      ],
+      "question_coverage": "unresolved",
+      "source_verification_question": "Which notification/activation handler reaches these functions, and when does it choose internal navigation versus Shell execution?",
+      "related_question_ids": [
+        "RE02-PATH",
+        "RE04-OPEN"
+      ],
+      "source_comparison_status": "not_started_source_unread"
+    },
+    {
+      "question_id": "RE03-UP",
+      "requirement_id": "RE-03",
+      "question": "What handles parent-folder navigation?",
+      "initial_assertion": "The internal Up command/parent-navigation path is unknown. ILRemoveLastID in the execution helper constructs an execution working directory and is not evidence of the Up handler.",
+      "epistemic_status": "unknown",
+      "initial_confidence": "unknown",
+      "initial_basis": "The inspected execution helper has parent-PIDL operations; external Alt+Up/Back was recorded without address tracing.",
+      "evidence_ids": [
+        "ev_369e8cb0f86b0a7f29c9cff2149e791629aa707c191c9780fbd8754d0783694b",
+        "ev_bcf098d43636ed7566f5a1628c11403e9db45a26d563a614a0d81fea21369d00"
+      ],
+      "addresses": [
+        "0x1400bd5c0"
+      ],
+      "external_observation_ids": [
+        "OBS-016"
+      ],
+      "supplemental_basis": [],
+      "unresolved": [
+        "Up command mapping, root boundary and virtual-parent handling."
+      ],
+      "question_coverage": "unresolved",
+      "source_verification_question": "Which same-version source command computes the parent and starts browsing, and how does it differ from execution-working-directory construction?",
+      "related_question_ids": [],
+      "source_comparison_status": "not_started_source_unread"
+    },
+    {
+      "question_id": "RE03-HISTORY",
+      "requirement_id": "RE-03",
+      "question": "How do Back/Forward update and branch navigation history?",
+      "initial_assertion": "The internal history policy and event mapping remain unknown; NavigationController/ShellNavigationController RTTI and index-based virtual calls are leads only.",
+      "epistemic_status": "unknown",
+      "initial_confidence": "unknown",
+      "initial_basis": "Named types and array/index branches exist, while external Back/Forward outcomes do not identify native callers.",
+      "evidence_ids": [
+        "ev_bcf098d43636ed7566f5a1628c11403e9db45a26d563a614a0d81fea21369d00",
+        "ev_50ab84a04ebad94e6d070a5cb6e766d51c217f8fedd274611e0977c2966e691f"
+      ],
+      "addresses": [
+        "0x140163000"
+      ],
+      "external_observation_ids": [
+        "OBS-003-settled",
+        "OBS-016",
+        "OBS-017"
+      ],
+      "supplemental_basis": [],
+      "unresolved": [
+        "History entry ownership, commit timing and forward-branch truncation.",
+        "Per-tab history independence and failure handling."
+      ],
+      "question_coverage": "unresolved",
+      "source_verification_question": "Which source history/controller types own entries/cursor, and which commands implement Back/Forward and successful-browse commits?",
+      "related_question_ids": [],
+      "source_comparison_status": "not_started_source_unread"
+    },
+    {
+      "question_id": "RE03-NEWTAB",
+      "requirement_id": "RE-03",
+      "question": "How are tab creation, switching and closing connected to state owners?",
+      "initial_assertion": "TabContainer is a named candidate owner, but native creation/switch/close event handlers and per-tab history ownership remain unknown.",
+      "epistemic_status": "unknown",
+      "initial_confidence": "unknown",
+      "initial_basis": "TabContainer vtable/RTTI names are present; external tab operations were observed independently.",
+      "evidence_ids": [
+        "ev_bcf098d43636ed7566f5a1628c11403e9db45a26d563a614a0d81fea21369d00"
+      ],
+      "addresses": [
+        "0x1402e2318"
+      ],
+      "external_observation_ids": [
+        "OBS-004",
+        "OBS-005",
+        "OBS-006",
+        "OBS-018",
+        "OBS-019"
+      ],
+      "supplemental_basis": [],
+      "unresolved": [
+        "Creation/duplication command handler and initial-location policy.",
+        "Actual original state owner and close lifecycle."
+      ],
+      "question_coverage": "unresolved",
+      "source_verification_question": "Which TabContainer/source commands correspond to creation/switch/close and how are each tab location/history and last-tab policy owned?",
+      "related_question_ids": [],
+      "source_comparison_status": "not_started_source_unread"
+    },
+    {
+      "question_id": "RE03-SELECTION",
+      "requirement_id": "RE-03",
+      "question": "What owns user file-selection notifications?",
+      "initial_assertion": "The complete user selection notification/state path is unknown. ListView selection/group assistance in materialization does not establish that handler.",
+      "epistemic_status": "unknown",
+      "initial_confidence": "unknown",
+      "initial_basis": "Inspected helpers contain ListView state operations but no proven user-event entry.",
+      "evidence_ids": [
+        "ev_512fac631346b5b0b2002630f4e7866dcc9d09e85d1b1e1028f1ce6e3da7d5e9",
+        "ev_0f8f55bb4e0a6a4642c3b1702ea0b408d40e95047ab851a1d1a8d0e36cd56e5c"
+      ],
+      "addresses": [
+        "0x1401646b0",
+        "0x14017cc30"
+      ],
+      "external_observation_ids": [],
+      "supplemental_basis": [],
+      "unresolved": [
+        "Single/Ctrl/Shift/keyboard selection handlers and model ownership.",
+        "Status/action availability updates from selection."
+      ],
+      "question_coverage": "unresolved",
+      "source_verification_question": "Which original source handlers consume selection notifications and update selected-item state, and what is the narrower purpose of these helpers?",
+      "related_question_ids": [],
+      "source_comparison_status": "not_started_source_unread"
+    },
+    {
+      "question_id": "RE03-RENAME",
+      "requirement_id": "RE-03",
+      "question": "What links F2/label editing to actual filename rename?",
+      "initial_assertion": "The generic F2-to-commit internal chain remains unknown. The separately recovered new-menu callback starts label editing but does not establish commit.",
+      "epistemic_status": "unknown",
+      "initial_confidence": "unknown",
+      "initial_basis": "P1 evidence narrows new-menu rename start; an external F2 rename changed a disposable filename while preserving content.",
+      "evidence_ids": [
+        "ev_d6ad1767529c187facc939124d6ffb493741502ece24df1138b74b7b9447fcf8",
+        "ev_3590de16dd81838b0547537203010b4af00ee09da2ded56601c5078d4a15bf69"
+      ],
+      "addresses": [
+        "0x1400838a0",
+        "0x14017d7a0"
+      ],
+      "external_observation_ids": [
+        "OBS-021"
+      ],
+      "supplemental_basis": [],
+      "unresolved": [
+        "Generic F2 handler, end-label-edit acceptance/cancellation and source filename validation.",
+        "SetNameOf/file-operation implementation and conflict/error behavior."
+      ],
+      "question_coverage": "unresolved",
+      "source_verification_question": "Which source handlers start generic F2 editing and commit/cancel the edit, and do they share the new-menu rename-start helper?",
+      "related_question_ids": [
+        "P1-RENAME-START",
+        "P1-RENAME-COMMIT"
+      ],
+      "source_comparison_status": "not_started_source_unread"
+    },
+    {
+      "question_id": "RE03-SEARCH",
+      "requirement_id": "RE-03",
+      "question": "How does the Search command launch enumeration and return results?",
+      "initial_assertion": "A SearchDialog command branch for control 0x4cb starts a thread at 0x1400d23f0; recovered worker helpers enumerate names and conditionally recurse, then send result/completion messages.",
+      "epistemic_status": "derived",
+      "initial_confidence": "high",
+      "initial_basis": "Search vtable bytes, command/start bodies, CreateThread target, FindFirst/FindNext and messages are retained.",
+      "evidence_ids": [
+        "ev_ae2fe1c352f9575a7c6dd213a4fc95c525cb3eed73dcc29cdef028da1493c53a",
+        "ev_e62a9ea2c70c21a4c3c64bcd43f12bb17fdaab6ebf7c34d5469753bf8751d56a",
+        "ev_db4a1bcf15da634cb92bf7b176fe59912ef93abe6dd6399870b961fd51995856",
+        "ev_186ca57c3ba8682e09cbc461075806eaaafffbcdc081f8997e7dead3522771df",
+        "ev_6884eda4b24742b2232eb7b958dbf5baa41a979bca4d8695c6141190d055a83c",
+        "ev_0551af17abc1dd9d36c43496a11b0b0a0ea3764d5ee54f306e823eb779465c65",
+        "ev_b4e0b8a1e8e4f42957490f2d0cd7a2580e22290d486c92dbbbe7384cc23eaada"
+      ],
+      "addresses": [
+        "0x1402e19e0",
+        "0x1400d0280",
+        "0x1400d04c0",
+        "0x1400d23f0",
+        "0x1400d2490",
+        "0x1400d2590",
+        "0x1400d26a0"
+      ],
+      "external_observation_ids": [
+        "OBS-013"
+      ],
+      "supplemental_basis": [],
+      "unresolved": [
+        "Actual Search-button/Enter command-to-native address mapping.",
+        "Full result-message receive/display, cancellation, errors and link-cycle policy.",
+        "Recursion requires the +0x438 option and uncancelled state; it is not unconditional.",
+        "External two-file result has no child directories and does not test recursion."
+      ],
+      "question_coverage": "partial",
+      "source_verification_question": "Which SearchDialog source methods/control IDs correspond to these addresses, option fields, worker recursion and result/completion messages?",
+      "related_question_ids": [],
+      "source_comparison_status": "not_started_source_unread"
+    },
+    {
+      "question_id": "RE04-ICONS",
+      "requirement_id": "RE-04",
+      "question": "Does Windows provide file icon information?",
+      "initial_assertion": "Inspected functions call SHGetFileInfoW with system-index and icon/overlay PIDL/path flag combinations; this supports Windows icon-information delegation.",
+      "epistemic_status": "derived",
+      "initial_confidence": "high",
+      "initial_basis": "Calls and numeric flags are observed; SHGFI names are derived from the installed SDK.",
+      "evidence_ids": [
+        "ev_00f7b5c1c1047b786d6223366e6c431e3cd45a79c9e712fddea05acb7593234c",
+        "ev_ad5bbad86afa46a4b572689342731c57a99e7187d7debd76b73c4777ab343088",
+        "ev_4c770e0ef421600e4990c877f3b1d379ef2c340a46be06fe60594956a558b748"
+      ],
+      "addresses": [
+        "0x140187350",
+        "0x140173350",
+        "0x140172c10"
+      ],
+      "external_observation_ids": [],
+      "supplemental_basis": [
+        "docs/analysis/shell-integration.md: installed shellapi.h SHGFI flag interpretation"
+      ],
+      "unresolved": [
+        "Which returned image/index is displayed for every row.",
+        "Acquisition/cache/cancellation ownership across all icon paths."
+      ],
+      "question_coverage": "partial",
+      "source_verification_question": "Which original icon helpers use these SHGetFileInfoW modes, and where do returned handles/indices become displayed list images?",
+      "related_question_ids": [],
+      "source_comparison_status": "not_started_source_unread"
+    },
+    {
+      "question_id": "RE04-THUMBNAILS",
+      "requirement_id": "RE-04",
+      "question": "How are per-file thumbnails obtained?",
+      "initial_assertion": "The per-file thumbnail acquisition/provider/cache pipeline is unknown. ThumbnailResult names and DwmSetIconicThumbnail import do not establish it.",
+      "epistemic_status": "unknown",
+      "initial_confidence": "unknown",
+      "initial_basis": "Names/import inventory supplies candidates only; DWM window/tab thumbnails are not file preview extraction.",
+      "evidence_ids": [
+        "ev_bcf098d43636ed7566f5a1628c11403e9db45a26d563a614a0d81fea21369d00"
+      ],
+      "addresses": [],
+      "external_observation_ids": [],
+      "supplemental_basis": [],
+      "unresolved": [
+        "Actual file preview API and worker/provider.",
+        "Cache key, cancellation, handle cleanup and displayed result."
+      ],
+      "question_coverage": "unresolved",
+      "source_verification_question": "Which source pipeline acquires file thumbnails, and which separate code creates taskbar window/tab thumbnails?",
+      "related_question_ids": [],
+      "source_comparison_status": "not_started_source_unread"
+    },
+    {
+      "question_id": "RE04-OPEN",
+      "requirement_id": "RE-04",
+      "question": "How is a selected item delegated to an associated application?",
+      "initial_assertion": "The inspected helper calls ShellExecuteExW with the input PIDL, fMask 0xC and the exact empty-string verb L\"\"; it is a PIDL execution delegation path.",
+      "epistemic_status": "observed",
+      "initial_confidence": "high",
+      "initial_basis": "Recovered struct writes and call are explicit; the verb is not rewritten as NULL or L\"open\".",
+      "evidence_ids": [
+        "ev_369e8cb0f86b0a7f29c9cff2149e791629aa707c191c9780fbd8754d0783694b",
+        "ev_fc2e69129dd48e48cb15ae6d6d6d7a724a1e2e67dda942c84297943ce2bde8cf"
+      ],
+      "addresses": [
+        "0x1400bd5c0",
+        "0x1400bce20"
+      ],
+      "external_observation_ids": [
+        "OBS-015"
+      ],
+      "supplemental_basis": [],
+      "unresolved": [
+        "Generic activation dispatcher-to-helper dynamic edge.",
+        "Every special-item branch and Shell failure outcome.",
+        "External Notepad observation is not a native address trace."
+      ],
+      "question_coverage": "partial",
+      "source_verification_question": "Which source activation/execution methods match these bodies, what verb/flags are passed, and how do failures and special folders branch?",
+      "related_question_ids": [
+        "RE03-DOUBLECLICK"
+      ],
+      "source_comparison_status": "not_started_source_unread"
+    },
+    {
+      "question_id": "RE04-CHANGES",
+      "requirement_id": "RE-04",
+      "question": "How are directory changes observed and delivered to list updates?",
+      "initial_assertion": "A helper calls overlapped ReadDirectoryChangesW with a 16000-byte buffer and completion address 0x1401a9bc0. A separate dispatcher handles add/remove/modify/rename update cases.",
+      "epistemic_status": "observed",
+      "initial_confidence": "high",
+      "initial_basis": "The notification request and update-dispatch body are separately decompiled.",
+      "evidence_ids": [
+        "ev_c575f01e0e8efd6219b1f6ecd377ea9f403a63d2f9acfde0d41b3e66545e711f",
+        "ev_1833fa2545dcaf1a16f796fe9e11fad0146e3cb7b969facef4aaa36ac1720255"
+      ],
+      "addresses": [
+        "0x1401a9b10",
+        "0x1401a9bc0",
+        "0x140171ba0"
+      ],
+      "external_observation_ids": [],
+      "supplemental_basis": [],
+      "unresolved": [
+        "Connecting completion-to-queue/message-to-dispatch edge.",
+        "Rearming, notification overflow recovery and full cleanup lifecycle."
+      ],
+      "question_coverage": "partial",
+      "source_verification_question": "Which source watcher callback/queue connects to the update dispatcher, and what are the rearm, overflow and cancellation/cleanup rules?",
+      "related_question_ids": [],
+      "source_comparison_status": "not_started_source_unread"
+    },
+    {
+      "question_id": "RE04-COPY-MOVE",
+      "requirement_id": "RE-04",
+      "question": "Which layer performs copy/move and reconciles results?",
+      "initial_assertion": "A wrapper constructs a double-NUL UTF-16 source list and calls SHFileOperationW with MOVE/COPY selected by a boolean; success also requires no aborted operations, and returned name mappings are reconciled/freed.",
+      "epistemic_status": "derived",
+      "initial_confidence": "high",
+      "initial_basis": "Recovered wFunc=((int)param_1[8]!=0)+1, flags 0x28/0x20, return/abort checks and SHFreeNameMappings are explicit; SDK gives enum meanings.",
+      "evidence_ids": [
+        "ev_a6af60e3bd61d7cca2e8d3255e23dbddbe9bcb8f3147c26c54e7dca7ae1a66e9"
+      ],
+      "addresses": [
+        "0x1401a7630"
+      ],
+      "external_observation_ids": [
+        "OBS-022"
+      ],
+      "supplemental_basis": [
+        "docs/analysis/shell-integration.md: installed shellapi.h FO_* and FOF_* interpretation"
+      ],
+      "unresolved": [
+        "Original boolean field name and calling UI commands.",
+        "Overwrite/confirmation/progress, rollback and complete mixed-outcome policy.",
+        "This wrapper does not select DELETE or FOF_ALLOWUNDO."
+      ],
+      "question_coverage": "partial",
+      "source_verification_question": "Which source operation wrapper/fields correspond to the boolean and flags, and which copy/move callers own confirmations, collisions and result reconciliation?",
+      "related_question_ids": [],
+      "source_comparison_status": "not_started_source_unread"
+    },
+    {
+      "question_id": "RE04-DROP",
+      "requirement_id": "RE-04",
+      "question": "How does drag/drop choose effects and delegate transfer?",
+      "initial_assertion": "A seven-slot ShellBrowser table and inspected bodies are consistent with IDropTarget roles. Effect selection uses allowed effects/key/root state; Drop delegates to DropHandler, whose mode-1 path requests a Shell IDropTarget and calls its drag/drop slots.",
+      "epistemic_status": "inferred",
+      "initial_confidence": "medium",
+      "initial_basis": "ShellBrowser interface role is inferred from SDK slot order/signatures. Phase5 GUID bytes plus SDK strongly support the narrower delegated IDropTarget request.",
+      "evidence_ids": [
+        "ev_9d6c8203a6f21e8874ef16abf2322c683057a24632a7f2bd42a51d0f0fc15fa9",
+        "ev_31296ff49e6986f663c9eec54c8e921bfe7b11f3b67dd3ac52f33412313e5a2f",
+        "ev_c65a9ef46e64126efcd4fd66683bad189aab555ee43b763ffbecaf61838499f4",
+        "ev_37033ee2017621418f12890bb629601cfcc8fa391268e48485698cbb8c59fd5b",
+        "ev_310285058c0ce8daa50f2c6faca0f50f2825c986b78c11dc5b5f699671a293c5"
+      ],
+      "addresses": [
+        "0x1402ec068",
+        "0x140178e80",
+        "0x140179270",
+        "0x140179920",
+        "0x1401a5190",
+        "0x1402ed8e0"
+      ],
+      "external_observation_ids": [],
+      "supplemental_basis": [
+        "docs/analysis/p1-static-findings.md: supplemental EXE GUID bytes 00000122-0000-0000-c000-000000000046 and SDK IDropTarget/CreateViewObject slot derivation"
+      ],
+      "unresolved": [
+        "Runtime QueryInterface/event/transfer trace.",
+        "DropHandler mode 0 body 0x1401a5340 and alternate branch 0x140179ea0.",
+        "Registration/revoke/outgoing-drag ownership, cancellation and full data-format coverage."
+      ],
+      "question_coverage": "partial",
+      "source_verification_question": "Which source classes implement these COM tables and effect policy, what do both DropHandler modes do, and who owns RegisterDragDrop/RevokeDragDrop lifecycle?",
+      "related_question_ids": [],
+      "source_comparison_status": "not_started_source_unread"
+    },
+    {
+      "question_id": "RE04-PROPERTIES",
+      "requirement_id": "RE-04",
+      "question": "Which original API opens file properties?",
+      "initial_assertion": "The property-sheet execution path is unknown; Properties labels alone do not establish a Shell verb/COM property-sheet call.",
+      "epistemic_status": "unknown",
+      "initial_confidence": "unknown",
+      "initial_basis": "Only named/configuration-like labels were retained for this question.",
+      "evidence_ids": [
+        "ev_bcf098d43636ed7566f5a1628c11403e9db45a26d563a614a0d81fea21369d00"
+      ],
+      "addresses": [],
+      "external_observation_ids": [],
+      "supplemental_basis": [],
+      "unresolved": [
+        "Properties command consumer, selected-item transport and actual API.",
+        "Error/lifecycle behavior."
+      ],
+      "question_coverage": "unresolved",
+      "source_verification_question": "Which source Properties command invokes the selected-item property sheet, through which API/verb/interface?",
+      "related_question_ids": [],
+      "source_comparison_status": "not_started_source_unread"
+    },
+    {
+      "question_id": "RE04-RECYCLE",
+      "requirement_id": "RE-04",
+      "question": "Which original delete path guarantees recycle semantics?",
+      "initial_assertion": "The original delete/recycle implementation is unknown. RecycleBin names and the inspected MOVE/COPY wrapper are not recycle-on-delete evidence.",
+      "epistemic_status": "unknown",
+      "initial_confidence": "unknown",
+      "initial_basis": "Delete/DeletePermanently labels and RecycleBin/sink type names are leads; the transfer wrapper has neither DELETE selector nor ALLOWUNDO flag.",
+      "evidence_ids": [
+        "ev_bcf098d43636ed7566f5a1628c11403e9db45a26d563a614a0d81fea21369d00",
+        "ev_a6af60e3bd61d7cca2e8d3255e23dbddbe9bcb8f3147c26c54e7dca7ae1a66e9"
+      ],
+      "addresses": [
+        "0x1402defc0",
+        "0x1402df078",
+        "0x1402e3080",
+        "0x1401a7630"
+      ],
+      "external_observation_ids": [],
+      "supplemental_basis": [],
+      "unresolved": [
+        "Delete command handler, recycle API/flags, permanent-delete distinction.",
+        "Confirmation, cancellation, failures and item outcomes."
+      ],
+      "question_coverage": "unresolved",
+      "source_verification_question": "Which source commands distinguish delete/permanent delete and which API/flags provide recycle behavior?",
+      "related_question_ids": [],
+      "source_comparison_status": "not_started_source_unread"
+    },
+    {
+      "question_id": "P1-RENAME-START",
+      "requirement_id": "FR-14",
+      "question": "What does the new-menu callback do to start editing?",
+      "initial_assertion": "The containing function at 0x1400838a0 logs rename of an item created via new menu, then directly calls 0x14017d7a0; the helper matches PIDLs to rows and sends 0x1076 (LVM_EDITLABELW), or stores a pending PIDL when no row exists.",
+      "epistemic_status": "derived",
+      "initial_confidence": "high",
+      "initial_basis": "Exact log xref, direct call and row/message arguments are observed; Unicode label-edit message meaning is SDK-derived.",
+      "evidence_ids": [
+        "ev_abecdf049b50525419cd881abfc4e7bf11baf6e90d6a2a11ecf5c47b246bd777",
+        "ev_d6ad1767529c187facc939124d6ffb493741502ece24df1138b74b7b9447fcf8",
+        "ev_3590de16dd81838b0547537203010b4af00ee09da2ded56601c5078d4a15bf69"
+      ],
+      "addresses": [
+        "0x1402de930",
+        "0x1400838c0",
+        "0x1400838a0",
+        "0x1400839d9",
+        "0x14017d7a0"
+      ],
+      "external_observation_ids": [
+        "OBS-020",
+        "OBS-021"
+      ],
+      "supplemental_basis": [
+        "docs/analysis/p1-static-findings.md: CommCtrl.h LVM_FIRST + 118 = 0x1076"
+      ],
+      "unresolved": [
+        "Requested interior address 0x1400838c0 resolves to containing 0x1400838a0.",
+        "Original enum names for param3=1/3 and dynamic callback slot +0x20.",
+        "Pending PIDL consumer and relation to generic F2."
+      ],
+      "question_coverage": "partial",
+      "source_verification_question": "Which new-menu callback/helper names correspond to these bodies, what enum values trigger editing, and who consumes the pending PIDL?",
+      "related_question_ids": [
+        "RE03-RENAME",
+        "P1-RENAME-COMMIT"
+      ],
+      "source_comparison_status": "not_started_source_unread"
+    },
+    {
+      "question_id": "P1-RENAME-COMMIT",
+      "requirement_id": "FR-14",
+      "question": "Which code commits/cancels filename edits and handles failures?",
+      "initial_assertion": "The original rename commit API and policy are unknown; starting ListView label editing does not prove SetNameOf or a filesystem rename call.",
+      "epistemic_status": "unknown",
+      "initial_confidence": "unknown",
+      "initial_basis": "The inspected helper only starts editing or retains pending state. No SetNameOf spelling in names is a bounded negative search, not API absence.",
+      "evidence_ids": [
+        "ev_3590de16dd81838b0547537203010b4af00ee09da2ded56601c5078d4a15bf69",
+        "ev_bcf098d43636ed7566f5a1628c11403e9db45a26d563a614a0d81fea21369d00"
+      ],
+      "addresses": [
+        "0x14017d7a0"
+      ],
+      "external_observation_ids": [
+        "OBS-021"
+      ],
+      "supplemental_basis": [],
+      "unresolved": [
+        "End-label-edit notification, validation and actual mutation.",
+        "Conflict, permissions, cancellation, retained selection and error reporting."
+      ],
+      "question_coverage": "unresolved",
+      "source_verification_question": "Which same-version source end-label-edit handler validates text and commits/cancels the rename, using what Shell/filesystem call and error policy?",
+      "related_question_ids": [
+        "RE03-RENAME",
+        "P1-RENAME-START"
+      ],
+      "source_comparison_status": "not_started_source_unread"
+    },
+    {
+      "question_id": "P1-MKDIR-WRAPPER",
+      "requirement_id": "FR-15",
+      "question": "What does the inspected CreateDirectoryW caller implement?",
+      "initial_assertion": "The inspected 0x140206a50 body is consistent with a Boost filesystem recursive directory-creation wrapper, with CreateDirectoryW, GetLastError and error/exception paths.",
+      "epistemic_status": "derived",
+      "initial_confidence": "medium",
+      "initial_basis": "Boost create_directories/create_directory strings, recursive calls and direct native API use are observed; original library identity/signature is source-unverified.",
+      "evidence_ids": [
+        "ev_d02eb737073be324983326bce97b6b69d10cc582c9adecdf88667ef7e2ff24d2",
+        "ev_f1f139d2219b76f8e4b0217c2bf95367a67567c36e4bb53c78c8868cdb17d913"
+      ],
+      "addresses": [
+        "0x140206a50",
+        "0x140213270",
+        "0x1402158e0",
+        "EXTERNAL:0x118"
+      ],
+      "external_observation_ids": [],
+      "supplemental_basis": [],
+      "unresolved": [
+        "Which higher-level feature reaches this wrapper.",
+        "Original function/type names and caller context."
+      ],
+      "question_coverage": "partial",
+      "source_verification_question": "Which Boost/source function matches 0x140206a50 and its callers, and is this wrapper used by the user New Folder path?",
+      "related_question_ids": [],
+      "source_comparison_status": "not_started_source_unread"
+    },
+    {
+      "question_id": "P1-MKDIR-UI",
+      "requirement_id": "FR-15",
+      "question": "Which original New Folder event reaches the creation API?",
+      "initial_assertion": "The native New Folder command-to-creation-wrapper connection remains unknown. External folder creation/inline rename does not identify that internal call chain.",
+      "epistemic_status": "unknown",
+      "initial_confidence": "unknown",
+      "initial_basis": "NewFolder label and the library wrapper are separate static anchors; disposable GUI creation was observed independently.",
+      "evidence_ids": [
+        "ev_bcf098d43636ed7566f5a1628c11403e9db45a26d563a614a0d81fea21369d00",
+        "ev_d02eb737073be324983326bce97b6b69d10cc582c9adecdf88667ef7e2ff24d2",
+        "ev_d6ad1767529c187facc939124d6ffb493741502ece24df1138b74b7b9447fcf8"
+      ],
+      "addresses": [
+        "0x1402def78",
+        "0x140206a50",
+        "0x1400838a0"
+      ],
+      "external_observation_ids": [
+        "OBS-020",
+        "OBS-021"
+      ],
+      "supplemental_basis": [],
+      "unresolved": [
+        "Actual command ID consumer and creation API (Shell/new-menu versus library wrapper).",
+        "Default naming, collision, permission and failure policy."
+      ],
+      "question_coverage": "unresolved",
+      "source_verification_question": "Which same-version New Folder command/Shell new-menu route creates the folder and starts inline editing, and does it call this library wrapper?",
+      "related_question_ids": [
+        "P1-MKDIR-WRAPPER",
+        "P1-RENAME-START"
+      ],
+      "source_comparison_status": "not_started_source_unread"
+    }
+  ],
+  "summary": {
+    "fixed_question_count": 25,
+    "by_requirement": {
+      "RE-02": 6,
+      "RE-03": 7,
+      "RE-04": 8,
+      "FR-14": 2,
+      "FR-15": 2
+    },
+    "by_epistemic_status": {
+      "derived": 10,
+      "unknown": 12,
+      "observed": 2,
+      "inferred": 1
+    },
+    "by_initial_confidence": {
+      "high": 10,
+      "medium": 3,
+      "unknown": 12
+    },
+    "source_verified_claim_count": 0,
+    "reverse_engineering_accuracy": null,
+    "accuracy_unmeasured_reason": "Same-version source comparison has not started; source is unread. External observations do not prove internal native mapping."
+  }
+}

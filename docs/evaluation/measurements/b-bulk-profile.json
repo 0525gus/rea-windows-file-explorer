@@ -1,0 +1,63 @@
+{
+    "heartbeat_interval_ms": 5,
+    "maximum_gui_heartbeat_gap_ms": 332,
+    "os_file_cache": "not flushed; coldness unknown",
+    "qt_version": "6.8.3",
+    "samples": [
+        {
+            "count": 1200,
+            "derive_ms": 1,
+            "elapsed_ms": 1065,
+            "kind": "first-listing",
+            "maximum_gui_gap_ms": 9,
+            "names_sha256": "ff84bde034b35b40f6a7d8ef0e85c04966d069644ac12ea9db0408591d4fa8b0",
+            "render_ms": 2
+        },
+        {
+            "count": 1200,
+            "derive_ms": 1,
+            "elapsed_ms": 999,
+            "kind": "warm-refresh",
+            "maximum_gui_gap_ms": 332,
+            "names_sha256": "ff84bde034b35b40f6a7d8ef0e85c04966d069644ac12ea9db0408591d4fa8b0",
+            "render_ms": 0
+        },
+        {
+            "count": 1200,
+            "derive_ms": 1,
+            "elapsed_ms": 940,
+            "kind": "warm-refresh",
+            "maximum_gui_gap_ms": 16,
+            "names_sha256": "ff84bde034b35b40f6a7d8ef0e85c04966d069644ac12ea9db0408591d4fa8b0",
+            "render_ms": 0
+        },
+        {
+            "count": 1200,
+            "derive_ms": 1,
+            "elapsed_ms": 939,
+            "kind": "warm-refresh",
+            "maximum_gui_gap_ms": 17,
+            "names_sha256": "ff84bde034b35b40f6a7d8ef0e85c04966d069644ac12ea9db0408591d4fa8b0",
+            "render_ms": 0
+        },
+        {
+            "count": 1200,
+            "derive_ms": 1,
+            "elapsed_ms": 953,
+            "kind": "warm-refresh",
+            "maximum_gui_gap_ms": 17,
+            "names_sha256": "ff84bde034b35b40f6a7d8ef0e85c04966d069644ac12ea9db0408591d4fa8b0",
+            "render_ms": 0
+        },
+        {
+            "count": 1200,
+            "derive_ms": 1,
+            "elapsed_ms": 969,
+            "kind": "warm-refresh",
+            "maximum_gui_gap_ms": 17,
+            "names_sha256": "ff84bde034b35b40f6a7d8ef0e85c04966d069644ac12ea9db0408591d4fa8b0",
+            "render_ms": 0
+        }
+    ],
+    "scope": "GUI ready listing including model derivation; excludes process/Qt initialization; no other applications included"
+}
