@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite name="OperationsTest" timestamp="2026&#x002D;10&#x002D;22T08:23:59" hostname="DESKTOP&#x002D;2FRTTQP" tests="20" failures="0" errors="0" skipped="1" time="0.245">
+  <properties>
+    <property name="QTestVersion" value="6.8.3"/>
+    <property name="QtVersion" value="6.8.3"/>
+    <property name="QtBuild" value="Qt 6.8.3 (x86_64&#x002D;little_endian&#x002D;llp64 shared (dynamic) release build; by MSVC 2022)"/>
+  </properties>
+  <testcase name="initTestCase" classname="OperationsTest" time="0.000"/>
+  <testcase name="multiCopyUnicodeAndTree" classname="OperationsTest" time="0.028"/>
+  <testcase name="conflictPreflightIsAllOrNothing" classname="OperationsTest" time="0.006"/>
+  <testcase name="skipAndConfirmedReplace" classname="OperationsTest" time="0.008"/>
+  <testcase name="moveAndRenameAndMkdir" classname="OperationsTest" time="0.008"/>
+  <testcase name="moveCollisionSkipThenReplace" classname="OperationsTest" time="0.008"/>
+  <testcase name="copyPreservesModifiedTime" classname="OperationsTest" time="0.006"/>
+  <testcase name="occupiedDirectoryNeverMerged" classname="OperationsTest" time="0.006"/>
+  <testcase name="lockedSourceCopyPreservesBothSides" classname="OperationsTest" time="0.011"/>
+  <testcase name="renameFailureAndSourceSafety" classname="OperationsTest" time="0.003"/>
+  <testcase name="deleteRequiresExplicitConfirmation" classname="OperationsTest" time="0.002"/>
+  <testcase name="safePathRejections" classname="OperationsTest" time="0.004"/>
+  <testcase name="cancellationRemovesOnlyOwnedStage" classname="OperationsTest" time="0.018"/>
+  <testcase name="destinationAppearsDuringCopy" classname="OperationsTest" time="0.007"/>
+  <testcase name="sourceChangesAfterPreflight" classname="OperationsTest" time="0.004"/>
+  <testcase name="cycleMutationRejected" classname="OperationsTest" time="0.002">
+    <skipped message="A required privilege is not held by the client."/>
+  </testcase>
+  <testcase name="asyncProgressAndShutdown" classname="OperationsTest" time="0.096"/>
+  <testcase name="mixedItemResultsAndLateCancellation" classname="OperationsTest" time="0.012"/>
+  <testcase name="retainedCleanupOwnershipAndRetry" classname="OperationsTest" time="0.010"/>
+  <testcase name="cleanupTestCase" classname="OperationsTest" time="0.000"/>
+</testsuite>

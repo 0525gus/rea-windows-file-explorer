@@ -1,0 +1,876 @@
+{
+  "schema_version": 1,
+  "reported_at_utc": "2026-10-22T00:41:34.520215+00:00",
+  "scope": "Bounded common external native-UI observation comparison of original Explorer++ and frozen B; no new program execution by report author",
+  "protocol": {
+    "source": {
+      "path": "verification/benchmarks/external-protocol.json",
+      "bytes": 1990,
+      "sha256": "5eb2d805ea334b971aa52f09c89d353b2c549c9de6805b0dc704b2edc3559384"
+    },
+    "declared_before_execution_flag": true,
+    "protocol_file_mtime_utc": "2026-10-22T00:32:19.353232+00:00",
+    "mtime_precedes_both_recorded_launches": true,
+    "limitation": "Flag, source path/hash and file mtime support recorded preparation chronology; filesystem mtime is not an independent tamper-proof declaration log.",
+    "content": {
+      "schema_version": 1,
+      "declared_before_execution": true,
+      "task": "Same external native UI completion boundary for original and B",
+      "input": "test-data/fixture-v1/read-only/bulk",
+      "fixture_sha256": "278d49240d795cabcd15be949cdc4f235722a0c8d92236854c503efc2dd14bc1",
+      "preparation": [
+        "Launch one owned fresh process at read-only/empty",
+        "Select Details before measured navigation; maximize target window",
+        "Observe zero-item state and full-screen dimensions",
+        "Focus address and enter same bulk path before timed Enter"
+      ],
+      "measured_task": [
+        "Timed Enter navigation until first external status containing 1200 items and correct bulk path",
+        "Five sequential F5 refreshes, each until first external completed status",
+        "Same sky.press_key plus get_window_state(include_screenshot=false,include_text=true) boundary",
+        "One action then observation; if incomplete observe again; no overlapping process workloads",
+        "Normal close after six observations; existing owned Job runner captures whole-family wall/CPU/peak committed"
+      ],
+      "clock": "Node performance.now() elapsed per action/observation and UTC provenance; any extra model/tool scheduling waits included in upper bounds",
+      "limitations": [
+        "External accessibility status is not internal model readiness, completed paint or a full-name oracle",
+        "Tool input waits/observations can dominate timing and differ with UI providers; report external upper bounds, no internal-speed ratio",
+        "Whole-process metrics include startup/preparation/teardown/agent delays; original Details selection adds setup work; do not label task-only CPU",
+        "UI trees, metadata policies and layout content differ even at same host/input/view/outer window dimensions",
+        "One trial per app; no OS cache flush or statistical/general performance claims",
+        "This protocol supplies a common external task comparison; exact uninstrumented original internal latency and heartbeat remain unknown"
+      ]
+    }
+  },
+  "fixture_manifest": {
+    "path": "test-data/fixture-v1/manifest.json",
+    "bytes": 434620,
+    "sha256": "278d49240d795cabcd15be949cdc4f235722a0c8d92236854c503efc2dd14bc1"
+  },
+  "common_recorded_conditions": {
+    "host": "same Windows host per declared root protocol",
+    "input": "C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\bulk",
+    "fresh_process_initial_path": "C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\empty",
+    "view": "Details",
+    "outer_window": {
+      "width": 2560,
+      "height": 1392
+    },
+    "actions": [
+      "Return",
+      "F5",
+      "F5",
+      "F5",
+      "F5",
+      "F5"
+    ],
+    "samples_per_app": 6,
+    "observation_call": "sky.press_key then get_window_state(include_screenshot=false,include_text=true), according to declared protocol",
+    "timed_screenshot_capture": false,
+    "text_status_retained": true,
+    "sequential_no_overlapping_owned_app_processes": true,
+    "OS_cache_flushed": false,
+    "OS_cache_coldness": "unknown",
+    "trial_count_per_app": 1
+  },
+  "validation": {
+    "both_protocol_paths_match": true,
+    "fixture_digest_matches_protocol": true,
+    "both_preparations_empty_path_zero_items": true,
+    "both_views_Details": true,
+    "both_window_dimensions_match": true,
+    "six_actions_and_ordinals_match": true,
+    "all_final_polls_bulk_path_and_1200_without_Loading": true,
+    "all_poll_elapsed_monotonic": true,
+    "UTC_vs_monotonic_elapsed_agreement_ms_tolerance": 3.0,
+    "raw_upper_bounds_equal_last_poll": true,
+    "normal_exit_zero_no_active_or_residual_owned_processes": true,
+    "original_nonqualifying_then_ready_samples": 6,
+    "B_loading_then_ready_ordinals": [
+      0,
+      3
+    ],
+    "B_already_ready_first_poll_refresh_ordinals": [
+      1,
+      2,
+      4,
+      5
+    ]
+  },
+  "apps": {
+    "original": {
+      "observations_source": {
+        "path": "docs/evaluation/measurements/original-external-common-observations.json",
+        "bytes": 6782,
+        "sha256": "4a53a25c5924ed018b902da4325b3186ceed3fe63831f000e3de2fa85ae5affa"
+      },
+      "metrics_source": {
+        "path": "docs/evaluation/measurements/original-external-common.metrics.json",
+        "bytes": 840,
+        "sha256": "c6f479efbc9c6af55192b56471c93f8af9949414d0feaec9a46e60799b80b18f"
+      },
+      "program_identity_at_report": {
+        "path": "artifacts/original/Explorer++.exe",
+        "bytes": 4100096,
+        "sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6"
+      },
+      "recorded_preparation": {
+        "observed_at": "2026-10-22T00:33:29.929Z",
+        "title": "empty - Explorer++",
+        "status": [
+          "\t\t\t2 텍스트 0 items",
+          "\t\t\t\t9 편집 (settable, string) Value: C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\empty"
+        ]
+      },
+      "recorded_preparation_interruption": "User input detected before measurement; state refreshed before retry",
+      "window": {
+        "width": 2560,
+        "height": 1392
+      },
+      "view": "Details",
+      "samples": [
+        {
+          "ordinal": 0,
+          "kind": "first-listing",
+          "action": "Return",
+          "started_at": "2026-10-22T00:33:48.238Z",
+          "source_pointer": "/samples/0",
+          "first_qualifying_status_ms": 14924.82349999994,
+          "first_qualifying_status_pointer": "/samples/0/polls/2",
+          "last_poll_ms": 14924.82349999994,
+          "raw_elapsed_upper_bound_ms": 14924.82349999994,
+          "poll_count": 3,
+          "loading_before_ready_observed": false,
+          "nonqualifying_poll_before_ready": true,
+          "fresh_generation_proven": null,
+          "internal_listing_latency_ms": null,
+          "completed_paint_latency_ms": null,
+          "internal_heartbeat_gap_ms": null,
+          "interpretation": "nonqualifying/absent external status then 1200+bulk; internal generation unobservable",
+          "polls": [
+            {
+              "pointer": "/samples/0/polls/0",
+              "observed_at": "2026-10-22T00:33:51.325Z",
+              "elapsed_ms": 3087.0496000000276,
+              "title": "empty - Explorer++",
+              "status": [],
+              "loading_text_observed": false,
+              "item_status_1200_observed": false,
+              "bulk_path_observed": false,
+              "qualifying_external_ready_status": false
+            },
+            {
+              "pointer": "/samples/0/polls/1",
+              "observed_at": "2026-10-22T00:33:56.491Z",
+              "elapsed_ms": 8252.99049999984,
+              "title": "bulk - Explorer++",
+              "status": [
+                "\t\t\t2 텍스트 0 items",
+                "\t\t\t\t9 편집 (settable, string) Value: C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\bulk",
+                "The focused UI element is 9 편집 (settable, string) Value: C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\bulk."
+              ],
+              "loading_text_observed": false,
+              "item_status_1200_observed": false,
+              "bulk_path_observed": true,
+              "qualifying_external_ready_status": false
+            },
+            {
+              "pointer": "/samples/0/polls/2",
+              "observed_at": "2026-10-22T00:34:03.162Z",
+              "elapsed_ms": 14924.82349999994,
+              "title": "bulk - Explorer++",
+              "status": [
+                "\t\t\t2 텍스트 1,200 items",
+                "\t\t\t\t9 편집 (settable, string) Value: C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\bulk",
+                "The focused UI element is 9 편집 (settable, string) Value: C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\bulk."
+              ],
+              "loading_text_observed": false,
+              "item_status_1200_observed": true,
+              "bulk_path_observed": true,
+              "qualifying_external_ready_status": true
+            }
+          ]
+        },
+        {
+          "ordinal": 1,
+          "kind": "warm-refresh",
+          "action": "F5",
+          "started_at": "2026-10-22T00:34:11.944Z",
+          "source_pointer": "/samples/1",
+          "first_qualifying_status_ms": 11394.703399999999,
+          "first_qualifying_status_pointer": "/samples/1/polls/1",
+          "last_poll_ms": 11394.703399999999,
+          "raw_elapsed_upper_bound_ms": 11394.703399999999,
+          "poll_count": 2,
+          "loading_before_ready_observed": false,
+          "nonqualifying_poll_before_ready": true,
+          "fresh_generation_proven": null,
+          "internal_listing_latency_ms": null,
+          "completed_paint_latency_ms": null,
+          "internal_heartbeat_gap_ms": null,
+          "interpretation": "nonqualifying/absent external status then 1200+bulk; internal generation unobservable",
+          "polls": [
+            {
+              "pointer": "/samples/1/polls/0",
+              "observed_at": "2026-10-22T00:34:15.028Z",
+              "elapsed_ms": 3084.2446000003256,
+              "title": "bulk - Explorer++",
+              "status": [],
+              "loading_text_observed": false,
+              "item_status_1200_observed": false,
+              "bulk_path_observed": false,
+              "qualifying_external_ready_status": false
+            },
+            {
+              "pointer": "/samples/1/polls/1",
+              "observed_at": "2026-10-22T00:34:23.339Z",
+              "elapsed_ms": 11394.703399999999,
+              "title": "bulk - Explorer++",
+              "status": [
+                "\t\t\t2 텍스트 1,200 items",
+                "\t\t\t\t9 편집 (settable, string) Value: C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\bulk",
+                "The focused UI element is 9 편집 (settable, string) Value: C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\bulk."
+              ],
+              "loading_text_observed": false,
+              "item_status_1200_observed": true,
+              "bulk_path_observed": true,
+              "qualifying_external_ready_status": true
+            }
+          ]
+        },
+        {
+          "ordinal": 2,
+          "kind": "warm-refresh",
+          "action": "F5",
+          "started_at": "2026-10-22T00:34:29.057Z",
+          "source_pointer": "/samples/2",
+          "first_qualifying_status_ms": 7950.93069999991,
+          "first_qualifying_status_pointer": "/samples/2/polls/1",
+          "last_poll_ms": 7950.93069999991,
+          "raw_elapsed_upper_bound_ms": 7950.93069999991,
+          "poll_count": 2,
+          "loading_before_ready_observed": false,
+          "nonqualifying_poll_before_ready": true,
+          "fresh_generation_proven": null,
+          "internal_listing_latency_ms": null,
+          "completed_paint_latency_ms": null,
+          "internal_heartbeat_gap_ms": null,
+          "interpretation": "nonqualifying/absent external status then 1200+bulk; internal generation unobservable",
+          "polls": [
+            {
+              "pointer": "/samples/2/polls/0",
+              "observed_at": "2026-10-22T00:34:32.131Z",
+              "elapsed_ms": 3074.304899999872,
+              "title": "bulk - Explorer++",
+              "status": [],
+              "loading_text_observed": false,
+              "item_status_1200_observed": false,
+              "bulk_path_observed": false,
+              "qualifying_external_ready_status": false
+            },
+            {
+              "pointer": "/samples/2/polls/1",
+              "observed_at": "2026-10-22T00:34:37.008Z",
+              "elapsed_ms": 7950.93069999991,
+              "title": "bulk - Explorer++",
+              "status": [
+                "\t\t\t2 텍스트 1,200 items",
+                "\t\t\t\t9 편집 (settable, string) Value: C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\bulk",
+                "The focused UI element is 9 편집 (settable, string) Value: C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\bulk."
+              ],
+              "loading_text_observed": false,
+              "item_status_1200_observed": true,
+              "bulk_path_observed": true,
+              "qualifying_external_ready_status": true
+            }
+          ]
+        },
+        {
+          "ordinal": 3,
+          "kind": "warm-refresh",
+          "action": "F5",
+          "started_at": "2026-10-22T00:34:43.186Z",
+          "source_pointer": "/samples/3",
+          "first_qualifying_status_ms": 8315.43060000008,
+          "first_qualifying_status_pointer": "/samples/3/polls/1",
+          "last_poll_ms": 8315.43060000008,
+          "raw_elapsed_upper_bound_ms": 8315.43060000008,
+          "poll_count": 2,
+          "loading_before_ready_observed": false,
+          "nonqualifying_poll_before_ready": true,
+          "fresh_generation_proven": null,
+          "internal_listing_latency_ms": null,
+          "completed_paint_latency_ms": null,
+          "internal_heartbeat_gap_ms": null,
+          "interpretation": "nonqualifying/absent external status then 1200+bulk; internal generation unobservable",
+          "polls": [
+            {
+              "pointer": "/samples/3/polls/0",
+              "observed_at": "2026-10-22T00:34:46.256Z",
+              "elapsed_ms": 3069.9443999999203,
+              "title": "bulk - Explorer++",
+              "status": [],
+              "loading_text_observed": false,
+              "item_status_1200_observed": false,
+              "bulk_path_observed": false,
+              "qualifying_external_ready_status": false
+            },
+            {
+              "pointer": "/samples/3/polls/1",
+              "observed_at": "2026-10-22T00:34:51.501Z",
+              "elapsed_ms": 8315.43060000008,
+              "title": "bulk - Explorer++",
+              "status": [
+                "\t\t\t2 텍스트 1,200 items",
+                "\t\t\t\t9 편집 (settable, string) Value: C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\bulk",
+                "The focused UI element is 9 편집 (settable, string) Value: C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\bulk."
+              ],
+              "loading_text_observed": false,
+              "item_status_1200_observed": true,
+              "bulk_path_observed": true,
+              "qualifying_external_ready_status": true
+            }
+          ]
+        },
+        {
+          "ordinal": 4,
+          "kind": "warm-refresh",
+          "action": "F5",
+          "started_at": "2026-10-22T00:34:57.259Z",
+          "source_pointer": "/samples/4",
+          "first_qualifying_status_ms": 8688.6222000001,
+          "first_qualifying_status_pointer": "/samples/4/polls/1",
+          "last_poll_ms": 8688.6222000001,
+          "raw_elapsed_upper_bound_ms": 8688.6222000001,
+          "poll_count": 2,
+          "loading_before_ready_observed": false,
+          "nonqualifying_poll_before_ready": true,
+          "fresh_generation_proven": null,
+          "internal_listing_latency_ms": null,
+          "completed_paint_latency_ms": null,
+          "internal_heartbeat_gap_ms": null,
+          "interpretation": "nonqualifying/absent external status then 1200+bulk; internal generation unobservable",
+          "polls": [
+            {
+              "pointer": "/samples/4/polls/0",
+              "observed_at": "2026-10-22T00:35:00.325Z",
+              "elapsed_ms": 3066.1085000000894,
+              "title": "bulk - Explorer++",
+              "status": [],
+              "loading_text_observed": false,
+              "item_status_1200_observed": false,
+              "bulk_path_observed": false,
+              "qualifying_external_ready_status": false
+            },
+            {
+              "pointer": "/samples/4/polls/1",
+              "observed_at": "2026-10-22T00:35:05.948Z",
+              "elapsed_ms": 8688.6222000001,
+              "title": "bulk - Explorer++",
+              "status": [
+                "\t\t\t2 텍스트 1,200 items",
+                "\t\t\t\t9 편집 (settable, string) Value: C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\bulk",
+                "The focused UI element is 9 편집 (settable, string) Value: C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\bulk."
+              ],
+              "loading_text_observed": false,
+              "item_status_1200_observed": true,
+              "bulk_path_observed": true,
+              "qualifying_external_ready_status": true
+            }
+          ]
+        },
+        {
+          "ordinal": 5,
+          "kind": "warm-refresh",
+          "action": "F5",
+          "started_at": "2026-10-22T00:35:10.751Z",
+          "source_pointer": "/samples/5",
+          "first_qualifying_status_ms": 8131.9816999998875,
+          "first_qualifying_status_pointer": "/samples/5/polls/1",
+          "last_poll_ms": 8131.9816999998875,
+          "raw_elapsed_upper_bound_ms": 8131.9816999998875,
+          "poll_count": 2,
+          "loading_before_ready_observed": false,
+          "nonqualifying_poll_before_ready": true,
+          "fresh_generation_proven": null,
+          "internal_listing_latency_ms": null,
+          "completed_paint_latency_ms": null,
+          "internal_heartbeat_gap_ms": null,
+          "interpretation": "nonqualifying/absent external status then 1200+bulk; internal generation unobservable",
+          "polls": [
+            {
+              "pointer": "/samples/5/polls/0",
+              "observed_at": "2026-10-22T00:35:13.820Z",
+              "elapsed_ms": 3069.1047000000253,
+              "title": "bulk - Explorer++",
+              "status": [],
+              "loading_text_observed": false,
+              "item_status_1200_observed": false,
+              "bulk_path_observed": false,
+              "qualifying_external_ready_status": false
+            },
+            {
+              "pointer": "/samples/5/polls/1",
+              "observed_at": "2026-10-22T00:35:18.883Z",
+              "elapsed_ms": 8131.9816999998875,
+              "title": "bulk - Explorer++",
+              "status": [
+                "\t\t\t2 텍스트 1,200 items",
+                "\t\t\t\t9 편집 (settable, string) Value: C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\bulk",
+                "The focused UI element is 9 편집 (settable, string) Value: C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\bulk."
+              ],
+              "loading_text_observed": false,
+              "item_status_1200_observed": true,
+              "bulk_path_observed": true,
+              "qualifying_external_ready_status": true
+            }
+          ]
+        }
+      ],
+      "whole_job": {
+        "argv": [
+          "C:\\dev\\Windows_fileexplore\\artifacts\\original\\Explorer++.exe",
+          "C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\empty"
+        ],
+        "cwd": "C:\\dev\\Windows_fileexplore",
+        "started_at": "2026-10-22T09:32:20.017255+09:00",
+        "hidden": true,
+        "environment_persisted_by_runner": false,
+        "memory_definition": "Job Object PeakJobMemoryUsed: peak simultaneous committed memory for the assigned process and descendants; not resident working set.",
+        "pid": 18332,
+        "exit_code": 0,
+        "residual_owned_processes_terminated": 0,
+        "cpu_user_seconds": 38.78125,
+        "cpu_kernel_seconds": 83.46875,
+        "cpu_family_seconds": 122.25,
+        "total_family_processes": 1,
+        "active_family_processes_at_completion": 0,
+        "peak_family_committed_bytes": 70504448,
+        "elapsed_seconds": 189.8332728000023
+      },
+      "first_navigation_return_at": "2026-10-22T00:33:48.238Z",
+      "last_observation_at": "2026-10-22T00:35:18.883Z",
+      "context_logs": [
+        {
+          "path": "docs/evaluation/measurements/original-external-common.stdout.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "docs/evaluation/measurements/original-external-common.stderr.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "whole_job_scope": "fresh app process lifetime including startup, Details/maximize/address preparation, UIA/tool/model waits and normal teardown; not listing-only CPU or memory",
+      "full_name_oracle_verified_by_external_trial": false
+    },
+    "B": {
+      "observations_source": {
+        "path": "docs/evaluation/measurements/b-external-common-observations.json",
+        "bytes": 10994,
+        "sha256": "1219321e63b1ad038c5aeecd6976f2a293e2da6d64ec0391b4850ee90bc0f9f2"
+      },
+      "metrics_source": {
+        "path": "docs/evaluation/measurements/b-external-common.metrics.json",
+        "bytes": 875,
+        "sha256": "e9942c2fce26c0ad6d4795c369ce1c9866101c8021b46d7dd7d6c6a9296c0c82"
+      },
+      "program_identity_at_report": {
+        "path": "dist/windows-20261022T090415366/rea_explorer.exe",
+        "bytes": 498176,
+        "sha256": "bed10b64b0dbfb13606b91d8647f7c99f1062fff455a4730547f7d8d51e3c1fb"
+      },
+      "recorded_preparation": {
+        "observed_at": "2026-10-22T00:36:19.268Z",
+        "title": "empty — REA Explorer",
+        "status": [
+          "\t\t\t\t17 편집 (settable, string) Address Value: C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\empty ID: QApplication.explorerWindow.QWidget.navigation.address",
+          "\t\t\t\t\t34 텍스트 0 items Select a file to see its details. ID: QApplication.explorerWindow.QWidget.QSplitter.detailsPane.QLabel",
+          "\t\t\t54 텍스트 0 items ID: QApplication.explorerWindow.QStatusBar.status"
+        ]
+      },
+      "recorded_preparation_interruption": "Native maximize accessibility geometry unavailable; refreshed screenshot then titlebar doubleclick succeeded",
+      "window": {
+        "width": 2560,
+        "height": 1392
+      },
+      "view": "Details",
+      "samples": [
+        {
+          "ordinal": 0,
+          "kind": "first-listing",
+          "action": "Return",
+          "started_at": "2026-10-22T00:36:37.557Z",
+          "source_pointer": "/samples/0",
+          "first_qualifying_status_ms": 11510.84489999991,
+          "first_qualifying_status_pointer": "/samples/0/polls/1",
+          "last_poll_ms": 11510.84489999991,
+          "raw_elapsed_upper_bound_ms": 11510.84489999991,
+          "poll_count": 2,
+          "loading_before_ready_observed": true,
+          "nonqualifying_poll_before_ready": true,
+          "fresh_generation_proven": null,
+          "internal_listing_latency_ms": null,
+          "completed_paint_latency_ms": null,
+          "internal_heartbeat_gap_ms": null,
+          "interpretation": "loading-to-ready text transition; internal readiness/paint still unknown",
+          "polls": [
+            {
+              "pointer": "/samples/0/polls/0",
+              "observed_at": "2026-10-22T00:36:37.660Z",
+              "elapsed_ms": 102.98049999959767,
+              "title": "empty — REA Explorer",
+              "status": [
+                "\t\t\t\t9 Tab (settable, string) Loading… ID: QApplication.explorerWindow.QWidget.tabRow.tabs",
+                "\t\t\t\t\t10 탭 항목 (selectable, settable, string) Loading… ID: QApplication.explorerWindow.QWidget.tabRow.tabs",
+                "\t\t\t\t17 편집 (settable, string) Address Value: C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\bulk ID: QApplication.explorerWindow.QWidget.navigation.address",
+                "\t\t\t\t\t34 텍스트 0 items Select a file to see its details. ID: QApplication.explorerWindow.QWidget.QSplitter.detailsPane.QLabel",
+                "\t\t\t54 텍스트 Loading… ID: QApplication.explorerWindow.QStatusBar.status"
+              ],
+              "loading_text_observed": true,
+              "item_status_1200_observed": false,
+              "bulk_path_observed": true,
+              "qualifying_external_ready_status": false
+            },
+            {
+              "pointer": "/samples/0/polls/1",
+              "observed_at": "2026-10-22T00:36:49.068Z",
+              "elapsed_ms": 11510.84489999991,
+              "title": "bulk — REA Explorer",
+              "status": [
+                "\t\t\t\t17 편집 (settable, string) Address Value: C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\bulk ID: QApplication.explorerWindow.QWidget.navigation.address",
+                "\t\t\t\t\t34 텍스트 1200 items Select a file to see its details. ID: QApplication.explorerWindow.QWidget.QSplitter.detailsPane.QLabel",
+                "\t\t\t54 텍스트 1200 items ID: QApplication.explorerWindow.QStatusBar.status"
+              ],
+              "loading_text_observed": false,
+              "item_status_1200_observed": true,
+              "bulk_path_observed": true,
+              "qualifying_external_ready_status": true
+            }
+          ]
+        },
+        {
+          "ordinal": 1,
+          "kind": "warm-refresh",
+          "action": "F5",
+          "started_at": "2026-10-22T00:36:55.223Z",
+          "source_pointer": "/samples/1",
+          "first_qualifying_status_ms": 292.16660000011325,
+          "first_qualifying_status_pointer": "/samples/1/polls/0",
+          "last_poll_ms": 11491.92100000009,
+          "raw_elapsed_upper_bound_ms": 11491.92100000009,
+          "poll_count": 2,
+          "loading_before_ready_observed": false,
+          "nonqualifying_poll_before_ready": false,
+          "fresh_generation_proven": null,
+          "internal_listing_latency_ms": null,
+          "completed_paint_latency_ms": null,
+          "internal_heartbeat_gap_ms": null,
+          "interpretation": "1200+bulk already visible on first poll; refresh generation/completion not established",
+          "polls": [
+            {
+              "pointer": "/samples/1/polls/0",
+              "observed_at": "2026-10-22T00:36:55.516Z",
+              "elapsed_ms": 292.16660000011325,
+              "title": "bulk — REA Explorer",
+              "status": [
+                "\t\t\t\t17 편집 (settable, string) Address Value: C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\bulk ID: QApplication.explorerWindow.QWidget.navigation.address",
+                "\t\t\t\t\t34 텍스트 1200 items Select a file to see its details. ID: QApplication.explorerWindow.QWidget.QSplitter.detailsPane.QLabel",
+                "\t\t\t54 텍스트 1200 items ID: QApplication.explorerWindow.QStatusBar.status"
+              ],
+              "loading_text_observed": false,
+              "item_status_1200_observed": true,
+              "bulk_path_observed": true,
+              "qualifying_external_ready_status": true
+            },
+            {
+              "pointer": "/samples/1/polls/1",
+              "observed_at": "2026-10-22T00:37:06.715Z",
+              "elapsed_ms": 11491.92100000009,
+              "title": "bulk — REA Explorer",
+              "status": [
+                "\t\t\t\t17 편집 (settable, string) Address Value: C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\bulk ID: QApplication.explorerWindow.QWidget.navigation.address",
+                "\t\t\t\t\t34 텍스트 1200 items Select a file to see its details. ID: QApplication.explorerWindow.QWidget.QSplitter.detailsPane.QLabel",
+                "\t\t\t54 텍스트 1200 items ID: QApplication.explorerWindow.QStatusBar.status"
+              ],
+              "loading_text_observed": false,
+              "item_status_1200_observed": true,
+              "bulk_path_observed": true,
+              "qualifying_external_ready_status": true
+            }
+          ]
+        },
+        {
+          "ordinal": 2,
+          "kind": "warm-refresh",
+          "action": "F5",
+          "started_at": "2026-10-22T00:37:38.901Z",
+          "source_pointer": "/samples/2",
+          "first_qualifying_status_ms": 275.9375,
+          "first_qualifying_status_pointer": "/samples/2/polls/0",
+          "last_poll_ms": 7393.119799999986,
+          "raw_elapsed_upper_bound_ms": 7393.119799999986,
+          "poll_count": 2,
+          "loading_before_ready_observed": false,
+          "nonqualifying_poll_before_ready": false,
+          "fresh_generation_proven": null,
+          "internal_listing_latency_ms": null,
+          "completed_paint_latency_ms": null,
+          "internal_heartbeat_gap_ms": null,
+          "interpretation": "1200+bulk already visible on first poll; refresh generation/completion not established",
+          "polls": [
+            {
+              "pointer": "/samples/2/polls/0",
+              "observed_at": "2026-10-22T00:37:39.177Z",
+              "elapsed_ms": 275.9375,
+              "title": "bulk — REA Explorer",
+              "status": [
+                "\t\t\t\t17 편집 (settable, string) Address Value: C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\bulk ID: QApplication.explorerWindow.QWidget.navigation.address",
+                "\t\t\t\t\t34 텍스트 1200 items Select a file to see its details. ID: QApplication.explorerWindow.QWidget.QSplitter.detailsPane.QLabel",
+                "\t\t\t54 텍스트 1200 items ID: QApplication.explorerWindow.QStatusBar.status"
+              ],
+              "loading_text_observed": false,
+              "item_status_1200_observed": true,
+              "bulk_path_observed": true,
+              "qualifying_external_ready_status": true
+            },
+            {
+              "pointer": "/samples/2/polls/1",
+              "observed_at": "2026-10-22T00:37:46.294Z",
+              "elapsed_ms": 7393.119799999986,
+              "title": "bulk — REA Explorer",
+              "status": [
+                "\t\t\t\t17 편집 (settable, string) Address Value: C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\bulk ID: QApplication.explorerWindow.QWidget.navigation.address",
+                "\t\t\t\t\t34 텍스트 1200 items Select a file to see its details. ID: QApplication.explorerWindow.QWidget.QSplitter.detailsPane.QLabel",
+                "\t\t\t54 텍스트 1200 items ID: QApplication.explorerWindow.QStatusBar.status"
+              ],
+              "loading_text_observed": false,
+              "item_status_1200_observed": true,
+              "bulk_path_observed": true,
+              "qualifying_external_ready_status": true
+            }
+          ]
+        },
+        {
+          "ordinal": 3,
+          "kind": "warm-refresh",
+          "action": "F5",
+          "started_at": "2026-10-22T00:37:53.399Z",
+          "source_pointer": "/samples/3",
+          "first_qualifying_status_ms": 6427.6392999999225,
+          "first_qualifying_status_pointer": "/samples/3/polls/1",
+          "last_poll_ms": 6427.6392999999225,
+          "raw_elapsed_upper_bound_ms": 6427.6392999999225,
+          "poll_count": 2,
+          "loading_before_ready_observed": true,
+          "nonqualifying_poll_before_ready": true,
+          "fresh_generation_proven": null,
+          "internal_listing_latency_ms": null,
+          "completed_paint_latency_ms": null,
+          "internal_heartbeat_gap_ms": null,
+          "interpretation": "loading-to-ready text transition; internal readiness/paint still unknown",
+          "polls": [
+            {
+              "pointer": "/samples/3/polls/0",
+              "observed_at": "2026-10-22T00:37:53.719Z",
+              "elapsed_ms": 320.3248999998905,
+              "title": "bulk — REA Explorer",
+              "status": [
+                "\t\t\t\t9 Tab (settable, string) Loading… ID: QApplication.explorerWindow.QWidget.tabRow.tabs",
+                "\t\t\t\t\t10 탭 항목 (selectable, settable, string) Loading… ID: QApplication.explorerWindow.QWidget.tabRow.tabs",
+                "\t\t\t\t17 편집 (settable, string) Address Value: C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\bulk ID: QApplication.explorerWindow.QWidget.navigation.address",
+                "\t\t\t\t\t34 텍스트 1200 items Select a file to see its details. ID: QApplication.explorerWindow.QWidget.QSplitter.detailsPane.QLabel",
+                "\t\t\t54 텍스트 Loading… ID: QApplication.explorerWindow.QStatusBar.status"
+              ],
+              "loading_text_observed": true,
+              "item_status_1200_observed": true,
+              "bulk_path_observed": true,
+              "qualifying_external_ready_status": false
+            },
+            {
+              "pointer": "/samples/3/polls/1",
+              "observed_at": "2026-10-22T00:37:59.826Z",
+              "elapsed_ms": 6427.6392999999225,
+              "title": "bulk — REA Explorer",
+              "status": [
+                "\t\t\t\t17 편집 (settable, string) Address Value: C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\bulk ID: QApplication.explorerWindow.QWidget.navigation.address",
+                "\t\t\t\t\t34 텍스트 1200 items Select a file to see its details. ID: QApplication.explorerWindow.QWidget.QSplitter.detailsPane.QLabel",
+                "\t\t\t54 텍스트 1200 items ID: QApplication.explorerWindow.QStatusBar.status"
+              ],
+              "loading_text_observed": false,
+              "item_status_1200_observed": true,
+              "bulk_path_observed": true,
+              "qualifying_external_ready_status": true
+            }
+          ]
+        },
+        {
+          "ordinal": 4,
+          "kind": "warm-refresh",
+          "action": "F5",
+          "started_at": "2026-10-22T00:38:07.371Z",
+          "source_pointer": "/samples/4",
+          "first_qualifying_status_ms": 97.46160000003874,
+          "first_qualifying_status_pointer": "/samples/4/polls/0",
+          "last_poll_ms": 5010.035500000231,
+          "raw_elapsed_upper_bound_ms": 5010.035500000231,
+          "poll_count": 2,
+          "loading_before_ready_observed": false,
+          "nonqualifying_poll_before_ready": false,
+          "fresh_generation_proven": null,
+          "internal_listing_latency_ms": null,
+          "completed_paint_latency_ms": null,
+          "internal_heartbeat_gap_ms": null,
+          "interpretation": "1200+bulk already visible on first poll; refresh generation/completion not established",
+          "polls": [
+            {
+              "pointer": "/samples/4/polls/0",
+              "observed_at": "2026-10-22T00:38:07.468Z",
+              "elapsed_ms": 97.46160000003874,
+              "title": "bulk — REA Explorer",
+              "status": [
+                "\t\t\t\t17 편집 (settable, string) Address Value: C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\bulk ID: QApplication.explorerWindow.QWidget.navigation.address",
+                "\t\t\t\t\t34 텍스트 1200 items Select a file to see its details. ID: QApplication.explorerWindow.QWidget.QSplitter.detailsPane.QLabel",
+                "\t\t\t54 텍스트 1200 items ID: QApplication.explorerWindow.QStatusBar.status"
+              ],
+              "loading_text_observed": false,
+              "item_status_1200_observed": true,
+              "bulk_path_observed": true,
+              "qualifying_external_ready_status": true
+            },
+            {
+              "pointer": "/samples/4/polls/1",
+              "observed_at": "2026-10-22T00:38:12.381Z",
+              "elapsed_ms": 5010.035500000231,
+              "title": "bulk — REA Explorer",
+              "status": [
+                "\t\t\t\t17 편집 (settable, string) Address Value: C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\bulk ID: QApplication.explorerWindow.QWidget.navigation.address",
+                "\t\t\t\t\t34 텍스트 1200 items Select a file to see its details. ID: QApplication.explorerWindow.QWidget.QSplitter.detailsPane.QLabel",
+                "\t\t\t54 텍스트 1200 items ID: QApplication.explorerWindow.QStatusBar.status"
+              ],
+              "loading_text_observed": false,
+              "item_status_1200_observed": true,
+              "bulk_path_observed": true,
+              "qualifying_external_ready_status": true
+            }
+          ]
+        },
+        {
+          "ordinal": 5,
+          "kind": "warm-refresh",
+          "action": "F5",
+          "started_at": "2026-10-22T00:38:17.304Z",
+          "source_pointer": "/samples/5",
+          "first_qualifying_status_ms": 276.2689000000246,
+          "first_qualifying_status_pointer": "/samples/5/polls/0",
+          "last_poll_ms": 6315.718399999663,
+          "raw_elapsed_upper_bound_ms": 6315.718399999663,
+          "poll_count": 2,
+          "loading_before_ready_observed": false,
+          "nonqualifying_poll_before_ready": false,
+          "fresh_generation_proven": null,
+          "internal_listing_latency_ms": null,
+          "completed_paint_latency_ms": null,
+          "internal_heartbeat_gap_ms": null,
+          "interpretation": "1200+bulk already visible on first poll; refresh generation/completion not established",
+          "polls": [
+            {
+              "pointer": "/samples/5/polls/0",
+              "observed_at": "2026-10-22T00:38:17.581Z",
+              "elapsed_ms": 276.2689000000246,
+              "title": "bulk — REA Explorer",
+              "status": [
+                "\t\t\t\t17 편집 (settable, string) Address Value: C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\bulk ID: QApplication.explorerWindow.QWidget.navigation.address",
+                "\t\t\t\t\t34 텍스트 1200 items Select a file to see its details. ID: QApplication.explorerWindow.QWidget.QSplitter.detailsPane.QLabel",
+                "\t\t\t54 텍스트 1200 items ID: QApplication.explorerWindow.QStatusBar.status"
+              ],
+              "loading_text_observed": false,
+              "item_status_1200_observed": true,
+              "bulk_path_observed": true,
+              "qualifying_external_ready_status": true
+            },
+            {
+              "pointer": "/samples/5/polls/1",
+              "observed_at": "2026-10-22T00:38:23.620Z",
+              "elapsed_ms": 6315.718399999663,
+              "title": "bulk — REA Explorer",
+              "status": [
+                "\t\t\t\t17 편집 (settable, string) Address Value: C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\bulk ID: QApplication.explorerWindow.QWidget.navigation.address",
+                "\t\t\t\t\t34 텍스트 1200 items Select a file to see its details. ID: QApplication.explorerWindow.QWidget.QSplitter.detailsPane.QLabel",
+                "\t\t\t54 텍스트 1200 items ID: QApplication.explorerWindow.QStatusBar.status"
+              ],
+              "loading_text_observed": false,
+              "item_status_1200_observed": true,
+              "bulk_path_observed": true,
+              "qualifying_external_ready_status": true
+            }
+          ]
+        }
+      ],
+      "whole_job": {
+        "argv": [
+          "C:\\dev\\Windows_fileexplore\\dist\\windows-20261022T090415366\\rea_explorer.exe",
+          "--path",
+          "C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\empty"
+        ],
+        "cwd": "C:\\dev\\Windows_fileexplore",
+        "started_at": "2026-10-22T09:35:30.357479+09:00",
+        "hidden": true,
+        "environment_persisted_by_runner": false,
+        "memory_definition": "Job Object PeakJobMemoryUsed: peak simultaneous committed memory for the assigned process and descendants; not resident working set.",
+        "pid": 24332,
+        "exit_code": 0,
+        "residual_owned_processes_terminated": 0,
+        "cpu_user_seconds": 31.328125,
+        "cpu_kernel_seconds": 18.71875,
+        "cpu_family_seconds": 50.046875,
+        "total_family_processes": 1,
+        "active_family_processes_at_completion": 0,
+        "peak_family_committed_bytes": 35995648,
+        "elapsed_seconds": 179.39226879999478
+      },
+      "first_navigation_return_at": "2026-10-22T00:36:37.557Z",
+      "last_observation_at": "2026-10-22T00:38:23.620Z",
+      "context_logs": [
+        {
+          "path": "docs/evaluation/measurements/b-external-common.stdout.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "docs/evaluation/measurements/b-external-common.stderr.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "whole_job_scope": "fresh app process lifetime including startup, Details/maximize/address preparation, UIA/tool/model waits and normal teardown; not listing-only CPU or memory",
+      "full_name_oracle_verified_by_external_trial": false
+    }
+  },
+  "derived_comparisons": {
+    "same_internal_readiness_boundary_proven": false,
+    "original_internal_listing_latency_ms": null,
+    "B_internal_listing_latency_from_this_trial_ms": null,
+    "B_fresh_generation_for_4_immediate_refreshes": null,
+    "speed_ratio": null,
+    "REA_causal_effect": null,
+    "requested_sequence_external_status_observed_for_both": true
+  },
+  "limitations": [
+    "External status/path is an accessibility observation, not internal model-generation completion, completed paint, GUI heartbeat, nor full-name/metadata equality.",
+    "Each action-to-poll duration includes input/control overhead, UIA provider work, scheduling/model/tool delays and later repeated checks. It is not app-only listing latency.",
+    "B warm1/2/4/5 show 1200 on their first poll without observed Loading; neither that first poll nor later repeat check proves a fresh refresh generation. Values near 0.1-0.3s must not be called true listing times.",
+    "Original nonqualifying/empty status polls followed by 1200 provide a different observed transition; they do not reveal internal completion timestamps or comparable heartbeat.",
+    "Original Details setup required two clicks and a user interruption before measurement; B maximize accessibility failed, then preparation screenshot/titlebar double-click succeeded. These are preparation asymmetries, not timed product-listing failures.",
+    "Whole Job CPU/peak/wall include preparation, UI wait and teardown. Different lifetimes/UIA trees/layout/providers prevent task-only CPU or memory-efficiency claims.",
+    "One sequential trial per app, unflushed OS cache, original-first order and tool/agent waits do not support speed ratios, statistical generalization or REA causality.",
+    "This report does not modify initial A/B source, instrumentation, frozen documents or prior measurements. No new UI/run/benchmark was executed.",
+    "Job CPU covers the owned app/provider work during the observed lifetime; separate CUA client/tool/model CPU is not included in the app Job. Wait intervals affect wall time even when the app uses no CPU."
+  ],
+  "execution_notes_provenance": {
+    "source": "Root execution handoff plus raw preparation_interruption fields; no new independent replay",
+    "original_Details_selection": "Two setup clicks per root handoff; raw view field records Details",
+    "B_maximize_recovery": "Recorded preparation_interruption describes unavailable native accessibility geometry then screenshot/titlebar double-click recovery"
+  }
+}

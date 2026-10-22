@@ -1,0 +1,190 @@
+{
+  "protocol": "verification/benchmarks/external-protocol.json",
+  "preparation": {
+    "observed_at": "2026-10-22T00:33:29.929Z",
+    "title": "empty - Explorer++",
+    "status": [
+      "\t\t\t2 텍스트 0 items",
+      "\t\t\t\t9 편집 (settable, string) Value: C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\empty"
+    ]
+  },
+  "window": {
+    "width": 2560,
+    "height": 1392
+  },
+  "samples": [
+    {
+      "kind": "first-listing",
+      "action": "Return",
+      "started_at": "2026-10-22T00:33:48.238Z",
+      "start": 2570821.9487,
+      "polls": [
+        {
+          "observed_at": "2026-10-22T00:33:51.325Z",
+          "title": "empty - Explorer++",
+          "status": [],
+          "elapsed_ms": 3087.0496000000276
+        },
+        {
+          "observed_at": "2026-10-22T00:33:56.491Z",
+          "title": "bulk - Explorer++",
+          "status": [
+            "\t\t\t2 텍스트 0 items",
+            "\t\t\t\t9 편집 (settable, string) Value: C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\bulk",
+            "The focused UI element is 9 편집 (settable, string) Value: C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\bulk."
+          ],
+          "elapsed_ms": 8252.99049999984
+        },
+        {
+          "observed_at": "2026-10-22T00:34:03.162Z",
+          "title": "bulk - Explorer++",
+          "status": [
+            "\t\t\t2 텍스트 1,200 items",
+            "\t\t\t\t9 편집 (settable, string) Value: C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\bulk",
+            "The focused UI element is 9 편집 (settable, string) Value: C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\bulk."
+          ],
+          "elapsed_ms": 14924.82349999994
+        }
+      ],
+      "elapsed_upper_bound_ms": 14924.82349999994,
+      "completed_status": true
+    },
+    {
+      "kind": "warm-refresh",
+      "ordinal": 1,
+      "action": "F5",
+      "started_at": "2026-10-22T00:34:11.944Z",
+      "start": 2594528.4798,
+      "polls": [
+        {
+          "observed_at": "2026-10-22T00:34:15.028Z",
+          "title": "bulk - Explorer++",
+          "status": [],
+          "elapsed_ms": 3084.2446000003256
+        },
+        {
+          "observed_at": "2026-10-22T00:34:23.339Z",
+          "title": "bulk - Explorer++",
+          "status": [
+            "\t\t\t2 텍스트 1,200 items",
+            "\t\t\t\t9 편집 (settable, string) Value: C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\bulk",
+            "The focused UI element is 9 편집 (settable, string) Value: C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\bulk."
+          ],
+          "elapsed_ms": 11394.703399999999
+        }
+      ],
+      "elapsed_upper_bound_ms": 11394.703399999999,
+      "completed_status": true
+    },
+    {
+      "kind": "warm-refresh",
+      "ordinal": 2,
+      "action": "F5",
+      "started_at": "2026-10-22T00:34:29.057Z",
+      "start": 2611641.6417,
+      "polls": [
+        {
+          "observed_at": "2026-10-22T00:34:32.131Z",
+          "title": "bulk - Explorer++",
+          "status": [],
+          "elapsed_ms": 3074.304899999872
+        },
+        {
+          "observed_at": "2026-10-22T00:34:37.008Z",
+          "title": "bulk - Explorer++",
+          "status": [
+            "\t\t\t2 텍스트 1,200 items",
+            "\t\t\t\t9 편집 (settable, string) Value: C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\bulk",
+            "The focused UI element is 9 편집 (settable, string) Value: C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\bulk."
+          ],
+          "elapsed_ms": 7950.93069999991
+        }
+      ],
+      "elapsed_upper_bound_ms": 7950.93069999991,
+      "completed_status": true
+    },
+    {
+      "kind": "warm-refresh",
+      "ordinal": 3,
+      "action": "F5",
+      "started_at": "2026-10-22T00:34:43.186Z",
+      "start": 2625770.7303,
+      "polls": [
+        {
+          "observed_at": "2026-10-22T00:34:46.256Z",
+          "title": "bulk - Explorer++",
+          "status": [],
+          "elapsed_ms": 3069.9443999999203
+        },
+        {
+          "observed_at": "2026-10-22T00:34:51.501Z",
+          "title": "bulk - Explorer++",
+          "status": [
+            "\t\t\t2 텍스트 1,200 items",
+            "\t\t\t\t9 편집 (settable, string) Value: C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\bulk",
+            "The focused UI element is 9 편집 (settable, string) Value: C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\bulk."
+          ],
+          "elapsed_ms": 8315.43060000008
+        }
+      ],
+      "elapsed_upper_bound_ms": 8315.43060000008,
+      "completed_status": true
+    },
+    {
+      "kind": "warm-refresh",
+      "ordinal": 4,
+      "action": "F5",
+      "started_at": "2026-10-22T00:34:57.259Z",
+      "start": 2639844.0999,
+      "polls": [
+        {
+          "observed_at": "2026-10-22T00:35:00.325Z",
+          "title": "bulk - Explorer++",
+          "status": [],
+          "elapsed_ms": 3066.1085000000894
+        },
+        {
+          "observed_at": "2026-10-22T00:35:05.948Z",
+          "title": "bulk - Explorer++",
+          "status": [
+            "\t\t\t2 텍스트 1,200 items",
+            "\t\t\t\t9 편집 (settable, string) Value: C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\bulk",
+            "The focused UI element is 9 편집 (settable, string) Value: C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\bulk."
+          ],
+          "elapsed_ms": 8688.6222000001
+        }
+      ],
+      "elapsed_upper_bound_ms": 8688.6222000001,
+      "completed_status": true
+    },
+    {
+      "kind": "warm-refresh",
+      "ordinal": 5,
+      "action": "F5",
+      "started_at": "2026-10-22T00:35:10.751Z",
+      "start": 2653335.7193,
+      "polls": [
+        {
+          "observed_at": "2026-10-22T00:35:13.820Z",
+          "title": "bulk - Explorer++",
+          "status": [],
+          "elapsed_ms": 3069.1047000000253
+        },
+        {
+          "observed_at": "2026-10-22T00:35:18.883Z",
+          "title": "bulk - Explorer++",
+          "status": [
+            "\t\t\t2 텍스트 1,200 items",
+            "\t\t\t\t9 편집 (settable, string) Value: C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\bulk",
+            "The focused UI element is 9 편집 (settable, string) Value: C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\bulk."
+          ],
+          "elapsed_ms": 8131.9816999998875
+        }
+      ],
+      "elapsed_upper_bound_ms": 8131.9816999998875,
+      "completed_status": true
+    }
+  ],
+  "preparation_interruption": "User input detected before measurement; state refreshed before retry",
+  "view": "Details"
+}

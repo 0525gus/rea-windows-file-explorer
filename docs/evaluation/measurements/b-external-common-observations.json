@@ -1,0 +1,215 @@
+{
+  "protocol": "verification/benchmarks/external-protocol.json",
+  "preparation": {
+    "observed_at": "2026-10-22T00:36:19.268Z",
+    "title": "empty — REA Explorer",
+    "status": [
+      "\t\t\t\t17 편집 (settable, string) Address Value: C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\empty ID: QApplication.explorerWindow.QWidget.navigation.address",
+      "\t\t\t\t\t34 텍스트 0 items Select a file to see its details. ID: QApplication.explorerWindow.QWidget.QSplitter.detailsPane.QLabel",
+      "\t\t\t54 텍스트 0 items ID: QApplication.explorerWindow.QStatusBar.status"
+    ]
+  },
+  "window": {
+    "width": 2560,
+    "height": 1392
+  },
+  "samples": [
+    {
+      "kind": "first-listing",
+      "action": "Return",
+      "started_at": "2026-10-22T00:36:37.557Z",
+      "start": 2740140.7762,
+      "polls": [
+        {
+          "observed_at": "2026-10-22T00:36:37.660Z",
+          "title": "empty — REA Explorer",
+          "status": [
+            "\t\t\t\t9 Tab (settable, string) Loading… ID: QApplication.explorerWindow.QWidget.tabRow.tabs",
+            "\t\t\t\t\t10 탭 항목 (selectable, settable, string) Loading… ID: QApplication.explorerWindow.QWidget.tabRow.tabs",
+            "\t\t\t\t17 편집 (settable, string) Address Value: C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\bulk ID: QApplication.explorerWindow.QWidget.navigation.address",
+            "\t\t\t\t\t34 텍스트 0 items Select a file to see its details. ID: QApplication.explorerWindow.QWidget.QSplitter.detailsPane.QLabel",
+            "\t\t\t54 텍스트 Loading… ID: QApplication.explorerWindow.QStatusBar.status"
+          ],
+          "elapsed_ms": 102.98049999959767
+        },
+        {
+          "observed_at": "2026-10-22T00:36:49.068Z",
+          "title": "bulk — REA Explorer",
+          "status": [
+            "\t\t\t\t17 편집 (settable, string) Address Value: C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\bulk ID: QApplication.explorerWindow.QWidget.navigation.address",
+            "\t\t\t\t\t34 텍스트 1200 items Select a file to see its details. ID: QApplication.explorerWindow.QWidget.QSplitter.detailsPane.QLabel",
+            "\t\t\t54 텍스트 1200 items ID: QApplication.explorerWindow.QStatusBar.status"
+          ],
+          "elapsed_ms": 11510.84489999991
+        }
+      ],
+      "elapsed_upper_bound_ms": 11510.84489999991,
+      "completed_status": true
+    },
+    {
+      "kind": "warm-refresh",
+      "ordinal": 1,
+      "action": "F5",
+      "started_at": "2026-10-22T00:36:55.223Z",
+      "start": 2757807.4584,
+      "polls": [
+        {
+          "observed_at": "2026-10-22T00:36:55.516Z",
+          "title": "bulk — REA Explorer",
+          "status": [
+            "\t\t\t\t17 편집 (settable, string) Address Value: C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\bulk ID: QApplication.explorerWindow.QWidget.navigation.address",
+            "\t\t\t\t\t34 텍스트 1200 items Select a file to see its details. ID: QApplication.explorerWindow.QWidget.QSplitter.detailsPane.QLabel",
+            "\t\t\t54 텍스트 1200 items ID: QApplication.explorerWindow.QStatusBar.status"
+          ],
+          "elapsed_ms": 292.16660000011325
+        },
+        {
+          "observed_at": "2026-10-22T00:37:06.715Z",
+          "title": "bulk — REA Explorer",
+          "status": [
+            "\t\t\t\t17 편집 (settable, string) Address Value: C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\bulk ID: QApplication.explorerWindow.QWidget.navigation.address",
+            "\t\t\t\t\t34 텍스트 1200 items Select a file to see its details. ID: QApplication.explorerWindow.QWidget.QSplitter.detailsPane.QLabel",
+            "\t\t\t54 텍스트 1200 items ID: QApplication.explorerWindow.QStatusBar.status"
+          ],
+          "elapsed_ms": 11491.92100000009
+        }
+      ],
+      "elapsed_upper_bound_ms": 11491.92100000009,
+      "completed_status": true,
+      "loading_transition_observed": false
+    },
+    {
+      "kind": "warm-refresh",
+      "ordinal": 2,
+      "action": "F5",
+      "started_at": "2026-10-22T00:37:38.901Z",
+      "start": 2801484.8108,
+      "polls": [
+        {
+          "observed_at": "2026-10-22T00:37:39.177Z",
+          "title": "bulk — REA Explorer",
+          "status": [
+            "\t\t\t\t17 편집 (settable, string) Address Value: C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\bulk ID: QApplication.explorerWindow.QWidget.navigation.address",
+            "\t\t\t\t\t34 텍스트 1200 items Select a file to see its details. ID: QApplication.explorerWindow.QWidget.QSplitter.detailsPane.QLabel",
+            "\t\t\t54 텍스트 1200 items ID: QApplication.explorerWindow.QStatusBar.status"
+          ],
+          "elapsed_ms": 275.9375
+        },
+        {
+          "observed_at": "2026-10-22T00:37:46.294Z",
+          "title": "bulk — REA Explorer",
+          "status": [
+            "\t\t\t\t17 편집 (settable, string) Address Value: C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\bulk ID: QApplication.explorerWindow.QWidget.navigation.address",
+            "\t\t\t\t\t34 텍스트 1200 items Select a file to see its details. ID: QApplication.explorerWindow.QWidget.QSplitter.detailsPane.QLabel",
+            "\t\t\t54 텍스트 1200 items ID: QApplication.explorerWindow.QStatusBar.status"
+          ],
+          "elapsed_ms": 7393.119799999986
+        }
+      ],
+      "elapsed_upper_bound_ms": 7393.119799999986,
+      "completed_status": true,
+      "loading_transition_observed": false
+    },
+    {
+      "kind": "warm-refresh",
+      "ordinal": 3,
+      "action": "F5",
+      "started_at": "2026-10-22T00:37:53.399Z",
+      "start": 2815982.8802,
+      "polls": [
+        {
+          "observed_at": "2026-10-22T00:37:53.719Z",
+          "title": "bulk — REA Explorer",
+          "status": [
+            "\t\t\t\t9 Tab (settable, string) Loading… ID: QApplication.explorerWindow.QWidget.tabRow.tabs",
+            "\t\t\t\t\t10 탭 항목 (selectable, settable, string) Loading… ID: QApplication.explorerWindow.QWidget.tabRow.tabs",
+            "\t\t\t\t17 편집 (settable, string) Address Value: C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\bulk ID: QApplication.explorerWindow.QWidget.navigation.address",
+            "\t\t\t\t\t34 텍스트 1200 items Select a file to see its details. ID: QApplication.explorerWindow.QWidget.QSplitter.detailsPane.QLabel",
+            "\t\t\t54 텍스트 Loading… ID: QApplication.explorerWindow.QStatusBar.status"
+          ],
+          "elapsed_ms": 320.3248999998905
+        },
+        {
+          "observed_at": "2026-10-22T00:37:59.826Z",
+          "title": "bulk — REA Explorer",
+          "status": [
+            "\t\t\t\t17 편집 (settable, string) Address Value: C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\bulk ID: QApplication.explorerWindow.QWidget.navigation.address",
+            "\t\t\t\t\t34 텍스트 1200 items Select a file to see its details. ID: QApplication.explorerWindow.QWidget.QSplitter.detailsPane.QLabel",
+            "\t\t\t54 텍스트 1200 items ID: QApplication.explorerWindow.QStatusBar.status"
+          ],
+          "elapsed_ms": 6427.6392999999225
+        }
+      ],
+      "elapsed_upper_bound_ms": 6427.6392999999225,
+      "completed_status": true,
+      "loading_transition_observed": true
+    },
+    {
+      "kind": "warm-refresh",
+      "ordinal": 4,
+      "action": "F5",
+      "started_at": "2026-10-22T00:38:07.371Z",
+      "start": 2829954.8767,
+      "polls": [
+        {
+          "observed_at": "2026-10-22T00:38:07.468Z",
+          "title": "bulk — REA Explorer",
+          "status": [
+            "\t\t\t\t17 편집 (settable, string) Address Value: C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\bulk ID: QApplication.explorerWindow.QWidget.navigation.address",
+            "\t\t\t\t\t34 텍스트 1200 items Select a file to see its details. ID: QApplication.explorerWindow.QWidget.QSplitter.detailsPane.QLabel",
+            "\t\t\t54 텍스트 1200 items ID: QApplication.explorerWindow.QStatusBar.status"
+          ],
+          "elapsed_ms": 97.46160000003874
+        },
+        {
+          "observed_at": "2026-10-22T00:38:12.381Z",
+          "title": "bulk — REA Explorer",
+          "status": [
+            "\t\t\t\t17 편집 (settable, string) Address Value: C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\bulk ID: QApplication.explorerWindow.QWidget.navigation.address",
+            "\t\t\t\t\t34 텍스트 1200 items Select a file to see its details. ID: QApplication.explorerWindow.QWidget.QSplitter.detailsPane.QLabel",
+            "\t\t\t54 텍스트 1200 items ID: QApplication.explorerWindow.QStatusBar.status"
+          ],
+          "elapsed_ms": 5010.035500000231
+        }
+      ],
+      "elapsed_upper_bound_ms": 5010.035500000231,
+      "completed_status": true,
+      "loading_transition_observed": false
+    },
+    {
+      "kind": "warm-refresh",
+      "ordinal": 5,
+      "action": "F5",
+      "started_at": "2026-10-22T00:38:17.304Z",
+      "start": 2839888.3634,
+      "polls": [
+        {
+          "observed_at": "2026-10-22T00:38:17.581Z",
+          "title": "bulk — REA Explorer",
+          "status": [
+            "\t\t\t\t17 편집 (settable, string) Address Value: C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\bulk ID: QApplication.explorerWindow.QWidget.navigation.address",
+            "\t\t\t\t\t34 텍스트 1200 items Select a file to see its details. ID: QApplication.explorerWindow.QWidget.QSplitter.detailsPane.QLabel",
+            "\t\t\t54 텍스트 1200 items ID: QApplication.explorerWindow.QStatusBar.status"
+          ],
+          "elapsed_ms": 276.2689000000246
+        },
+        {
+          "observed_at": "2026-10-22T00:38:23.620Z",
+          "title": "bulk — REA Explorer",
+          "status": [
+            "\t\t\t\t17 편집 (settable, string) Address Value: C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\bulk ID: QApplication.explorerWindow.QWidget.navigation.address",
+            "\t\t\t\t\t34 텍스트 1200 items Select a file to see its details. ID: QApplication.explorerWindow.QWidget.QSplitter.detailsPane.QLabel",
+            "\t\t\t54 텍스트 1200 items ID: QApplication.explorerWindow.QStatusBar.status"
+          ],
+          "elapsed_ms": 6315.718399999663
+        }
+      ],
+      "elapsed_upper_bound_ms": 6315.718399999663,
+      "completed_status": true,
+      "loading_transition_observed": false
+    }
+  ],
+  "view": "Details",
+  "preparation_interruption": "Native maximize accessibility geometry unavailable; refreshed screenshot then titlebar doubleclick succeeded",
+  "readiness_limit": "F5 input followed by ready status is observed; loading transition captured only in ordinal3. Stable counts in other samples do not establish a new generation or internal-idle timing."
+}

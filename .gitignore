@@ -5,6 +5,7 @@
 /tools/
 /verification/source/
 /experiments/**/build*/
+/experiments/**/artifacts/
 *.user
 *.pdb
 *.ilk

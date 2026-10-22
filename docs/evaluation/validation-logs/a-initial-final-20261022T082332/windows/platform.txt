@@ -1,0 +1,16 @@
+********* Start testing of PlatformTest *********
+Config: Using QtTest library 6.8.3, Qt 6.8.3 (x86_64-little_endian-llp64 shared (dynamic) release build; by MSVC 2022), windows 11
+PASS   : PlatformTest::initTestCase()
+PASS   : PlatformTest::emptyFolder()
+PASS   : PlatformTest::bulkComplete()
+PASS   : PlatformTest::unicodeAndMetadata()
+PASS   : PlatformTest::invalidAndNotDirectory()
+PASS   : PlatformTest::deniedRealAcl()
+PASS   : PlatformTest::externalDeletion()
+PASS   : PlatformTest::cancelledList()
+SKIP   : PlatformTest::linksAreFactsNotRecursion() Symlink creation unavailable: A required privilege is not held by the client.
+C:\dev\Windows_fileexplore\experiments\A\tests\test_platform.cpp(113) : failure location
+PASS   : PlatformTest::rootsAndCapabilities()
+PASS   : PlatformTest::cleanupTestCase()
+Totals: 10 passed, 0 failed, 1 skipped, 0 blacklisted, 135ms
+********* Finished testing of PlatformTest *********

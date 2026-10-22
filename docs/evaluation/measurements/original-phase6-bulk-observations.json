@@ -1,0 +1,109 @@
+{
+  "protocol": "Original same-folder first listing + five F5 refreshes. Began icon view, switched View > Details before five refreshes. No OS cache flush. Native UI/tool snapshots are not process-internal ready latency or heartbeat.",
+  "fixture_sha256": "278d49240d795cabcd15be949cdc4f235722a0c8d92236854c503efc2dd14bc1",
+  "observations": [
+    {
+      "observed_at": "2026-10-22T00:14:21.799Z",
+      "title": "bulk - Explorer++",
+      "lines": [
+        "\t\t\t2 텍스트 1,200 items",
+        "\t\t\t179 텍스트 939 KB",
+        "\t\t\t\t9 편집 (settable, string) Value: C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\bulk",
+        "\t\t139 LIST (truncated: child_limit, omitted 1202 children)"
+      ],
+      "kind": "first-details-ready",
+      "initial_icons": true
+    },
+    {
+      "observed_at": "2026-10-22T00:14:29.699Z",
+      "title": "bulk - Explorer++",
+      "lines": [
+        "\t\t\t2 텍스트 1,200 items",
+        "\t\t\t179 텍스트 939 KB",
+        "\t\t\t\t9 편집 (settable, string) Value: C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\bulk",
+        "\t\t139 LIST (truncated: child_limit, omitted 1202 children)"
+      ],
+      "kind": "warm-refresh",
+      "ordinal": 1,
+      "action_at": "2026-10-22T00:14:26.724Z"
+    },
+    {
+      "observed_at": "2026-10-22T00:14:40.080Z",
+      "title": "bulk - Explorer++",
+      "lines": [],
+      "kind": "warm-refresh",
+      "ordinal": 2,
+      "action_at": "2026-10-22T00:14:37.005Z",
+      "stable": {
+        "observed_at": "2026-10-22T00:14:44.733Z",
+        "title": "bulk - Explorer++",
+        "lines": [
+          "\t\t\t2 텍스트 1,200 items",
+          "\t\t\t179 텍스트 939 KB",
+          "\t\t\t\t9 편집 (settable, string) Value: C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\bulk",
+          "\t\t139 LIST (truncated: child_limit, omitted 1202 children)"
+        ]
+      }
+    },
+    {
+      "observed_at": "2026-10-22T00:14:52.671Z",
+      "title": "bulk - Explorer++",
+      "lines": [],
+      "kind": "warm-refresh",
+      "ordinal": 3,
+      "action_at": "2026-10-22T00:14:49.586Z",
+      "stable": {
+        "observed_at": "2026-10-22T00:14:57.910Z",
+        "title": "bulk - Explorer++",
+        "lines": [
+          "\t\t\t2 텍스트 1,200 items",
+          "\t\t\t179 텍스트 939 KB",
+          "\t\t\t\t9 편집 (settable, string) Value: C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\bulk",
+          "\t\t139 LIST (truncated: child_limit, omitted 1202 children)"
+        ]
+      }
+    },
+    {
+      "observed_at": "2026-10-22T00:15:06.082Z",
+      "title": "bulk - Explorer++",
+      "lines": [],
+      "kind": "warm-refresh",
+      "ordinal": 4,
+      "action_at": "2026-10-22T00:15:03.003Z",
+      "stable": {
+        "observed_at": "2026-10-22T00:15:11.993Z",
+        "title": "bulk - Explorer++",
+        "lines": [
+          "\t\t\t2 텍스트 1,200 items",
+          "\t\t\t179 텍스트 939 KB",
+          "\t\t\t\t9 편집 (settable, string) Value: C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\bulk",
+          "\t\t139 LIST (truncated: child_limit, omitted 1202 children)"
+        ]
+      }
+    },
+    {
+      "observed_at": "2026-10-22T00:15:19.503Z",
+      "title": "bulk - Explorer++",
+      "lines": [],
+      "kind": "warm-refresh",
+      "ordinal": 5,
+      "action_at": "2026-10-22T00:15:16.421Z",
+      "stable": {
+        "observed_at": "2026-10-22T00:15:23.552Z",
+        "title": "bulk - Explorer++",
+        "lines": [
+          "\t\t\t2 텍스트 1,200 items",
+          "\t\t\t179 텍스트 939 KB",
+          "\t\t\t\t9 편집 (settable, string) Value: C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\read-only\\bulk",
+          "\t\t139 LIST (truncated: child_limit, omitted 1202 children)"
+        ]
+      }
+    }
+  ],
+  "limitations": [
+    "UIA child_limit hides names; 1200 status observed, full-name digest unavailable",
+    "Action timestamps include CUA injection/refresh/agent delays, not listing latency",
+    "Native Shell tree, initial icon-to-Details switch, settings and viewport differ from A/B",
+    "Whole-process CPU and memory include all those operations, first startup and tool-driven idle time; no performance-ranking inference"
+  ]
+}

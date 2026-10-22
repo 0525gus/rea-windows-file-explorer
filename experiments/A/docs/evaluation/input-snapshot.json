@@ -1,0 +1,51 @@
+{
+  "capturedUtc": "2026-10-21T14:54:40.1780992Z",
+  "experiment": "A-no-REA",
+  "files": [
+    {
+      "name": "behavior-summary.md",
+      "bytes": 4815,
+      "sha256": "aebc17a6c65c553231cdaff934f9e3da8b71d2c069213a2edccbe394e3ec714d"
+    },
+    {
+      "name": "create_fixtures.py",
+      "bytes": 18075,
+      "sha256": "7b02e385e33a5d8f66ebad16a3aa11a5eecb51b0260c2093db9c96bebd72e0ff"
+    },
+    {
+      "name": "environment.md",
+      "bytes": 2357,
+      "sha256": "029597bf407237425034b4b0cea30d9dc476fba0a4e17bf0d74af48889fae9af"
+    },
+    {
+      "name": "explorerpp-search-unicode.png",
+      "bytes": 41918,
+      "sha256": "633d85f01b9585405afc83a8d5e729ecd53e6d0fbe467eb298eb96262c65d7a0"
+    },
+    {
+      "name": "explorerpp-unicode-details.png",
+      "bytes": 234284,
+      "sha256": "284affc89d6a8abc60cc025fba36169a2e9d58808365309000866b7c7899f9e9"
+    },
+    {
+      "name": "manifest.json",
+      "bytes": 1075,
+      "sha256": "24b309144bda5806ddc9b2b6ad2249d90843b735bc4082a34498c153eaea932c"
+    },
+    {
+      "name": "original-runtime.json",
+      "bytes": 97598,
+      "sha256": "3a437011abd9f3563afefe14fe9fdc6720425331d84ded52db4f1ea89d487dc9"
+    },
+    {
+      "name": "requirements.md",
+      "bytes": 20875,
+      "sha256": "76b659ec0594607e02b1818683ccc826a7af2c8dff6583888852d351e3890c88"
+    },
+    {
+      "name": "windows11-reference.png",
+      "bytes": 85292,
+      "sha256": "953d45474b9b46f4eb80243f79a1c71ce673205c11770c56bd10bcf6c78a03df"
+    }
+  ]
+}

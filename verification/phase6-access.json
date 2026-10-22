@@ -1,0 +1,13 @@
+{
+  "restored_at_utc": "2026-10-22T00:06:47.3001347Z",
+  "path": "C:\\dev\\Windows_fileexplore\\verification\\source",
+  "git_commit": "64032d766cf634fe00b45aa0d8c951878e0ef5c3",
+  "before_sddl": "O:S-1-5-21-1106707609-1311601361-392556325-1001G:S-1-5-21-1106707609-1311601361-392556325-513D:AI(D;OICI;CC;;;S-1-5-21-1106707609-1311601361-392556325-1001)(A;OICIID;FA;;;BA)(A;OICIID;FA;;;SY)(A;OICIID;0x1200a9;;;BU)(A;ID;0x1301bf;;;AU)(A;OICIIOID;SDGXGWGR;;;AU)",
+  "after_sddl": "O:S-1-5-21-1106707609-1311601361-392556325-1001G:S-1-5-21-1106707609-1311601361-392556325-513D:AI(A;OICIID;FA;;;BA)(A;OICIID;FA;;;SY)(A;OICIID;0x1200a9;;;BU)(A;ID;0x1301bf;;;AU)(A;OICIIOID;SDGXGWGR;;;AU)",
+  "initial_directory_files": [
+    ".gate-probe.txt"
+  ],
+  "source_downloaded": false,
+  "source_read": false,
+  "authorization": "User approved source-gate separation and Phase6 restoration; both initial snapshots verified"
+}

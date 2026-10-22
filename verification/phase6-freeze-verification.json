@@ -1,0 +1,10 @@
+{
+  "verified_at_utc": "2026-10-22T00:06:24.527787+00:00",
+  "git_commit": "64032d766cf634fe00b45aa0d8c951878e0ef5c3",
+  "B_manifest_sha256": "a93289e08db7e7338110480063716bd2be434ffd1e76585e0bc36a2b996cf729",
+  "B_files_verified_snapshot_and_current": 354,
+  "A_manifest_sha256": "ab8476db3882c29ef1468559397a1a5ce1153fcf72e822b8e8493636a4792974",
+  "A_snapshot_files_verified": 124,
+  "original_source_read": false,
+  "source_gate_unlock_permitted_by_verified_freeze": true
+}

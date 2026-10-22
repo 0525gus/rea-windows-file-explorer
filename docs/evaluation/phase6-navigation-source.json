@@ -1,0 +1,1358 @@
+{
+  "schema_version": 1,
+  "report_kind": "phase6_post_freeze_navigation_source_accuracy_audit",
+  "created_at_utc": "2026-10-22T00:14:38.560659+00:00",
+  "scope": {
+    "question_count": 13,
+    "question_ids": [
+      "RE02-PATH",
+      "RE02-ENUM",
+      "RE02-METADATA",
+      "RE02-LIST",
+      "RE02-SORT",
+      "RE02-ERROR",
+      "RE03-DOUBLECLICK",
+      "RE03-UP",
+      "RE03-HISTORY",
+      "RE03-NEWTAB",
+      "RE03-SELECTION",
+      "RE03-RENAME",
+      "RE03-SEARCH"
+    ],
+    "source_use": "Accuracy only after freeze. No product, A implementation, frozen claims, snapshots or initial docs changed.",
+    "new_REA_queries": false,
+    "runtime_execution": false,
+    "PDB_or_reproducible_build": false,
+    "frozen_commit": "64032d766cf634fe00b45aa0d8c951878e0ef5c3",
+    "initial_B_manifest_sha256": "a93289e08db7e7338110480063716bd2be434ffd1e76585e0bc36a2b996cf729",
+    "gate_proof": "verification/phase6-freeze-verification.json -> verification/phase6-access.json -> verification/source-acquisition.json"
+  },
+  "source_identity": {
+    "repository": "https://github.com/derceg/explorerplusplus",
+    "tag": "version-1.4.0",
+    "commit": "384c2f687fd55c1e71e9fcb272f9113de009a248",
+    "source_root": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248",
+    "archive_sha256": "3531f0ba75b5bfb64be4674a960b57c62c2adf62a3b04578e485e2442fdbc655",
+    "archive_identity_authority": "Recorded source-acquisition.json; inspected source files freshly hashed here.",
+    "release_version_match": "confirmed_1.4.0",
+    "exact_binary_build_match": "unresolved",
+    "reason": "Tag acquisition identifies commit. Version.h declares 1.4.0, gets fourth component from ENVIRONMENT_BUILD_NUMBER (fallback 0); vcxproj defines it from APPVEYOR_BUILD_NUMBER. No build record here proves .2293, source-to-binary reproducibility, linkage or VA identity.",
+    "source_reference_ids": [
+      "version",
+      "version-resource",
+      "build-number"
+    ],
+    "target": {
+      "path": "artifacts/original/Explorer++.exe",
+      "file_version": "1.4.0.2293",
+      "sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+      "address_space": "Preferred image VA at image base 0x140000000; not traced runtime addresses. EXTERNAL labels retain REA namespace."
+    }
+  },
+  "inputs": [
+    {
+      "path": "docs/analysis/initial-claims.json",
+      "sha256": "aaa44d0e410267784b116a95cf3ce9e46c0182b212221ce724ab3e385a02156a"
+    },
+    {
+      "path": "docs/analysis/file-navigation.md",
+      "sha256": "8cf56ef7b29cf3a3fef460940db42cd8e6d2800427de57e327c74a56d7914413"
+    },
+    {
+      "path": "docs/analysis/feature-map.md",
+      "sha256": "a5c4484037ce08d431fffce3d32c624d1909615d96eb6a7b254e3b740ff9a0af"
+    },
+    {
+      "path": "verification/source-acquisition.json",
+      "sha256": "7a083969503727b87b7dfb07158b279e3a44fd69d0f89fb9c50019d33541a6be"
+    },
+    {
+      "path": "verification/phase6-access.json",
+      "sha256": "016866e0dcb988b244a45d4f7a43092cadfd393a3a3630f07665dc8a4b841a85"
+    },
+    {
+      "path": "verification/phase6-freeze-verification.json",
+      "sha256": "b71d70a0820290afac0bcac0d91096a49623d89a538309e0afd6c945a1a71328"
+    }
+  ],
+  "classification_rules": {
+    "confirmed": "Narrow initial positive behavioral assertion agrees with inspected pinned source. Does not confirm exact VA identity, end-to-end recovery or runtime behavior.",
+    "partially_confirmed": "Only subset of narrow positive agrees.",
+    "refuted": "Source contradicts narrow positive.",
+    "unresolved": "Positive could not be judged from inspected source.",
+    "no_initial_positive_claim": "Initial epistemic status unknown. Source adds coverage without initial recovery correctness credit.",
+    "accuracy_denominator": "6 positive questions in these 13; overlapping pipeline facts are correlated, not independent samples. No whole-investigation percentage inferred."
+  },
+  "questions": [
+    {
+      "question_id": "RE02-PATH",
+      "requirement_id": "RE-02",
+      "question": "How is a requested folder represented and passed into browsing?",
+      "initial_assertion": "The recovered parse helper turns a path string into a PIDL with SHParseDisplayName; the recovered browse body takes a PIDL. The UI-to-virtual-dispatch edge is unresolved.",
+      "initial_epistemic_status": "derived",
+      "initial_confidence": "high",
+      "initial_question_coverage": "partial",
+      "initial_evidence_ids": [
+        "ev_50ab84a04ebad94e6d070a5cb6e766d51c217f8fedd274611e0977c2966e691f",
+        "ev_dda9e3cd0223a56b86fb96b1bd0cda24603bfc4ebb30e7c377fb9d37211eb59a",
+        "ev_2251f131d8da55a7a67f60bc1157152f7522fb3bfb6cecae9d319d93a866fc9b",
+        "ev_5fc10eb96f7eda2603ca88973c7aba18349a2aebdef5611ae106a193e7d28a0a"
+      ],
+      "initial_addresses": [
+        "0x140163000",
+        "0x1401637d0",
+        "0x1402ec0a8"
+      ],
+      "initial_unresolved": [
+        "Address-bar command to parse helper mapping.",
+        "Virtual dispatch target connecting parse and browse.",
+        "Special Shell namespace policy."
+      ],
+      "comparison_status": "confirmed",
+      "observed_source_facts": [
+        "ShellNavigationController::BrowseFolder(wstring,bool) parses with SHParseDisplayName then passes absolute PIDL to its PIDL overload; that forwards to navigator or opens a tab in ForceNewTab mode.",
+        "ShellBrowser::BrowseFolder accepts PCIDLIST_ABSOLUTE and bool; browser constructs controller with this as navigator.",
+        "Address Enter invokes OnGo, which decodes text and calls Explorerplusplus::OpenItem. That string overload independently parses PIDL; folder dispatch reaches Navigation::BrowseFolderInCurrentTab(PIDL) then controller. Ordinary address entry need not call the controller string parse overload."
+      ],
+      "source_reference_ids": [
+        "parse",
+        "browse",
+        "controller-owner",
+        "address-enter",
+        "address-go",
+        "open",
+        "open-folder",
+        "navigate"
+      ],
+      "correspondence": "Narrow parsing/PIDL transport agrees. Source closes the UI chain after freeze and distinguishes two parse owners; no recovery credit is assigned to that initially unknown edge.",
+      "address_correspondence": {
+        "status": "inferred_structural_correspondence",
+        "candidates": [
+          {
+            "va": "0x140163000",
+            "candidate": "ShellNavigationController::BrowseFolder(const std::wstring &,bool)"
+          },
+          {
+            "va": "0x1401637d0",
+            "candidate": "ShellBrowser::BrowseFolder(PCIDLIST_ABSOLUTE,bool)"
+          }
+        ],
+        "proof_limit": "No PDB, linked map, reproducible build or exact symbol-to-VA proof. Source names learned after freeze."
+      },
+      "residual_unknowns": [
+        "Exact VA/vtable identity remains inferred.",
+        "No exact .2293 build provenance or runtime special-namespace verification."
+      ],
+      "credited_as_initial_positive": true
+    },
+    {
+      "question_id": "RE02-ENUM",
+      "requirement_id": "RE-02",
+      "question": "Which owner enumerates folder children?",
+      "initial_assertion": "Browse directly calls the enumeration helper; the helper binds a Shell folder and invokes COM slots consistent with EnumObjects, IEnumIDList::Next, GetAttributesOf and GetDisplayNameOf.",
+      "initial_epistemic_status": "derived",
+      "initial_confidence": "high",
+      "initial_question_coverage": "partial",
+      "initial_evidence_ids": [
+        "ev_dda9e3cd0223a56b86fb96b1bd0cda24603bfc4ebb30e7c377fb9d37211eb59a",
+        "ev_970afdb1e01530bd6f56243d9b23602e2e49bcb97da429a299e5735aea76d983",
+        "ev_b5c90d2767ee7b130372791fff1943bfd5c31d22346fc9bd8629eab4851984b5"
+      ],
+      "initial_addresses": [
+        "0x1401637d0",
+        "0x140163e80",
+        "0x140196040"
+      ],
+      "initial_unresolved": [
+        "ENUM relationship coverage is partial with six unresolved callees.",
+        "The ENUM pseudocode omits a binder out argument; apparent null use is not a demonstrated runtime defect.",
+        "All flags/settings and virtual items are not mapped."
+      ],
+      "comparison_status": "confirmed",
+      "observed_source_facts": [
+        "BrowseFolder directly calls EnumerateFolder, which binds through BindToIdl(pidl,IID_PPV_ARGS(&pShellFolder)) with a real COM output pointer.",
+        "BindToIdl calls SHGetDesktopFolder, BindToObject for nonempty PIDL or QueryInterface for desktop, then releases desktop.",
+        "Enum flags are FOLDERS|NONFOLDERS, plus INCLUDEHIDDEN|INCLUDESUPERHIDDEN if showHidden. EnumObjects failure or null enumerator returns hr. Next must return S_OK and fetch one child.",
+        "Each child has SFGAO_FOLDER queried; display-name flags are INFOLDER for virtual parent or folder child, otherwise INFOLDER|FORPARSING. Successful name lookup feeds AddItemInternal."
+      ],
+      "source_reference_ids": [
+        "browse",
+        "enum",
+        "bind"
+      ],
+      "correspondence": "Initial COM-slot interpretation and enumeration relationship agree with explicit source methods. Missing binder out argument is a decompiler limitation, not source null-dereference evidence.",
+      "address_correspondence": {
+        "status": "inferred_structural_correspondence",
+        "candidates": [
+          {
+            "va": "0x140163e80",
+            "candidate": "ShellBrowser::EnumerateFolder"
+          },
+          {
+            "va": "0x140196040",
+            "candidate": "BindToIdl"
+          }
+        ],
+        "proof_limit": "No PDB, linked map, reproducible build or exact symbol-to-VA proof. Source names learned after freeze."
+      },
+      "residual_unknowns": [
+        "Exact compiled identities and six initially unresolved callees are not proved.",
+        "No Shell-extension/virtual-item runtime completeness validation."
+      ],
+      "credited_as_initial_positive": true
+    },
+    {
+      "question_id": "RE02-METADATA",
+      "requirement_id": "RE-02",
+      "question": "Where do per-item metadata and internal IDs come from?",
+      "initial_assertion": "The recovered metadata helper combines/clones PIDLs, resolves a filesystem path, queries FindFirstFileW data and returns an increasing item ID; root/query-failure branches populate fallback values.",
+      "initial_epistemic_status": "derived",
+      "initial_confidence": "high",
+      "initial_question_coverage": "partial",
+      "initial_evidence_ids": [
+        "ev_970afdb1e01530bd6f56243d9b23602e2e49bcb97da429a299e5735aea76d983",
+        "ev_d78530ba1c86efa71b59082a69058bbf2ed65812dc94582a0122b17ef8b4ae4d"
+      ],
+      "initial_addresses": [
+        "0x140164210",
+        "0x140163e80"
+      ],
+      "initial_unresolved": [
+        "Exact original data types/class field names.",
+        "Meaning and display of unavailable metadata for every Shell item.",
+        "Failure fallback is not access-denied UX evidence."
+      ],
+      "comparison_status": "confirmed",
+      "observed_source_facts": [
+        "SetItemInformation generates ID, ILCombines parent/child, clones complete/child PIDLs into m_itemInfoMap, copies display name, resolves SHGetPathFromIDList and queries FindFirstFile for non-root paths.",
+        "GenerateUniqueItemId returns m_directoryState.itemIDCounter++; DirectoryState initializes counter to zero. IDs are directory-state scoped, not process-global monotonic identities.",
+        "Valid query handle is closed; root or failed-query fallback sets filename, zero low/high size and DIRECTORY attribute. Fallback WIN32_FIND_DATA is not value-initialized; this branch does not initialize every timestamp.",
+        "ItemInfo_t owns PIDLs and WIN32_FIND_DATA. Column dispatch chooses name/type/size and modified/created/accessed helpers."
+      ],
+      "source_reference_ids": [
+        "metadata",
+        "id",
+        "item-struct",
+        "columns"
+      ],
+      "correspondence": "All narrow metadata/ID/fallback assertions agree. Source adds field ownership and ID lifetime. Initial claim did not establish complete fallback timestamps.",
+      "address_correspondence": {
+        "status": "inferred_structural_correspondence",
+        "candidates": [
+          {
+            "va": "0x140164210",
+            "candidate": "ShellBrowser::SetItemInformation"
+          }
+        ],
+        "proof_limit": "No PDB, linked map, reproducible build or exact symbol-to-VA proof. Source names learned after freeze."
+      },
+      "residual_unknowns": [
+        "Exact compiled field offsets and VA identity.",
+        "Runtime incomplete fallback metadata, failed SHGetPathFromIDList and all Shell-item error/display cases untested."
+      ],
+      "credited_as_initial_positive": true
+    },
+    {
+      "question_id": "RE02-LIST",
+      "requirement_id": "RE-02",
+      "question": "How do enumerated items become visible rows?",
+      "initial_assertion": "The browse path clears the current list, enumerates, then materializes queued IDs into Unicode ListView insert messages; queue producer/consumer linkage is derived from shared fields.",
+      "initial_epistemic_status": "derived",
+      "initial_confidence": "medium",
+      "initial_question_coverage": "partial",
+      "initial_evidence_ids": [
+        "ev_dda9e3cd0223a56b86fb96b1bd0cda24603bfc4ebb30e7c377fb9d37211eb59a",
+        "ev_5789646dfa42e9b7e7c55f126f896bf0c0bcb2c68fd829af391ad03a75fb9587",
+        "ev_512fac631346b5b0b2002630f4e7866dcc9d09e85d1b1e1028f1ce6e3da7d5e9",
+        "ev_0f8f55bb4e0a6a4642c3b1702ea0b408d40e95047ab851a1d1a8d0e36cd56e5c"
+      ],
+      "initial_addresses": [
+        "0x1401637d0",
+        "0x140164150",
+        "0x1401646b0",
+        "0x14017cc30"
+      ],
+      "initial_unresolved": [
+        "Original queue/container types and ownership.",
+        "Threading, final sort application and complete large-list responsiveness.",
+        "GROUP helper is not established as the user selection-event handler."
+      ],
+      "comparison_status": "confirmed",
+      "observed_source_facts": [
+        "BrowseFolder deletes rows, enumerates, calls InsertAwaitingItems(FALSE), verifies sort mode then calls SortFolder.",
+        "AddItemInternal obtains metadata ID, constructs AwaitingAdd_t with row/internal ID/position/iAfter and pushes to ShellBrowser-owned std::list m_AwaitingAddList.",
+        "InsertAwaitingItems consumes that same list, looks up itemInfo, filters, prepares LVITEM with internal ID lParam, optional group/position and ListView_InsertItem; then PositionDroppedItems and list clear.",
+        "PositionDroppedItems manipulates dropped-file positions/selection and exits early for Details mode. It is not general selection notification owner. Browse/enumeration/insertion are sequential source calls, not a responsiveness benchmark."
+      ],
+      "source_reference_ids": [
+        "browse",
+        "queue",
+        "queue-type",
+        "queue-owner",
+        "insert",
+        "position"
+      ],
+      "correspondence": "Shared-offset queue hypothesis agrees with explicit single source-owned container and producer/consumer sequence. Generic selection, final sort and responsiveness remain outside initial claim.",
+      "address_correspondence": {
+        "status": "inferred_structural_correspondence",
+        "candidates": [
+          {
+            "va": "0x140164150",
+            "candidate": "ShellBrowser::AddItemInternal(int,int,BOOL)"
+          },
+          {
+            "va": "0x1401646b0",
+            "candidate": "ShellBrowser::InsertAwaitingItems"
+          },
+          {
+            "va": "0x14017cc30",
+            "candidate": "ShellBrowser::PositionDroppedItems"
+          }
+        ],
+        "proof_limit": "No PDB, linked map, reproducible build or exact symbol-to-VA proof. Source names learned after freeze."
+      },
+      "residual_unknowns": [
+        "Exact binary offsets/Unicode macro expansion identity.",
+        "No throughput, cancellation, thread-affinity trace or large-list benchmark."
+      ],
+      "credited_as_initial_positive": true
+    },
+    {
+      "question_id": "RE02-SORT",
+      "requirement_id": "RE-02",
+      "question": "Which comparison policy and direction are recovered?",
+      "initial_assertion": "A comparator branches between natural-name, FILETIME and 64-bit size comparisons, uses name fallback on ties and conditionally reverses the result. Natural-name comparison calls StrCmpLogicalW.",
+      "initial_epistemic_status": "derived",
+      "initial_confidence": "high",
+      "initial_question_coverage": "partial",
+      "initial_evidence_ids": [
+        "ev_1c1de14f1975484a69e66424814c9bb7d8893e2f7f3d06286946632232ce7931",
+        "ev_6d53c388db0f2309c950c6f8ae03df1cea77e16a554f01279e9f72a598427998"
+      ],
+      "initial_addresses": [
+        "0x140185140",
+        "0x140184520"
+      ],
+      "initial_unresolved": [
+        "Actual column-click to sort-application handler.",
+        "Exact ascending flag, folder priority and final tie order.",
+        "Six-row runtime ordering does not establish all locale/type cases."
+      ],
+      "comparison_status": "confirmed",
+      "observed_source_facts": [
+        "SortMode Name=1, DateModified=2, Size=3 agree with initial branches. Sort dispatches to SortByName, SortByDate(Modified), SortBySize and additional modes.",
+        "SortByName uses StrCmpLogicalW on drive paths for two roots or name-column text otherwise. Date compares FILETIMEs; size combines high/low into 64-bit values and treats two folders as zero size.",
+        "Sort separates folders/files except Recycle Bin before comparison; ties use StrCmpLogicalW display names; !sortAscending negates entire result including folder priority.",
+        "LVN_COLUMNCLICK reaches ColumnClicked, toggles direction for repeated column and calls SortFolder, which sends LVM_SORTITEMS with SortStub."
+      ],
+      "source_reference_ids": [
+        "sort-modes",
+        "sort",
+        "sort-tail",
+        "sort-name-size",
+        "sort-date",
+        "selection-entry",
+        "column-click"
+      ],
+      "correspondence": "Natural-name/FILETIME/64-bit size/tie/direction mechanisms agree. Source-only additions name date/direction/folder priority/application; no complete initial sort-policy recovery is claimed.",
+      "address_correspondence": {
+        "status": "inferred_structural_correspondence",
+        "candidates": [
+          {
+            "va": "0x140185140",
+            "candidate": "ShellBrowser::Sort"
+          },
+          {
+            "va": "0x140184520",
+            "candidate": "SortByName"
+          }
+        ],
+        "proof_limit": "No PDB, linked map, reproducible build or exact symbol-to-VA proof. Source names learned after freeze."
+      },
+      "residual_unknowns": [
+        "Exact linked/inlined function boundaries.",
+        "Locale/extensions/root/recycle ordering and final equality stability untested."
+      ],
+      "credited_as_initial_positive": true
+    },
+    {
+      "question_id": "RE02-ERROR",
+      "requirement_id": "RE-02",
+      "question": "How does browse failure propagate to user-visible state?",
+      "initial_assertion": "The complete failure-propagation and error-UX path is unknown; HRESULT branches and metadata fallback alone do not establish it.",
+      "initial_epistemic_status": "unknown",
+      "initial_confidence": "unknown",
+      "initial_question_coverage": "unresolved",
+      "initial_evidence_ids": [
+        "ev_dda9e3cd0223a56b86fb96b1bd0cda24603bfc4ebb30e7c377fb9d37211eb59a",
+        "ev_970afdb1e01530bd6f56243d9b23602e2e49bcb97da429a299e5735aea76d983",
+        "ev_b5c90d2767ee7b130372791fff1943bfd5c31d22346fc9bd8629eab4851984b5",
+        "ev_d78530ba1c86efa71b59082a69058bbf2ed65812dc94582a0122b17ef8b4ae4d"
+      ],
+      "initial_addresses": [
+        "0x1401637d0",
+        "0x140163e80",
+        "0x140196040",
+        "0x140164210"
+      ],
+      "initial_unresolved": [
+        "Permission-denied and disappearing-directory behavior.",
+        "Which layer preserves/restores prior location/list/history.",
+        "Message, beep and error recovery policy."
+      ],
+      "comparison_status": "no_initial_positive_claim",
+      "observed_source_facts": [
+        "Controller parse returns SHParseDisplayName failure without browsing. Address-bar OpenItem(string) does nothing on parse failure in its inspected body.",
+        "EnumerateFolder returns bind/enumeration failure, but BrowseFolder ignores that return after changing current-directory/clearing rows, proceeds to completion signal and returns S_OK.",
+        "NavigationController updates history cursor before BrowseFolder(entry,false), without rollback in that method. Completion observer appends requested history entries.",
+        "These source paths do not supply universal prior-state restoration/error-message guarantees. This is a source-derived limitation, not a new runtime reproduction."
+      ],
+      "source_reference_ids": [
+        "parse",
+        "open",
+        "browse",
+        "enum",
+        "history",
+        "history-commit"
+      ],
+      "correspondence": "Initial complete error/UX mapping was unknown. New source coverage is neither a correct negative nor initial RE success.",
+      "address_correspondence": {
+        "status": "no_positive_initial_event_mapping",
+        "candidates": [],
+        "proof_limit": "No PDB, linked map, reproducible build or exact symbol-to-VA proof. Source names learned after freeze."
+      },
+      "residual_unknowns": [
+        "Actual denied/disappearing-directory UI outcomes, races and all callers.",
+        "Exact shipped-build behavior and error UX remain unverified."
+      ],
+      "credited_as_initial_positive": false
+    },
+    {
+      "question_id": "RE03-DOUBLECLICK",
+      "requirement_id": "RE-03",
+      "question": "What links folder double-click to internal browsing?",
+      "initial_assertion": "The native notification-to-dispatch-to-browse connection remains unknown. A Shell-attribute activation dispatcher and a separate browse pipeline are candidate components.",
+      "initial_epistemic_status": "unknown",
+      "initial_confidence": "unknown",
+      "initial_question_coverage": "unresolved",
+      "initial_evidence_ids": [
+        "ev_fc2e69129dd48e48cb15ae6d6d6d7a724a1e2e67dda942c84297943ce2bde8cf",
+        "ev_dda9e3cd0223a56b86fb96b1bd0cda24603bfc4ebb30e7c377fb9d37211eb59a"
+      ],
+      "initial_addresses": [
+        "0x1400bce20",
+        "0x1401637d0"
+      ],
+      "initial_unresolved": [
+        "Double-click notification handler and selected-item extraction.",
+        "Dynamic target of slot +0x70.",
+        "Exact branch for ordinary filesystem folders."
+      ],
+      "comparison_status": "no_initial_positive_claim",
+      "observed_source_facts": [
+        "NotifyHandler routes NM_DBLCLK to OnListViewDoubleClick. It checks active ListView, hit-tests, uses Alt for properties, Ctrl for new tab, Shift for new window, otherwise opens row.",
+        "OpenListViewItem ILCombines parent/child PIDLs and invokes OpenItem. Shell attributes select ordinary folders for OpenFolderItem, then current-tab navigation unless new-window/new-tab choices apply.",
+        "Navigation::BrowseFolderInCurrentTab forwards to selected tab controller, which forwards PIDL to navigator."
+      ],
+      "source_reference_ids": [
+        "notify",
+        "doubleclick",
+        "open-row",
+        "open",
+        "open-folder",
+        "navigate",
+        "parse"
+      ],
+      "correspondence": "Source agrees with candidate dispatcher role and supplies missing notification chain after freeze. Initial ledger made no positive event mapping.",
+      "address_correspondence": {
+        "status": "inferred_structural_correspondence",
+        "candidates": [
+          {
+            "va": "0x1400bce20",
+            "candidate": "Explorerplusplus::OpenItem(PCIDLIST_ABSOLUTE,BOOL,BOOL)"
+          }
+        ],
+        "proof_limit": "No PDB, linked map, reproducible build or exact symbol-to-VA proof. Source names learned after freeze."
+      },
+      "residual_unknowns": [
+        "Exact VA/vtable target mapping.",
+        "Runtime modifier and namespace dispatch untested."
+      ],
+      "credited_as_initial_positive": false
+    },
+    {
+      "question_id": "RE03-UP",
+      "requirement_id": "RE-03",
+      "question": "What handles parent-folder navigation?",
+      "initial_assertion": "The internal Up command/parent-navigation path is unknown. ILRemoveLastID in the execution helper constructs an execution working directory and is not evidence of the Up handler.",
+      "initial_epistemic_status": "unknown",
+      "initial_confidence": "unknown",
+      "initial_question_coverage": "unresolved",
+      "initial_evidence_ids": [
+        "ev_369e8cb0f86b0a7f29c9cff2149e791629aa707c191c9780fbd8754d0783694b",
+        "ev_bcf098d43636ed7566f5a1628c11403e9db45a26d563a614a0d81fea21369d00"
+      ],
+      "initial_addresses": [
+        "0x1400bd5c0"
+      ],
+      "initial_unresolved": [
+        "Up command mapping, root boundary and virtual-parent handling."
+      ],
+      "comparison_status": "no_initial_positive_claim",
+      "observed_source_facts": [
+        "Up command invokes Navigation::OnNavigateUp. Unlocked tab calls controller GoUp; address-locked tab computes parent and creates selected new tab.",
+        "GoUp obtains GetVirtualParentPath(current history PIDL) then navigator BrowseFolder. Parent helper rejects desktop namespace root; otherwise clones PIDL and removes last ID.",
+        "OpenFileItem separately removes last PIDL ID for execution working directory; that operation alone does not identify Up."
+      ],
+      "source_reference_ids": [
+        "nav-command",
+        "navigate",
+        "up",
+        "parent",
+        "open-folder"
+      ],
+      "correspondence": "Initial Up mapping was unknown and correctly did not attribute execution-directory construction to it. Newly observed source chain is additional coverage only.",
+      "address_correspondence": {
+        "status": "inferred_structural_correspondence",
+        "candidates": [
+          {
+            "va": "0x1400bd5c0",
+            "candidate": "Explorerplusplus::OpenFileItem (execution directory, not Up)"
+          }
+        ],
+        "proof_limit": "No PDB, linked map, reproducible build or exact symbol-to-VA proof. Source names learned after freeze."
+      },
+      "residual_unknowns": [
+        "Actual Up-handler binary address association.",
+        "Runtime desktop/root/virtual-parent and address-lock outcomes untested."
+      ],
+      "credited_as_initial_positive": false
+    },
+    {
+      "question_id": "RE03-HISTORY",
+      "requirement_id": "RE-03",
+      "question": "How do Back/Forward update and branch navigation history?",
+      "initial_assertion": "The internal history policy and event mapping remain unknown; NavigationController/ShellNavigationController RTTI and index-based virtual calls are leads only.",
+      "initial_epistemic_status": "unknown",
+      "initial_confidence": "unknown",
+      "initial_question_coverage": "unresolved",
+      "initial_evidence_ids": [
+        "ev_bcf098d43636ed7566f5a1628c11403e9db45a26d563a614a0d81fea21369d00",
+        "ev_50ab84a04ebad94e6d070a5cb6e766d51c217f8fedd274611e0977c2966e691f"
+      ],
+      "initial_addresses": [
+        "0x140163000"
+      ],
+      "initial_unresolved": [
+        "History entry ownership, commit timing and forward-branch truncation.",
+        "Per-tab history independence and failure handling."
+      ],
+      "comparison_status": "no_initial_positive_claim",
+      "observed_source_facts": [
+        "Back/Forward commands invoke selected tab controller inherited GoBack/GoForward. NavigationController owns vector<unique_ptr<HistoryEntryType>> m_entries and m_currentEntry.",
+        "GoToOffset(-1/+1) validates entry, updates cursor before BrowseFolder(entry,false); invalid offset returns failure. AddEntry resizes current+1 to truncate forward entries, appends and increments cursor.",
+        "Controller subscribes to navigator completion at_front; adds PIDL HistoryEntry when addHistoryEntry. ShellBrowser emits completion at end of BrowseFolder. Refresh browses with false.",
+        "Each Tab creates separate ShellBrowser, which creates separate controller; this establishes per-tab source ownership."
+      ],
+      "source_reference_ids": [
+        "nav-command",
+        "history-command",
+        "history",
+        "history-commit",
+        "browse",
+        "up",
+        "tab-owner",
+        "controller-owner"
+      ],
+      "correspondence": "Initial names/index branches were leads. Source-owned cursor/commit/branch policy was learned after freeze and is not credited as recovered.",
+      "address_correspondence": {
+        "status": "no_positive_initial_event_mapping",
+        "candidates": [],
+        "proof_limit": "No PDB, linked map, reproducible build or exact symbol-to-VA proof. Source names learned after freeze."
+      },
+      "residual_unknowns": [
+        "Exact binary controller/history bodies.",
+        "Runtime failure rollback and per-tab history stress not tested; cursor moves before browse in inspected method."
+      ],
+      "credited_as_initial_positive": false
+    },
+    {
+      "question_id": "RE03-NEWTAB",
+      "requirement_id": "RE-03",
+      "question": "How are tab creation, switching and closing connected to state owners?",
+      "initial_assertion": "TabContainer is a named candidate owner, but native creation/switch/close event handlers and per-tab history ownership remain unknown.",
+      "initial_epistemic_status": "unknown",
+      "initial_confidence": "unknown",
+      "initial_question_coverage": "unresolved",
+      "initial_evidence_ids": [
+        "ev_bcf098d43636ed7566f5a1628c11403e9db45a26d563a614a0d81fea21369d00"
+      ],
+      "initial_addresses": [
+        "0x1402e2318"
+      ],
+      "initial_unresolved": [
+        "Creation/duplication command handler and initial-location policy.",
+        "Actual original state owner and close lifecycle."
+      ],
+      "comparison_status": "no_initial_positive_claim",
+      "observed_source_facts": [
+        "OnNewTab uses selected+focused directory row if available, otherwise default directory. TabContainer retries static default if configured default creation fails.",
+        "TabContainer validates PIDL directory, stores unique_ptr<Tab> in m_tabs, inserts control item, connects observers and browses separate browser/controller. DuplicateTab creates from current directory string rather than copying history there.",
+        "TCN_SELCHANGE and SelectTabAtIndex emit tab-selected signal. CloseTab may close main window for last tab per config; otherwise rejects locked/address-locked, removes control item, stops directory monitor, releases browser and erases tab.",
+        "Tab separately creates browser; browser separately creates controller, establishing per-tab location/history source owners."
+      ],
+      "source_reference_ids": [
+        "new-tab",
+        "tab-default",
+        "tab-create",
+        "duplicate",
+        "tab-switch",
+        "tab-select",
+        "tab-close",
+        "close-command",
+        "tab-owner",
+        "controller-owner"
+      ],
+      "correspondence": "TabContainer candidate name agrees, but creation/switch/close/history chain was initially unknown and cannot be counted retrospectively.",
+      "address_correspondence": {
+        "status": "no_positive_initial_event_mapping",
+        "candidates": [],
+        "proof_limit": "No PDB, linked map, reproducible build or exact symbol-to-VA proof. Source names learned after freeze."
+      },
+      "residual_unknowns": [
+        "Compiled vtable-to-method correspondence.",
+        "All restore/cleanup failure paths, final-tab config combinations and runtime outcomes outside this pass."
+      ],
+      "credited_as_initial_positive": false
+    },
+    {
+      "question_id": "RE03-SELECTION",
+      "requirement_id": "RE-03",
+      "question": "What owns user file-selection notifications?",
+      "initial_assertion": "The complete user selection notification/state path is unknown. ListView selection/group assistance in materialization does not establish that handler.",
+      "initial_epistemic_status": "unknown",
+      "initial_confidence": "unknown",
+      "initial_question_coverage": "unresolved",
+      "initial_evidence_ids": [
+        "ev_512fac631346b5b0b2002630f4e7866dcc9d09e85d1b1e1028f1ce6e3da7d5e9",
+        "ev_0f8f55bb4e0a6a4642c3b1702ea0b408d40e95047ab851a1d1a8d0e36cd56e5c"
+      ],
+      "initial_addresses": [
+        "0x1401646b0",
+        "0x14017cc30"
+      ],
+      "initial_unresolved": [
+        "Single/Ctrl/Shift/keyboard selection handlers and model ownership.",
+        "Status/action availability updates from selection."
+      ],
+      "comparison_status": "no_initial_positive_claim",
+      "observed_source_facts": [
+        "Browser ListViewParentProc consumes LVN_ITEMCHANGED; OnListViewItemChanged compares selection state, handles checkbox mode, skips performing-drag changes, updates counts/size by internal item ID and emits selection signal.",
+        "TabContainer rebroadcasts per-tab selection. Explorerplusplus invalidates matching display folder-size work and schedules timer for selected tab. Timer updates display, status and toolbar states.",
+        "InsertAwaitingItems/PositionDroppedItems serve narrower row insertion/drop positioning roles, not general selection-notification entry."
+      ],
+      "source_reference_ids": [
+        "selection-entry",
+        "selection",
+        "selection-rebroadcast",
+        "selection-observer",
+        "selection-ui",
+        "selection-timer",
+        "insert",
+        "position"
+      ],
+      "correspondence": "Initial refusal to treat materialization/position helpers as complete selection handler agrees. Source supplies new event-owner coverage only.",
+      "address_correspondence": {
+        "status": "inferred_structural_correspondence",
+        "candidates": [
+          {
+            "va": "0x14017cc30",
+            "candidate": "ShellBrowser::PositionDroppedItems"
+          }
+        ],
+        "proof_limit": "No PDB, linked map, reproducible build or exact symbol-to-VA proof. Source names learned after freeze."
+      },
+      "residual_unknowns": [
+        "Exact selection-handler binary addresses and native-control Ctrl/Shift/keyboard traces.",
+        "Every drag/checkbox/status race not assessed."
+      ],
+      "credited_as_initial_positive": false
+    },
+    {
+      "question_id": "RE03-RENAME",
+      "requirement_id": "RE-03",
+      "question": "What links F2/label editing to actual filename rename?",
+      "initial_assertion": "The generic F2-to-commit internal chain remains unknown. The separately recovered new-menu callback starts label editing but does not establish commit.",
+      "initial_epistemic_status": "unknown",
+      "initial_confidence": "unknown",
+      "initial_question_coverage": "unresolved",
+      "initial_evidence_ids": [
+        "ev_d6ad1767529c187facc939124d6ffb493741502ece24df1138b74b7b9447fcf8",
+        "ev_3590de16dd81838b0547537203010b4af00ee09da2ded56601c5078d4a15bf69"
+      ],
+      "initial_addresses": [
+        "0x1400838a0",
+        "0x14017d7a0"
+      ],
+      "initial_unresolved": [
+        "Generic F2 handler, end-label-edit acceptance/cancellation and source filename validation.",
+        "SetNameOf/file-operation implementation and conflict/error behavior."
+      ],
+      "comparison_status": "no_initial_positive_claim",
+      "observed_source_facts": [
+        "F2 accelerator maps to IDM_FILE_RENAME command then OnFileRename; active-list focus dispatches OnListViewFileRename. One selection uses SFGAO_CANRENAME check and ListView_EditLabel; multiple selections use mass rename.",
+        "End-label-edit rejects null/empty/trailing-dot text, checks invalid characters, preserves hidden extension, trims trailing spaces, builds paths and calls FileActionHandler::RenameFiles; false shows warning.",
+        "RenameFiles creates IShellItem, calls NFileOperations::RenameFile, records successful items for undo. API wrapper creates IFileOperation, sets FOF_ALLOWUNDO|FOF_SILENT, calls RenameItem/PerformOperations and returns HRESULT without per-item/aborted reconciliation in inspected wrapper.",
+        "New-menu QueueRename locates PIDL row or queues edit-start state. Generic F2 edits directly without requiring QueueRename; both use label-edit notification path at source level."
+      ],
+      "source_reference_ids": [
+        "f2",
+        "rename-command",
+        "rename-focus",
+        "rename-start",
+        "notify",
+        "rename-commit",
+        "rename-action",
+        "rename-api",
+        "new-rename"
+      ],
+      "correspondence": "Initial F2-to-commit chain was unknown. Edit-start evidence did not establish mutation API. Source fills the chain after freeze without new initial recovery credit.",
+      "address_correspondence": {
+        "status": "inferred_structural_correspondence",
+        "candidates": [
+          {
+            "va": "0x14017d7a0",
+            "candidate": "ShellBrowser::QueueRename"
+          }
+        ],
+        "proof_limit": "No PDB, linked map, reproducible build or exact symbol-to-VA proof. Source names learned after freeze."
+      },
+      "residual_unknowns": [
+        "Exact F2/commit/API binary identities.",
+        "Runtime conflict, permission, cancellation and IFileOperation result fidelity untested."
+      ],
+      "credited_as_initial_positive": false
+    },
+    {
+      "question_id": "RE03-SEARCH",
+      "requirement_id": "RE-03",
+      "question": "How does the Search command launch enumeration and return results?",
+      "initial_assertion": "A SearchDialog command branch for control 0x4cb starts a thread at 0x1400d23f0; recovered worker helpers enumerate names and conditionally recurse, then send result/completion messages.",
+      "initial_epistemic_status": "derived",
+      "initial_confidence": "high",
+      "initial_question_coverage": "partial",
+      "initial_evidence_ids": [
+        "ev_ae2fe1c352f9575a7c6dd213a4fc95c525cb3eed73dcc29cdef028da1493c53a",
+        "ev_e62a9ea2c70c21a4c3c64bcd43f12bb17fdaab6ebf7c34d5469753bf8751d56a",
+        "ev_db4a1bcf15da634cb92bf7b176fe59912ef93abe6dd6399870b961fd51995856",
+        "ev_186ca57c3ba8682e09cbc461075806eaaafffbcdc081f8997e7dead3522771df",
+        "ev_6884eda4b24742b2232eb7b958dbf5baa41a979bca4d8695c6141190d055a83c",
+        "ev_0551af17abc1dd9d36c43496a11b0b0a0ea3764d5ee54f306e823eb779465c65",
+        "ev_b4e0b8a1e8e4f42957490f2d0cd7a2580e22290d486c92dbbbe7384cc23eaada"
+      ],
+      "initial_addresses": [
+        "0x1402e19e0",
+        "0x1400d0280",
+        "0x1400d04c0",
+        "0x1400d23f0",
+        "0x1400d2490",
+        "0x1400d2590",
+        "0x1400d26a0"
+      ],
+      "initial_unresolved": [
+        "Actual Search-button/Enter command-to-native address mapping.",
+        "Full result-message receive/display, cancellation, errors and link-cycle policy.",
+        "Recursion requires the +0x438 option and uncancelled state; it is not unconditional.",
+        "External two-file result has no child directories and does not test recursion."
+      ],
+      "comparison_status": "confirmed",
+      "observed_source_facts": [
+        "IDSEARCH=1227 (0x4cb); resource defines Search default pushbutton. OnCommand calls OnSearch; idle OnSearch calls StartSearching.",
+        "StartSearching reads directory/pattern/recursion/regex/case/attribute controls, constructs Search and CreateThreads NSearchDialog::SearchThread; stub calls Search::StartSearching.",
+        "Worker validates selected regex, calls SearchDirectory and sends SEARCHFINISHED (WM_APP+2). SearchDirectory enumerates, checks synchronized stop state and recurses only if m_bSearchSubFolders.",
+        "SearchDirectoryInternal builds directory/*, uses FindFirstFile/FindNextFile, excludes . and .., matches name/attributes, parses matched path to PIDL and posts SEARCHITEMFOUND (WM_APP+1). It queues subdirectories and checks cancellation.",
+        "Found receiver queues PIDLs and starts timer; OnTimer inserts rows and frees consumed PIDLs. Finished receiver displays completed/cancelled status and releases dialog-held Search reference; worker releases its reference on normal completion.",
+        "Loop calls FindNextFile before processing its body, so record returned by FindFirstFile is not processed there. Reviewed recursion has no explicit visited-directory/reparse-point cycle guard. These are source observations, not reproduced runtime failures."
+      ],
+      "source_reference_ids": [
+        "search-id",
+        "search-button",
+        "search-command",
+        "search-start",
+        "search-thread",
+        "search-worker",
+        "search-recurse",
+        "search-enum",
+        "search-cancel",
+        "search-messages",
+        "search-receive",
+        "search-results"
+      ],
+      "correspondence": "Control/command/thread/enumeration/conditional-recursion/messages agree closely. Source additionally names controls/receivers; full correctness/cancellation safety were not initially recovered.",
+      "address_correspondence": {
+        "status": "inferred_structural_correspondence",
+        "candidates": [
+          {
+            "va": "0x1400d0280",
+            "candidate": "SearchDialog::OnCommand"
+          },
+          {
+            "va": "0x1400d04c0",
+            "candidate": "SearchDialog::StartSearching"
+          },
+          {
+            "va": "0x1400d23f0",
+            "candidate": "NSearchDialog::SearchThread"
+          },
+          {
+            "va": "0x1400d2490",
+            "candidate": "Search::StartSearching"
+          },
+          {
+            "va": "0x1400d2590",
+            "candidate": "Search::SearchDirectory"
+          },
+          {
+            "va": "0x1400d26a0",
+            "candidate": "Search::SearchDirectoryInternal"
+          }
+        ],
+        "proof_limit": "No PDB, linked map, reproducible build or exact symbol-to-VA proof. Source names learned after freeze."
+      },
+      "residual_unknowns": [
+        "Exact .2293 compiled VA/vtable linkage.",
+        "Runtime recursion/link-cycle/first-entry/error/close cancellation behavior and message-ownership stress unverified."
+      ],
+      "credited_as_initial_positive": true
+    }
+  ],
+  "source_references": {
+    "version": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/Version.h",
+      "line_start": 5,
+      "line_end": 19,
+      "symbol": "Version macros; environment build number",
+      "sha256": "6e3b2ee67ad856403a219bbbdbe550dadf4cc938cbf12c8947b1dfd4bed7fc8c"
+    },
+    "version-resource": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/Explorer++VersionInfo.rc",
+      "line_start": 51,
+      "line_end": 77,
+      "symbol": "VS_VERSION_INFO",
+      "sha256": "26261ebd0b9827db3958b9b2bc46aad150a68dbb3fa376c7689a61ba3f098b92"
+    },
+    "build-number": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/Explorer++.vcxproj",
+      "line_start": 150,
+      "line_end": 162,
+      "symbol": "APPVEYOR_BUILD_NUMBER definition",
+      "sha256": "0319a8bc1d34dc34ad353a78c45612c4bd96da156dd0a659328dc085ae4e23e9"
+    },
+    "parse": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/ShellBrowser/ShellNavigationController.cpp",
+      "line_start": 126,
+      "line_end": 148,
+      "symbol": "ShellNavigationController::BrowseFolder overloads",
+      "sha256": "c44dade9eeb1c6a1734172f9859d5e825b9a815acc1c90bcaa83f3fca5a9b9ed"
+    },
+    "browse": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/ShellBrowser/BrowsingHandler.cpp",
+      "line_start": 18,
+      "line_end": 94,
+      "symbol": "ShellBrowser::BrowseFolder",
+      "sha256": "256f19d1a78c138c92ccf08de0906d5726bfb9dba214d7bc528a334383c40093"
+    },
+    "enum": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/ShellBrowser/BrowsingHandler.cpp",
+      "line_start": 140,
+      "line_end": 207,
+      "symbol": "ShellBrowser::EnumerateFolder",
+      "sha256": "256f19d1a78c138c92ccf08de0906d5726bfb9dba214d7bc528a334383c40093"
+    },
+    "bind": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Helper/ShellHelper.cpp",
+      "line_start": 653,
+      "line_end": 674,
+      "symbol": "BindToIdl",
+      "sha256": "90486967f22c8d8af15c8a2b5e0307324256995cb65df71d5bb4848b2f88c24d"
+    },
+    "metadata": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/ShellBrowser/BrowsingHandler.cpp",
+      "line_start": 238,
+      "line_end": 296,
+      "symbol": "ShellBrowser::SetItemInformation",
+      "sha256": "256f19d1a78c138c92ccf08de0906d5726bfb9dba214d7bc528a334383c40093"
+    },
+    "id": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/ShellBrowser/ShellBrowser.cpp",
+      "line_start": 751,
+      "line_end": 754,
+      "symbol": "ShellBrowser::GenerateUniqueItemId",
+      "sha256": "6f500469513936f2670daecf142d2bee4d4d046d416a3eb98903abbecfb8f77e"
+    },
+    "item-struct": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/ShellBrowser/ShellBrowser.h",
+      "line_start": 181,
+      "line_end": 208,
+      "symbol": "DirectoryState; ItemInfo_t",
+      "sha256": "d156801705efa9d89fb5874fdd5dd7f352d24919bfd4918af1fc68026baa9f92"
+    },
+    "columns": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/ShellBrowser/ColumnDataRetrieval.cpp",
+      "line_start": 23,
+      "line_end": 44,
+      "symbol": "GetColumnText",
+      "sha256": "976bd3eb2ab6f8996faae652714598a86efc51a1b980c12ebe6b305bea5a7d95"
+    },
+    "queue": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/ShellBrowser/BrowsingHandler.cpp",
+      "line_start": 209,
+      "line_end": 236,
+      "symbol": "ShellBrowser::AddItemInternal overloads",
+      "sha256": "256f19d1a78c138c92ccf08de0906d5726bfb9dba214d7bc528a334383c40093"
+    },
+    "insert": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/ShellBrowser/BrowsingHandler.cpp",
+      "line_start": 298,
+      "line_end": 438,
+      "symbol": "ShellBrowser::InsertAwaitingItems",
+      "sha256": "256f19d1a78c138c92ccf08de0906d5726bfb9dba214d7bc528a334383c40093"
+    },
+    "queue-type": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/ShellBrowser/ShellBrowser.h",
+      "line_start": 218,
+      "line_end": 225,
+      "symbol": "AwaitingAdd_t",
+      "sha256": "d156801705efa9d89fb5874fdd5dd7f352d24919bfd4918af1fc68026baa9f92"
+    },
+    "queue-owner": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/ShellBrowser/ShellBrowser.h",
+      "line_start": 548,
+      "line_end": 553,
+      "symbol": "m_AwaitingAddList std::list owner",
+      "sha256": "d156801705efa9d89fb5874fdd5dd7f352d24919bfd4918af1fc68026baa9f92"
+    },
+    "position": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/ShellBrowser/ShellBrowser.cpp",
+      "line_start": 756,
+      "line_end": 941,
+      "symbol": "ShellBrowser::PositionDroppedItems",
+      "sha256": "6f500469513936f2670daecf142d2bee4d4d046d416a3eb98903abbecfb8f77e"
+    },
+    "sort": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/ShellBrowser/SortManager.cpp",
+      "line_start": 14,
+      "line_end": 91,
+      "symbol": "SortFolder; SortStub; Sort",
+      "sha256": "558d52a6bdeaa879cc74fef165c17a3c8a169a413f815660e3b845e426577044"
+    },
+    "sort-tail": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/ShellBrowser/SortManager.cpp",
+      "line_start": 370,
+      "line_end": 384,
+      "symbol": "Sort tie fallback and direction",
+      "sha256": "558d52a6bdeaa879cc74fef165c17a3c8a169a413f815660e3b845e426577044"
+    },
+    "sort-name-size": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/ShellBrowser/SortHelper.cpp",
+      "line_start": 10,
+      "line_end": 87,
+      "symbol": "SortByName; SortBySize",
+      "sha256": "924a48daaa2de17e959353c5b38d47baa80d422d59d839ee96d28572cdd5c18b"
+    },
+    "sort-date": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/ShellBrowser/SortHelper.cpp",
+      "line_start": 106,
+      "line_end": 126,
+      "symbol": "SortByDate",
+      "sha256": "924a48daaa2de17e959353c5b38d47baa80d422d59d839ee96d28572cdd5c18b"
+    },
+    "sort-modes": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/ShellBrowser/SortModes.h",
+      "line_start": 10,
+      "line_end": 15,
+      "symbol": "SortMode values",
+      "sha256": "de9699136a5543e304c160f077f829acaf06299d2da37f8cc87cde4af943a8fd"
+    },
+    "column-click": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/ShellBrowser/ColumnManager.cpp",
+      "line_start": 775,
+      "line_end": 804,
+      "symbol": "ShellBrowser::ColumnClicked",
+      "sha256": "84e58a91213a15e69990e4fa65f972a0e355fef3755015b161408a895ae8192c"
+    },
+    "notify": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/MainWndSwitch.cpp",
+      "line_start": 1421,
+      "line_end": 1459,
+      "symbol": "Explorerplusplus::NotifyHandler",
+      "sha256": "f6c2ef9bce117ee6d8eb1fc7bb617508ae8e52b99b6b5cf63db48e0360600e6f"
+    },
+    "doubleclick": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/ListViewHandler.cpp",
+      "line_start": 834,
+      "line_end": 876,
+      "symbol": "Explorerplusplus::OnListViewDoubleClick",
+      "sha256": "4561b73e1099c32e135d7bcf580607b3d5b9bb8d635140bff36f0e1184187058"
+    },
+    "open-row": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/ListViewHandler.cpp",
+      "line_start": 1194,
+      "line_end": 1204,
+      "symbol": "Explorerplusplus::OpenListViewItem",
+      "sha256": "4561b73e1099c32e135d7bcf580607b3d5b9bb8d635140bff36f0e1184187058"
+    },
+    "open": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/MsgHandler.cpp",
+      "line_start": 121,
+      "line_end": 208,
+      "symbol": "OpenItem overloads; ordinary folder branch",
+      "sha256": "38542cb20cc3061ae664b94388ec37c17c7d3e5215af05dcea4b6c6e52da9b22"
+    },
+    "open-folder": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/MsgHandler.cpp",
+      "line_start": 292,
+      "line_end": 311,
+      "symbol": "OpenFolderItem; OpenFileItem",
+      "sha256": "38542cb20cc3061ae664b94388ec37c17c7d3e5215af05dcea4b6c6e52da9b22"
+    },
+    "address-enter": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/AddressBar.cpp",
+      "line_start": 73,
+      "line_end": 83,
+      "symbol": "AddressBar::EditSubclass",
+      "sha256": "6b2ca46375616664f0b5dd6c6223a5b3375b9ff1d0e7400c6cfd839ef3a341a5"
+    },
+    "address-go": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/AddressBar.cpp",
+      "line_start": 142,
+      "line_end": 156,
+      "symbol": "AddressBar::OnGo",
+      "sha256": "6b2ca46375616664f0b5dd6c6223a5b3375b9ff1d0e7400c6cfd839ef3a341a5"
+    },
+    "navigate": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/Navigation.cpp",
+      "line_start": 22,
+      "line_end": 67,
+      "symbol": "OnNavigateUp; BrowseFolderInCurrentTab",
+      "sha256": "58f02b47faaabdacf1de049413930e016edbd625a7bdf506373283d5d6c25870"
+    },
+    "up": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/ShellBrowser/ShellNavigationController.cpp",
+      "line_start": 77,
+      "line_end": 119,
+      "symbol": "CanGoUp; GoUp; Refresh",
+      "sha256": "c44dade9eeb1c6a1734172f9859d5e825b9a815acc1c90bcaa83f3fca5a9b9ed"
+    },
+    "parent": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Helper/ShellHelper.cpp",
+      "line_start": 166,
+      "line_end": 193,
+      "symbol": "GetVirtualParentPath; IsNamespaceRoot",
+      "sha256": "90486967f22c8d8af15c8a2b5e0307324256995cb65df71d5bb4848b2f88c24d"
+    },
+    "nav-command": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/MainWndSwitch.cpp",
+      "line_start": 1199,
+      "line_end": 1212,
+      "symbol": "Back/Forward/Up command dispatch",
+      "sha256": "f6c2ef9bce117ee6d8eb1fc7bb617508ae8e52b99b6b5cf63db48e0360600e6f"
+    },
+    "history-command": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/MainMenuHandler.cpp",
+      "line_start": 285,
+      "line_end": 301,
+      "symbol": "OnGoBack; OnGoForward; OnGoToOffset",
+      "sha256": "0a8225b9e6c09573752060cbc1fddd8ef7ec63416c25bc40385d6f95ea4dc09a"
+    },
+    "history": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/NavigationController.h",
+      "line_start": 119,
+      "line_end": 175,
+      "symbol": "Traversal; branch truncation; entries/cursor",
+      "sha256": "3f479a11d5ca20410a42eedf9c2b3ec10d376f67ac5db218b9c4d3eac54adf17"
+    },
+    "history-commit": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/ShellBrowser/ShellNavigationController.cpp",
+      "line_start": 28,
+      "line_end": 75,
+      "symbol": "Navigation completion observer",
+      "sha256": "c44dade9eeb1c6a1734172f9859d5e825b9a815acc1c90bcaa83f3fca5a9b9ed"
+    },
+    "tab-create": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/TabContainer.cpp",
+      "line_start": 920,
+      "line_end": 1044,
+      "symbol": "CreateNewTab; SetUpNewTab",
+      "sha256": "6b9bf95a1f834b6418727f918cb6ee08cc814c2d868d967da9cf5f62f1bef250"
+    },
+    "new-tab": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/TabHandler.cpp",
+      "line_start": 83,
+      "line_end": 105,
+      "symbol": "Explorerplusplus::OnNewTab",
+      "sha256": "0698b288e0eb49c678a237071b661b29333e3e46554e2f559260e1d8a23a64f2"
+    },
+    "tab-default": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/TabContainer.cpp",
+      "line_start": 862,
+      "line_end": 899,
+      "symbol": "Default/string tab creation",
+      "sha256": "6b9bf95a1f834b6418727f918cb6ee08cc814c2d868d967da9cf5f62f1bef250"
+    },
+    "tab-close": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/TabContainer.cpp",
+      "line_start": 1077,
+      "line_end": 1112,
+      "symbol": "TabContainer::CloseTab",
+      "sha256": "6b9bf95a1f834b6418727f918cb6ee08cc814c2d868d967da9cf5f62f1bef250"
+    },
+    "close-command": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/TabHandler.cpp",
+      "line_start": 231,
+      "line_end": 235,
+      "symbol": "Explorerplusplus::OnCloseTab",
+      "sha256": "0698b288e0eb49c678a237071b661b29333e3e46554e2f559260e1d8a23a64f2"
+    },
+    "tab-switch": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/TabContainer.cpp",
+      "line_start": 592,
+      "line_end": 606,
+      "symbol": "TCN_SELCHANGE dispatch",
+      "sha256": "6b9bf95a1f834b6418727f918cb6ee08cc814c2d868d967da9cf5f62f1bef250"
+    },
+    "tab-select": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/TabContainer.cpp",
+      "line_start": 1229,
+      "line_end": 1241,
+      "symbol": "TabContainer::SelectTabAtIndex",
+      "sha256": "6b9bf95a1f834b6418727f918cb6ee08cc814c2d868d967da9cf5f62f1bef250"
+    },
+    "tab-owner": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/Tab.cpp",
+      "line_start": 25,
+      "line_end": 50,
+      "symbol": "Tab separately creates ShellBrowser",
+      "sha256": "fe03b5bcaa658ed9885ec21345e95e0c2786efb46494e53348d9d1fc1a407ba2"
+    },
+    "controller-owner": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/ShellBrowser/ShellBrowser.cpp",
+      "line_start": 123,
+      "line_end": 128,
+      "symbol": "ShellBrowser creates controller",
+      "sha256": "6f500469513936f2670daecf142d2bee4d4d046d416a3eb98903abbecfb8f77e"
+    },
+    "duplicate": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/TabContainer.cpp",
+      "line_start": 1350,
+      "line_end": 1354,
+      "symbol": "TabContainer::DuplicateTab",
+      "sha256": "6b9bf95a1f834b6418727f918cb6ee08cc814c2d868d967da9cf5f62f1bef250"
+    },
+    "selection-entry": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/ShellBrowser/ListView.cpp",
+      "line_start": 97,
+      "line_end": 124,
+      "symbol": "ListView notification dispatch",
+      "sha256": "0617930db01d4c39c37b746b80fd45b8fdce168c74acf44bdb198b9a9d358bd2"
+    },
+    "selection": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/ShellBrowser/ListView.cpp",
+      "line_start": 444,
+      "line_end": 524,
+      "symbol": "OnListViewItemChanged; UpdateFileSelectionInfo",
+      "sha256": "0617930db01d4c39c37b746b80fd45b8fdce168c74acf44bdb198b9a9d358bd2"
+    },
+    "selection-rebroadcast": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/TabContainer.cpp",
+      "line_start": 1007,
+      "line_end": 1009,
+      "symbol": "Selection signal rebroadcast",
+      "sha256": "6b9bf95a1f834b6418727f918cb6ee08cc814c2d868d967da9cf5f62f1bef250"
+    },
+    "selection-observer": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/TabHandler.cpp",
+      "line_start": 28,
+      "line_end": 37,
+      "symbol": "Selection signal subscription",
+      "sha256": "0698b288e0eb49c678a237071b661b29333e3e46554e2f559260e1d8a23a64f2"
+    },
+    "selection-ui": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/TabHandler.cpp",
+      "line_start": 254,
+      "line_end": 273,
+      "symbol": "OnTabListViewSelectionChanged",
+      "sha256": "0698b288e0eb49c678a237071b661b29333e3e46554e2f559260e1d8a23a64f2"
+    },
+    "selection-timer": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/MainWndSwitch.cpp",
+      "line_start": 119,
+      "line_end": 127,
+      "symbol": "Selection status/display/toolbar timer",
+      "sha256": "f6c2ef9bce117ee6d8eb1fc7bb617508ae8e52b99b6b5cf63db48e0360600e6f"
+    },
+    "f2": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/Explorer++_NoTranslation.rc",
+      "line_start": 103,
+      "line_end": 108,
+      "symbol": "F2 accelerator mapping",
+      "sha256": "d7d6bd7bdbf1833076a4755f2763a58cf53b32e44db29741591f95a71447ed41"
+    },
+    "rename-command": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/MainWndSwitch.cpp",
+      "line_start": 399,
+      "line_end": 402,
+      "symbol": "IDM_FILE_RENAME dispatch",
+      "sha256": "f6c2ef9bce117ee6d8eb1fc7bb617508ae8e52b99b6b5cf63db48e0360600e6f"
+    },
+    "rename-focus": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/EventSwitcher.cpp",
+      "line_start": 65,
+      "line_end": 87,
+      "symbol": "Explorerplusplus::OnFileRename",
+      "sha256": "9c99c66800cfea4705d8a3d21448e3d8fa087b1fcfe4da08eb7fbe8dc92f1dd5"
+    },
+    "rename-start": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/ListViewHandler.cpp",
+      "line_start": 878,
+      "line_end": 913,
+      "symbol": "Single/multiple rename start",
+      "sha256": "4561b73e1099c32e135d7bcf580607b3d5b9bb8d635140bff36f0e1184187058"
+    },
+    "rename-commit": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/ListViewHandler.cpp",
+      "line_start": 407,
+      "line_end": 532,
+      "symbol": "OnListViewEndLabelEdit",
+      "sha256": "4561b73e1099c32e135d7bcf580607b3d5b9bb8d635140bff36f0e1184187058"
+    },
+    "rename-action": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Helper/FileActionHandler.cpp",
+      "line_start": 15,
+      "line_end": 57,
+      "symbol": "FileActionHandler::RenameFiles",
+      "sha256": "5cd7b5e38ce5b7c3b19f8938327e1ea52458851fb47ab650fc31149ffd01e46b"
+    },
+    "rename-api": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Helper/FileOperations.cpp",
+      "line_start": 29,
+      "line_end": 62,
+      "symbol": "NFileOperations::RenameFile",
+      "sha256": "7b7d130e06ee6c457820fdf64a0d5bb8ca1f74faa0ca25522e16ee5e9bb7c9a5"
+    },
+    "new-rename": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/ShellBrowser/ShellBrowser.cpp",
+      "line_start": 1259,
+      "line_end": 1301,
+      "symbol": "ShellBrowser::QueueRename",
+      "sha256": "6f500469513936f2670daecf142d2bee4d4d046d416a3eb98903abbecfb8f77e"
+    },
+    "search-id": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/resource.h",
+      "line_start": 280,
+      "line_end": 283,
+      "symbol": "IDSEARCH = 1227 = 0x4cb",
+      "sha256": "9f5adbd30e4bd121963e81789dafc4784f93bc56ff481b5387217b3ef8170bc6"
+    },
+    "search-button": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/Explorer++.rc",
+      "line_start": 415,
+      "line_end": 420,
+      "symbol": "Search default pushbutton",
+      "sha256": "e3e6504eda385dac6b977b7d2861a4d863f86db6737c776a92381deb208d6fe4"
+    },
+    "search-command": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/SearchDialog.cpp",
+      "line_start": 255,
+      "line_end": 263,
+      "symbol": "SearchDialog::OnCommand",
+      "sha256": "8a1b681207fc2a270a4a3a7a25a6bf954fecdc92620a45d076d6afdb5521893f"
+    },
+    "search-start": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/SearchDialog.cpp",
+      "line_start": 325,
+      "line_end": 445,
+      "symbol": "OnSearch; StartSearching",
+      "sha256": "8a1b681207fc2a270a4a3a7a25a6bf954fecdc92620a45d076d6afdb5521893f"
+    },
+    "search-thread": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/SearchDialog.cpp",
+      "line_start": 990,
+      "line_end": 998,
+      "symbol": "NSearchDialog::SearchThread",
+      "sha256": "8a1b681207fc2a270a4a3a7a25a6bf954fecdc92620a45d076d6afdb5521893f"
+    },
+    "search-worker": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/SearchDialog.cpp",
+      "line_start": 1021,
+      "line_end": 1053,
+      "symbol": "Search::StartSearching",
+      "sha256": "8a1b681207fc2a270a4a3a7a25a6bf954fecdc92620a45d076d6afdb5521893f"
+    },
+    "search-recurse": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/SearchDialog.cpp",
+      "line_start": 1055,
+      "line_end": 1085,
+      "symbol": "Search::SearchDirectory",
+      "sha256": "8a1b681207fc2a270a4a3a7a25a6bf954fecdc92620a45d076d6afdb5521893f"
+    },
+    "search-enum": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/SearchDialog.cpp",
+      "line_start": 1088,
+      "line_end": 1192,
+      "symbol": "Search::SearchDirectoryInternal",
+      "sha256": "8a1b681207fc2a270a4a3a7a25a6bf954fecdc92620a45d076d6afdb5521893f"
+    },
+    "search-cancel": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/SearchDialog.cpp",
+      "line_start": 1195,
+      "line_end": 1200,
+      "symbol": "Search::StopSearching",
+      "sha256": "8a1b681207fc2a270a4a3a7a25a6bf954fecdc92620a45d076d6afdb5521893f"
+    },
+    "search-messages": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/SearchDialog.cpp",
+      "line_start": 26,
+      "line_end": 35,
+      "symbol": "Search message constants",
+      "sha256": "8a1b681207fc2a270a4a3a7a25a6bf954fecdc92620a45d076d6afdb5521893f"
+    },
+    "search-receive": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/SearchDialog.cpp",
+      "line_start": 817,
+      "line_end": 868,
+      "symbol": "SearchDialog found/finished handling",
+      "sha256": "8a1b681207fc2a270a4a3a7a25a6bf954fecdc92620a45d076d6afdb5521893f"
+    },
+    "search-results": {
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/SearchDialog.cpp",
+      "line_start": 915,
+      "line_end": 974,
+      "symbol": "SearchDialog::OnTimer",
+      "sha256": "8a1b681207fc2a270a4a3a7a25a6bf954fecdc92620a45d076d6afdb5521893f"
+    }
+  },
+  "summary": {
+    "confirmed": 6,
+    "partially_confirmed": 0,
+    "refuted": 0,
+    "unresolved": 0,
+    "no_initial_positive_claim": 7,
+    "initial_positive_questions": 6,
+    "exact_va_to_source_mappings_proven": 0,
+    "question_coverage_remains_partial": true,
+    "overall_reverse_engineering_accuracy": null,
+    "limitations": "Content-level source consistency of 13 frozen questions. Exact binary linkage inferred. Seven unknown initial event/UX mappings remain initial coverage gaps. Source-only findings are not initial REA recovery."
+  },
+  "validation": {
+    "executed": "Python structural/integrity checks",
+    "result": "passed",
+    "checks": [
+      "13 IDs, exact frozen assertions, confidence, Evidence IDs and addresses match original ledger",
+      "72 source reference byte hashes match files and decoded line ranges are valid (UTF-8/UTF-16 BOM aware)",
+      "All six input file hashes unchanged during audit",
+      "6 confirmed positive questions and 7 no-initial-positive-claim questions counted"
+    ],
+    "runtime_or_provider_tests": "none; source-only documentation audit"
+  }
+}

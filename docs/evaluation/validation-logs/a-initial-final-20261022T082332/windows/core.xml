@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite name="CoreTest" timestamp="2026&#x002D;10&#x002D;22T08:23:55" hostname="DESKTOP&#x002D;2FRTTQP" tests="11" failures="0" errors="0" skipped="0" time="2.129">
+  <properties>
+    <property name="QTestVersion" value="6.8.3"/>
+    <property name="QtVersion" value="6.8.3"/>
+    <property name="QtBuild" value="Qt 6.8.3 (x86_64&#x002D;little_endian&#x002D;llp64 shared (dynamic) release build; by MSVC 2022)"/>
+  </properties>
+  <testcase name="initTestCase" classname="CoreTest" time="0.000"/>
+  <testcase name="historyTransaction" classname="CoreTest" time="0.000"/>
+  <testcase name="failurePreservesCommittedState" classname="CoreTest" time="0.127"/>
+  <testcase name="backForwardUpRefresh" classname="CoreTest" time="0.445"/>
+  <testcase name="failedHistoryDoesNotMoveCursor" classname="CoreTest" time="0.191"/>
+  <testcase name="independentTabsAndDefault" classname="CoreTest" time="0.253"/>
+  <testcase name="lateCompletionIsDiscarded" classname="CoreTest" time="0.475"/>
+  <testcase name="closeDuringListing" classname="CoreTest" time="0.318"/>
+  <testcase name="shutdownOwnsWorker" classname="CoreTest" time="0.254"/>
+  <testcase name="fileActivationUsesPlatform" classname="CoreTest" time="0.064"/>
+  <testcase name="cleanupTestCase" classname="CoreTest" time="0.000"/>
+</testsuite>

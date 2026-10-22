@@ -1,0 +1,141 @@
+{
+    "expected_count": 1200,
+    "expected_names_sha256": "ff84bde034b35b40f6a7d8ef0e85c04966d069644ac12ea9db0408591d4fa8b0",
+    "fixture_path": "C:/dev/Windows_fileexplore/test-data/fixture-v1/read-only/bulk",
+    "global_controller_idle": null,
+    "heartbeat_interval_ms": 5,
+    "maximum_gui_heartbeat_gap_ms": 121,
+    "measurement_origin": "phase6 validation-only harness; existing A libraries and frozen headers",
+    "os_file_cache": "not flushed; coldness unknown",
+    "qt_version": "6.8.3",
+    "ready_boundary": "correct current location, !current.loading, !operations.busy, exact model/proxy names; controller global worker-idle API unavailable",
+    "samples": [
+        {
+            "count": 1200,
+            "derive_ms": null,
+            "elapsed_ms": 120,
+            "kind": "first-listing",
+            "maximum_gui_gap_ms": 10,
+            "names_sha256": "ff84bde034b35b40f6a7d8ef0e85c04966d069644ac12ea9db0408591d4fa8b0",
+            "render_ms": null
+        },
+        {
+            "count": 1200,
+            "derive_ms": null,
+            "elapsed_ms": 123,
+            "kind": "warm-refresh",
+            "maximum_gui_gap_ms": 121,
+            "names_sha256": "ff84bde034b35b40f6a7d8ef0e85c04966d069644ac12ea9db0408591d4fa8b0",
+            "render_ms": null
+        },
+        {
+            "count": 1200,
+            "derive_ms": null,
+            "elapsed_ms": 124,
+            "kind": "warm-refresh",
+            "maximum_gui_gap_ms": 120,
+            "names_sha256": "ff84bde034b35b40f6a7d8ef0e85c04966d069644ac12ea9db0408591d4fa8b0",
+            "render_ms": null
+        },
+        {
+            "count": 1200,
+            "derive_ms": null,
+            "elapsed_ms": 230,
+            "kind": "warm-refresh",
+            "maximum_gui_gap_ms": 116,
+            "names_sha256": "ff84bde034b35b40f6a7d8ef0e85c04966d069644ac12ea9db0408591d4fa8b0",
+            "render_ms": null
+        },
+        {
+            "count": 1200,
+            "derive_ms": null,
+            "elapsed_ms": 217,
+            "kind": "warm-refresh",
+            "maximum_gui_gap_ms": 108,
+            "names_sha256": "ff84bde034b35b40f6a7d8ef0e85c04966d069644ac12ea9db0408591d4fa8b0",
+            "render_ms": null
+        },
+        {
+            "count": 1200,
+            "derive_ms": null,
+            "elapsed_ms": 113,
+            "kind": "warm-refresh",
+            "maximum_gui_gap_ms": 6,
+            "names_sha256": "ff84bde034b35b40f6a7d8ef0e85c04966d069644ac12ea9db0408591d4fa8b0",
+            "render_ms": null
+        }
+    ],
+    "scope": "GUI ready listing including model derivation; excludes process/Qt initialization; no other applications included",
+    "shown_window": true,
+    "slow_gui_events": [
+        {
+            "class": "QWidget",
+            "elapsed_ms": 328,
+            "event_type": 97,
+            "object": "qt_scrollarea_viewport"
+        },
+        {
+            "class": "QWidget",
+            "elapsed_ms": 117,
+            "event_type": 12,
+            "object": "qt_scrollarea_viewport"
+        },
+        {
+            "class": "explorer::MainWindow",
+            "elapsed_ms": 119,
+            "event_type": 77,
+            "object": "explorerWindow"
+        },
+        {
+            "class": "QWidget",
+            "elapsed_ms": 117,
+            "event_type": 12,
+            "object": "qt_scrollarea_viewport"
+        },
+        {
+            "class": "explorer::MainWindow",
+            "elapsed_ms": 118,
+            "event_type": 77,
+            "object": "explorerWindow"
+        },
+        {
+            "class": "QWidget",
+            "elapsed_ms": 112,
+            "event_type": 12,
+            "object": "qt_scrollarea_viewport"
+        },
+        {
+            "class": "explorer::MainWindow",
+            "elapsed_ms": 114,
+            "event_type": 77,
+            "object": "explorerWindow"
+        },
+        {
+            "class": "QWidget",
+            "elapsed_ms": 108,
+            "event_type": 12,
+            "object": "qt_scrollarea_viewport"
+        },
+        {
+            "class": "explorer::MainWindow",
+            "elapsed_ms": 110,
+            "event_type": 77,
+            "object": "explorerWindow"
+        },
+        {
+            "class": "QWidget",
+            "elapsed_ms": 101,
+            "event_type": 12,
+            "object": "qt_scrollarea_viewport"
+        },
+        {
+            "class": "explorer::MainWindow",
+            "elapsed_ms": 103,
+            "event_type": 77,
+            "object": "explorerWindow"
+        }
+    ],
+    "status": "complete",
+    "style": "Fusion as in A frozen main",
+    "timeout_ms": 30000
+}

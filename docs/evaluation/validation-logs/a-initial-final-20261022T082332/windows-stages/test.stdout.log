@@ -1,0 +1,15 @@
+Test project C:/dev/Windows_fileexplore/experiments/A/build-windows
+    Start 1: core
+1/5 Test #1: core .............................   Passed    2.22 sec
+    Start 2: platform
+2/5 Test #2: platform .........................   Passed    0.22 sec
+    Start 3: ui
+3/5 Test #3: ui ...............................   Passed    1.76 sec
+    Start 4: operations
+4/5 Test #4: operations .......................   Passed    0.32 sec
+    Start 5: management_ui
+5/5 Test #5: management_ui ....................   Passed    1.37 sec
+
+100% tests passed, 0 tests failed out of 5
+
+Total Test time (real) =   6.02 sec

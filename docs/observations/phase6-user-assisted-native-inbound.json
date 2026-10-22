@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "observed_at_utc": "2026-10-22T00:46:15.849510+00:00",
+  "kind": "post-freeze user-assisted OS-to-B transfer result; not REA Evidence",
+  "user_evidence": "User clarified that inbound.txt had already been placed in the app; paraphrase of explicit chat statement. Earlier answer selected leaving reverse move unverified, so do not infer Shift was held or Move was requested/performed.",
+  "source": {
+    "path": "test-data/runtime-cross-6ca020434a9040d09dc9378a782dec2f/os-source/inbound.txt",
+    "bytes": 26,
+    "sha256": "25e689280b19bcdec01bd1ea22e75a38a3cd908f25dc9b9613a07a4a0a92b8de"
+  },
+  "destination": {
+    "path": "test-data/runtime-cross-6ca020434a9040d09dc9378a782dec2f/app-source/app-target/inbound.txt",
+    "bytes": 26,
+    "sha256": "25e689280b19bcdec01bd1ea22e75a38a3cd908f25dc9b9613a07a4a0a92b8de"
+  },
+  "observed_effect": "Copy postcondition: both source and destination present with identical pre-transfer baseline content. A source-removing Move is not established.",
+  "app_executable": "dist/windows-20261022T090415366/rea_explorer.exe",
+  "app_sha256": "bed10b64b0dbfb13606b91d8647f7c99f1062fff455a4730547f7d8d51e3c1fb",
+  "passed": [
+    "destination appeared after prior recorded absence",
+    "both26-byte SHA256 values equal original inbound baseline",
+    "existing outbound copies remain present"
+  ],
+  "scope": "One user-assisted Windows-Explorer-to-B native transfer. Together with outbound record, both directions have actual Copy endpoint evidence. Gesture/modifiers were not automatically captured; native Move/conflicts/general modifier variants and A desktop interoperability remain unverified. Existing actual Qt Move/drop tests remain distinct evidence."
+}

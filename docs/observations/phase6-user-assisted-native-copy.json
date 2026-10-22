@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "observed_at_utc": "2026-10-22T00:30:19.419680+00:00",
+  "kind": "post-freeze user-assisted native cross-application copy; not REA Evidence",
+  "user_action_evidence": {
+    "requested": "Hold Ctrl and drag outbound.txt from REA Explorer to Windows Explorer os-source",
+    "user_selected": "User chose to copy-drag manually and report back (paraphrase).",
+    "user_followup": "User asked whether the file had already been copied (paraphrase).",
+    "interpretation": "User-reported manual copy after requested cross-application gesture; no automated capture of gesture itself"
+  },
+  "app_executable": "dist/windows-20261022T090415366/rea_explorer.exe",
+  "app_sha256": "bed10b64b0dbfb13606b91d8647f7c99f1062fff455a4730547f7d8d51e3c1fb",
+  "source": {
+    "path": "test-data/runtime-cross-6ca020434a9040d09dc9378a782dec2f/app-source/app-target/outbound.txt",
+    "bytes": 25,
+    "sha256": "6afc64f7a71d8276c4549cb9428703bbbdc9e5477a192706ad392252840bfbb1"
+  },
+  "destination": {
+    "path": "test-data/runtime-cross-6ca020434a9040d09dc9378a782dec2f/os-source/outbound.txt",
+    "bytes": 25,
+    "sha256": "6afc64f7a71d8276c4549cb9428703bbbdc9e5477a192706ad392252840bfbb1"
+  },
+  "passed": [
+    "both files present simultaneously",
+    "25-byte content SHA256 matches pre-gesture outbound baseline",
+    "source retained and destination present"
+  ],
+  "path_qualification": "Original app-source/outbound.txt is now under app-source/app-target/outbound.txt. Intermediate in-app movement was not captured; do not infer its gesture or mode. This is the actual retained source pair, not the earlier requested top-level spelling.",
+  "scope": "One actual user-assisted B-to-Windows-Explorer Copy result. Does not establish inbound OS-to-B, native Move, conflicts, modifiers in general, A interoperability or REA native dispatch."
+}

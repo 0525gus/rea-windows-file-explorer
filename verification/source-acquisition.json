@@ -1,0 +1,23 @@
+{
+  "downloaded_at_utc": "2026-10-22T00:07:07.150861+00:00",
+  "phase": "6-post-initial-freeze-only",
+  "ref_url": "https://api.github.com/repos/derceg/explorerplusplus/git/ref/tags/version-1.4.0",
+  "ref": {
+    "ref": "refs/tags/version-1.4.0",
+    "node_id": "MDM6UmVmMTIzMzA3NzI6cmVmcy90YWdzL3ZlcnNpb24tMS40LjA=",
+    "url": "https://api.github.com/repos/derceg/explorerplusplus/git/refs/tags/version-1.4.0",
+    "object": {
+      "sha": "384c2f687fd55c1e71e9fcb272f9113de009a248",
+      "type": "commit",
+      "url": "https://api.github.com/repos/derceg/explorerplusplus/git/commits/384c2f687fd55c1e71e9fcb272f9113de009a248"
+    }
+  },
+  "commit": "384c2f687fd55c1e71e9fcb272f9113de009a248",
+  "archive_url": "https://codeload.github.com/derceg/explorerplusplus/zip/384c2f687fd55c1e71e9fcb272f9113de009a248",
+  "archive_sha256": "3531f0ba75b5bfb64be4674a960b57c62c2adf62a3b04578e485e2442fdbc655",
+  "archive_bytes": 4053626,
+  "extracted_files": 2139,
+  "extracted_uncompressed_bytes": 13154117,
+  "source_root": "C:\\dev\\Windows_fileexplore\\verification\\source\\explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248",
+  "scope": "Accuracy verification only; never copied into initial A/B implementation"
+}

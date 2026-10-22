@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite name="OperationsTest" timestamp="2026&#x002D;10&#x002D;22T08:23:56" hostname="DESKTOP&#x002D;2FRTTQP" tests="20" failures="0" errors="0" skipped="2" time="0.983">
+  <properties>
+    <property name="QTestVersion" value="6.4.2"/>
+    <property name="QtVersion" value="6.4.2"/>
+    <property name="QtBuild" value="Qt 6.4.2 (x86_64&#x002D;little_endian&#x002D;lp64 shared (dynamic) release build; by GCC 13.2.0)"/>
+  </properties>
+  <testcase name="initTestCase" classname="OperationsTest" time="0.001"/>
+  <testcase name="multiCopyUnicodeAndTree" classname="OperationsTest" time="0.136"/>
+  <testcase name="conflictPreflightIsAllOrNothing" classname="OperationsTest" time="0.034"/>
+  <testcase name="skipAndConfirmedReplace" classname="OperationsTest" time="0.068"/>
+  <testcase name="moveAndRenameAndMkdir" classname="OperationsTest" time="0.096"/>
+  <testcase name="moveCollisionSkipThenReplace" classname="OperationsTest" time="0.085"/>
+  <testcase name="copyPreservesModifiedTime" classname="OperationsTest" time="0.047"/>
+  <testcase name="occupiedDirectoryNeverMerged" classname="OperationsTest" time="0.042"/>
+  <testcase name="lockedSourceCopyPreservesBothSides" classname="OperationsTest" time="0.000">
+    <skipped message="Windows mandatory sharing lock fixture is not available on Linux; permission settings were not changed."/>
+  </testcase>
+  <testcase name="renameFailureAndSourceSafety" classname="OperationsTest" time="0.017"/>
+  <testcase name="deleteRequiresExplicitConfirmation" classname="OperationsTest" time="0.015"/>
+  <testcase name="safePathRejections" classname="OperationsTest" time="0.032"/>
+  <testcase name="cancellationRemovesOnlyOwnedStage" classname="OperationsTest" time="0.052"/>
+  <testcase name="destinationAppearsDuringCopy" classname="OperationsTest" time="0.037"/>
+  <testcase name="sourceChangesAfterPreflight" classname="OperationsTest" time="0.036"/>
+  <testcase name="cycleMutationRejected" classname="OperationsTest" time="0.028"/>
+  <testcase name="asyncProgressAndShutdown" classname="OperationsTest" time="0.170"/>
+  <testcase name="mixedItemResultsAndLateCancellation" classname="OperationsTest" time="0.086"/>
+  <testcase name="retainedCleanupOwnershipAndRetry" classname="OperationsTest" time="0.000">
+    <skipped message="Windows exclusive file sharing provides this real cleanup&#x002D;failure fixture; Linux permission mutation is not authorized."/>
+  </testcase>
+  <testcase name="cleanupTestCase" classname="OperationsTest" time="0.000"/>
+</testsuite>

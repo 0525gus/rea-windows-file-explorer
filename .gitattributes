@@ -2,3 +2,8 @@
 *.json -text whitespace=cr-at-eol
 *.png -text
 docs/requirements.md -text whitespace=cr-at-eol
+# Preserve independent frozen inputs, raw logs and upstream notice bytes.
+experiments/A/** -text -whitespace
+docs/evaluation/validation-logs/a-initial-final-20261022T082332/** -text -whitespace
+# This source is bound by the as-built comparison harness manifest.
+verification/benchmarks/CMakeLists.txt -text -whitespace

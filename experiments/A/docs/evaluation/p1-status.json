@@ -1,0 +1,42 @@
+{
+  "experiment": "A-no-REA",
+  "phase": "5-initial-independent-freeze",
+  "phase5StartUtc": "2026-10-21T15:26:51.3097025Z",
+  "freezePreparedUtc": "2026-10-21T23:26:33.0288905Z",
+  "phase5WallSeconds": 28781.719188,
+  "activeWorkSeconds": "unknown; wall time includes usage-limit interruptions and parent-requested profiling holds",
+  "declaredScope": "FR01-20 and fourteen mandatory scenarios; implemented with explicit per-platform limits",
+  "windows": {
+    "functionalPassed": 51,
+    "suitesPassed": 5,
+    "failed": 0,
+    "skipped": 2
+  },
+  "linux": {
+    "functionalPassed": 50,
+    "suitesPassed": 5,
+    "failed": 0,
+    "skipped": 3
+  },
+  "package": "artifacts/package/explorer_a.exe",
+  "packageSha256": "2da22246ab877bcb97528ca7c59f84a68f1d53406f48400697ed56567d9cd7b0",
+  "reaCalls": 0,
+  "sourceAccess": false,
+  "otherArmAccess": false,
+  "model": "parent model/reasoning inherited",
+  "deploymentId": "unknown",
+  "tokenUsage": "unknown",
+  "apiCost": "unknown",
+  "agentToolCalls": "not exported as aggregate; use session trace",
+  "retainedSupervisedWindowsStages": 55,
+  "unverified": [
+    "macOS build/runtime",
+    "actual cross-volume move",
+    "native recycle execution",
+    "actual cross-application desktop drag gesture",
+    "Linux permission-denied filesystem fixture"
+  ],
+  "isolation": "fresh context plus whitelist instruction under shared user; A/B ACL not enforced",
+  "sourceGate": "closed pending explicit root Phase6 authorization",
+  "report": "docs/evaluation/p1-report.md"
+}

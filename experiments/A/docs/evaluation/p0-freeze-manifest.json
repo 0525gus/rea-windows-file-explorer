@@ -1,0 +1,321 @@
+{
+  "frozenUtc": "2026-10-21T15:26:51.3032790Z",
+  "scope": "P0 initial independent implementation before P1",
+  "files": [
+    {
+      "path": ".clang-format",
+      "bytes": 187,
+      "sha256": "4a99180f925619df7bb517910cb5d8de3b3acbfe5c57524e23f6afa6304e03b1"
+    },
+    {
+      "path": ".clang-tidy",
+      "bytes": 203,
+      "sha256": "664c307856a47edcb4bf40b13ceb518f9761da327c751221e5901bffa800081f"
+    },
+    {
+      "path": "CMakeLists.txt",
+      "bytes": 2131,
+      "sha256": "327aa05632ba5d6d9705328306b180a7f3971927e645e5a05c354d63dbde33f5"
+    },
+    {
+      "path": "docs\\architecture\\ADR-001-qt-widgets.md",
+      "bytes": 1802,
+      "sha256": "aa6091ecd8031189debd09e541199a5046b24cea0337ee48211d8bfce7b794e8"
+    },
+    {
+      "path": "docs\\architecture\\architecture.md",
+      "bytes": 10809,
+      "sha256": "d4482fbe7ff1358ff556806b8d8bec19b0a573c2d31fe4368cd41ebf82ae1885"
+    },
+    {
+      "path": "docs\\architecture\\validation-contract.md",
+      "bytes": 3583,
+      "sha256": "ad4b48a7ba40975b729e8a2738eb4fc2f01ca49e9757c5ec8423e24c3d2a9755"
+    },
+    {
+      "path": "docs\\dependencies.md",
+      "bytes": 1544,
+      "sha256": "a156795bc6fcf05134384a1979024902ef4519ec2069b484e3041aee923b09bb"
+    },
+    {
+      "path": "docs\\evaluation\\input-snapshot.json",
+      "bytes": 1552,
+      "sha256": "cb39b30c25a3633dda02863ec1dbe6b72f9f1f7adfd73df918eafbb2341daff5"
+    },
+    {
+      "path": "docs\\evaluation\\p0-direct-ui.json",
+      "bytes": 43100,
+      "sha256": "e5e50fad265ad3657953d4bf814c1b02f361fc691a305f8b0061449416e5b8a1"
+    },
+    {
+      "path": "docs\\evaluation\\p0-input-snapshot.json",
+      "bytes": 1524,
+      "sha256": "f4ded1971227b3dbc2b7aa678ef9db45d4c9bdc70e3192293f3508db4a903a40"
+    },
+    {
+      "path": "docs\\evaluation\\p0-report.md",
+      "bytes": 8359,
+      "sha256": "986504f5d6f8127a95ae1f4b0ffa9a3c9725f2a08592941b1f647476fbcc8f49"
+    },
+    {
+      "path": "docs\\evaluation\\p0-resource-ledger.json",
+      "bytes": 9914,
+      "sha256": "795bf29dfea8e4ca4ab256ff8bd5594e08d95ebb2c4396414c6dedb8cb1bce32"
+    },
+    {
+      "path": "docs\\evaluation\\p0-source-manifest.json",
+      "bytes": 3392,
+      "sha256": "e84a989947c3dbf7b5e2e40a62a1939216b85a1f65aec55d341f7444875af3b1"
+    },
+    {
+      "path": "docs\\evaluation\\p0-status.json",
+      "bytes": 1123,
+      "sha256": "98c192aeb0db635e52888328f1318f5b58ae01d088b12d76c4eb2eae08047573"
+    },
+    {
+      "path": "docs\\evaluation\\p0-test-summary.json",
+      "bytes": 1629,
+      "sha256": "6b01094c24dcc05c61c1aba4d9de6e5d927d7a09cf2badfabea2b6baada9064e"
+    },
+    {
+      "path": "docs\\evaluation\\phase3-status.json",
+      "bytes": 458,
+      "sha256": "00c0a7a87aff5fde364fe40984e80a0b26506b09395bb2b292f17f12d2190af5"
+    },
+    {
+      "path": "docs\\evaluation\\phase4-start.txt",
+      "bytes": 30,
+      "sha256": "fb7a386f68c51c141f2ae8074b18880fa6fe839173d48ed8dfd25dce24a2f11a"
+    },
+    {
+      "path": "include\\explorer\\browser_controller.h",
+      "bytes": 2191,
+      "sha256": "817baf9a8537759491d87936691f6132ccaa1c8bf4a269242ef42a8a33f3df1f"
+    },
+    {
+      "path": "include\\explorer\\file_model.h",
+      "bytes": 1328,
+      "sha256": "a25846039fb0f38a2349ee6557439db77573aa266c5140d33d1f23631ed518d7"
+    },
+    {
+      "path": "include\\explorer\\main_window.h",
+      "bytes": 1678,
+      "sha256": "1e8d4c01859253ba08d1ac3d66b800d81072e9a9af864359764cf5ceec64d700"
+    },
+    {
+      "path": "include\\explorer\\navigation.h",
+      "bytes": 629,
+      "sha256": "cc77c3ae3d44f8d8a37cd6dbe2e50515e4cf8aa246c30219412597f14d6f859d"
+    },
+    {
+      "path": "include\\explorer\\platform.h",
+      "bytes": 412,
+      "sha256": "05b2689d4985f693eeca32de07817e6ed249ba700f7d4487bfd2b27a5456b32c"
+    },
+    {
+      "path": "include\\explorer\\types.h",
+      "bytes": 2056,
+      "sha256": "4b5838d2c170023adc0853cb1329cf5b3d988ea78c4bc99d6d18d306b29505f0"
+    },
+    {
+      "path": "package\\D3Dcompiler_47.dll",
+      "bytes": 4669440,
+      "sha256": "0f89c19165fd83a05e39bea601a06007e6a8814d55e2adf913902926231f843e"
+    },
+    {
+      "path": "package\\explorer_a.exe",
+      "bytes": 229888,
+      "sha256": "8845ddb1213b62c3b36a0d4dba6a8249516ff41b3adf397f4c334d948b93cd98"
+    },
+    {
+      "path": "package\\generic\\qtuiotouchplugin.dll",
+      "bytes": 102024,
+      "sha256": "8e123c011d13ddf884d33f6fba50182d6525a3a7504b7eac0788ef45ab2f2cb1"
+    },
+    {
+      "path": "package\\imageformats\\qgif.dll",
+      "bytes": 47752,
+      "sha256": "0ee32e5b48bf1404532842862045c523e0c915f223e34ea900c709e7c72b0b1e"
+    },
+    {
+      "path": "package\\imageformats\\qico.dll",
+      "bytes": 46216,
+      "sha256": "30b344703bccbf4bf70809cb9b6ce0075b74bdc765d18e539339190b095bb552"
+    },
+    {
+      "path": "package\\imageformats\\qjpeg.dll",
+      "bytes": 575624,
+      "sha256": "1c3f3996b18b9a6d3f2690ef333843c9195bec2a4eb08f6e68a3b3bc7f097c32"
+    },
+    {
+      "path": "package\\networkinformation\\qnetworklistmanager.dll",
+      "bytes": 71304,
+      "sha256": "9950a4a34df745df88b84bb605982999332f27217cba5802c2c30df5197db247"
+    },
+    {
+      "path": "package\\platforms\\qwindows.dll",
+      "bytes": 907912,
+      "sha256": "12577a7c4f2230bbea53f279573d7e3d1a08d631197855481e1e1580f61bb877"
+    },
+    {
+      "path": "package\\Qt6Core.dll",
+      "bytes": 6159496,
+      "sha256": "0cc62e841959fb8f6d366ea116c6f6bbc273e30f0ef90d8aa2e4adeb81fd63f8"
+    },
+    {
+      "path": "package\\Qt6Gui.dll",
+      "bytes": 9285768,
+      "sha256": "ca9f20d9b59d5bc321a87005b926b853ebcd6a2394823e14d3c8b5fc5702fa8c"
+    },
+    {
+      "path": "package\\Qt6Network.dll",
+      "bytes": 1755784,
+      "sha256": "2c2f65c70989646f06d668883c031f06fac3f8de1f459278c94cc50dfe89988d"
+    },
+    {
+      "path": "package\\Qt6Widgets.dll",
+      "bytes": 6500488,
+      "sha256": "d34ef78b3d3b5506ee8279ce6efbfc263d773b74860af76e66b0715346897a3a"
+    },
+    {
+      "path": "package\\styles\\qmodernwindowsstyle.dll",
+      "bytes": 215688,
+      "sha256": "33f30e3ed3159b607cac9fb13c478f3e1059b63b39201194ee5f67d239180f01"
+    },
+    {
+      "path": "package\\tls\\qcertonlybackend.dll",
+      "bytes": 102024,
+      "sha256": "063f369b7975c97fb989eda88f7a78896e7c6d5de2b73cccf30aefa92b608aff"
+    },
+    {
+      "path": "package\\tls\\qschannelbackend.dll",
+      "bytes": 254600,
+      "sha256": "c58ab3c5873d3d5187ff1e6703662810f555ebe60c532e025250c47bbac2e50c"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3154,
+      "sha256": "48b4797545dc2b158dbb45dd9af3aff4a4365111f8e5befdadc9bc6c6932d470"
+    },
+    {
+      "path": "scripts\\run-owned-stage.ps1",
+      "bytes": 2689,
+      "sha256": "63ebe6b6dad1c10332b2fdff7cfbc20c364f487899acdece9712ee8a74661d90"
+    },
+    {
+      "path": "src\\application\\browser_controller.cpp",
+      "bytes": 7052,
+      "sha256": "494383a9cc8c2e42699c574bb291708f4ead148a110b1903ecf9168324f1dcc6"
+    },
+    {
+      "path": "src\\core\\navigation.cpp",
+      "bytes": 886,
+      "sha256": "f4eb675566f16188deebd7e917d4881270f28b2b470503c265aad726878ee448"
+    },
+    {
+      "path": "src\\main.cpp",
+      "bytes": 2227,
+      "sha256": "425a47d53ecb692795ec984305ffa72d2c6645b3a48d2e4d316a93a78045aa1e"
+    },
+    {
+      "path": "src\\platform\\filesystem_platform.cpp",
+      "bytes": 5800,
+      "sha256": "a47bc48b579a58f3f5a65535c9f9a180aba2b1fa67dbcc4799747e8305cae996"
+    },
+    {
+      "path": "src\\ui\\file_model.cpp",
+      "bytes": 3901,
+      "sha256": "8e3e93a0c2060d32ba107d73fc86752a38301c9e905810dbbd7c75ba3d69aa12"
+    },
+    {
+      "path": "src\\ui\\main_window.cpp",
+      "bytes": 21023,
+      "sha256": "3d5d82c78c47dd56d8997f26dbc9f14ca020d0ea7ed2a4aedecf4a74ad9fe611"
+    },
+    {
+      "path": "test-reports-linux\\core.txt",
+      "bytes": 769,
+      "sha256": "67a84d135fdfcdc7f9f2129a407742c6715c2de7254730addb9384240ace6fd4"
+    },
+    {
+      "path": "test-reports-linux\\core.xml",
+      "bytes": 1338,
+      "sha256": "5932e8830b9fccd2f5027dbbd6ccb49f69872f645956e9e600a8b5d4423d8a87"
+    },
+    {
+      "path": "test-reports-linux\\platform.txt",
+      "bytes": 938,
+      "sha256": "3bdaa1945a73a1ab771c8dc5758df4d51ecc72f3d9760dde1ae98e4cf8eae29e"
+    },
+    {
+      "path": "test-reports-linux\\platform.xml",
+      "bytes": 1465,
+      "sha256": "b338b1be907c346483999bf13646e4b05774613543bfe62d68c69329a94922c5"
+    },
+    {
+      "path": "test-reports-linux\\ui.txt",
+      "bytes": 3238,
+      "sha256": "4174aab89c4e550af0e708faf25e628e0b69cf88a0a6c5fc2290e7df04c834ec"
+    },
+    {
+      "path": "test-reports-linux\\ui.xml",
+      "bytes": 3617,
+      "sha256": "9f95bde9e09492d75c6674bf72c12cdeeabf5041f02eebfae0c5ffecbb655984"
+    },
+    {
+      "path": "test-reports-windows\\core.txt",
+      "bytes": 782,
+      "sha256": "5d6d59f3528f72b389057082fa5ed32345b0bf0dc6e83c9cfa0830e089b31401"
+    },
+    {
+      "path": "test-reports-windows\\core.xml",
+      "bytes": 1357,
+      "sha256": "1114164413c1545dc63fbf0b4ce2ac44a5720affa2d0e79fd2f5a3a09558e58a"
+    },
+    {
+      "path": "test-reports-windows\\platform.txt",
+      "bytes": 941,
+      "sha256": "24dd5a23b4e1d2a849eb0f454c84ec75d2e0bcb5b5d7c5e5456d78995eb59053"
+    },
+    {
+      "path": "test-reports-windows\\platform.xml",
+      "bytes": 1463,
+      "sha256": "c6d2eda3887b3f1919732f6b15d4c1a57adad40ee3eb38b6adfd72387fbb44d0"
+    },
+    {
+      "path": "test-reports-windows\\ui.txt",
+      "bytes": 3456,
+      "sha256": "b6b41b9705dece4230297bcf81529f5024e09c874fa92562b0e257f4cca55bd3"
+    },
+    {
+      "path": "test-reports-windows\\ui.xml",
+      "bytes": 3872,
+      "sha256": "29972582f01455a6c07fadc4f3f54e6d2dd6bbc66db0eef8108a1c85519d82a6"
+    },
+    {
+      "path": "tests\\benchmark.cpp",
+      "bytes": 2820,
+      "sha256": "dfff2944c97b80b4738120d3ef3519bdb3697b6e678e7a77a67ad89ea2d38c2c"
+    },
+    {
+      "path": "tests\\fake_platform.h",
+      "bytes": 1782,
+      "sha256": "040059d76dd2be353589d67504e4c512e76f86d90072fc32f889dd1b8324d012"
+    },
+    {
+      "path": "tests\\test_core.cpp",
+      "bytes": 6941,
+      "sha256": "7131e2ae1f190e232f5a3ad771c8b2a0a7a9918d1a8c8bb5c70366e7a2557c5a"
+    },
+    {
+      "path": "tests\\test_platform.cpp",
+      "bytes": 5765,
+      "sha256": "103e2a41a1108d06aca2ab8add03148fda6e6cfac48e8b78a615ecb075929cae"
+    },
+    {
+      "path": "tests\\test_ui.cpp",
+      "bytes": 11218,
+      "sha256": "4ac1797414cc873b8a8de34bfa8709c3a386f2afde14d009d9f18210f8176801"
+    }
+  ]
+}

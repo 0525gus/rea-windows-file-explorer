@@ -1,0 +1,15 @@
+********* Start testing of CoreTest *********
+Config: Using QtTest library 6.8.3, Qt 6.8.3 (x86_64-little_endian-llp64 shared (dynamic) release build; by MSVC 2022), windows 11
+PASS   : CoreTest::initTestCase()
+PASS   : CoreTest::historyTransaction()
+PASS   : CoreTest::failurePreservesCommittedState()
+PASS   : CoreTest::backForwardUpRefresh()
+PASS   : CoreTest::failedHistoryDoesNotMoveCursor()
+PASS   : CoreTest::independentTabsAndDefault()
+PASS   : CoreTest::lateCompletionIsDiscarded()
+PASS   : CoreTest::closeDuringListing()
+PASS   : CoreTest::shutdownOwnsWorker()
+PASS   : CoreTest::fileActivationUsesPlatform()
+PASS   : CoreTest::cleanupTestCase()
+Totals: 11 passed, 0 failed, 0 skipped, 0 blacklisted, 2129ms
+********* Finished testing of CoreTest *********

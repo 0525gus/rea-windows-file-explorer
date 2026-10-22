@@ -1,0 +1,112 @@
+[
+  {
+    "os": "windows",
+    "suite": "core",
+    "cases": 9,
+    "passed": 9,
+    "skipped": 0,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 2.122,
+    "report": "C:\\dev\\Windows_fileexplore\\experiments\\A\\build-windows\\test-reports\\core.xml"
+  },
+  {
+    "os": "windows",
+    "suite": "platform",
+    "cases": 9,
+    "passed": 8,
+    "skipped": 1,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 0.119,
+    "report": "C:\\dev\\Windows_fileexplore\\experiments\\A\\build-windows\\test-reports\\platform.xml"
+  },
+  {
+    "os": "windows",
+    "suite": "ui",
+    "cases": 11,
+    "passed": 11,
+    "skipped": 0,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 1.62,
+    "report": "C:\\dev\\Windows_fileexplore\\experiments\\A\\build-windows\\test-reports\\ui.xml"
+  },
+  {
+    "os": "windows",
+    "suite": "operations",
+    "cases": 14,
+    "passed": 13,
+    "skipped": 1,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 0.208,
+    "report": "C:\\dev\\Windows_fileexplore\\experiments\\A\\build-windows\\test-reports\\operations.xml"
+  },
+  {
+    "os": "windows",
+    "suite": "management_ui",
+    "cases": 6,
+    "passed": 6,
+    "skipped": 0,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 1.232,
+    "report": "C:\\dev\\Windows_fileexplore\\experiments\\A\\build-windows\\test-reports\\management_ui.xml"
+  },
+  {
+    "os": "linux",
+    "suite": "core",
+    "cases": 9,
+    "passed": 9,
+    "skipped": 0,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 1.311,
+    "report": "C:\\dev\\Windows_fileexplore\\experiments\\A\\build-linux\\test-reports\\core.xml"
+  },
+  {
+    "os": "linux",
+    "suite": "platform",
+    "cases": 9,
+    "passed": 8,
+    "skipped": 1,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 1.71,
+    "report": "C:\\dev\\Windows_fileexplore\\experiments\\A\\build-linux\\test-reports\\platform.xml"
+  },
+  {
+    "os": "linux",
+    "suite": "ui",
+    "cases": 11,
+    "passed": 11,
+    "skipped": 0,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 1.498,
+    "report": "C:\\dev\\Windows_fileexplore\\experiments\\A\\build-linux\\test-reports\\ui.xml"
+  },
+  {
+    "os": "linux",
+    "suite": "operations",
+    "cases": 14,
+    "passed": 13,
+    "skipped": 1,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 0.811,
+    "report": "C:\\dev\\Windows_fileexplore\\experiments\\A\\build-linux\\test-reports\\operations.xml"
+  },
+  {
+    "os": "linux",
+    "suite": "management_ui",
+    "cases": 6,
+    "passed": 6,
+    "skipped": 0,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 1.21,
+    "report": "C:\\dev\\Windows_fileexplore\\experiments\\A\\build-linux\\test-reports\\management_ui.xml"
+  }
+]

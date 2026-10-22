@@ -1,0 +1,33 @@
+********* Start testing of ManagementUiTest *********
+Config: Using QtTest library 6.8.3, Qt 6.8.3 (x86_64-little_endian-llp64 shared (dynamic) release build; by MSVC 2022), windows 11
+PASS   : ManagementUiTest::initTestCase()
+QWARN  : ManagementUiTest::createAndRenameThroughDialogs() QFontDatabase: Cannot find font directory C:/dev/Windows_fileexplore/tools/qt/6.8.3/msvc2022_64/lib/fonts.
+Note that Qt no longer ships fonts. Deploy some (from https://dejavu-fonts.github.io/ for example) or switch to fontconfig.
+QWARN  : ManagementUiTest::createAndRenameThroughDialogs() This plugin does not support propagateSizeHints()
+QWARN  : ManagementUiTest::createAndRenameThroughDialogs() This plugin does not support propagateSizeHints()
+QWARN  : ManagementUiTest::createAndRenameThroughDialogs() This plugin does not support propagateSizeHints()
+QWARN  : ManagementUiTest::createAndRenameThroughDialogs() This plugin does not support propagateSizeHints()
+QWARN  : ManagementUiTest::createAndRenameThroughDialogs() This plugin does not support propagateSizeHints()
+QWARN  : ManagementUiTest::createAndRenameThroughDialogs() This plugin does not support propagateSizeHints()
+PASS   : ManagementUiTest::createAndRenameThroughDialogs()
+QWARN  : ManagementUiTest::ctrlShiftSelectionAndViews() This plugin does not support propagateSizeHints()
+QWARN  : ManagementUiTest::ctrlShiftSelectionAndViews() This plugin does not support propagateSizeHints()
+PASS   : ManagementUiTest::ctrlShiftSelectionAndViews()
+QWARN  : ManagementUiTest::copyCutPasteAndConflictChoice() This plugin does not support propagateSizeHints()
+QWARN  : ManagementUiTest::copyCutPasteAndConflictChoice() This plugin does not support propagateSizeHints()
+QWARN  : ManagementUiTest::copyCutPasteAndConflictChoice() This plugin does not support propagateSizeHints()
+PASS   : ManagementUiTest::copyCutPasteAndConflictChoice()
+QWARN  : ManagementUiTest::permanentDeleteCancelThenConfirm() This plugin does not support propagateSizeHints()
+QWARN  : ManagementUiTest::permanentDeleteCancelThenConfirm() This plugin does not support propagateSizeHints()
+QWARN  : ManagementUiTest::permanentDeleteCancelThenConfirm() This plugin does not support propagateSizeHints()
+QWARN  : ManagementUiTest::permanentDeleteCancelThenConfirm() This plugin does not support propagateSizeHints()
+PASS   : ManagementUiTest::permanentDeleteCancelThenConfirm()
+QWARN  : ManagementUiTest::incomingLocalUrlDropAndOutgoingMime() This plugin does not support propagateSizeHints()
+QWARN  : ManagementUiTest::incomingLocalUrlDropAndOutgoingMime() This plugin does not support propagateSizeHints()
+PASS   : ManagementUiTest::incomingLocalUrlDropAndOutgoingMime()
+QWARN  : ManagementUiTest::internalMoveDropIntoFolder() This plugin does not support propagateSizeHints()
+QWARN  : ManagementUiTest::internalMoveDropIntoFolder() This plugin does not support propagateSizeHints()
+PASS   : ManagementUiTest::internalMoveDropIntoFolder()
+PASS   : ManagementUiTest::cleanupTestCase()
+Totals: 8 passed, 0 failed, 0 skipped, 0 blacklisted, 1257ms
+********* Finished testing of ManagementUiTest *********

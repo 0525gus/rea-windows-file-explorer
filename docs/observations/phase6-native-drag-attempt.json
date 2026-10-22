@@ -1,0 +1,25 @@
+{
+  "observed_at_utc": "2026-10-22T00:19:46.310650+00:00",
+  "kind": "post_freeze_native_drag_attempt_not_REA_evidence",
+  "app_sha256": "bed10b64b0dbfb13606b91d8647f7c99f1062fff455a4730547f7d8d51e3c1fb",
+  "actions": [
+    "Launched final B package in owned app-source; maximized via native titlebar doubleclick",
+    "Selected existing Windows Explorer os-source; activation first reported user input and a fresh snapshot was acquired",
+    "Fresh B full-window screenshot: 2560x1392; native drag from outbound row(254,235) to(1500,600), both within B bounds",
+    "Post-action B retained two items and both fixture trees retained original files; no copied or moved file appeared"
+  ],
+  "result": "No transfer established. Native cross-application gesture remains unverified, not a proved product failure. Target-window activation/z-order and gesture routing were not independently established.",
+  "files_after": [
+    {
+      "path": "test-data/runtime-cross-6ca020434a9040d09dc9378a782dec2f/app-source/outbound.txt",
+      "bytes": 25,
+      "sha256": "6afc64f7a71d8276c4549cb9428703bbbdc9e5477a192706ad392252840bfbb1"
+    },
+    {
+      "path": "test-data/runtime-cross-6ca020434a9040d09dc9378a782dec2f/os-source/inbound.txt",
+      "bytes": 26,
+      "sha256": "25e689280b19bcdec01bd1ea22e75a38a3cd908f25dc9b9613a07a4a0a92b8de"
+    }
+  ],
+  "prior_boundary_error": "Earlier window-placement drag outside target bounds was rejected, retained in initial UI design report."
+}

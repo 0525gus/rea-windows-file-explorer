@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "created_at_utc": "2026-10-22T00:48:52.980434+00:00",
+  "kind": "post_freeze_evaluation_summary_not_initial_recovery",
+  "frozen_commit": "64032d766cf634fe00b45aa0d8c951878e0ef5c3",
+  "initial_snapshots_rehashed": {
+    "B": 354,
+    "A": 124
+  },
+  "B_live_production_and_test_files_unchanged": 18,
+  "B_live_and_packaged_exe_sha256": "bed10b64b0dbfb13606b91d8647f7c99f1062fff455a4730547f7d8d51e3c1fb",
+  "source_comparison": {
+    "fixed_questions": 25,
+    "statuses": {
+      "confirmed": 12,
+      "no_initial_positive": 12,
+      "partial": 1
+    },
+    "narrow_positive_questions": 13,
+    "positive_question_coverage_percent": 52.0,
+    "confirmed_narrow_content_among_positive_questions": "12/13; 1 partial, not a full-feature or binary-identity accuracy rate",
+    "complete_end_to_end_REA_recoveries_established": 0,
+    "exact_VA_source_mappings_proven": 0,
+    "exact_shipped_build_2293_proven_by_tag": false,
+    "coverage_note": "Each positive question is partial. Unknowns earn no correct-negative credit. Shared evidence is not independent proof."
+  },
+  "benchmarks": {
+    "A": {
+      "measurement": "docs/evaluation/measurements/a-phase6-common.json",
+      "measurement_sha256": "1246de8e826eb9b53463d6761bccb209a1be2459f5a4d671755d0ab536cda933",
+      "runner": "docs/evaluation/measurements/a-phase6-common.metrics.json",
+      "first_listing_ms": 120,
+      "warm_refresh_ms": [
+        123,
+        124,
+        230,
+        217,
+        113
+      ],
+      "warm_median_ms": 124,
+      "max_gui_heartbeat_gap_ms": 121,
+      "slow_events_20ms_or_more": 11,
+      "process_elapsed_seconds": 1.9018161999993026,
+      "process_family_cpu_seconds": 1.875,
+      "peak_family_committed_bytes": 57180160,
+      "processes": 2,
+      "b_prior_target_checks": null
+    },
+    "B": {
+      "measurement": "docs/evaluation/measurements/b-phase6-common.json",
+      "measurement_sha256": "2e28be7e5233a95c166c95007aceb7825439b807ef58deae41795f0c21219e12",
+      "runner": "docs/evaluation/measurements/b-phase6-common.metrics.json",
+      "first_listing_ms": 1064,
+      "warm_refresh_ms": [
+        1036,
+        999,
+        1006,
+        1013,
+        1048
+      ],
+      "warm_median_ms": 1013,
+      "max_gui_heartbeat_gap_ms": 14,
+      "slow_events_20ms_or_more": 0,
+      "process_elapsed_seconds": 6.4730558000010205,
+      "process_family_cpu_seconds": 6.609375,
+      "peak_family_committed_bytes": 27992064,
+      "processes": 1,
+      "b_prior_target_checks": {
+        "first_listing_at_most_2000ms": true,
+        "warm_refreshes_at_most_1000ms": 1,
+        "warm_refresh_denominator": 5,
+        "gui_gap_at_most_100ms": true,
+        "peak_at_most_256MiB": true
+      }
+    }
+  },
+  "benchmark_limitations": [
+    "One sequential A then B trial, same host, native windows QPA/Qt6.8.3 plugins, shown Details windows and 1200-name oracle; OS caches not flushed; no statistical generalization",
+    "A validation-only harness links frozen existing libraries; A lacks global worker-idle API; B checks session idle; different UI styles and metadata/type/identity workloads",
+    "A logs include a pre-timer 328ms event during setup; GUI heartbeat is scoped after show and not full startup",
+    "Original same-folder five-F5 task has external UI status-only completion, initial icon->Details switch, different viewport/Shell tree, no full-name hash/internal heartbeat; do not rank times against A/B",
+    "Wall time and CPU for complete process families include startup/teardown; Qt listing timers exclude process/Qt initialization; memory is Windows committed memory, not RSS",
+    "No REA productivity, model-quality or performance causality inferred from two independent implementations"
+  ],
+  "later_validation": {
+    "user_assisted_outbound_copy": {
+      "path": "docs/observations/phase6-user-assisted-native-copy.json",
+      "sha256": "6328c1dcebf858f1b42e535b2dc9d84049fad0c78cf3304c43f8a8d2df253092",
+      "scope": "One retained source and outbound OS destination with matching 25-byte baseline; user-assisted gesture, not automated REA trace"
+    },
+    "user_assisted_inbound_transfer": {
+      "path": "docs/observations/phase6-user-assisted-native-inbound.json",
+      "sha256": "d3406da989403b582b412aa06d8e317a71550ce559a5e5cef8f199e5b3ae100e",
+      "scope": "OS-to-B destination and retained source both match the 26-byte baseline; actual Copy postcondition, not source-removing Move"
+    },
+    "native_source_removing_move_gesture": "unverified; user chose to leave this variant unverified; actual Qt Move/drop test evidence remains separate",
+    "common_external_task": {
+      "path": "docs/evaluation/phase6-external-comparison.json",
+      "sha256": "278e286b137264f8e02cfe387dd2fe66e7627545cc016de5b7fd6c4de517885c",
+      "scope": "Same outer dimensions, Details, input and external action/status protocol; internal-generation/paint/heartbeat timing not established"
+    }
+  }
+}

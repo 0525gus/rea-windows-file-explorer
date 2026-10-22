@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "declared_before_execution": true,
+  "task": "Same external native UI completion boundary for original and B",
+  "input": "test-data/fixture-v1/read-only/bulk",
+  "fixture_sha256": "278d49240d795cabcd15be949cdc4f235722a0c8d92236854c503efc2dd14bc1",
+  "preparation": [
+    "Launch one owned fresh process at read-only/empty",
+    "Select Details before measured navigation; maximize target window",
+    "Observe zero-item state and full-screen dimensions",
+    "Focus address and enter same bulk path before timed Enter"
+  ],
+  "measured_task": [
+    "Timed Enter navigation until first external status containing 1200 items and correct bulk path",
+    "Five sequential F5 refreshes, each until first external completed status",
+    "Same sky.press_key plus get_window_state(include_screenshot=false,include_text=true) boundary",
+    "One action then observation; if incomplete observe again; no overlapping process workloads",
+    "Normal close after six observations; existing owned Job runner captures whole-family wall/CPU/peak committed"
+  ],
+  "clock": "Node performance.now() elapsed per action/observation and UTC provenance; any extra model/tool scheduling waits included in upper bounds",
+  "limitations": [
+    "External accessibility status is not internal model readiness, completed paint or a full-name oracle",
+    "Tool input waits/observations can dominate timing and differ with UI providers; report external upper bounds, no internal-speed ratio",
+    "Whole-process metrics include startup/preparation/teardown/agent delays; original Details selection adds setup work; do not label task-only CPU",
+    "UI trees, metadata policies and layout content differ even at same host/input/view/outer window dimensions",
+    "One trial per app; no OS cache flush or statistical/general performance claims",
+    "This protocol supplies a common external task comparison; exact uninstrumented original internal latency and heartbeat remain unknown"
+  ]
+}

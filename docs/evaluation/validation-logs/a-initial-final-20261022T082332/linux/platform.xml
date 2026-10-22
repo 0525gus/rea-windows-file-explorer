@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite name="PlatformTest" timestamp="2026&#x002D;10&#x002D;22T08:23:53" hostname="DESKTOP&#x002D;2FRTTQP" tests="11" failures="0" errors="0" skipped="1" time="1.676">
+  <properties>
+    <property name="QTestVersion" value="6.4.2"/>
+    <property name="QtVersion" value="6.4.2"/>
+    <property name="QtBuild" value="Qt 6.4.2 (x86_64&#x002D;little_endian&#x002D;lp64 shared (dynamic) release build; by GCC 13.2.0)"/>
+  </properties>
+  <testcase name="initTestCase" classname="PlatformTest" time="0.001"/>
+  <testcase name="emptyFolder" classname="PlatformTest" time="0.004"/>
+  <testcase name="bulkComplete" classname="PlatformTest" time="1.630"/>
+  <testcase name="unicodeAndMetadata" classname="PlatformTest" time="0.013"/>
+  <testcase name="invalidAndNotDirectory" classname="PlatformTest" time="0.003"/>
+  <testcase name="deniedRealAcl" classname="PlatformTest" time="0.000">
+    <skipped message="Windows ACL&#x002D;denied source gate is not a Linux permission fixture; no ACL mutation authorized."/>
+  </testcase>
+  <testcase name="externalDeletion" classname="PlatformTest" time="0.013"/>
+  <testcase name="cancelledList" classname="PlatformTest" time="0.000"/>
+  <testcase name="linksAreFactsNotRecursion" classname="PlatformTest" time="0.009"/>
+  <testcase name="rootsAndCapabilities" classname="PlatformTest" time="0.000"/>
+  <testcase name="cleanupTestCase" classname="PlatformTest" time="0.000"/>
+</testsuite>

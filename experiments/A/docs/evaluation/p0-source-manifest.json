@@ -1,0 +1,112 @@
+[
+  {
+    "path": ".clang-format",
+    "bytes": 187,
+    "sha256": "4a99180f925619df7bb517910cb5d8de3b3acbfe5c57524e23f6afa6304e03b1"
+  },
+  {
+    "path": ".clang-tidy",
+    "bytes": 203,
+    "sha256": "664c307856a47edcb4bf40b13ceb518f9761da327c751221e5901bffa800081f"
+  },
+  {
+    "path": "CMakeLists.txt",
+    "bytes": 2131,
+    "sha256": "327aa05632ba5d6d9705328306b180a7f3971927e645e5a05c354d63dbde33f5"
+  },
+  {
+    "path": "include\\explorer\\browser_controller.h",
+    "bytes": 2191,
+    "sha256": "817baf9a8537759491d87936691f6132ccaa1c8bf4a269242ef42a8a33f3df1f"
+  },
+  {
+    "path": "include\\explorer\\file_model.h",
+    "bytes": 1328,
+    "sha256": "a25846039fb0f38a2349ee6557439db77573aa266c5140d33d1f23631ed518d7"
+  },
+  {
+    "path": "include\\explorer\\main_window.h",
+    "bytes": 1678,
+    "sha256": "1e8d4c01859253ba08d1ac3d66b800d81072e9a9af864359764cf5ceec64d700"
+  },
+  {
+    "path": "include\\explorer\\navigation.h",
+    "bytes": 629,
+    "sha256": "cc77c3ae3d44f8d8a37cd6dbe2e50515e4cf8aa246c30219412597f14d6f859d"
+  },
+  {
+    "path": "include\\explorer\\platform.h",
+    "bytes": 412,
+    "sha256": "05b2689d4985f693eeca32de07817e6ed249ba700f7d4487bfd2b27a5456b32c"
+  },
+  {
+    "path": "include\\explorer\\types.h",
+    "bytes": 2056,
+    "sha256": "4b5838d2c170023adc0853cb1329cf5b3d988ea78c4bc99d6d18d306b29505f0"
+  },
+  {
+    "path": "README.md",
+    "bytes": 3154,
+    "sha256": "48b4797545dc2b158dbb45dd9af3aff4a4365111f8e5befdadc9bc6c6932d470"
+  },
+  {
+    "path": "scripts\\run-owned-stage.ps1",
+    "bytes": 2689,
+    "sha256": "63ebe6b6dad1c10332b2fdff7cfbc20c364f487899acdece9712ee8a74661d90"
+  },
+  {
+    "path": "src\\application\\browser_controller.cpp",
+    "bytes": 7052,
+    "sha256": "494383a9cc8c2e42699c574bb291708f4ead148a110b1903ecf9168324f1dcc6"
+  },
+  {
+    "path": "src\\core\\navigation.cpp",
+    "bytes": 886,
+    "sha256": "f4eb675566f16188deebd7e917d4881270f28b2b470503c265aad726878ee448"
+  },
+  {
+    "path": "src\\main.cpp",
+    "bytes": 2227,
+    "sha256": "425a47d53ecb692795ec984305ffa72d2c6645b3a48d2e4d316a93a78045aa1e"
+  },
+  {
+    "path": "src\\platform\\filesystem_platform.cpp",
+    "bytes": 5800,
+    "sha256": "a47bc48b579a58f3f5a65535c9f9a180aba2b1fa67dbcc4799747e8305cae996"
+  },
+  {
+    "path": "src\\ui\\file_model.cpp",
+    "bytes": 3901,
+    "sha256": "8e3e93a0c2060d32ba107d73fc86752a38301c9e905810dbbd7c75ba3d69aa12"
+  },
+  {
+    "path": "src\\ui\\main_window.cpp",
+    "bytes": 21023,
+    "sha256": "3d5d82c78c47dd56d8997f26dbc9f14ca020d0ea7ed2a4aedecf4a74ad9fe611"
+  },
+  {
+    "path": "tests\\benchmark.cpp",
+    "bytes": 2820,
+    "sha256": "dfff2944c97b80b4738120d3ef3519bdb3697b6e678e7a77a67ad89ea2d38c2c"
+  },
+  {
+    "path": "tests\\fake_platform.h",
+    "bytes": 1782,
+    "sha256": "040059d76dd2be353589d67504e4c512e76f86d90072fc32f889dd1b8324d012"
+  },
+  {
+    "path": "tests\\test_core.cpp",
+    "bytes": 6941,
+    "sha256": "7131e2ae1f190e232f5a3ad771c8b2a0a7a9918d1a8c8bb5c70366e7a2557c5a"
+  },
+  {
+    "path": "tests\\test_platform.cpp",
+    "bytes": 5765,
+    "sha256": "103e2a41a1108d06aca2ab8add03148fda6e6cfac48e8b78a615ecb075929cae"
+  },
+  {
+    "path": "tests\\test_ui.cpp",
+    "bytes": 11218,
+    "sha256": "4ac1797414cc873b8a8de34bfa8709c3a386f2afde14d009d9f18210f8176801"
+  }
+]

@@ -1,0 +1,16 @@
+********* Start testing of PlatformTest *********
+Config: Using QtTest library 6.4.2, Qt 6.4.2 (x86_64-little_endian-lp64 shared (dynamic) release build; by GCC 13.2.0), ubuntu 24.04
+PASS   : PlatformTest::initTestCase()
+PASS   : PlatformTest::emptyFolder()
+PASS   : PlatformTest::bulkComplete()
+PASS   : PlatformTest::unicodeAndMetadata()
+PASS   : PlatformTest::invalidAndNotDirectory()
+SKIP   : PlatformTest::deniedRealAcl() Windows ACL-denied source gate is not a Linux permission fixture; no ACL mutation authorized.
+   Loc: [/mnt/c/dev/Windows_fileexplore/experiments/A/tests/test_platform.cpp(73)]
+PASS   : PlatformTest::externalDeletion()
+PASS   : PlatformTest::cancelledList()
+PASS   : PlatformTest::linksAreFactsNotRecursion()
+PASS   : PlatformTest::rootsAndCapabilities()
+PASS   : PlatformTest::cleanupTestCase()
+Totals: 10 passed, 0 failed, 1 skipped, 0 blacklisted, 1711ms
+********* Finished testing of PlatformTest *********

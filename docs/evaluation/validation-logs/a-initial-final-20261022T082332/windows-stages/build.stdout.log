@@ -1,0 +1,15 @@
+[1/18] Automatic MOC for target explorer_core
+[2/17] Building CXX object CMakeFiles\explorer_core.dir\src\platform\file_operations.cpp.obj
+[3/17] Linking CXX static library explorer_core.lib
+[4/17] Automatic MOC for target explorer_ui
+[5/16] Building CXX object CMakeFiles\explorer_ui.dir\src\ui\main_window.cpp.obj
+[6/16] Linking CXX static library explorer_ui.lib
+[7/16] Linking CXX executable explorer_a.exe
+[8/16] Linking CXX executable benchmark_a.exe
+[9/16] Automatic MOC for target test_operations
+[10/15] Linking CXX executable test_core.exe
+[11/15] Linking CXX executable test_platform.exe
+[12/15] Linking CXX executable test_ui.exe
+[13/15] Linking CXX executable test_management_ui.exe
+[14/15] Building CXX object CMakeFiles\test_operations.dir\tests\test_operations.cpp.obj
+[15/15] Linking CXX executable test_operations.exe

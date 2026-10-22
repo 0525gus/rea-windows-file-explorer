@@ -1,0 +1,1186 @@
+{
+  "schema_version": 1,
+  "report_kind": "phase6_post_freeze_shell_source_accuracy_audit",
+  "created_at_utc": "2026-10-22T00:12:21.330461+00:00",
+  "scope": {
+    "question_count": 12,
+    "question_selection": "Last 12 frozen initial claims: eight RE04 plus P1 rename start/commit and mkdir wrapper/UI",
+    "new_REA_queries": false,
+    "new_target_execution": false,
+    "initial_A_B_modified": false,
+    "initial_documents_modified": false,
+    "outputs_only": [
+      "docs/evaluation/phase6-shell-source.json",
+      "docs/evaluation/phase6-shell-source.md"
+    ]
+  },
+  "freeze_authority": {
+    "git_commit": "64032d766cf634fe00b45aa0d8c951878e0ef5c3",
+    "B_manifest_sha256": "a93289e08db7e7338110480063716bd2be434ffd1e76585e0bc36a2b996cf729",
+    "B_files": 354,
+    "A_files": 124,
+    "authority": "Read verified freeze/access metadata supplied by parent; source read authorized post-freeze. This worker did not repeat the whole A/B manifest verification."
+  },
+  "source_identity": {
+    "repository": "derceg/explorerplusplus",
+    "tag": "version-1.4.0",
+    "commit": "384c2f687fd55c1e71e9fcb272f9113de009a248",
+    "archive_sha256": "3531f0ba75b5bfb64be4674a960b57c62c2adf62a3b04578e485e2442fdbc655",
+    "source_root": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248",
+    "acquisition_metadata": "verification/source-acquisition.json",
+    "version_limit": "No target execution, runtime event trace, source rebuild, PDB or linker map was performed. Official release-tag pairing is established by acquisition metadata; exact shipped 1.4.0.2293 build identity is not established by Version.h.",
+    "attribution": "Explorer++ Project; cited source headers SPDX-License-Identifier: GPL-3.0-only; LICENSE retained in acquired tree. Verification observations only; no original implementation copied into either experiment."
+  },
+  "comparison_rules": {
+    "confirmed": "All narrow positive behavioral content supported in same-release source; never exact binary symbol identification or end-to-end success.",
+    "partial": "Some context corroborates initial positive but exact claimed implementation cannot be inspected/confirmed.",
+    "refuted": "Positive assertion contradicted by inspected source.",
+    "unresolved": "Positive assertion cannot be settled by available source.",
+    "no_initial_positive": "Initial explicitly unknown: later source answer is a coverage-gap resolution and earns no initial positive credit.",
+    "source_mapping": "Every native VA to source name/body correspondence remains inferred unless symbol/link/build evidence exists; none supplied in this audit.",
+    "independence": "Related watcher/icon/drop/rename/mkdir questions share code and evidence; do not treat them as independent proof or average their scores."
+  },
+  "input_snapshots": [
+    {
+      "path": "docs/analysis/initial-claims.json",
+      "sha256": "aaa44d0e410267784b116a95cf3ce9e46c0182b212221ce724ab3e385a02156a",
+      "bytes": 80011
+    },
+    {
+      "path": "docs/analysis/shell-integration.md",
+      "sha256": "69c1d0025fd9f3e05b555bb231dc2fc9632267e6fa4c9780e939a9acc6df1938",
+      "bytes": 18830
+    },
+    {
+      "path": "docs/analysis/p1-static-findings.md",
+      "sha256": "6ebed3a6f335bc5251f8ffe973cbc9491970d350b2b66a4d194d3840285cf2bd",
+      "bytes": 7789
+    },
+    {
+      "path": "docs/analysis/p1-investigation-leads.md",
+      "sha256": "9ba50c30336d6e245c4f8b5b9f2aeabffe8ccdc80eef6f48922996d7ffe9b4f5",
+      "bytes": 7685
+    },
+    {
+      "path": "docs/evaluation/initial-freeze-manifest.json",
+      "sha256": "a93289e08db7e7338110480063716bd2be434ffd1e76585e0bc36a2b996cf729",
+      "bytes": 71090
+    },
+    {
+      "path": "verification/phase6-freeze-verification.json",
+      "sha256": "b71d70a0820290afac0bcac0d91096a49623d89a538309e0afd6c945a1a71328",
+      "bytes": 488
+    },
+    {
+      "path": "verification/phase6-access.json",
+      "sha256": "016866e0dcb988b244a45d4f7a43092cadfd393a3a3630f07665dc8a4b841a85",
+      "bytes": 924
+    },
+    {
+      "path": "verification/source-acquisition.json",
+      "sha256": "7a083969503727b87b7dfb07158b279e3a44fd69d0f89fb9c50019d33541a6be",
+      "bytes": 1243
+    }
+  ],
+  "source_references": [
+    {
+      "source_ref_id": "VERSION",
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/Version.h",
+      "source_relative_path": "Explorer++/Explorer++/Version.h",
+      "line_start": 5,
+      "line_end": 13,
+      "file_sha256": "6e3b2ee67ad856403a219bbbdbe550dadf4cc938cbf12c8947b1dfd4bed7fc8c",
+      "file_bytes": 621,
+      "observation": "Source declares 1.4.0; build number is supplied by ENVIRONMENT_BUILD_NUMBER or defaults to 0. It does not independently bind this tree to shipped build 2293."
+    },
+    {
+      "source_ref_id": "UNICODE",
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/Explorer++.vcxproj",
+      "source_relative_path": "Explorer++/Explorer++/Explorer++.vcxproj",
+      "line_start": 41,
+      "line_end": 63,
+      "file_sha256": "0319a8bc1d34dc34ad353a78c45612c4bd96da156dd0a659328dc085ae4e23e9",
+      "file_bytes": 63755,
+      "observation": "Release/Debug project configurations declare Unicode CharacterSet; API generic spellings in this source can compile to W APIs."
+    },
+    {
+      "source_ref_id": "EMPTY",
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Helper/Macros.h",
+      "source_relative_path": "Explorer++/Helper/Macros.h",
+      "line_start": 5,
+      "line_end": 7,
+      "file_sha256": "59c683737dab31cf95ba0a61d1d27545c86c88cd4507d711f49b681484f409a6",
+      "file_bytes": 1053,
+      "observation": "EMPTY_STRING is _T(\"\")."
+    },
+    {
+      "source_ref_id": "ICON-SYS",
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/ShellBrowser/ShellBrowser.cpp",
+      "source_relative_path": "Explorer++/Explorer++/ShellBrowser/ShellBrowser.cpp",
+      "line_start": 1430,
+      "line_end": 1479,
+      "file_sha256": "6f500469513936f2670daecf142d2bee4d4d046d416a3eb98903abbecfb8f77e",
+      "file_bytes": 37685,
+      "observation": "Drive update calls SHGetFileInfo with SHGFI_SYSICONINDEX and writes shfi.iIcon/text into a ListView item."
+    },
+    {
+      "source_ref_id": "ICON-MOD",
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/ShellBrowser/DirectoryModificationHandler.cpp",
+      "source_relative_path": "Explorer++/Explorer++/ShellBrowser/DirectoryModificationHandler.cpp",
+      "line_start": 367,
+      "line_end": 388,
+      "file_sha256": "25860f63e28e58b1476d78da9f2346998e8d9a1942d1b7393bd90324d436879f",
+      "file_bytes": 18011,
+      "observation": "Modification overlay refresh calls SHGetFileInfo(path, SHGFI_ICON|SHGFI_OVERLAYINDEX), sets ListView overlay state and destroys hIcon."
+    },
+    {
+      "source_ref_id": "ICON-REN",
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/ShellBrowser/DirectoryModificationHandler.cpp",
+      "source_relative_path": "Explorer++/Explorer++/ShellBrowser/DirectoryModificationHandler.cpp",
+      "line_start": 547,
+      "line_end": 615,
+      "file_sha256": "25860f63e28e58b1476d78da9f2346998e8d9a1942d1b7393bd90324d436879f",
+      "file_bytes": 18011,
+      "observation": "Rename reconciliation calls SHGetFileInfo(PIDL, SHGFI_PIDL|SHGFI_ICON|SHGFI_OVERLAYINDEX), sets text/image/overlay, then destroys hIcon."
+    },
+    {
+      "source_ref_id": "ICON-FETCH",
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Helper/IconFetcher.cpp",
+      "source_relative_path": "Explorer++/Helper/IconFetcher.cpp",
+      "line_start": 133,
+      "line_end": 148,
+      "file_sha256": "69ac5c2cdcd99c392e67216782184a1416f42e22e8daed47f430dae3a5343b55",
+      "file_bytes": 4702,
+      "observation": "FindIconAsync requests PIDL/icon/overlay flags, rejects zero result, destroys hIcon, returns iIcon."
+    },
+    {
+      "source_ref_id": "ICON-DISPLAY",
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/ShellBrowser/ListView.cpp",
+      "source_relative_path": "Explorer++/Explorer++/ShellBrowser/ListView.cpp",
+      "line_start": 230,
+      "line_end": 313,
+      "file_sha256": "0617930db01d4c39c37b746b80fd45b8fdce168c74acf44bdb198b9a9d358bd2",
+      "file_bytes": 21749,
+      "observation": "List view reads cached path-index/fallback images, queues IconFetcher work, and ProcessIconResult resolves internal index before setting image and overlay."
+    },
+    {
+      "source_ref_id": "THUMB-WORK",
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/ShellBrowser/HandleThumbnails.cpp",
+      "source_relative_path": "Explorer++/Explorer++/ShellBrowser/HandleThumbnails.cpp",
+      "line_start": 95,
+      "line_end": 177,
+      "file_sha256": "42ec043b20b63d4ae717b47be9e5c8ec9bb250953dcd295c39b236ef961f7237",
+      "file_bytes": 8807,
+      "observation": "Thumbnail task stores future by result counter, binds PIDL parent, gets IExtractImage for child, calls GetLocation then Extract, posts ready message, returns RAII bitmap/internal index."
+    },
+    {
+      "source_ref_id": "THUMB-DISPLAY",
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/ShellBrowser/HandleThumbnails.cpp",
+      "source_relative_path": "Explorer++/Explorer++/ShellBrowser/HandleThumbnails.cpp",
+      "line_start": 180,
+      "line_end": 216,
+      "file_sha256": "42ec043b20b63d4ae717b47be9e5c8ec9bb250953dcd295c39b236ef961f7237",
+      "file_bytes": 8807,
+      "observation": "Ready result looks up future/result ID, requires thumbnail view, obtains bitmap image index, resolves internal index and sets ListView image."
+    },
+    {
+      "source_ref_id": "THUMB-CLEAN",
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/ShellBrowser/HandleThumbnails.cpp",
+      "source_relative_path": "Explorer++/Explorer++/ShellBrowser/HandleThumbnails.cpp",
+      "line_start": 60,
+      "line_end": 92,
+      "file_sha256": "42ec043b20b63d4ae717b47be9e5c8ec9bb250953dcd295c39b236ef961f7237",
+      "file_bytes": 8807,
+      "observation": "Removing thumbnail view clears queued work and results, restores callbacks and destroys thumbnail image list."
+    },
+    {
+      "source_ref_id": "THUMB-IMAGE",
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/ShellBrowser/HandleThumbnails.cpp",
+      "source_relative_path": "Explorer++/Explorer++/ShellBrowser/HandleThumbnails.cpp",
+      "line_start": 231,
+      "line_end": 298,
+      "file_sha256": "42ec043b20b63d4ae717b47be9e5c8ec9bb250953dcd295c39b236ef961f7237",
+      "file_bytes": 8807,
+      "observation": "Extracted bitmap/icon is composed into image list; backing bitmap and icon handles are deleted."
+    },
+    {
+      "source_ref_id": "DWM",
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/TaskbarThumbnails.cpp",
+      "source_relative_path": "Explorer++/Explorer++/TaskbarThumbnails.cpp",
+      "line_start": 430,
+      "line_end": 465,
+      "file_sha256": "b3d098612acfe99b5affe40d072438846c8374ab6ad219e1f3c0bfe267a68959",
+      "file_bytes": 19514,
+      "observation": "Taskbar thumbnail handler prepares tabProxy thumbnail and calls DwmSetIconicThumbnail, separate from per-file IExtractImage."
+    },
+    {
+      "source_ref_id": "OPEN-DISPATCH",
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/MsgHandler.cpp",
+      "source_relative_path": "Explorer++/Explorer++/MsgHandler.cpp",
+      "line_start": 132,
+      "line_end": 289,
+      "file_sha256": "38542cb20cc3061ae664b94388ec37c17c7d3e5215af05dcea4b6c6e52da9b22",
+      "file_bytes": 40846,
+      "observation": "OpenItem handles ZIP configuration, folder navigation, shortcuts and Control Panel special dispatch; ordinary files call OpenFileItem with EMPTY_STRING parameters."
+    },
+    {
+      "source_ref_id": "OPEN-FILE",
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/MsgHandler.cpp",
+      "source_relative_path": "Explorer++/Explorer++/MsgHandler.cpp",
+      "line_start": 302,
+      "line_end": 310,
+      "file_sha256": "38542cb20cc3061ae664b94388ec37c17c7d3e5215af05dcea4b6c6e52da9b22",
+      "file_bytes": 40846,
+      "observation": "OpenFileItem clones parent PIDL for working directory and passes EMPTY_STRING verb to ExecuteFileAction. Its void body ignores helper return."
+    },
+    {
+      "source_ref_id": "OPEN-EXEC",
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Helper/ShellHelper.cpp",
+      "source_relative_path": "Explorer++/Helper/ShellHelper.cpp",
+      "line_start": 123,
+      "line_end": 139,
+      "file_sha256": "90486967f22c8d8af15c8a2b5e0307324256995cb65df71d5bb4848b2f88c24d",
+      "file_bytes": 34145,
+      "observation": "ExecuteFileAction assigns SEE_MASK_INVOKEIDLIST, caller verb, PIDL, parameters/directory, NULL lpFile and returns ShellExecuteEx result."
+    },
+    {
+      "source_ref_id": "WATCH-SIZE",
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Helper/iDirectoryMonitor.cpp",
+      "source_relative_path": "Explorer++/Helper/iDirectoryMonitor.cpp",
+      "line_start": 29,
+      "line_end": 29,
+      "file_sha256": "fe39df6bbb93daca167ade3c24d2094e5be00d44165ab120bfdef413e50d9f26",
+      "file_bytes": 11732,
+      "observation": "PRIMARY_BUFFER_SIZE is 1000*sizeof(FILE_NOTIFY_INFORMATION); 16000 follows the Windows struct ABI, not a source literal."
+    },
+    {
+      "source_ref_id": "WATCH-OPEN",
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Helper/iDirectoryMonitor.cpp",
+      "source_relative_path": "Explorer++/Helper/iDirectoryMonitor.cpp",
+      "line_start": 183,
+      "line_end": 233,
+      "file_sha256": "fe39df6bbb93daca167ade3c24d2094e5be00d44165ab120bfdef413e50d9f26",
+      "file_bytes": 11732,
+      "observation": "WatchDirectory stores caller callback/data, opens FILE_LIST_DIRECTORY with share read/delete/write and OVERLAPPED/BACKUP_SEMANTICS, queues worker APC."
+    },
+    {
+      "source_ref_id": "WATCH-REQUEST",
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Helper/iDirectoryMonitor.cpp",
+      "source_relative_path": "Explorer++/Helper/iDirectoryMonitor.cpp",
+      "line_start": 292,
+      "line_end": 317,
+      "file_sha256": "fe39df6bbb93daca167ade3c24d2094e5be00d44165ab120bfdef413e50d9f26",
+      "file_bytes": 11732,
+      "observation": "WatchDirectoryInternal allocates buffer and passes OVERLAPPED plus CompletionRoutine to ReadDirectoryChangesW; failure frees buffer, cancels and closes handle."
+    },
+    {
+      "source_ref_id": "WATCH-COMPLETE",
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Helper/iDirectoryMonitor.cpp",
+      "source_relative_path": "Explorer++/Helper/iDirectoryMonitor.cpp",
+      "line_start": 319,
+      "line_end": 368,
+      "file_sha256": "fe39df6bbb93daca167ade3c24d2094e5be00d44165ab120bfdef413e50d9f26",
+      "file_bytes": 11732,
+      "observation": "CompletionRoutine parses success/nonzero entries, calls stored callback, frees buffer and rearms; ERROR_OPERATION_ABORTED calls DeleteRequest. Other errors/zero bytes have no explicit recovery branch here."
+    },
+    {
+      "source_ref_id": "WATCH-STOP",
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Helper/iDirectoryMonitor.cpp",
+      "source_relative_path": "Explorer++/Helper/iDirectoryMonitor.cpp",
+      "line_start": 370,
+      "line_end": 438,
+      "file_sha256": "fe39df6bbb93daca167ade3c24d2094e5be00d44165ab120bfdef413e50d9f26",
+      "file_bytes": 11732,
+      "observation": "DeleteRequest frees buffer/data and erases matching request; StopDirectoryMonitor queues APC which CancelIo/CloseHandle on worker thread."
+    },
+    {
+      "source_ref_id": "WATCH-SHUTDOWN",
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Helper/iDirectoryMonitor.cpp",
+      "source_relative_path": "Explorer++/Helper/iDirectoryMonitor.cpp",
+      "line_start": 93,
+      "line_end": 107,
+      "file_sha256": "fe39df6bbb93daca167ade3c24d2094e5be00d44165ab120bfdef413e50d9f26",
+      "file_bytes": 11732,
+      "observation": "Destructor queues ExitWorkerThread, closes thread handle, waits stop event, clears list and deletes critical section. This is source structure, not verified cancellation safety."
+    },
+    {
+      "source_ref_id": "WATCH-REGISTER",
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/MsgHandler.cpp",
+      "source_relative_path": "Explorer++/Explorer++/MsgHandler.cpp",
+      "line_start": 658,
+      "line_end": 694,
+      "file_sha256": "38542cb20cc3061ae664b94388ec37c17c7d3e5215af05dcea4b6c6e52da9b22",
+      "file_bytes": 40846,
+      "observation": "HandleDirectoryMonitoring stops previous watcher, skips virtual folders and registers DirectoryAlteredCallback with tab/folder identifiers and broad change flags, no subtree."
+    },
+    {
+      "source_ref_id": "WATCH-BRIDGE",
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/Misc.cpp",
+      "source_relative_path": "Explorer++/Explorer++/Misc.cpp",
+      "line_start": 328,
+      "line_end": 347,
+      "file_sha256": "a809d24f1c94d5f9accbb1e23cbd00fd42ff6b9a2c50b9ff943befbe7628fdca",
+      "file_bytes": 11053,
+      "observation": "DirectoryAlteredCallback looks up tab and calls ShellBrowser::FilesModified with tab/folder identity."
+    },
+    {
+      "source_ref_id": "WATCH-QUEUE",
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/ShellBrowser/DirectoryModificationHandler.cpp",
+      "source_relative_path": "Explorer++/Explorer++/ShellBrowser/DirectoryModificationHandler.cpp",
+      "line_start": 147,
+      "line_end": 171,
+      "file_sha256": "25860f63e28e58b1476d78da9f2346998e8d9a1942d1b7393bd90324d436879f",
+      "file_bytes": 18011,
+      "observation": "FilesModified adds action/name/folder ID under critical section and resets 200ms timer; TimerProc sends WM_USER_FILESADDED."
+    },
+    {
+      "source_ref_id": "WATCH-MESSAGE",
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/MainWndSwitch.cpp",
+      "source_relative_path": "Explorer++/Explorer++/MainWndSwitch.cpp",
+      "line_start": 131,
+      "line_end": 155,
+      "file_sha256": "f6c2ef9bce117ee6d8eb1fc7bb617508ae8e52b99b6b5cf63db48e0360600e6f",
+      "file_bytes": 38021,
+      "observation": "WM_USER_FILESADDED resolves tab and calls DirectoryAltered; WM_USER_NEWITEMINSERTED calls OnShellNewItemCreated."
+    },
+    {
+      "source_ref_id": "WATCH-UPDATE",
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/ShellBrowser/DirectoryModificationHandler.cpp",
+      "source_relative_path": "Explorer++/Explorer++/ShellBrowser/DirectoryModificationHandler.cpp",
+      "line_start": 19,
+      "line_end": 112,
+      "file_sha256": "25860f63e28e58b1476d78da9f2346998e8d9a1942d1b7393bd90324d436879f",
+      "file_bytes": 18011,
+      "observation": "DirectoryAltered checks current unique folder ID, dispatches added/modified/removed/old-name/new-name, sends update/new-item messages and clears altered list."
+    },
+    {
+      "source_ref_id": "COPY-LIST",
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Helper/FileOperations.cpp",
+      "source_relative_path": "Explorer++/Helper/FileOperations.cpp",
+      "line_start": 270,
+      "line_end": 290,
+      "file_sha256": "7b7d130e06ee6c457820fdf64a0d5bb8ca1f74faa0ca25522e16ee5e9bb7c9a5",
+      "file_bytes": 19056,
+      "observation": "BuildFilenameList copies every string including terminator and adds final NUL; caller frees allocation."
+    },
+    {
+      "source_ref_id": "COPY-LEGACY",
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Helper/DropHandler.cpp",
+      "source_relative_path": "Explorer++/Helper/DropHandler.cpp",
+      "line_start": 1117,
+      "line_end": 1197,
+      "file_sha256": "18d9efb8b941b6be428d48400ed9390f0be46338d8f902d5c0f94f2b3d1aac6e",
+      "file_bytes": 33027,
+      "observation": "CopyDroppedFilesInternalAsync selects FO_COPY on bCopy, FO_MOVE otherwise; WANTMAPPINGHANDLE plus optional RENAMEONCOLLISION; checks return+abort, reconciles/frees mappings and calls OnDropFile only on success."
+    },
+    {
+      "source_ref_id": "COPY-CALLER",
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Helper/DropHandler.cpp",
+      "source_relative_path": "Explorer++/Helper/DropHandler.cpp",
+      "line_start": 897,
+      "line_end": 960,
+      "file_sha256": "18d9efb8b941b6be428d48400ed9390f0be46338d8f902d5c0f94f2b3d1aac6e",
+      "file_bytes": 33027,
+      "observation": "CopyDroppedFiles separates source names by preferred/calculated effects, forces rename-on-collision for same directory, calls internal copy(true) and move(false) paths."
+    },
+    {
+      "source_ref_id": "COPY-MODERN",
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Helper/FileOperations.cpp",
+      "source_relative_path": "Explorer++/Helper/FileOperations.cpp",
+      "line_start": 191,
+      "line_end": 267,
+      "file_sha256": "7b7d130e06ee6c457820fdf64a0d5bb8ca1f74faa0ca25522e16ee5e9bb7c9a5",
+      "file_bytes": 19056,
+      "observation": "Separate NFileOperations::CopyFiles creates IFileOperation, sets owner/ALLOWUNDO, selects MoveItems/CopyItems and returns PerformOperations HRESULT."
+    },
+    {
+      "source_ref_id": "DROP-INTERFACE",
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/ShellBrowser/ShellBrowser.h",
+      "source_relative_path": "Explorer++/Explorer++/ShellBrowser/ShellBrowser.h",
+      "line_start": 57,
+      "line_end": 93,
+      "file_sha256": "d156801705efa9d89fb5874fdd5dd7f352d24919bfd4918af1fc68026baa9f92",
+      "file_bytes": 21099,
+      "observation": "ShellBrowser explicitly inherits IDropTarget and declares DragEnter/DragOver/DragLeave/Drop overrides."
+    },
+    {
+      "source_ref_id": "DROP-ENTER",
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/ShellBrowser/DropTarget.cpp",
+      "source_relative_path": "Explorer++/Explorer++/ShellBrowser/DropTarget.cpp",
+      "line_start": 24,
+      "line_end": 113,
+      "file_sha256": "5a5626082b09de6942d1368b123a40ebd7d50c2e90e9e7184482ee7068b39159",
+      "file_bytes": 20293,
+      "observation": "DragEnter checks formats and same drive, computes effect, records left/right drag type; DragOver recomputes effect and supplies visual/scroll work."
+    },
+    {
+      "source_ref_id": "DROP-POLICY",
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Helper/ShellHelper.cpp",
+      "source_relative_path": "Explorer++/Helper/ShellHelper.cpp",
+      "line_start": 436,
+      "line_end": 503,
+      "file_sha256": "90486967f22c8d8af15c8a2b5e0307324256995cb65df71d5bb4848b2f88c24d",
+      "file_bytes": 34145,
+      "observation": "DetermineDragEffect respects acceptance/allowed effects; Ctrl+Shift/Alt link, Shift move, Ctrl copy; default same-drive move else copy with available-effect fallback."
+    },
+    {
+      "source_ref_id": "DROP-ROUTE",
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/ShellBrowser/DropTarget.cpp",
+      "source_relative_path": "Explorer++/Explorer++/ShellBrowser/DropTarget.cpp",
+      "line_start": 400,
+      "line_end": 519,
+      "file_sha256": "5a5626082b09de6942d1368b123a40ebd7d50c2e90e9e7184482ee7068b39159",
+      "file_bytes": 20293,
+      "observation": "Drop computes child-folder destination, handles local left MOVE by RepositionLocalFiles, otherwise creates DropHandler and passes m_DragType/destination/callback."
+    },
+    {
+      "source_ref_id": "DROP-ENUM",
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Helper/DropHandler.h",
+      "source_relative_path": "Explorer++/Helper/DropHandler.h",
+      "line_start": 10,
+      "line_end": 14,
+      "file_sha256": "6bc129a99e33c19c204137883924885afd5ac9c1bac800720b917a8cddeaa1e2",
+      "file_bytes": 3185,
+      "observation": "DragType declares LeftClick then RightClick, giving implicit 0 and 1."
+    },
+    {
+      "source_ref_id": "DROP-MODE",
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Helper/DropHandler.cpp",
+      "source_relative_path": "Explorer++/Helper/DropHandler.cpp",
+      "line_start": 83,
+      "line_end": 107,
+      "file_sha256": "18d9efb8b941b6be428d48400ed9390f0be46338d8f902d5c0f94f2b3d1aac6e",
+      "file_bytes": 33027,
+      "observation": "Drop switches LeftClick to HandleLeftClickDrop, RightClick to HandleRightClickDrop."
+    },
+    {
+      "source_ref_id": "DROP-LEFT",
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Helper/DropHandler.cpp",
+      "source_relative_path": "Explorer++/Helper/DropHandler.cpp",
+      "line_start": 126,
+      "line_end": 211,
+      "file_sha256": "18d9efb8b941b6be428d48400ed9390f0be46338d8f902d5c0f94f2b3d1aac6e",
+      "file_bytes": 33027,
+      "observation": "Left-click drop reads preferred effect then selects HDROP, Shell ID list, file descriptors, text or DIBV5 format handlers; successful synchronous names trigger callback."
+    },
+    {
+      "source_ref_id": "DROP-RIGHT",
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Helper/DropHandler.cpp",
+      "source_relative_path": "Explorer++/Helper/DropHandler.cpp",
+      "line_start": 852,
+      "line_end": 883,
+      "file_sha256": "18d9efb8b941b6be428d48400ed9390f0be46338d8f902d5c0f94f2b3d1aac6e",
+      "file_bytes": 33027,
+      "observation": "Right-click handler binds destination, CreateViewObject(IDropTarget), calls DragEnter(MK_RBUTTON), Drop, DragLeave and Release in that order."
+    },
+    {
+      "source_ref_id": "DROP-REGISTER",
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/ShellBrowser/ShellBrowser.cpp",
+      "source_relative_path": "Explorer++/Explorer++/ShellBrowser/ShellBrowser.cpp",
+      "line_start": 459,
+      "line_end": 477,
+      "file_sha256": "6f500469513936f2670daecf142d2bee4d4d046d416a3eb98903abbecfb8f77e",
+      "file_bytes": 37685,
+      "observation": "InitializeDragDropHelpers creates helpers, RegisterDragDrop(list view,this), compensates AddRef with Release."
+    },
+    {
+      "source_ref_id": "DROP-DESTROY",
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/ShellBrowser/ShellBrowser.cpp",
+      "source_relative_path": "Explorer++/Explorer++/ShellBrowser/ShellBrowser.cpp",
+      "line_start": 158,
+      "line_end": 173,
+      "file_sha256": "6f500469513936f2670daecf142d2bee4d4d046d416a3eb98903abbecfb8f77e",
+      "file_bytes": 37685,
+      "observation": "Destructor destroys list window, clears thread-pool queues and releases drag helpers; no explicit RevokeDragDrop call in this destructor."
+    },
+    {
+      "source_ref_id": "PROPERTY-ENTRY",
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/EventSwitcher.cpp",
+      "source_relative_path": "Explorer++/Explorer++/EventSwitcher.cpp",
+      "line_start": 121,
+      "line_end": 135,
+      "file_sha256": "9c99c66800cfea4705d8a3d21448e3d8fa087b1fcfe4da08eb7fbe8dc92f1dd5",
+      "file_bytes": 5672,
+      "observation": "Properties command routes focused list to selected-file properties, tree to selected-tree properties."
+    },
+    {
+      "source_ref_id": "PROPERTY-SELECTION",
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/ShellBrowser/ListView.cpp",
+      "source_relative_path": "Explorer++/Explorer++/ShellBrowser/ListView.cpp",
+      "line_start": 636,
+      "line_end": 658,
+      "file_sha256": "0617930db01d4c39c37b746b80fd45b8fdce168c74acf44bdb198b9a9d358bd2",
+      "file_bytes": 21749,
+      "observation": "Selected child PIDLs and directory PIDL passed to ShowMultipleFileProperties; empty selection returns."
+    },
+    {
+      "source_ref_id": "PROPERTY-API",
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Helper/ShellHelper.cpp",
+      "source_relative_path": "Explorer++/Helper/ShellHelper.cpp",
+      "line_start": 1300,
+      "line_end": 1362,
+      "file_sha256": "90486967f22c8d8af15c8a2b5e0307324256995cb65df71d5bb4848b2f88c24d",
+      "file_bytes": 34145,
+      "observation": "ShowMultipleFileProperties requests properties verb; ExecuteActionFromContextMenu obtains IContextMenu for directory/selection, converts action to ANSI, invokes command, releases interface and returns HRESULT."
+    },
+    {
+      "source_ref_id": "DELETE-ENTRY",
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/MainWndSwitch.cpp",
+      "source_relative_path": "Explorer++/Explorer++/MainWndSwitch.cpp",
+      "line_start": 386,
+      "line_end": 399,
+      "file_sha256": "f6c2ef9bce117ee6d8eb1fc7bb617508ae8e52b99b6b5cf63db48e0360600e6f",
+      "file_bytes": 38021,
+      "observation": "Delete and permanent-delete command cases call OnFileDelete(false/true)."
+    },
+    {
+      "source_ref_id": "DELETE-SELECTION",
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/ListViewHandler.cpp",
+      "source_relative_path": "Explorer++/Explorer++/ListViewHandler.cpp",
+      "line_start": 796,
+      "line_end": 831,
+      "file_sha256": "4561b73e1099c32e135d7bcf580607b3d5b9bb8d635140bff36f0e1184187058",
+      "file_bytes": 31528,
+      "observation": "OnListViewFileDelete builds selected absolute PIDLs and calls FileActionHandler.DeleteFiles(owner,pidls,permanent,false)."
+    },
+    {
+      "source_ref_id": "DELETE-WRAPPER",
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Helper/FileActionHandler.cpp",
+      "source_relative_path": "Explorer++/Helper/FileActionHandler.cpp",
+      "line_start": 59,
+      "line_end": 72,
+      "file_sha256": "5cd7b5e38ce5b7c3b19f8938327e1ea52458851fb47ab650fc31149ffd01e46b",
+      "file_bytes": 3276,
+      "observation": "DeleteFiles delegates NFileOperations and records delete undo entry on SUCCEEDED(hr)."
+    },
+    {
+      "source_ref_id": "DELETE-API",
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Helper/FileOperations.cpp",
+      "source_relative_path": "Explorer++/Helper/FileOperations.cpp",
+      "line_start": 64,
+      "line_end": 152,
+      "file_sha256": "7b7d130e06ee6c457820fdf64a0d5bb8ca1f74faa0ca25522e16ee5e9bb7c9a5",
+      "file_bytes": 19056,
+      "observation": "IFileOperation deletion adds ALLOWUNDO only when nonpermanent; silent adds SILENT/NOCONFIRMATION/NOERRORUI, nonsilent WANTNUKEWARNING; selected item array then DeleteItems+PerformOperations. No GetAnyOperationsAborted call in body."
+    },
+    {
+      "source_ref_id": "NEW-ENUM",
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/INewMenuClient.h",
+      "source_relative_path": "Explorer++/Explorer++/INewMenuClient.h",
+      "line_start": 22,
+      "line_end": 29,
+      "file_sha256": "6f71db6a6ee5b30e8d8409f0f8e04bed27b1201994aeeadf7e39ca94a4c9f6c7",
+      "file_bytes": 1261,
+      "observation": "NMCSAEI_SELECT=0; EDIT=1; EDIT_WINDOWS_10=3. Windows 10 value is a project testing comment, not a runtime observation made by this audit."
+    },
+    {
+      "source_ref_id": "NEW-CALLBACK",
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/INewMenuClient.cpp",
+      "source_relative_path": "Explorer++/Explorer++/INewMenuClient.cpp",
+      "line_start": 81,
+      "line_end": 103,
+      "file_sha256": "cab3d71ab156eb86f0261886d7ce291441470a89ca49071a736fe3b041e34bf5",
+      "file_bytes": 2395,
+      "observation": "SelectAndEditItem ignores SELECT, logs and QueueRename for EDIT/EDIT_WINDOWS_10."
+    },
+    {
+      "source_ref_id": "RENAME-QUEUE",
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/ShellBrowser/ShellBrowser.cpp",
+      "source_relative_path": "Explorer++/Explorer++/ShellBrowser/ShellBrowser.cpp",
+      "line_start": 1259,
+      "line_end": 1307,
+      "file_sha256": "6f500469513936f2670daecf142d2bee4d4d046d416a3eb98903abbecfb8f77e",
+      "file_bytes": 37685,
+      "observation": "QueueRename compares PIDLs to rows and ListView_EditLabel on match; otherwise clones PIDL and sets new-item pending flag."
+    },
+    {
+      "source_ref_id": "RENAME-PENDING",
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/ShellBrowser/BrowsingHandler.cpp",
+      "source_relative_path": "Explorer++/Explorer++/ShellBrowser/BrowsingHandler.cpp",
+      "line_start": 400,
+      "line_end": 407,
+      "file_sha256": "256f19d1a78c138c92ccf08de0906d5726bfb9dba214d7bc528a334383c40093",
+      "file_bytes": 14295,
+      "observation": "Item insertion compares pending PIDL, clears new-item flag on match and records inserted row index."
+    },
+    {
+      "source_ref_id": "RENAME-PENDING-MSG",
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/MsgHandler.cpp",
+      "source_relative_path": "Explorer++/Explorer++/MsgHandler.cpp",
+      "line_start": 877,
+      "line_end": 885,
+      "file_sha256": "38542cb20cc3061ae664b94388ec37c17c7d3e5215af05dcea4b6c6e52da9b22",
+      "file_bytes": 40846,
+      "observation": "OnShellNewItemCreated calls ListView_EditLabel on new row index; producer notification is in WATCH-UPDATE."
+    },
+    {
+      "source_ref_id": "RENAME-EDIT-END",
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/ListViewHandler.cpp",
+      "source_relative_path": "Explorer++/Explorer++/ListViewHandler.cpp",
+      "line_start": 407,
+      "line_end": 531,
+      "file_sha256": "4561b73e1099c32e135d7bcf580607b3d5b9bb8d635140bff36f0e1184187058",
+      "file_bytes": 31528,
+      "observation": "End-label handler rejects cancellation/empty/trailing dot/forbidden characters, builds paths, preserves hidden extension, ignores unchanged name, trims trailing spaces, calls RenameFiles and shows warning if false."
+    },
+    {
+      "source_ref_id": "RENAME-COMMIT",
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Helper/FileActionHandler.cpp",
+      "source_relative_path": "Explorer++/Helper/FileActionHandler.cpp",
+      "line_start": 15,
+      "line_end": 56,
+      "file_sha256": "5cd7b5e38ce5b7c3b19f8938327e1ea52458851fb47ab650fc31149ffd01e46b",
+      "file_bytes": 3276,
+      "observation": "RenameFiles creates IShellItem from old path, strips destination basename, invokes NFileOperations::RenameFile per item, records SUCCEEDED items for undo, returns whether any succeeded."
+    },
+    {
+      "source_ref_id": "RENAME-API",
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Helper/FileOperations.cpp",
+      "source_relative_path": "Explorer++/Helper/FileOperations.cpp",
+      "line_start": 29,
+      "line_end": 61,
+      "file_sha256": "7b7d130e06ee6c457820fdf64a0d5bb8ca1f74faa0ca25522e16ee5e9bb7c9a5",
+      "file_bytes": 19056,
+      "observation": "RenameFile creates IFileOperation, sets ALLOWUNDO|SILENT, calls RenameItem and PerformOperations, returns HRESULT; no SetNameOf and no explicit aborted-query in this body."
+    },
+    {
+      "source_ref_id": "MKDIR-ENTRY",
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/MainWndSwitch.cpp",
+      "source_relative_path": "Explorer++/Explorer++/MainWndSwitch.cpp",
+      "line_start": 1178,
+      "line_end": 1184,
+      "file_sha256": "f6c2ef9bce117ee6d8eb1fc7bb617508ae8e52b99b6b5cf63db48e0360600e6f",
+      "file_bytes": 38021,
+      "observation": "Toolbar/menu NewFolder command calls OnCreateNewFolder."
+    },
+    {
+      "source_ref_id": "MKDIR-UI",
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/MainMenuHandler.cpp",
+      "source_relative_path": "Explorer++/Explorer++/MainMenuHandler.cpp",
+      "line_start": 211,
+      "line_end": 245,
+      "file_sha256": "0a8225b9e6c09573752060cbc1fddd8ef7ec63416c25bc40385d6f95ea4dc09a",
+      "file_bytes": 9671,
+      "observation": "OnCreateNewFolder creates destination IShellItem, observer selects/focuses and QueueRename, loads default name resource, calls NFileOperations::CreateNewFolder, releases sink and shows error on FAILED(hr)."
+    },
+    {
+      "source_ref_id": "MKDIR-API",
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Helper/FileOperations.cpp",
+      "source_relative_path": "Explorer++/Helper/FileOperations.cpp",
+      "line_start": 293,
+      "line_end": 329,
+      "file_sha256": "7b7d130e06ee6c457820fdf64a0d5bb8ca1f74faa0ca25522e16ee5e9bb7c9a5",
+      "file_bytes": 19056,
+      "observation": "CreateNewFolder uses IFileOperation ALLOWUNDO|SILENT, NewItem(FILE_ATTRIBUTE_DIRECTORY, default name, sink), PerformOperations. Comment assigns collision naming to IFileOperation."
+    },
+    {
+      "source_ref_id": "MKDIR-SINK",
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Explorer++/FileProgressSink.cpp",
+      "source_relative_path": "Explorer++/Explorer++/FileProgressSink.cpp",
+      "line_start": 165,
+      "line_end": 204,
+      "file_sha256": "04b71c6fb790ad5765980822d3eff6701ec6773e41b2631de0820a54c9dc7559",
+      "file_bytes": 5918,
+      "observation": "PostNewItem only calls observer after successful hrNew, interface acquisition and PIDL extraction."
+    },
+    {
+      "source_ref_id": "BOOST-PACKAGE",
+      "path": "verification/source/explorerplusplus-384c2f687fd55c1e71e9fcb272f9113de009a248/Explorer++/Helper/packages.config",
+      "source_relative_path": "Explorer++/Helper/packages.config",
+      "line_start": 3,
+      "line_end": 11,
+      "file_sha256": "d34c3d97a3949cb2723d1554238788cffde8512bfdd2b0b7daf76de29c3f7720",
+      "file_bytes": 1752,
+      "observation": "NuGet dependency declarations include boost and boost_filesystem vc141/vc142, version 1.72.0.0. Dependency declaration does not prove exact shipped library object identity."
+    }
+  ],
+  "comparisons": [
+    {
+      "question_id": "RE04-ICONS",
+      "initial_assertion": "Inspected functions call SHGetFileInfoW with system-index and icon/overlay PIDL/path flag combinations; this supports Windows icon-information delegation.",
+      "initial_epistemic_status": "derived",
+      "initial_confidence": "high",
+      "initial_evidence_ids": [
+        "ev_00f7b5c1c1047b786d6223366e6c431e3cd45a79c9e712fddea05acb7593234c",
+        "ev_ad5bbad86afa46a4b572689342731c57a99e7187d7debd76b73c4777ab343088",
+        "ev_4c770e0ef421600e4990c877f3b1d379ef2c340a46be06fe60594956a558b748"
+      ],
+      "initial_addresses": [
+        "0x140187350",
+        "0x140173350",
+        "0x140172c10"
+      ],
+      "initial_unresolved": [
+        "Which returned image/index is displayed for every row.",
+        "Acquisition/cache/cancellation ownership across all icon paths."
+      ],
+      "comparison_status": "confirmed",
+      "comparison_scope": "Narrow assertion behavior/content against same-release source; never exact VA symbol proof or end-to-end runtime validation.",
+      "source_finding": "Windows icon-information delegation is explicit in source: system-index drive updates and icon/overlay PIDL/path refresh match the initial narrow API modes. Source additionally exposes async IconFetcher, path cache lookup and ListView display consumers.",
+      "source_ref_ids": [
+        "ICON-SYS",
+        "ICON-MOD",
+        "ICON-REN",
+        "ICON-FETCH",
+        "ICON-DISPLAY",
+        "UNICODE"
+      ],
+      "correction_or_qualification": "Initial claim is correct at API/mode level; it never established every displayed icon or full lifecycle.",
+      "remaining_limits": [
+        "Per-address choice among similar SHGetFileInfo callers remains inferred; no exact function symbol assignment.",
+        "All-row/cache/cancellation correctness was not executed."
+      ],
+      "native_va_to_source_mapping": "inferred_candidate_only_without_PDB_link_map_or_reproducible_build_identity",
+      "initial_REA_credit": "narrow_static_content_supported"
+    },
+    {
+      "question_id": "RE04-THUMBNAILS",
+      "initial_assertion": "The per-file thumbnail acquisition/provider/cache pipeline is unknown. ThumbnailResult names and DwmSetIconicThumbnail import do not establish it.",
+      "initial_epistemic_status": "unknown",
+      "initial_confidence": "unknown",
+      "initial_evidence_ids": [
+        "ev_bcf098d43636ed7566f5a1628c11403e9db45a26d563a614a0d81fea21369d00"
+      ],
+      "initial_addresses": [],
+      "initial_unresolved": [
+        "Actual file preview API and worker/provider.",
+        "Cache key, cancellation, handle cleanup and displayed result."
+      ],
+      "comparison_status": "no_initial_positive",
+      "comparison_scope": "Narrow assertion behavior/content against same-release source; never exact VA symbol proof or end-to-end runtime validation.",
+      "source_finding": "Source-only answer: per-file thumbnails use IExtractImage obtained from parent Shell folder GetUIObjectOf; GetLocation precedes Extract. Thread-pool futures/result IDs retain a unique bitmap and internal item index; ProcessThumbnailResult updates image list/ListView. Taskbar DwmSetIconicThumbnail is a distinct tabProxy path.",
+      "source_ref_ids": [
+        "THUMB-WORK",
+        "THUMB-DISPLAY",
+        "THUMB-CLEAN",
+        "THUMB-IMAGE",
+        "DWM"
+      ],
+      "correction_or_qualification": "Unknown is preserved as a coverage gap; the later source does not make it an initially recovered implementation.",
+      "remaining_limits": [
+        "This source pipeline was absent from initial REA knowledge and earns no initial success credit.",
+        "Result retention/removal, in-flight task completion and full cache/cancellation correctness are not runtime verified."
+      ],
+      "native_va_to_source_mapping": "not_claimed_no_initial_native_address",
+      "initial_REA_credit": "none_initial_unknown_preserved"
+    },
+    {
+      "question_id": "RE04-OPEN",
+      "initial_assertion": "The inspected helper calls ShellExecuteExW with the input PIDL, fMask 0xC and the exact empty-string verb L\"\"; it is a PIDL execution delegation path.",
+      "initial_epistemic_status": "observed",
+      "initial_confidence": "high",
+      "initial_evidence_ids": [
+        "ev_369e8cb0f86b0a7f29c9cff2149e791629aa707c191c9780fbd8754d0783694b",
+        "ev_fc2e69129dd48e48cb15ae6d6d6d7a724a1e2e67dda942c84297943ce2bde8cf"
+      ],
+      "initial_addresses": [
+        "0x1400bd5c0",
+        "0x1400bce20"
+      ],
+      "initial_unresolved": [
+        "Generic activation dispatcher-to-helper dynamic edge.",
+        "Every special-item branch and Shell failure outcome.",
+        "External Notepad observation is not a native address trace."
+      ],
+      "comparison_status": "confirmed",
+      "comparison_scope": "Narrow assertion behavior/content against same-release source; never exact VA symbol proof or end-to-end runtime validation.",
+      "source_finding": "OpenFileItem computes parent working directory and passes exact EMPTY_STRING verb; ExecuteFileAction uses SEE_MASK_INVOKEIDLIST and input PIDL with NULL lpFile, then ShellExecuteEx. OpenItem source connects ordinary files and ZIP/shortcut fallbacks; Control Panel folders have separate explorer.exe dispatch.",
+      "source_ref_ids": [
+        "OPEN-FILE",
+        "OPEN-EXEC",
+        "OPEN-DISPATCH",
+        "EMPTY",
+        "UNICODE"
+      ],
+      "correction_or_qualification": null,
+      "remaining_limits": [
+        "Likely compiler inlining explains combined decompiled body, but exact 0x1400bd5c0 source mapping remains inferred.",
+        "OpenFileItem ignores helper BOOL; source branching does not prove a launched associated application or every failure result."
+      ],
+      "native_va_to_source_mapping": "inferred_candidate_only_without_PDB_link_map_or_reproducible_build_identity",
+      "initial_REA_credit": "narrow_static_content_supported"
+    },
+    {
+      "question_id": "RE04-CHANGES",
+      "initial_assertion": "A helper calls overlapped ReadDirectoryChangesW with a 16000-byte buffer and completion address 0x1401a9bc0. A separate dispatcher handles add/remove/modify/rename update cases.",
+      "initial_epistemic_status": "observed",
+      "initial_confidence": "high",
+      "initial_evidence_ids": [
+        "ev_c575f01e0e8efd6219b1f6ecd377ea9f403a63d2f9acfde0d41b3e66545e711f",
+        "ev_1833fa2545dcaf1a16f796fe9e11fad0146e3cb7b969facef4aaa36ac1720255"
+      ],
+      "initial_addresses": [
+        "0x1401a9b10",
+        "0x1401a9bc0",
+        "0x140171ba0"
+      ],
+      "initial_unresolved": [
+        "Connecting completion-to-queue/message-to-dispatch edge.",
+        "Rearming, notification overflow recovery and full cleanup lifecycle."
+      ],
+      "comparison_status": "confirmed",
+      "comparison_scope": "Narrow assertion behavior/content against same-release source; never exact VA symbol proof or end-to-end runtime validation.",
+      "source_finding": "WatchDirectoryInternal passes allocated PRIMARY_BUFFER_SIZE, OVERLAPPED and CompletionRoutine to ReadDirectoryChangesW. Source defines size as 1000*sizeof(FILE_NOTIFY_INFORMATION), corresponding to 16000 for the Windows ABI. DirectoryAltered separately handles all five action cases. Later source fills bridge: registered callback -> FilesModified queue and 200ms timer -> WM_USER_FILESADDED -> DirectoryAltered with unique folder guard.",
+      "source_ref_ids": [
+        "WATCH-SIZE",
+        "WATCH-REQUEST",
+        "WATCH-COMPLETE",
+        "WATCH-REGISTER",
+        "WATCH-BRIDGE",
+        "WATCH-QUEUE",
+        "WATCH-MESSAGE",
+        "WATCH-UPDATE",
+        "WATCH-OPEN",
+        "WATCH-STOP",
+        "WATCH-SHUTDOWN"
+      ],
+      "correction_or_qualification": "Source completes initial missing bridge only after freeze. Do not retroactively credit initial REA with callback-to-list connectivity or overflow handling.",
+      "remaining_limits": [
+        "Callback/native address equality remains inferred.",
+        "CompletionRoutine only handles success/nonzero and ERROR_OPERATION_ABORTED: no explicit zero-byte/other-error overflow recovery here.",
+        "Stop is worker APC CancelIo/CloseHandle, abort completion frees request. Final shutdown and all races are source-only, not verified safe."
+      ],
+      "native_va_to_source_mapping": "inferred_candidate_only_without_PDB_link_map_or_reproducible_build_identity",
+      "initial_REA_credit": "narrow_static_content_supported"
+    },
+    {
+      "question_id": "RE04-COPY-MOVE",
+      "initial_assertion": "A wrapper constructs a double-NUL UTF-16 source list and calls SHFileOperationW with MOVE/COPY selected by a boolean; success also requires no aborted operations, and returned name mappings are reconciled/freed.",
+      "initial_epistemic_status": "derived",
+      "initial_confidence": "high",
+      "initial_evidence_ids": [
+        "ev_a6af60e3bd61d7cca2e8d3255e23dbddbe9bcb8f3147c26c54e7dca7ae1a66e9"
+      ],
+      "initial_addresses": [
+        "0x1401a7630"
+      ],
+      "initial_unresolved": [
+        "Original boolean field name and calling UI commands.",
+        "Overwrite/confirmation/progress, rollback and complete mixed-outcome policy.",
+        "This wrapper does not select DELETE or FOF_ALLOWUNDO."
+      ],
+      "comparison_status": "confirmed",
+      "comparison_scope": "Narrow assertion behavior/content against same-release source; never exact VA symbol proof or end-to-end runtime validation.",
+      "source_finding": "CopyDroppedFilesInternalAsync matches observed SHFileOperation request: bCopy selects COPY(true)/MOVE(false), BuildFilenameList creates double NUL, flags request mapping and optional collision rename, success requires (!API return && !aborted); successful mappings update filenames and are freed before callback.",
+      "source_ref_ids": [
+        "COPY-LEGACY",
+        "COPY-LIST",
+        "COPY-CALLER",
+        "COPY-MODERN"
+      ],
+      "correction_or_qualification": "This SHFileOperation wrapper is a DropHandler transfer path, not the only copy/move implementation. NFileOperations::CopyFiles separately uses IFileOperation::CopyItems/MoveItems plus ALLOWUNDO. It is still not delete/recycle proof.",
+      "remaining_limits": [
+        "Name mappings are handled inside success branch; source does not establish complete failed/mixed outcome cleanup or rollback.",
+        "Exact UI command/native wrapper linkage and real collision/progress behavior were not runtime traced."
+      ],
+      "native_va_to_source_mapping": "inferred_candidate_only_without_PDB_link_map_or_reproducible_build_identity",
+      "initial_REA_credit": "narrow_static_content_supported"
+    },
+    {
+      "question_id": "RE04-DROP",
+      "initial_assertion": "A seven-slot ShellBrowser table and inspected bodies are consistent with IDropTarget roles. Effect selection uses allowed effects/key/root state; Drop delegates to DropHandler, whose mode-1 path requests a Shell IDropTarget and calls its drag/drop slots.",
+      "initial_epistemic_status": "inferred",
+      "initial_confidence": "medium",
+      "initial_evidence_ids": [
+        "ev_9d6c8203a6f21e8874ef16abf2322c683057a24632a7f2bd42a51d0f0fc15fa9",
+        "ev_31296ff49e6986f663c9eec54c8e921bfe7b11f3b67dd3ac52f33412313e5a2f",
+        "ev_c65a9ef46e64126efcd4fd66683bad189aab555ee43b763ffbecaf61838499f4",
+        "ev_37033ee2017621418f12890bb629601cfcc8fa391268e48485698cbb8c59fd5b",
+        "ev_310285058c0ce8daa50f2c6faca0f50f2825c986b78c11dc5b5f699671a293c5"
+      ],
+      "initial_addresses": [
+        "0x1402ec068",
+        "0x140178e80",
+        "0x140179270",
+        "0x140179920",
+        "0x1401a5190",
+        "0x1402ed8e0"
+      ],
+      "initial_unresolved": [
+        "Runtime QueryInterface/event/transfer trace.",
+        "DropHandler mode 0 body 0x1401a5340 and alternate branch 0x140179ea0.",
+        "Registration/revoke/outgoing-drag ownership, cancellation and full data-format coverage."
+      ],
+      "comparison_status": "confirmed",
+      "comparison_scope": "Narrow assertion behavior/content against same-release source; never exact VA symbol proof or end-to-end runtime validation.",
+      "source_finding": "ShellBrowser explicitly implements IDropTarget. Source effect selection matches allowed effects/key/same-drive policy and DropHandler delegation. DragType LeftClick=0 invokes custom format handlers; RightClick=1 obtains Shell IDropTarget via CreateViewObject and calls DragEnter, Drop, DragLeave, Release. Local left-drag MOVE may instead only reposition existing rows.",
+      "source_ref_ids": [
+        "DROP-INTERFACE",
+        "DROP-ENTER",
+        "DROP-POLICY",
+        "DROP-ROUTE",
+        "DROP-ENUM",
+        "DROP-MODE",
+        "DROP-LEFT",
+        "DROP-RIGHT",
+        "DROP-REGISTER",
+        "DROP-DESTROY"
+      ],
+      "correction_or_qualification": "The mode-1 delegated interface is IDropTarget; observed slots +0x18/+0x30/+0x28/+0x10 correspond to DragEnter/Drop/DragLeave/Release. No DragOver call is implied by this delegated branch.",
+      "remaining_limits": [
+        "Exact seven-slot VA/table-to-class binding is still inference; source names do not prove binary vtable layout identity.",
+        "RegisterDragDrop source is present. Bounded search of ShellBrowser source finds no explicit RevokeDragDrop; destructor destroys window/releases helpers. No safe revoke lifecycle is claimed.",
+        "No event trace, transfer/cancellation test or complete outgoing drag audit."
+      ],
+      "native_va_to_source_mapping": "inferred_candidate_only_without_PDB_link_map_or_reproducible_build_identity",
+      "initial_REA_credit": "narrow_static_content_supported"
+    },
+    {
+      "question_id": "RE04-PROPERTIES",
+      "initial_assertion": "The property-sheet execution path is unknown; Properties labels alone do not establish a Shell verb/COM property-sheet call.",
+      "initial_epistemic_status": "unknown",
+      "initial_confidence": "unknown",
+      "initial_evidence_ids": [
+        "ev_bcf098d43636ed7566f5a1628c11403e9db45a26d563a614a0d81fea21369d00"
+      ],
+      "initial_addresses": [],
+      "initial_unresolved": [
+        "Properties command consumer, selected-item transport and actual API.",
+        "Error/lifecycle behavior."
+      ],
+      "comparison_status": "no_initial_positive",
+      "comparison_scope": "Narrow assertion behavior/content against same-release source; never exact VA symbol proof or end-to-end runtime validation.",
+      "source_finding": "Source-only answer: focus routing selects ShellBrowser::ShowPropertiesForSelectedFiles, collects child PIDLs, then ShowMultipleFileProperties -> ExecuteActionFromContextMenu with properties. It obtains IContextMenu and invokes an ANSI properties verb, returns HRESULT and releases interface.",
+      "source_ref_ids": [
+        "PROPERTY-ENTRY",
+        "PROPERTY-SELECTION",
+        "PROPERTY-API"
+      ],
+      "correction_or_qualification": null,
+      "remaining_limits": [
+        "Actual property sheet, Shell extension behavior and errors not executed.",
+        "No initial native address for property call; no retroactive native mapping."
+      ],
+      "native_va_to_source_mapping": "not_claimed_no_initial_native_address",
+      "initial_REA_credit": "none_initial_unknown_preserved"
+    },
+    {
+      "question_id": "RE04-RECYCLE",
+      "initial_assertion": "The original delete/recycle implementation is unknown. RecycleBin names and the inspected MOVE/COPY wrapper are not recycle-on-delete evidence.",
+      "initial_epistemic_status": "unknown",
+      "initial_confidence": "unknown",
+      "initial_evidence_ids": [
+        "ev_bcf098d43636ed7566f5a1628c11403e9db45a26d563a614a0d81fea21369d00",
+        "ev_a6af60e3bd61d7cca2e8d3255e23dbddbe9bcb8f3147c26c54e7dca7ae1a66e9"
+      ],
+      "initial_addresses": [
+        "0x1402defc0",
+        "0x1402df078",
+        "0x1402e3080",
+        "0x1401a7630"
+      ],
+      "initial_unresolved": [
+        "Delete command handler, recycle API/flags, permanent-delete distinction.",
+        "Confirmation, cancellation, failures and item outcomes."
+      ],
+      "comparison_status": "no_initial_positive",
+      "comparison_scope": "Narrow assertion behavior/content against same-release source; never exact VA symbol proof or end-to-end runtime validation.",
+      "source_finding": "Source-only answer: Delete/Permanent Delete pass permanent=false/true; selected PIDLs reach NFileOperations::DeleteFiles. It uses IFileOperation::DeleteItems/PerformOperations; nonpermanent adds FOF_ALLOWUNDO. Nonsilent requests WANTNUKEWARNING; silent requests SILENT/NOCONFIRMATION/NOERRORUI.",
+      "source_ref_ids": [
+        "DELETE-ENTRY",
+        "DELETE-SELECTION",
+        "DELETE-WRAPPER",
+        "DELETE-API"
+      ],
+      "correction_or_qualification": "Initial unknown was appropriate: the transfer SHFileOperation wrapper supplies no recycle evidence. Actual delete API/flags are learned only from source.",
+      "remaining_limits": [
+        "This establishes requested Shell deletion/undo policy, not guaranteed recycling for every target/filesystem or observed per-item outcomes.",
+        "Wrapper returns HRESULT without GetAnyOperationsAborted; no per-item/cancellation outcome verification."
+      ],
+      "native_va_to_source_mapping": "inferred_candidate_only_without_PDB_link_map_or_reproducible_build_identity",
+      "initial_REA_credit": "none_initial_unknown_preserved"
+    },
+    {
+      "question_id": "P1-RENAME-START",
+      "initial_assertion": "The containing function at 0x1400838a0 logs rename of an item created via new menu, then directly calls 0x14017d7a0; the helper matches PIDLs to rows and sends 0x1076 (LVM_EDITLABELW), or stores a pending PIDL when no row exists.",
+      "initial_epistemic_status": "derived",
+      "initial_confidence": "high",
+      "initial_evidence_ids": [
+        "ev_abecdf049b50525419cd881abfc4e7bf11baf6e90d6a2a11ecf5c47b246bd777",
+        "ev_d6ad1767529c187facc939124d6ffb493741502ece24df1138b74b7b9447fcf8",
+        "ev_3590de16dd81838b0547537203010b4af00ee09da2ded56601c5078d4a15bf69"
+      ],
+      "initial_addresses": [
+        "0x1402de930",
+        "0x1400838c0",
+        "0x1400838a0",
+        "0x1400839d9",
+        "0x14017d7a0"
+      ],
+      "initial_unresolved": [
+        "Requested interior address 0x1400838c0 resolves to containing 0x1400838a0.",
+        "Original enum names for param3=1/3 and dynamic callback slot +0x20.",
+        "Pending PIDL consumer and relation to generic F2."
+      ],
+      "comparison_status": "confirmed",
+      "comparison_scope": "Narrow assertion behavior/content against same-release source; never exact VA symbol proof or end-to-end runtime validation.",
+      "source_finding": "NewMenuClient::SelectAndEditItem flags EDIT=1 and EDIT_WINDOWS_10=3 log the exact new-menu rename message and QueueRename. QueueRename matches PIDLs and starts ListView_EditLabel, otherwise clones pending PIDL. Source adds pending consumer: insertion clears flag on PIDL match, update sends NEWITEMINSERTED and owner starts editing.",
+      "source_ref_ids": [
+        "NEW-ENUM",
+        "NEW-CALLBACK",
+        "RENAME-QUEUE",
+        "RENAME-PENDING",
+        "WATCH-UPDATE",
+        "WATCH-MESSAGE",
+        "RENAME-PENDING-MSG"
+      ],
+      "correction_or_qualification": "This begins label editing; rename filesystem commit belongs to the separate end-label path below.",
+      "remaining_limits": [
+        "Interior 0x1400838c0 vs containing 0x1400838a0 distinction remains in initial addresses; source does not prove exact entry VA.",
+        "The source-defined Windows 10 flag is not new runtime evidence. Pending PIDL cleanup and generic F2 runtime relation were not audited end-to-end."
+      ],
+      "native_va_to_source_mapping": "inferred_candidate_only_without_PDB_link_map_or_reproducible_build_identity",
+      "initial_REA_credit": "narrow_static_content_supported"
+    },
+    {
+      "question_id": "P1-RENAME-COMMIT",
+      "initial_assertion": "The original rename commit API and policy are unknown; starting ListView label editing does not prove SetNameOf or a filesystem rename call.",
+      "initial_epistemic_status": "unknown",
+      "initial_confidence": "unknown",
+      "initial_evidence_ids": [
+        "ev_3590de16dd81838b0547537203010b4af00ee09da2ded56601c5078d4a15bf69",
+        "ev_bcf098d43636ed7566f5a1628c11403e9db45a26d563a614a0d81fea21369d00"
+      ],
+      "initial_addresses": [
+        "0x14017d7a0"
+      ],
+      "initial_unresolved": [
+        "End-label-edit notification, validation and actual mutation.",
+        "Conflict, permissions, cancellation, retained selection and error reporting."
+      ],
+      "comparison_status": "no_initial_positive",
+      "comparison_scope": "Narrow assertion behavior/content against same-release source; never exact VA symbol proof or end-to-end runtime validation.",
+      "source_finding": "Source-only answer: OnListViewEndLabelEdit validates/cancels text, keeps hidden extension, trims trailing spaces, and invokes FileActionHandler::RenameFiles. That creates IShellItem and calls NFileOperations::RenameFile -> IFileOperation::RenameItem -> PerformOperations with ALLOWUNDO|SILENT; it is not SetNameOf. UI warns on false and successful items are recorded for undo.",
+      "source_ref_ids": [
+        "RENAME-EDIT-END",
+        "RENAME-COMMIT",
+        "RENAME-API"
+      ],
+      "correction_or_qualification": "The initial SetNameOf alternative was never a positive claim; a bounded absence of name spellings remains a bounded search.",
+      "remaining_limits": [
+        "No actual name collision, permission or cancellation/retained selection test.",
+        "PerformOperations HRESULT is used without explicit aborted-query; SUCCEEDED bookkeeping is not independently verified per-item completion."
+      ],
+      "native_va_to_source_mapping": "inferred_candidate_only_without_PDB_link_map_or_reproducible_build_identity",
+      "initial_REA_credit": "none_initial_unknown_preserved"
+    },
+    {
+      "question_id": "P1-MKDIR-WRAPPER",
+      "initial_assertion": "The inspected 0x140206a50 body is consistent with a Boost filesystem recursive directory-creation wrapper, with CreateDirectoryW, GetLastError and error/exception paths.",
+      "initial_epistemic_status": "derived",
+      "initial_confidence": "medium",
+      "initial_evidence_ids": [
+        "ev_d02eb737073be324983326bce97b6b69d10cc582c9adecdf88667ef7e2ff24d2",
+        "ev_f1f139d2219b76f8e4b0217c2bf95367a67567c36e4bb53c78c8868cdb17d913"
+      ],
+      "initial_addresses": [
+        "0x140206a50",
+        "0x140213270",
+        "0x1402158e0",
+        "EXTERNAL:0x118"
+      ],
+      "initial_unresolved": [
+        "Which higher-level feature reaches this wrapper.",
+        "Original function/type names and caller context."
+      ],
+      "comparison_status": "partial",
+      "comparison_scope": "Narrow assertion behavior/content against same-release source; never exact VA symbol proof or end-to-end runtime validation.",
+      "source_finding": "Archive dependencies corroborate Boost/filesystem context (NuGet 1.72.0.0); they do not include the Boost filesystem implementation for source/body comparison. Bounded search of the acquired tree finds no create_directory/create_directories implementation/call spelling. The observed recursive native body, its exact Boost function and callers cannot be source-confirmed here.",
+      "source_ref_ids": [
+        "BOOST-PACKAGE",
+        "MKDIR-UI",
+        "MKDIR-API",
+        "VERSION"
+      ],
+      "correction_or_qualification": "The narrow initial consistency inference remains plausible, not verified original signature. Source New Folder uses IFileOperation::NewItem and supplies no evidence it reaches this Boost wrapper.",
+      "remaining_limits": [
+        "No vendored boost/filesystem implementation or shipped library link map/PDB/reproducible build.",
+        "Package dependency version is not proof of exact object linked into supplied binary.",
+        "Which higher-level binary callers 0x140213270/0x1402158e0 reach wrapper remains unresolved."
+      ],
+      "native_va_to_source_mapping": "inferred_candidate_only_without_PDB_link_map_or_reproducible_build_identity",
+      "initial_REA_credit": "partial_context_corroboration_only"
+    },
+    {
+      "question_id": "P1-MKDIR-UI",
+      "initial_assertion": "The native New Folder command-to-creation-wrapper connection remains unknown. External folder creation/inline rename does not identify that internal call chain.",
+      "initial_epistemic_status": "unknown",
+      "initial_confidence": "unknown",
+      "initial_evidence_ids": [
+        "ev_bcf098d43636ed7566f5a1628c11403e9db45a26d563a614a0d81fea21369d00",
+        "ev_d02eb737073be324983326bce97b6b69d10cc582c9adecdf88667ef7e2ff24d2",
+        "ev_d6ad1767529c187facc939124d6ffb493741502ece24df1138b74b7b9447fcf8"
+      ],
+      "initial_addresses": [
+        "0x1402def78",
+        "0x140206a50",
+        "0x1400838a0"
+      ],
+      "initial_unresolved": [
+        "Actual command ID consumer and creation API (Shell/new-menu versus library wrapper).",
+        "Default naming, collision, permission and failure policy."
+      ],
+      "comparison_status": "no_initial_positive",
+      "comparison_scope": "Narrow assertion behavior/content against same-release source; never exact VA symbol proof or end-to-end runtime validation.",
+      "source_finding": "Source-only answer: NewFolder toolbar/menu -> OnCreateNewFolder -> destination IShellItem and localized default-name resource -> NFileOperations::CreateNewFolder -> IFileOperation::NewItem(FILE_ATTRIBUTE_DIRECTORY)/PerformOperations. Progress sink obtains created PIDL only on successful PostNewItem and queues inline edit; Shell new-menu callback is another QueueRename entry.",
+      "source_ref_ids": [
+        "MKDIR-ENTRY",
+        "MKDIR-UI",
+        "MKDIR-API",
+        "MKDIR-SINK",
+        "NEW-CALLBACK",
+        "RENAME-QUEUE"
+      ],
+      "correction_or_qualification": "The initial native command-to-wrapper link stays unknown rather than being rewritten as a successful REA reconstruction. Later source identifies a distinct IFileOperation user path.",
+      "remaining_limits": [
+        "Collision naming is delegated in source/comment; exact names, permissions and Shell UI outcomes were not executed.",
+        "No direct source call from this command path to Boost create_directories; this does not prove internal Shell/OS implementation absence."
+      ],
+      "native_va_to_source_mapping": "inferred_candidate_only_without_PDB_link_map_or_reproducible_build_identity",
+      "initial_REA_credit": "none_initial_unknown_preserved"
+    }
+  ],
+  "summary": {
+    "by_comparison_status": {
+      "confirmed": 6,
+      "no_initial_positive": 5,
+      "partial": 1
+    },
+    "initial_positive_assertions": 7,
+    "initial_unknowns_preserved": 5,
+    "narrow_positive_content_confirmed": 6,
+    "partial_positive": 1,
+    "full_end_to_end_REA_successes_established": 0,
+    "native_VA_symbol_mappings_proven": 0,
+    "accuracy_percentage": null,
+    "accuracy_note": "No percentage: narrow positive confirmations, partial library attribution, initial unknown coverage and binary mapping uncertainty have different denominators; unknowns are not correct negatives."
+  },
+  "initial_target": {
+    "path": "artifacts/original/Explorer++.exe",
+    "file_version": "1.4.0.2293",
+    "sha256": "22ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+    "address_space": "Preferred image VA at image base 0x140000000; not traced runtime addresses. EXTERNAL labels retain REA namespace."
+  },
+  "external_interpretation_references": [
+    {
+      "kind": "installed_Windows_SDK_not_target_source",
+      "path": "C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.26100.0\\um\\winnt.h",
+      "line_start": 15389,
+      "line_end": 15394,
+      "file_sha256": "bc603675b330e624fd6f3de9ed3497ed6101e4c56e12cf819a9ef7c41f1c78d8",
+      "observation": "FILE_NOTIFY_INFORMATION has three DWORD fields and WCHAR FileName[1]. Under normal Windows ABI structure alignment it is 16 bytes; source buffer expression is therefore 16000 bytes. This SDK derivation does not establish target build flags or exact source-to-binary mapping."
+    }
+  ],
+  "validation": {
+    "checks_executed": [
+      "JSON reparse",
+      "Exactly last 12 initial question IDs/order",
+      "Initial assertions, confidence, unresolved arrays, Evidence IDs and addresses unchanged",
+      "All 61 source file hashes and 1-based ranges validated",
+      "All 8 audit input hashes validated",
+      "Status counts recomputed"
+    ],
+    "runtime_tests_executed": false,
+    "build_executed": false
+  }
+}

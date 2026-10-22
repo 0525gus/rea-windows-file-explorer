@@ -1,0 +1,1315 @@
+{
+  "schema_version": 1,
+  "report_kind": "phase6_postfreeze_retained_evidence_functional_comparison",
+  "created_at_utc": "2026-10-22T00:20:15.447974+00:00",
+  "scope": {
+    "original": "Explorer++1.4.0.2293 x64, SHA-25622ac20341c5525658ebe5e9c4b9ac9f7c152b18080ff347861fac3f04d56a2d6",
+    "A": "Frozen independent implementation without REA; historical P0 native observations, final P1 tests, root postfreeze render",
+    "B": "Frozen initial REA-informed implementation; native observations and final tests",
+    "new_UI_actions": false,
+    "new_compiler_or_tests": false,
+    "new_REA": false,
+    "new_original_source_reads": false,
+    "initial_documents_modified": false,
+    "only_outputs": [
+      "docs/evaluation/phase6-functional-comparison.json",
+      "docs/evaluation/phase6-functional-comparison.md"
+    ]
+  },
+  "rules": {
+    "implementation": "Core-route implementation/executed evidence differs from full requirement verification.",
+    "equivalence": "Unknown original cases never count as matches. Identify exact narrow postcondition and modality; no synchronized uniform14scenario three-app replay exists.",
+    "tests": "Test counts are inventories; tests/data rows/initcleanup differ, no feature/REA-effect score follows.",
+    "visual": "Actual Win11 is UI reference; Explorer++ supplies behavior. Qualitative visual review only, no invented similarity percentage.",
+    "causality": "Independent design/API policy/validation differences confound REA-effect attribution."
+  },
+  "evidence_references": [
+    {
+      "ref_id": "REQ",
+      "path": "docs/requirements.md",
+      "sha256": "76b659ec0594607e02b1818683ccc826a7af2c8dff6583888852d351e3890c88",
+      "bytes": 20875,
+      "authority": "FixedFR01-20 and14mandatory scenarios; Win11 UI reference",
+      "locator": null
+    },
+    {
+      "ref_id": "ORIG",
+      "path": "docs/observations/original-runtime.json",
+      "sha256": "20417984a2960b463c8f2e867513aa28a50768d91b2af0fb9284c272f9c529a6",
+      "bytes": 116668,
+      "authority": "Original native actions/accessibility;25records, exact OBS IDs; transient snapshots require settled successors",
+      "locator": null
+    },
+    {
+      "ref_id": "ORIG-SUM",
+      "path": "docs/observations/behavior-summary.md",
+      "sha256": "2add54061de4571dbc574bbea1ce76ac26253bcf302f3d9e0354f4473c0070ac",
+      "bytes": 5067,
+      "authority": "Original narrative and actual Win11 design reference; laterOBS020-022 remain in runtimeJSON",
+      "locator": null
+    },
+    {
+      "ref_id": "A-REPORT",
+      "path": "experiments/A/docs/evaluation/p1-report.md",
+      "sha256": "fc73c31ee49eb9f365859f71b41782a61b3813754391ceaa740ae70bd308fbf7",
+      "bytes": 12141,
+      "authority": "Frozen A report/limits/final tests",
+      "locator": null
+    },
+    {
+      "ref_id": "A-P0REPORT",
+      "path": "experiments/A/docs/evaluation/p0-report.md",
+      "sha256": "986504f5d6f8127a95ae1f4b0ffa9a3c9725f2a08592941b1f647476fbcc8f49",
+      "bytes": 8359,
+      "authority": "Historical P0 report and native checks",
+      "locator": null
+    },
+    {
+      "ref_id": "A-SUM",
+      "path": "experiments/A/docs/evaluation/p1-test-summary.json",
+      "sha256": "d3cf072a382ce1018f0c0d8b728684354f2dcd50b48f90723ff960aabf240692",
+      "bytes": 3221,
+      "authority": "A final per-suite functional counts excluding init/cleanup",
+      "locator": null
+    },
+    {
+      "ref_id": "A-UI",
+      "path": "experiments/A/docs/evaluation/p0-direct-ui.json",
+      "sha256": "e5e50fad265ad3657953d4bf814c1b02f361fc691a305f8b0061449416e5b8a1",
+      "bytes": 43100,
+      "authority": "Historical actual native P0 UI; packageSHA8845ddb1213b62c3b36a0d4dba6a8249516ff41b3adf397f4c334d948b93cd98; not finalP1 replay",
+      "locator": null
+    },
+    {
+      "ref_id": "A-RENDER",
+      "path": "docs/evaluation/measurements/a-phase6-render.metrics.json",
+      "sha256": "72b0b742429889c57dab6831d80eb52cc7d72de9933540275bb98efc4982cf2c",
+      "bytes": 1001,
+      "authority": "Root postfreeze final packaged --render; exit/resource evidence, not interaction replay",
+      "locator": null
+    },
+    {
+      "ref_id": "A-IMAGE",
+      "path": "docs/observations/screenshots/a-frozen-unicode.png",
+      "sha256": "a05818439d4799e62665f3f562bd636af1a00c1eadbeaf1eb4a8b9355913cc31",
+      "bytes": 27907,
+      "authority": "Visually inspected final A hidden native-platform QWidget render;6entries",
+      "locator": null
+    },
+    {
+      "ref_id": "WIN11",
+      "path": "docs/observations/screenshots/windows11-reference.png",
+      "sha256": "953d45474b9b46f4eb80243f79a1c71ce673205c11770c56bd10bcf6c78a03df",
+      "bytes": 85292,
+      "authority": "Visually inspected actual hostWin11; visual reference only",
+      "locator": null
+    },
+    {
+      "ref_id": "B-IMAGE",
+      "path": "docs/observations/screenshots/rea-win11-aligned-final.png",
+      "sha256": "0f76b87fadd04b49e49e1ca770f4b9b34da8b9e6874cb05b16040997ec49b4f5",
+      "bytes": 37988,
+      "authority": "Visually inspected final B design screenshot",
+      "locator": null
+    },
+    {
+      "ref_id": "B-MATRIX",
+      "path": "docs/evaluation/requirements-matrix.md",
+      "sha256": "3da21d1fab7708505cd2d524f5956ed31f07acae04f43f35ca3f332402d925f1",
+      "bytes": 57607,
+      "authority": "Frozen B FR ledger and limits",
+      "locator": null
+    },
+    {
+      "ref_id": "B-P1",
+      "path": "docs/evaluation/p1-validation.md",
+      "sha256": "a2223f44fd1311845c855c7a6802cc884a0076725a0598bcef537645b0abb090",
+      "bytes": 31040,
+      "authority": "Frozen B executed P1 checks, native/ext4/DrvFS distinctions",
+      "locator": null
+    },
+    {
+      "ref_id": "B-NATIVE0",
+      "path": "docs/observations/rea-p0-runtime.json",
+      "sha256": "8beb1a13f1a1de667b8f21b977a7d5f9736723fd663ca88177b1d9b1d75cc0a9",
+      "bytes": 50730,
+      "authority": "Actual B P0 desktop records",
+      "locator": null
+    },
+    {
+      "ref_id": "B-NATIVE1",
+      "path": "docs/observations/rea-p1-runtime.json",
+      "sha256": "5d4c0910a9d7eda64e3b2f55c289ac3d850e9ab03345dcb7ac3353165512706a",
+      "bytes": 55467,
+      "authority": "Actual B P1 desktop records",
+      "locator": null
+    },
+    {
+      "ref_id": "B-CTEST",
+      "path": "docs/evaluation/validation-logs/b-initial-final-20261022T090136/test.stdout.log",
+      "sha256": "2a587582d7ed5811d83dfd1568137a8f938ae99f054c1b0f413a61c1b50a7512",
+      "bytes": 582,
+      "authority": "Actual final CTest5/5; unlike features, suite totals not comparable scores",
+      "locator": null
+    },
+    {
+      "ref_id": "B-LINUX",
+      "path": "docs/evaluation/validation-logs/b-initial-final-20261022T090136/linux-ctest.txt",
+      "sha256": "cc2c35206aa43f3922dab5b105007ce796e23dc50fa15742f7ac94c633c574e9",
+      "bytes": 3402,
+      "authority": "Actual native-ext4Linux5/5; not DrvFS success",
+      "locator": null
+    },
+    {
+      "ref_id": "B-LINUX-UI",
+      "path": "docs/evaluation/validation-logs/b-initial-final-20261022T090136/linux-native-ui.txt",
+      "sha256": "0c4b5a76d9ab0cdc97c94c7d43338e82ac265589e730fd8381e4139bf0b7b534",
+      "bytes": 5792,
+      "authority": "Linux23QtUIpasses including production-copy close/fresh-window",
+      "locator": null
+    },
+    {
+      "ref_id": "B-RECYCLE",
+      "path": "docs/evaluation/measurements/b-owned-recycle.metrics.json",
+      "sha256": "254a3e05dda8b61b2f51542c95f24da9ca00266d9fc4982692a30606201aa41c",
+      "bytes": 917,
+      "authority": "Windows owned recycle opt-in command/exit; functional assertion in P1 ledger",
+      "locator": null
+    },
+    {
+      "ref_id": "B-FREEZE",
+      "path": "docs/evaluation/initial-freeze-manifest.json",
+      "sha256": "a93289e08db7e7338110480063716bd2be434ffd1e76585e0bc36a2b996cf729",
+      "bytes": 71090,
+      "authority": "Initial freeze authority; new report is successor",
+      "locator": null
+    },
+    {
+      "ref_id": "FREEZE-VERIFY",
+      "path": "verification/phase6-freeze-verification.json",
+      "sha256": "b71d70a0820290afac0bcac0d91096a49623d89a538309e0afd6c945a1a71328",
+      "bytes": 488,
+      "authority": "Root verified354B/124A files before source access; worker did not rerun whole manifest",
+      "locator": null
+    },
+    {
+      "ref_id": "A-CORE",
+      "path": "experiments/A/artifacts/initial-freeze/test-reports-windows/core.txt",
+      "sha256": "d3a36b753022d562a27c1d352406911bb979b447316e942a051b26768692ce23",
+      "bytes": 782,
+      "authority": "Frozen actual Windows QtTest named PASS/SKIP boundaries",
+      "locator": null
+    },
+    {
+      "ref_id": "A-PLATFORM",
+      "path": "experiments/A/artifacts/initial-freeze/test-reports-windows/platform.txt",
+      "sha256": "e54690440150a08d2d1d2f48921243dca136606dc0a8f7e57ab8089f489b81dd",
+      "bytes": 941,
+      "authority": "Frozen actual Windows QtTest named PASS/SKIP boundaries",
+      "locator": null
+    },
+    {
+      "ref_id": "A-QTUI",
+      "path": "experiments/A/artifacts/initial-freeze/test-reports-windows/ui.txt",
+      "sha256": "34108d2dbbbfa4998ad11dbc66bab426273f20bcaa1c1c1b7c682e7563fd0300",
+      "bytes": 3258,
+      "authority": "Frozen actual Windows QtTest named PASS/SKIP boundaries",
+      "locator": null
+    },
+    {
+      "ref_id": "A-OP",
+      "path": "experiments/A/artifacts/initial-freeze/test-reports-windows/operations.txt",
+      "sha256": "426e646ec68c2eb427c694e3318eaa2a321d9cd90137824c6b111f27f354151c",
+      "bytes": 1543,
+      "authority": "Frozen actual Windows QtTest named PASS/SKIP boundaries",
+      "locator": null
+    },
+    {
+      "ref_id": "A-MGMT",
+      "path": "experiments/A/artifacts/initial-freeze/test-reports-windows/management_ui.txt",
+      "sha256": "5486eeb6f75d73dd9ef9a23eabcf287cd22dab15fddc7937432f5d3594feea98",
+      "bytes": 3153,
+      "authority": "Frozen actual Windows QtTest named PASS/SKIP boundaries",
+      "locator": null
+    },
+    {
+      "ref_id": "A-LINUX-PLATFORM",
+      "path": "experiments/A/artifacts/initial-freeze/test-reports-linux/platform.txt",
+      "sha256": "ad249ac7a49e2526b585e8b79faa6832beca196b436d43f13af40d3d4e2df9ae",
+      "bytes": 938,
+      "authority": "Actual Linux cycle/permission/platform-specific boundaries",
+      "locator": null
+    },
+    {
+      "ref_id": "A-LINUX-OP",
+      "path": "experiments/A/artifacts/initial-freeze/test-reports-linux/operations.txt",
+      "sha256": "795e08d2ab025f07ffff8f3234e3ab90018ebaf7664198bc3c1f3f34033a1512",
+      "bytes": 1778,
+      "authority": "Actual Linux cycle/permission/platform-specific boundaries",
+      "locator": null
+    },
+    {
+      "ref_id": "B-DOMAIN",
+      "path": "docs/evaluation/validation-logs/b-initial-final-20261022T090136/windows-domain.txt",
+      "sha256": "a78697a5b4b418867c76a7330f1c8bdc97251e30e1f1cfb38ff648b440d13845",
+      "bytes": 818,
+      "authority": "Actual initial-final Windows QtTest; totals include init/cleanup; operation text uses legacyCP949",
+      "locator": null
+    },
+    {
+      "ref_id": "B-SESSION",
+      "path": "docs/evaluation/validation-logs/b-initial-final-20261022T090136/windows-session.txt",
+      "sha256": "73abc73d5b73e2bb370b81742ac798d902f3caa386dda12167b23107e2821b04",
+      "bytes": 1278,
+      "authority": "Actual initial-final Windows QtTest; totals include init/cleanup; operation text uses legacyCP949",
+      "locator": null
+    },
+    {
+      "ref_id": "B-PLATFORM",
+      "path": "docs/evaluation/validation-logs/b-initial-final-20261022T090136/windows-platform.txt",
+      "sha256": "dba0736f08f9b957cc774e0eeb3820ff513a3113736eb3138f33a05aaf800ce6",
+      "bytes": 1311,
+      "authority": "Actual initial-final Windows QtTest; totals include init/cleanup; operation text uses legacyCP949",
+      "locator": null
+    },
+    {
+      "ref_id": "B-QTUI",
+      "path": "docs/evaluation/validation-logs/b-initial-final-20261022T090136/windows-ui.txt",
+      "sha256": "9e4019f6162505afd49c21fb6acd33f94354d1bdd438430ca70f38152e73dd5a",
+      "bytes": 6097,
+      "authority": "Actual initial-final Windows QtTest; totals include init/cleanup; operation text uses legacyCP949",
+      "locator": null
+    },
+    {
+      "ref_id": "B-OP",
+      "path": "docs/evaluation/validation-logs/b-initial-final-20261022T090136/windows-operation.txt",
+      "sha256": "41b20aee0641351fe5ad72ed42f37dd6f3f80e0f1920150e68167e4a5f483583",
+      "bytes": 2890,
+      "authority": "Actual initial-final Windows QtTest; totals include init/cleanup; operation text uses legacyCP949",
+      "locator": null
+    },
+    {
+      "ref_id": "B-PKG1",
+      "path": "docs/evaluation/measurements/b-final-package-initial.metrics.json",
+      "sha256": "5bdaa885aaac805c814972589b5c404ad6463b7d518d1ef091346544b7686938",
+      "bytes": 1175,
+      "authority": "Actual separate final packaged render/snapshot/quit process",
+      "locator": null
+    },
+    {
+      "ref_id": "B-PKG1-MODEL",
+      "path": "docs/evaluation/measurements/b-final-package-initial-model.json",
+      "sha256": "f0cc9516e0de88a862c658e4783572d006ec01d82cd1fc55b675dd4c5afbd5b5",
+      "bytes": 2892,
+      "authority": "Actual6-entry final packaged model snapshot",
+      "locator": null
+    },
+    {
+      "ref_id": "B-PKG2",
+      "path": "docs/evaluation/measurements/b-final-package-restart.metrics.json",
+      "sha256": "8eec9a488f6364e98253abdaf390acdcb6a7cd09855f69ce07c46ae85bc0ed3f",
+      "bytes": 1179,
+      "authority": "Actual separate final packaged render/snapshot/quit process",
+      "locator": null
+    },
+    {
+      "ref_id": "B-PKG2-MODEL",
+      "path": "docs/evaluation/measurements/b-final-package-restart-model.json",
+      "sha256": "f0cc9516e0de88a862c658e4783572d006ec01d82cd1fc55b675dd4c5afbd5b5",
+      "bytes": 2892,
+      "authority": "Actual6-entry final packaged model snapshot",
+      "locator": null
+    },
+    {
+      "ref_id": "A-SOURCE-UI",
+      "path": "experiments/A/artifacts/initial-freeze/src/ui/main_window.cpp",
+      "sha256": "59c3d73b35d915fdceb115795a6aa9a165d7c4a87a9bec5c036fd6caeaa30b35",
+      "bytes": 36994,
+      "authority": "Source-derived frozen A/B policy only, no new execution or original-source read",
+      "locator": "629-648 modal mkdir/rename;724-747 Skip/Replace/Cancel"
+    },
+    {
+      "ref_id": "A-SOURCE-OPS",
+      "path": "experiments/A/artifacts/initial-freeze/src/platform/file_operations.cpp",
+      "sha256": "51704b344d86e2bee61b08acba482d2666501de31c7f15108d2b0d2d7b433fd7",
+      "bytes": 27958,
+      "authority": "Source-derived frozen A/B policy only, no new execution or original-source read",
+      "locator": "256-258 preflight;483-505 replacement staging"
+    },
+    {
+      "ref_id": "B-SOURCE-UI",
+      "path": "src/ui/main_window.cpp",
+      "sha256": "7845db3e0f538c031ef10d5468573fd7f7d33edd9637baad1db79cce5f390e3d",
+      "bytes": 65805,
+      "authority": "Source-derived frozen A/B policy only, no new execution or original-source read",
+      "locator": "705-718 conflict subset KeepBoth;1169-1200 modal rename/mkdir"
+    },
+    {
+      "ref_id": "A-SOURCE-SEARCH",
+      "path": "experiments/A/artifacts/initial-freeze/src/ui/file_model.cpp",
+      "sha256": "c0a446a263131ecb7793fa6ec04558d9b4014e041463949ed0c7a994251d8f9f",
+      "bytes": 4596,
+      "authority": "Source-derived frozen A/B policy only, no new execution or original-source read",
+      "locator": "104-106 case-insensitive contains"
+    },
+    {
+      "ref_id": "B-SOURCE-SEARCH",
+      "path": "src/core/domain.cpp",
+      "sha256": "b426f3097722b251b5c59a9c456ab8d87699051309e6ef7df00abaed8e26ff7a",
+      "bytes": 3621,
+      "authority": "Source-derived frozen A/B policy only, no new execution or original-source read",
+      "locator": "90-96 case-folded literal filtering"
+    },
+    {
+      "ref_id": "B-DRAG-ATTEMPT",
+      "path": "docs/observations/phase6-native-drag-attempt.json",
+      "sha256": "82475e21d29a02b34d1e76aedf2667f28b3e62496ef971c555b5867fa09f42e2",
+      "bytes": 1506,
+      "authority": "Later root postfreeze native attempt. No transfer established; target activation/z-order/gesture routing not independently established; not product failure."
+    },
+    {
+      "ref_id": "B-USER-COPY",
+      "path": "docs/observations/phase6-user-assisted-native-copy.json",
+      "sha256": "6328c1dcebf858f1b42e535b2dc9d84049fad0c78cf3304c43f8a8d2df253092",
+      "bytes": 1889,
+      "authority": "Postfreeze user-assisted B-to-Windows-Explorer Copy result. User reported manual copy after requested gesture; root verified both actual files and baseline hashes. Gesture itself was not automatically captured; intermediate source-path movement unknown."
+    },
+    {
+      "ref_id": "B-USER-INBOUND",
+      "path": "docs/observations/phase6-user-assisted-native-inbound.json",
+      "sha256": "d3406da989403b582b412aa06d8e317a71550ce559a5e5cef8f199e5b3ae100e",
+      "bytes": 1754,
+      "authority": "Postfreeze user-assisted Windows-Explorer-to-B Copy endpoint. User clarified prior placement; root verified both26-byte files against baseline and prior absence. No automatic gesture/modifier capture; no source-removing native Move inference."
+    }
+  ],
+  "functional_requirements": [
+    {
+      "requirement_id": "FR-01",
+      "name": "Basic UI",
+      "original_observation": "Explorer++ shows address, tree, list, tabs and status; its legacy layout is not the UI target.",
+      "A": {
+        "implementation_status": "core_implemented_with_bounded_execution",
+        "evidence": "Historical native window and final render show tabs, full path/search, Home/This PC tree, details table and status."
+      },
+      "B": {
+        "implementation_status": "core_implemented_with_bounded_execution",
+        "evidence": "Native observations and final image show breadcrumbs, known folders, compact commands/table/status and details pane."
+      },
+      "comparison": "Both provide the required components. B follows observed Win11 breadcrumb/sidebar/details structure more closely; no objective visual or UX percentage.",
+      "refs": [
+        "A-UI",
+        "A-IMAGE",
+        "A-RENDER",
+        "B-IMAGE",
+        "WIN11",
+        "B-MATRIX"
+      ],
+      "full_original_equivalence": "not_established"
+    },
+    {
+      "requirement_id": "FR-02",
+      "name": "Folder browsing",
+      "original_observation": "OBS-001 shows five folders; OBS-002-settled zero items; OBS-007 1200 items; OBS-005 six Unicode entries.",
+      "A": {
+        "implementation_status": "core_implemented_with_bounded_execution",
+        "evidence": "Real emptyFolder, bulkComplete, unicodeAndMetadata and rootsAndCapabilities pass; Qt address/folder activation passes."
+      },
+      "B": {
+        "implementation_status": "core_implemented_with_bounded_execution",
+        "evidence": "Real empty/manifest1200/Unicode tests and native tree traversal pass."
+      },
+      "comparison": "Core counts agree. Original bulk UIA truncated names, so complete original1200-name/metadata equality remains unknown.",
+      "refs": [
+        "ORIG",
+        "A-PLATFORM",
+        "A-QTUI",
+        "B-PLATFORM",
+        "B-QTUI",
+        "B-NATIVE0"
+      ],
+      "full_original_equivalence": "not_established"
+    },
+    {
+      "requirement_id": "FR-03",
+      "name": "Path and doubleclick",
+      "original_observation": "OBS-001 address Enter and OBS-002 folder double-click settle to expected locations.",
+      "A": {
+        "implementation_status": "core_implemented_with_bounded_execution",
+        "evidence": "A-UI-001 native address entry and Qt addressAndFolderActivation pass."
+      },
+      "B": {
+        "implementation_status": "core_implemented_with_bounded_execution",
+        "evidence": "B-UI-001 native address entry, Qt realDirectoryDoubleClick and B-P1-UI-008 native ancestor click pass."
+      },
+      "comparison": "Core routes supported. B has interactive breadcrumbs; final A uses a plain full-path field. This audit performed no new interactions.",
+      "refs": [
+        "ORIG",
+        "A-UI",
+        "A-QTUI",
+        "B-NATIVE0",
+        "B-NATIVE1",
+        "B-QTUI"
+      ],
+      "full_original_equivalence": "not_established"
+    },
+    {
+      "requirement_id": "FR-04",
+      "name": "Back/Forward/Up",
+      "original_observation": "OBS-003-settled/016/017 show particular Back/Forward/Up paths and forward state.",
+      "A": {
+        "implementation_status": "core_implemented_with_bounded_execution",
+        "evidence": "Core backForwardUpRefresh/historyTransaction use a controlled adapter; Qt tab/navigation shortcuts pass."
+      },
+      "B": {
+        "implementation_status": "core_implemented_with_bounded_execution",
+        "evidence": "Actual Qt navigationButtonsBackForwardAndUp and session history/branch/failure tests pass."
+      },
+      "comparison": "Compatible semantics with different sequences and modalities. No synchronized identical full history/failure transcript across three apps.",
+      "refs": [
+        "ORIG",
+        "A-CORE",
+        "A-QTUI",
+        "B-QTUI",
+        "B-SESSION"
+      ],
+      "full_original_equivalence": "not_established"
+    },
+    {
+      "requirement_id": "FR-05",
+      "name": "Name/size/type/modified",
+      "original_observation": "OBS-008/011 display six names, sizes25/185/46/40/47/33 bytes and local times11:00-11:05.",
+      "A": {
+        "implementation_status": "core_implemented_with_bounded_execution",
+        "evidence": "Actual metadata and Qt six-name/four-column tests pass; final image uses TXT file, exact bytes and local dates."
+      },
+      "B": {
+        "implementation_status": "core_implemented_with_bounded_execution",
+        "evidence": "Manifest metadata, native observations and six-entry snapshots pass; image uses Korean Shell type text and exact bytes."
+      },
+      "comparison": "Source facts compatible; localized labels and formatting differ. Actual Win11 rounds these small files to1KB; no identical formatting claim.",
+      "refs": [
+        "ORIG",
+        "A-PLATFORM",
+        "A-QTUI",
+        "A-IMAGE",
+        "B-PLATFORM",
+        "B-PKG1-MODEL",
+        "B-IMAGE"
+      ],
+      "full_original_equivalence": "not_established"
+    },
+    {
+      "requirement_id": "FR-06",
+      "name": "Name/size/date sorting",
+      "original_observation": "OBS-009 size ascending, OBS-010-settled date ascending and OBS-011 name order; other directions/ties/folder rules incomplete.",
+      "A": {
+        "implementation_status": "core_implemented_with_bounded_execution",
+        "evidence": "Typed Unicode sorting tests pass for three columns/directions; controlled folder grouping and final image name order retained."
+      },
+      "B": {
+        "implementation_status": "core_implemented_with_bounded_execution",
+        "evidence": "Full manifest permutations for1200 files and directory rows, unknowns/ties and final image name order retained."
+      },
+      "comparison": "Both sort. Original complete permutation/tie/locale/folder semantics are not paired; six-name visual agreement is narrower.",
+      "refs": [
+        "ORIG",
+        "A-QTUI",
+        "A-IMAGE",
+        "B-QTUI",
+        "B-DOMAIN",
+        "B-IMAGE"
+      ],
+      "full_original_equivalence": "not_established"
+    },
+    {
+      "requirement_id": "FR-07",
+      "name": "Current-folder name search",
+      "original_observation": "OBS-013 separate Search dialog returns exact two names for 한글; Search Subfolders checked, no child folders.",
+      "A": {
+        "implementation_status": "core_implemented_with_bounded_execution",
+        "evidence": "Production Qt asserts exact same two names and clear to six; source uses case-insensitive contains."
+      },
+      "B": {
+        "implementation_status": "core_implemented_with_bounded_execution",
+        "evidence": "B-UI-003 native exact two names plus Qt two/zero/clear-six; source uses case-folded literal filtering."
+      },
+      "comparison": "Same query result. Both inline current-folder filters differ from original dialog/default recursion/unchecked Case Insensitive. No full search-policy equivalence.",
+      "refs": [
+        "ORIG",
+        "A-QTUI",
+        "A-SOURCE-SEARCH",
+        "B-NATIVE0",
+        "B-QTUI",
+        "B-SOURCE-SEARCH"
+      ],
+      "full_original_equivalence": "not_established"
+    },
+    {
+      "requirement_id": "FR-08",
+      "name": "Create/switch/close tabs",
+      "original_observation": "OBS-004 creates This PC; OBS-006/018 retain separate paths; OBS-019 closes one tab and retains another.",
+      "A": {
+        "implementation_status": "core_implemented_with_bounded_execution",
+        "evidence": "A-UI-005/006 native create/close retains Unicode; core/Qt independent histories, filter, sort and selection pass."
+      },
+      "B": {
+        "implementation_status": "core_implemented_with_bounded_execution",
+        "evidence": "Qt independent empty/Unicode paths, invalid-input preservation, inactive three-tab close and session separation pass."
+      },
+      "comparison": "Retained folders and close are compatible. A native evidence is historical P0; B full route here is Qt. Original full per-tab history remains unobserved.",
+      "refs": [
+        "ORIG",
+        "A-UI",
+        "A-CORE",
+        "A-QTUI",
+        "B-QTUI",
+        "B-SESSION"
+      ],
+      "full_original_equivalence": "not_established"
+    },
+    {
+      "requirement_id": "FR-09",
+      "name": "OS associated open",
+      "original_observation": "OBS-014 unsuccessful attempt excluded; OBS-015 café.txt produces Notepad.",
+      "A": {
+        "implementation_status": "core_implemented_with_bounded_execution",
+        "evidence": "A-UI-002 opens 한글_특수문자_é_😀.txt in Notepad on historical P0 package."
+      },
+      "B": {
+        "implementation_status": "core_implemented_with_bounded_execution",
+        "evidence": "B-UI-002 opens 한글_파일.txt in Notepad; stale deleted/replaced identities refuse delegation in tests."
+      },
+      "comparison": "All three demonstrate association on different files, not identical input/bytes or native address mapping. Final A P1 native replay is absent.",
+      "refs": [
+        "ORIG",
+        "A-UI",
+        "A-REPORT",
+        "B-NATIVE0",
+        "B-PLATFORM"
+      ],
+      "full_original_equivalence": "not_established"
+    },
+    {
+      "requirement_id": "FR-10",
+      "name": "Denied/invalid/deleted errors",
+      "original_observation": "OBS-012 invalid path retains Unicode list and input; no dialog in queried windows. No original denied/deleted-open execution.",
+      "A": {
+        "implementation_status": "core_implemented_with_bounded_execution",
+        "evidence": "Actual ACL, NotFound/NotDirectory and externalDeletion tests; native A-UI-003/004 banner and F5 recovery."
+      },
+      "B": {
+        "implementation_status": "core_implemented_with_bounded_execution",
+        "evidence": "Actual source-gate ACL denial, stale deleted/replaced-open refusal and Qt displayed deletion/NotFound/F5 recovery."
+      },
+      "comparison": "List preservation agrees. A/B explicit error feedback differs from bounded original no-dialog observation; original denied/deleted policy unknown.",
+      "refs": [
+        "ORIG",
+        "A-PLATFORM",
+        "A-UI",
+        "B-PLATFORM",
+        "B-QTUI"
+      ],
+      "full_original_equivalence": "not_established"
+    },
+    {
+      "requirement_id": "FR-11",
+      "name": "Single/multiple copy",
+      "original_observation": "OBS-022 copies one Unicode payload; source/destination SHA03f072c3c1de30d1bc58a760067da35d6cc4b559b8370f0f0fd1aa43fc924b12.",
+      "A": {
+        "implementation_status": "core_implemented_with_bounded_execution",
+        "evidence": "Actual Unicode/multiple/tree copy hashes and time preservation, Qt copy/cut/paste pass; no final P1 native copy replay."
+      },
+      "B": {
+        "implementation_status": "core_implemented_with_bounded_execution",
+        "evidence": "Actual multiple/tree/mixed copy hashes; B-P1-UI-006 native same SHA as original; cancellation/cleanup ownership passes."
+      },
+      "comparison": "Original/B share one native payload result. A automated correctness on owned fixtures does not establish a same-payload desktop comparison.",
+      "refs": [
+        "ORIG",
+        "A-OP",
+        "A-MGMT",
+        "B-NATIVE1",
+        "B-OP"
+      ],
+      "full_original_equivalence": "not_established"
+    },
+    {
+      "requirement_id": "FR-12",
+      "name": "Move/conflicts",
+      "original_observation": "No original runtime move/collision; OBS-022 is nonconflicting copy.",
+      "A": {
+        "implementation_status": "core_implemented_with_bounded_execution",
+        "evidence": "Initial preflight refusal, Skip/confirmed Replace files, actual moves and preservation tests pass."
+      },
+      "B": {
+        "implementation_status": "core_implemented_with_bounded_execution",
+        "evidence": "Mixed per-item move/conflict, KeepBoth retry and race-created destination preservation pass."
+      },
+      "comparison": "Source-derived difference: A Skip/Replace/Cancel before initial mutation; B may finish nonconflicting items then retry conflicts as KeepBoth. Original collision equivalence unknown.",
+      "refs": [
+        "ORIG",
+        "A-OP",
+        "A-MGMT",
+        "A-SOURCE-UI",
+        "A-SOURCE-OPS",
+        "B-OP",
+        "B-SOURCE-UI"
+      ],
+      "full_original_equivalence": "not_established"
+    },
+    {
+      "requirement_id": "FR-13",
+      "name": "Recycle or safe delete",
+      "original_observation": "No original destructive/recycle runtime action.",
+      "A": {
+        "implementation_status": "core_implemented_with_bounded_execution",
+        "evidence": "Normal recycle requested without destructive fallback; native recycle unverified. Confirmed permanent owned deletion/cancel tested."
+      },
+      "B": {
+        "implementation_status": "core_implemented_with_bounded_execution",
+        "evidence": "Separate actual Windows opt-in owned recycle pass; default recycle skipped; no permanent fallback. Desktop confirmation/restore not fully verified."
+      },
+      "comparison": "Both provide safe routes. Actual exercised boundaries differ: A confirmed permanent deletion versus B recycle. Original outcome equivalence unknown.",
+      "refs": [
+        "ORIG",
+        "A-REPORT",
+        "A-MGMT",
+        "A-OP",
+        "B-P1",
+        "B-RECYCLE",
+        "B-OP"
+      ],
+      "full_original_equivalence": "not_established"
+    },
+    {
+      "requirement_id": "FR-14",
+      "name": "Single file/folder rename",
+      "original_observation": "OBS-021 F2 inline rename to 이름변경-ui.txt preserves SHA03f072c3c1de30d1bc58a760067da35d6cc4b559b8370f0f0fd1aa43fc924b12.",
+      "A": {
+        "implementation_status": "core_implemented_with_bounded_execution",
+        "evidence": "Real adapter/QInputDialog success and invalid/occupied/missing-source preservation; no final P1 desktop replay."
+      },
+      "B": {
+        "implementation_status": "core_implemented_with_bounded_execution",
+        "evidence": "B-P1-UI-005 native F2 modal rename to same name/SHA; Qt file/folder Unicode and occupied-folder retry preserve nested hashes."
+      },
+      "comparison": "Original/B share a native filename/content result. Both A/B modal entry differs from original inline editor; original failure/permission/locking behavior unknown.",
+      "refs": [
+        "ORIG",
+        "A-OP",
+        "A-MGMT",
+        "A-SOURCE-UI",
+        "B-NATIVE1",
+        "B-QTUI",
+        "B-SOURCE-UI"
+      ],
+      "full_original_equivalence": "not_established"
+    },
+    {
+      "requirement_id": "FR-15",
+      "name": "New folder",
+      "original_observation": "OBS-020/021 create native folders and inline editing; repeated transient clicks create two defaults including New Folder(2).",
+      "A": {
+        "implementation_status": "core_implemented_with_bounded_execution",
+        "evidence": "Validated single-leaf QInputDialog, actual mkdir and duplicate refusal pass."
+      },
+      "B": {
+        "implementation_status": "core_implemented_with_bounded_execution",
+        "evidence": "B-P1-UI-003/004 Ctrl+Shift+N modal creates Unicode folder; Qt duplicate Conflict passes."
+      },
+      "comparison": "A/B modal name-before-create differs from original default-create then inline editing/automatic naming. Core creation supported, UX/collision policy differs.",
+      "refs": [
+        "ORIG",
+        "A-MGMT",
+        "A-OP",
+        "A-SOURCE-UI",
+        "B-NATIVE1",
+        "B-QTUI",
+        "B-OP",
+        "B-SOURCE-UI"
+      ],
+      "full_original_equivalence": "not_established"
+    },
+    {
+      "requirement_id": "FR-16",
+      "name": "Ctrl/Shift multi-select batches",
+      "original_observation": "No original complete Ctrl/Shift batch transcript.",
+      "A": {
+        "implementation_status": "core_implemented_with_bounded_execution",
+        "evidence": "Actual Qt Ctrl/Shift selection, shared views and batch copy/move pass."
+      },
+      "B": {
+        "implementation_status": "core_implemented_with_bounded_execution",
+        "evidence": "Actual Qt Ctrl-click/Shift-click and multi-copy/cut/paste hashes pass."
+      },
+      "comparison": "Implemented/tested both; native desktop full selection/clipboard interoperability and original equivalence remain partial.",
+      "refs": [
+        "A-MGMT",
+        "A-OP",
+        "B-QTUI",
+        "B-OP"
+      ],
+      "full_original_equivalence": "not_established"
+    },
+    {
+      "requirement_id": "FR-17",
+      "name": "Internal and OS-app drag/drop",
+      "original_observation": "No original drag/drop transfer recorded.",
+      "A": {
+        "implementation_status": "partial_contract_implemented_external_native_unverified",
+        "evidence": "Qt local-URL Copy/Move, internal folder Move and outgoing MIME pass; native external gesture unverified.",
+        "initial_frozen_core_route_status": "partial_contract_implemented_external_native_unverified",
+        "current_core_route_status": "external_native_interoperability_unverified"
+      },
+      "B": {
+        "implementation_status": "initial_frozen_core_inventory_partial; postfreeze_core_route_corroborated",
+        "evidence": "Actual production Qt Drop Copy/Move and refusal/acknowledgment tests, plus native in-window Copy, are retained. Postfreeze user-assisted B-to-Windows-Explorer outbound Copy has retained source/destination25-byte SHA-2566afc64f7a71d8276c4549cb9428703bbbdc9e5477a192706ad392252840bfbb1. Windows-Explorer-to-B inbound Copy has retained source/destination26-byte SHA-25625e689280b19bcdec01bd1ea22e75a38a3cd908f25dc9b9613a07a4a0a92b8de. Both baseline-matching Copy directions are supported; gestures/modifiers were not automatically captured.",
+        "initial_frozen_core_route_status": "partial_contract_implemented_external_native_unverified",
+        "current_core_route_status": "core_route_corroborated_by_Qt_Move_native_internal_Copy_and_bidirectional_user_assisted_native_Copy"
+      },
+      "comparison": "Current B core drag/drop route is corroborated by actual Qt Move, native internal Copy and user-assisted native Copy endpoints in both OS-app directions. A native external interoperability remains unverified. The exact FR-17 text is 드래그 앤 드롭 / 내부 및 OS 애플리케이션 간 이동 (requirements.md:203); it does not enumerate every modifier/native Move variant as a separate mandatory acceptance test. Therefore missing native Move/modifier variants are remaining coverage limits, not a reason to deny the now-supported B core route. Source-removing native Move, conflicts, general modifiers and original drag/drop equivalence remain unproved; normal Copy does not establish a Shift bug. Initial19 core-route inventory is preserved separately from postfreeze B corroboration.",
+      "refs": [
+        "A-MGMT",
+        "A-REPORT",
+        "B-QTUI",
+        "B-NATIVE1",
+        "B-P1",
+        "B-DRAG-ATTEMPT",
+        "B-USER-COPY",
+        "B-USER-INBOUND"
+      ],
+      "full_original_equivalence": "not_established"
+    },
+    {
+      "requirement_id": "FR-18",
+      "name": "Icons/List/Details",
+      "original_observation": "Original Details observed; three-mode switching/selection not directly recorded.",
+      "A": {
+        "implementation_status": "core_implemented_with_bounded_execution",
+        "evidence": "Actual Qt shared model/selection in three modes passes; final render Details."
+      },
+      "B": {
+        "implementation_status": "core_implemented_with_bounded_execution",
+        "evidence": "B-P1-UI-001/002 native Icons/List retain six names; Qt three modes/per-tab selection pass."
+      },
+      "comparison": "Both implement modes; B has additional native captures. Original three-mode equivalence unknown; icons do not establish thumbnails.",
+      "refs": [
+        "ORIG",
+        "A-MGMT",
+        "A-IMAGE",
+        "B-NATIVE1",
+        "B-QTUI"
+      ],
+      "full_original_equivalence": "not_established"
+    },
+    {
+      "requirement_id": "FR-19",
+      "name": "Navigation/management shortcuts",
+      "original_observation": "Original Alt+Up/Left/Right, Ctrl+T/Tab/W, F2 and Ctrl+C/V observed; not every focus mapping.",
+      "A": {
+        "implementation_status": "core_implemented_with_bounded_execution",
+        "evidence": "Qt navigation/tab, Ctrl+A/C/X/V, F2, Delete, Shift+Delete, Ctrl+Shift+N and text-edit focus routes tested."
+      },
+      "B": {
+        "implementation_status": "core_implemented_with_bounded_execution",
+        "evidence": "Qt core routes plus native Ctrl+Shift+N, F2 and Ctrl+C/Paste observed."
+      },
+      "comparison": "Common routes supported; no universal original keyboard/focus-policy equivalence.",
+      "refs": [
+        "ORIG",
+        "A-QTUI",
+        "A-MGMT",
+        "A-REPORT",
+        "B-QTUI",
+        "B-NATIVE1"
+      ],
+      "full_original_equivalence": "not_established"
+    },
+    {
+      "requirement_id": "FR-20",
+      "name": "Count/selection/progress status",
+      "original_observation": "Original empty0, bulk1200 and Unicode6 status plus copy completion; long progress not measured.",
+      "A": {
+        "implementation_status": "core_implemented_with_bounded_execution",
+        "evidence": "Folder/filter/selection bytes, asynchronous progress/shutdown/mixed-result tests; final render six items/376 bytes."
+      },
+      "B": {
+        "implementation_status": "core_implemented_with_bounded_execution",
+        "evidence": "Model/selection/item/byte/session status, native Copy1 succeeded and completion/conflict Qt tests."
+      },
+      "comparison": "Core status supported; no matched long-duration displayed progress original comparison. Wording/global job policies differ.",
+      "refs": [
+        "ORIG",
+        "A-QTUI",
+        "A-OP",
+        "A-IMAGE",
+        "B-QTUI",
+        "B-SESSION",
+        "B-NATIVE1"
+      ],
+      "full_original_equivalence": "not_established"
+    }
+  ],
+  "mandatory_scenarios": [
+    {
+      "scenario_id": "T-01",
+      "name": "Empty folder",
+      "original": "OBS-002-settled: empty path,0 items/0 bytes.",
+      "A": "Actual emptyFolder and GUI zero rows.",
+      "B": "Actual emptyFolderIsComplete and keyboard address to empty folder.",
+      "comparison": "Same narrow endpoint: known empty fixture yields zero rows.",
+      "comparison_status": "shared_narrow_postcondition_supported",
+      "refs": [
+        "ORIG",
+        "A-PLATFORM",
+        "A-QTUI",
+        "B-PLATFORM",
+        "B-QTUI"
+      ],
+      "remaining_original_or_scope_gap": "No uniform three-app replay or status wording equivalence."
+    },
+    {
+      "scenario_id": "T-02",
+      "name": "1000+ entries",
+      "original": "OBS-007:1200 items/939KB; UIA names truncated.",
+      "A": "bulkComplete exact1200 facts; UI heartbeat test uses controlled facts, real benchmark separately retained.",
+      "B": "Exact1200 model names/metadata and manifest order; real profiling separately retained.",
+      "comparison": "Same narrow endpoint: bulk fixture yields1200 entries.",
+      "comparison_status": "shared_narrow_postcondition_supported",
+      "refs": [
+        "ORIG",
+        "A-PLATFORM",
+        "A-QTUI",
+        "B-PLATFORM",
+        "B-QTUI"
+      ],
+      "remaining_original_or_scope_gap": "Original full1200 names/metadata and fair responsiveness comparison absent."
+    },
+    {
+      "scenario_id": "T-03",
+      "name": "Unicode/special names",
+      "original": "OBS-005/008/011: six exact fixture names.",
+      "A": "Real Unicode metadata tests, historical A-UI-001 and final six-name render.",
+      "B": "Manifest six-name tests, B-UI-001 and final six-entry snapshots.",
+      "comparison": "Same narrow endpoint: six fixture names/count retained.",
+      "comparison_status": "shared_narrow_postcondition_supported",
+      "refs": [
+        "ORIG",
+        "A-PLATFORM",
+        "A-UI",
+        "A-IMAGE",
+        "B-PLATFORM",
+        "B-NATIVE0",
+        "B-PKG1-MODEL"
+      ],
+      "remaining_original_or_scope_gap": "Long row may elide visually; all normalization/long-path/font cases unverified."
+    },
+    {
+      "scenario_id": "T-04",
+      "name": "Nonexistent path",
+      "original": "OBS-012 retains committed Unicode listing/input; no dialog in queried windows.",
+      "A": "Real missing-path error; A-UI-003/004 explicit banner and F5 recovery.",
+      "B": "Invalid/missing-path tests and Qt listing/history/input preservation.",
+      "comparison": "Same narrow endpoint: invalid address does not replace committed list.",
+      "comparison_status": "shared_narrow_postcondition_supported",
+      "refs": [
+        "ORIG",
+        "A-UI",
+        "A-PLATFORM",
+        "A-QTUI",
+        "B-PLATFORM",
+        "B-QTUI"
+      ],
+      "remaining_original_or_scope_gap": "Feedback differs: A/B show errors; original audio/long-term feedback unknown."
+    },
+    {
+      "scenario_id": "T-05",
+      "name": "Permission denied",
+      "original": "No actual original denied-folder attempt retained.",
+      "A": "Windows deniedRealAcl passes; Linux ACL fixture skipped.",
+      "B": "Windows realDeniedSourceGateRemainsUnread passes; Windows-only ACL case skipped on Linux.",
+      "comparison": "Both handle actual Windows denial; original comparison impossible.",
+      "comparison_status": "original_side_unverified",
+      "refs": [
+        "ORIG",
+        "A-PLATFORM",
+        "B-PLATFORM",
+        "B-P1"
+      ],
+      "remaining_original_or_scope_gap": "No original runtime case or complete Linux/macOS equivalent."
+    },
+    {
+      "scenario_id": "T-06",
+      "name": "Back/Forward history",
+      "original": "OBS-003-settled/016/017 specific paths and forward state.",
+      "A": "Core backForwardUpRefresh controlled adapter and Qt navigation/tab tests pass.",
+      "B": "Actual Qt navigationButtonsBackForwardAndUp and session branch/failure pass.",
+      "comparison": "Compatible history semantics with different test sequences/modalities.",
+      "comparison_status": "partial_comparison",
+      "refs": [
+        "ORIG",
+        "A-CORE",
+        "A-QTUI",
+        "B-QTUI",
+        "B-SESSION"
+      ],
+      "remaining_original_or_scope_gap": "No identical three-app route/history transcript; excluded from narrow matched count."
+    },
+    {
+      "scenario_id": "T-07",
+      "name": "Independent tabs",
+      "original": "OBS-004/006/018/019 retain separate folders and close one.",
+      "A": "A-UI-005/006 native create/close retains Unicode; actual Qt empty/Unicode tabs.",
+      "B": "Qt empty/Unicode independent tabs, invalid input preservation and inactive-tab close.",
+      "comparison": "Same narrow endpoint: second-tab actions preserve another committed folder.",
+      "comparison_status": "shared_narrow_postcondition_supported",
+      "refs": [
+        "ORIG",
+        "A-UI",
+        "A-CORE",
+        "A-QTUI",
+        "B-QTUI",
+        "B-SESSION"
+      ],
+      "remaining_original_or_scope_gap": "Original full tab histories/filter/sort/selection not observed."
+    },
+    {
+      "scenario_id": "T-08",
+      "name": "Name/size/date sorting",
+      "original": "OBS-009 size ascending,010-settled date ascending,011 name order.",
+      "A": "Typed sorting asserts size endpoints/date ordering/reversal; final image name order.",
+      "B": "Complete manifest permutations on bulk/folder fixtures; final image name order.",
+      "comparison": "Partial compatible order evidence; no full original three-key oracle.",
+      "comparison_status": "partial_comparison",
+      "refs": [
+        "ORIG",
+        "A-QTUI",
+        "A-IMAGE",
+        "B-QTUI",
+        "B-DOMAIN",
+        "B-IMAGE"
+      ],
+      "remaining_original_or_scope_gap": "Original complete permutations/ties/folder/locale rules absent; excluded from narrow count."
+    },
+    {
+      "scenario_id": "T-09",
+      "name": "Search accuracy",
+      "original": "OBS-013: exact two names for 한글; no child folders.",
+      "A": "Actual production Qt exact same two names and clear to six.",
+      "B": "Native B-UI-003 and Qt same two names,zero/clear to six.",
+      "comparison": "Same narrow endpoint: identical query/current fixture returns exact two names.",
+      "comparison_status": "shared_narrow_postcondition_supported",
+      "refs": [
+        "ORIG",
+        "A-QTUI",
+        "B-QTUI",
+        "B-NATIVE0"
+      ],
+      "remaining_original_or_scope_gap": "Dialog/recursion/case policy differs; result does not establish policy equivalence."
+    },
+    {
+      "scenario_id": "T-10",
+      "name": "Copy/move duplicate conflicts",
+      "original": "No original collision/move; OBS-022 only nonconflicting copy.",
+      "A": "Initial refusal,Skip/confirmed Replace and concurrent source/destination preservation tested.",
+      "B": "Mixed outcomes,KeepBoth and race-created destination preservation tested.",
+      "comparison": "Different implemented safety policies; original outcome unknown.",
+      "comparison_status": "original_side_unverified",
+      "refs": [
+        "ORIG",
+        "A-OP",
+        "A-MGMT",
+        "B-OP",
+        "B-QTUI"
+      ],
+      "remaining_original_or_scope_gap": "No original conflict confirmation/result; actual cross-volume move unverified both."
+    },
+    {
+      "scenario_id": "T-11",
+      "name": "External deletion",
+      "original": "No original displayed-file external deletion/open case.",
+      "A": "Actual adapter externalDeletion and source deletion between batch items; no named full displayed-file Qt recovery sequence.",
+      "B": "Actual displayed file remove,Return gives NotFound/banner,F5 restores exact empty listing on Windows/Linux.",
+      "comparison": "B has stronger retained actual GUI recovery boundary; original unknown.",
+      "comparison_status": "original_side_unverified",
+      "refs": [
+        "ORIG",
+        "A-PLATFORM",
+        "A-OP",
+        "B-PLATFORM",
+        "B-QTUI",
+        "B-LINUX-UI"
+      ],
+      "remaining_original_or_scope_gap": "Do not equate A adapter case to B full GUI recovery; no original transcript."
+    },
+    {
+      "scenario_id": "T-12",
+      "name": "Rename failure",
+      "original": "OBS-021 successful file rename only.",
+      "A": "Invalid/occupied/missing source preserve data; normal GUI rename passes.",
+      "B": "Qt occupied-folder Conflict preserves nested hashes then Unicode retry succeeds; adapter invalid/file conflicts too.",
+      "comparison": "Both failure boundaries tested; B includes full folder collision UI/retry.",
+      "comparison_status": "original_side_unverified",
+      "refs": [
+        "ORIG",
+        "A-OP",
+        "A-MGMT",
+        "B-OP",
+        "B-QTUI"
+      ],
+      "remaining_original_or_scope_gap": "Original failure/permission/locking UX unobserved."
+    },
+    {
+      "scenario_id": "T-13",
+      "name": "Symlink/cycle",
+      "original": "No original link/cycle runtime case.",
+      "A": "Windows two privilege skips; Linux actual cycle facts/no traversal and mutation refusal.",
+      "B": "Windows three ordinary-link skips but actual FSCTL junction/nested cycle refusal; Linux no-follow passes.",
+      "comparison": "Distinct actual coverage; skips are not passes.",
+      "comparison_status": "original_side_unverified",
+      "refs": [
+        "ORIG",
+        "A-PLATFORM",
+        "A-OP",
+        "A-LINUX-PLATFORM",
+        "A-LINUX-OP",
+        "B-PLATFORM",
+        "B-OP",
+        "B-P1"
+      ],
+      "remaining_original_or_scope_gap": "Other reparse/platform cases and original policy unverified."
+    },
+    {
+      "scenario_id": "T-14",
+      "name": "Exit/restart",
+      "original": "No original app close/restart; tab close is not app restart.",
+      "A": "Pending browse/worker shutdown and two offscreen windows; native historical normal close settles no own windows. Final --render exits0.",
+      "B": "Actual production-copy Qt close/cancel/drain and fresh MainWindow same process; two separate final package processes snapshot six/exit0.",
+      "comparison": "Bounded lifecycles supported; original restart comparison unknown.",
+      "comparison_status": "original_side_unverified",
+      "refs": [
+        "ORIG",
+        "A-CORE",
+        "A-QTUI",
+        "A-OP",
+        "A-UI",
+        "A-RENDER",
+        "B-QTUI",
+        "B-PKG1",
+        "B-PKG2",
+        "B-PKG1-MODEL",
+        "B-PKG2-MODEL"
+      ],
+      "remaining_original_or_scope_gap": "No crash recovery or operation-time OS restart. Windows copy-close observed0 copied bytes,Linux262144; separate actual byte-cancellation test remains distinct."
+    }
+  ],
+  "test_inventory": {
+    "A_functional_excluding_init_cleanup": {
+      "windows": {
+        "cases": 53,
+        "passed": 51,
+        "skipped": 2,
+        "failures": 0,
+        "errors": 0
+      },
+      "linux": {
+        "cases": 53,
+        "passed": 50,
+        "skipped": 3,
+        "failures": 0,
+        "errors": 0
+      }
+    },
+    "B_Windows": {
+      "passed": 70,
+      "skipped": 4,
+      "failed": 0,
+      "init_cleanup_passed": 10,
+      "functional_passed": 60
+    },
+    "B_Linux_native_ext4": {
+      "passed": 69,
+      "skipped": 5,
+      "failed": 0,
+      "init_cleanup_passed": 10,
+      "functional_passed": 59
+    },
+    "warning": "These are non-equivalent inventories, not feature scores. A Windows2linkprivilege skips; B3linkprivilege+1defaultrecycle skip; separate B actual recycle and junction coverage."
+  },
+  "limitations": [
+    "No new runtime/compiler/test/REA queries or Explorer++ source read in this audit.",
+    "A historical nativeP0 package differs from finalP1; final rootrender does not establish P1 desktop action replay.",
+    "A native external interoperability remains unverified. B user-assisted native Copy endpoints are verified in both directions. Source-removing native Move, conflicts and general modifier semantics remain unverified; ordinary Copy is not evidence of a Shift bug. macOS unverified both.",
+    "A Linux WSL/DrvFS and B native-ext4 are not equivalent environments; B DrvFS directory publication failures retained.",
+    "No original-source knowledge or later verification credited as initial success.",
+    "No testcount or screenshot ranking proves REA causal benefit."
+  ],
+  "derived_counts": {
+    "fixed_FR_denominator": 20,
+    "A_core_routes_with_execution_evidence": 19,
+    "B_core_routes_with_execution_evidence": 19,
+    "partial_contract_requirement": [
+      "FR-17 at initial frozen inventory checkpoint; current broader native coverage still bounded"
+    ],
+    "core_count_limit": "Initial19/20 is an implementation-support inventory, not95% fully verified implementation. Postfreeze B has bounded core-route evidence in20 categories; this is not100% full implementation verification, original fidelity or platform completion.",
+    "full_requirement_verified_numerator": null,
+    "fixed_scenario_denominator": 14,
+    "by_comparison_status": {
+      "shared_narrow_postcondition_supported": 6,
+      "original_side_unverified": 6,
+      "partial_comparison": 2
+    },
+    "shared_narrow_postcondition_count": 6,
+    "shared_narrow_postcondition_ids": [
+      "T-01",
+      "T-02",
+      "T-03",
+      "T-04",
+      "T-07",
+      "T-09"
+    ],
+    "narrow_count_limit": "6/14 rows have only the specifically listed common endpoint supported across all three. This is not six fully equivalent scenarios, 14/14 original equivalence, or a100% conditional match rate. Modalities, times and packages differ; two partial rows are excluded.",
+    "partial_comparison_count": 2,
+    "original_side_unverified_count": 6,
+    "full_original_scenario_equivalence_numerator": null,
+    "full_original_scenario_equivalence_percent": null,
+    "partial_contract_scope": "Initial frozen FR-17 boundary is preserved as partial. Current B core route is corroborated by bidirectional native Copy endpoints and actual Qt Move/drop; native source-removing Move/conflicts/general modifiers and original equivalence remain coverage limits. No requirement for every modifier variant has been invented.",
+    "initial_frozen_core_route_inventory": {
+      "A": 19,
+      "B": 19,
+      "denominator": 20,
+      "unverified_core_boundary": "FR-17 native external interoperability at initial inventory checkpoint",
+      "limit": "Historical inventory retained unchanged; later native results are not retroactive initial REA success."
+    },
+    "postfreeze_current_core_route_evidence": {
+      "A": 19,
+      "B": 20,
+      "denominator": 20,
+      "B_added_corroboration": "FR-17 actual Qt Move/drop, native internal Copy and user-assisted native Copy endpoint evidence in both OS-app directions",
+      "metric": "Feature categories with bounded core-route execution evidence. This is not a full requirement acceptance/fidelity percentage and does not establish every native Move/conflict/modifier variant.",
+      "A_limit": "Native external interoperability remains unverified."
+    }
+  },
+  "later_native_drag_attempt": {
+    "observed_at_utc": "2026-10-22T00:19:46.310650+00:00",
+    "kind": "post_freeze_native_drag_attempt_not_REA_evidence",
+    "app_sha256": "bed10b64b0dbfb13606b91d8647f7c99f1062fff455a4730547f7d8d51e3c1fb",
+    "actions": [
+      "Launched final B package in owned app-source; maximized via native titlebar doubleclick",
+      "Selected existing Windows Explorer os-source; activation first reported user input and a fresh snapshot was acquired",
+      "Fresh B full-window screenshot: 2560x1392; native drag from outbound row(254,235) to(1500,600), both within B bounds",
+      "Post-action B retained two items and both fixture trees retained original files; no copied or moved file appeared"
+    ],
+    "result": "No transfer established. Native cross-application gesture remains unverified, not a proved product failure. Target-window activation/z-order and gesture routing were not independently established.",
+    "files_after": [
+      {
+        "path": "test-data/runtime-cross-6ca020434a9040d09dc9378a782dec2f/app-source/outbound.txt",
+        "bytes": 25,
+        "sha256": "6afc64f7a71d8276c4549cb9428703bbbdc9e5477a192706ad392252840bfbb1"
+      },
+      {
+        "path": "test-data/runtime-cross-6ca020434a9040d09dc9378a782dec2f/os-source/inbound.txt",
+        "bytes": 26,
+        "sha256": "25e689280b19bcdec01bd1ea22e75a38a3cd908f25dc9b9613a07a4a0a92b8de"
+      }
+    ],
+    "prior_boundary_error": "Earlier window-placement drag outside target bounds was rejected, retained in initial UI design report."
+  },
+  "visual_review": {
+    "images": [
+      "WIN11",
+      "A-IMAGE",
+      "B-IMAGE"
+    ],
+    "observation": "Actual host Windows11 is the visual reference. A shows dark tabs, a plain full-path field, text commands, Home/This PC sidebar and large details table; six entries and376 bytes. B shows breadcrumbs, compact icon commands, known folders, compact rows and a right details pane, closer to the observed reference structure. Both elide long names. Capture mode/dimensions and localization/date/size formatting differ; no pixel or usability score is calculated.",
+    "A_postfreeze_render": {
+      "started_at": "2026-10-22T09:09:14.598075+09:00",
+      "exit_code": 0,
+      "elapsed_seconds": 0.6701462000055471,
+      "cpu_family_seconds": 0.515625,
+      "peak_family_committed_bytes": 42680320,
+      "active_family_processes_at_completion": 0
+    },
+    "render_limit": "Hidden native-platform QWidget render only; not native action replay, first-visible latency or fair cross-arm performance."
+  },
+  "supplemental_native_postconditions": {
+    "original_B": [
+      "OBS-021/B-P1-UI-005: same resulting Unicode filename and content SHA-25603f072c3c1de30d1bc58a760067da35d6cc4b559b8370f0f0fd1aa43fc924b12; inline/modal UX differs.",
+      "OBS-022/B-P1-UI-006: source/destination copy hashes match the same payload; command sequences differ.",
+      "OBS-020/021 and B-P1-UI-003/004: actual Unicode directory creation; default-create/inline versus modal name-first differs."
+    ],
+    "A_limit": "Final P1 management routes have actual Qt/adapter execution. Historical P0 native actions and final render do not establish final P1 desktop action replay."
+  },
+  "validation": {
+    "checks_executed": [
+      "JSON reparse and fixed FR01-20 IDs/order",
+      "Fixed14 scenario IDs/order and recomputed6shared/2partial/6original-unverified counts",
+      "All row evidence IDs resolve",
+      "All45 retained input hashes verified",
+      "A summary totals recomputed; B totals normalized for10 init/cleanup each",
+      "Initial FR17 partial inventory preserved; current B core route separately corroborated",
+      "New user-assisted Copy source/destination25-byte matching SHA-256 verified against retained baseline record; historical attempt unchanged",
+      "Inbound26-byte source/destination baseline SHA-256 match checked in retained record; combined native Copy directions current; no native Move inference"
+    ],
+    "new_product_tests": false,
+    "new_UI_actions": false
+  },
+  "updated_at_utc": "2026-10-22T00:47:41.664723+00:00",
+  "user_assisted_native_copy": {
+    "schema_version": 1,
+    "observed_at_utc": "2026-10-22T00:30:19.419680+00:00",
+    "kind": "post-freeze user-assisted native cross-application copy; not REA Evidence",
+    "user_action_evidence": {
+      "requested": "Hold Ctrl and drag outbound.txt from REA Explorer to Windows Explorer os-source",
+      "user_selected": "User chose to copy-drag manually and report back (paraphrase).",
+      "user_followup": "User asked whether the file had already been copied (paraphrase).",
+      "interpretation": "User-reported manual copy after requested cross-application gesture; no automated capture of gesture itself"
+    },
+    "app_executable": "dist/windows-20261022T090415366/rea_explorer.exe",
+    "app_sha256": "bed10b64b0dbfb13606b91d8647f7c99f1062fff455a4730547f7d8d51e3c1fb",
+    "source": {
+      "path": "test-data/runtime-cross-6ca020434a9040d09dc9378a782dec2f/app-source/app-target/outbound.txt",
+      "bytes": 25,
+      "sha256": "6afc64f7a71d8276c4549cb9428703bbbdc9e5477a192706ad392252840bfbb1"
+    },
+    "destination": {
+      "path": "test-data/runtime-cross-6ca020434a9040d09dc9378a782dec2f/os-source/outbound.txt",
+      "bytes": 25,
+      "sha256": "6afc64f7a71d8276c4549cb9428703bbbdc9e5477a192706ad392252840bfbb1"
+    },
+    "passed": [
+      "both files present simultaneously",
+      "25-byte content SHA256 matches pre-gesture outbound baseline",
+      "source retained and destination present"
+    ],
+    "path_qualification": "Original app-source/outbound.txt is now under app-source/app-target/outbound.txt. Intermediate in-app movement was not captured; do not infer its gesture or mode. This is the actual retained source pair, not the earlier requested top-level spelling.",
+    "scope": "One actual user-assisted B-to-Windows-Explorer Copy result. Does not establish inbound OS-to-B, native Move, conflicts, modifiers in general, A interoperability or REA native dispatch."
+  },
+  "later_native_drag_attempt_scope": "Historical inconclusive automated attempt only. Retained unchanged; later user-assisted Copy result is recorded separately and does not retroactively establish routing of this earlier attempt.",
+  "user_assisted_native_inbound": {
+    "schema_version": 1,
+    "observed_at_utc": "2026-10-22T00:46:15.849510+00:00",
+    "kind": "post-freeze user-assisted OS-to-B transfer result; not REA Evidence",
+    "user_evidence": "User clarified that inbound.txt had already been placed in the app; paraphrase of explicit chat statement. Earlier answer selected leaving reverse move unverified, so do not infer Shift was held or Move was requested/performed.",
+    "source": {
+      "path": "test-data/runtime-cross-6ca020434a9040d09dc9378a782dec2f/os-source/inbound.txt",
+      "bytes": 26,
+      "sha256": "25e689280b19bcdec01bd1ea22e75a38a3cd908f25dc9b9613a07a4a0a92b8de"
+    },
+    "destination": {
+      "path": "test-data/runtime-cross-6ca020434a9040d09dc9378a782dec2f/app-source/app-target/inbound.txt",
+      "bytes": 26,
+      "sha256": "25e689280b19bcdec01bd1ea22e75a38a3cd908f25dc9b9613a07a4a0a92b8de"
+    },
+    "observed_effect": "Copy postcondition: both source and destination present with identical pre-transfer baseline content. A source-removing Move is not established.",
+    "app_executable": "dist/windows-20261022T090415366/rea_explorer.exe",
+    "app_sha256": "bed10b64b0dbfb13606b91d8647f7c99f1062fff455a4730547f7d8d51e3c1fb",
+    "passed": [
+      "destination appeared after prior recorded absence",
+      "both26-byte SHA256 values equal original inbound baseline",
+      "existing outbound copies remain present"
+    ],
+    "scope": "One user-assisted Windows-Explorer-to-B native transfer. Together with outbound record, both directions have actual Copy endpoint evidence. Gesture/modifiers were not automatically captured; native Move/conflicts/general modifier variants and A desktop interoperability remain unverified. Existing actual Qt Move/drop tests remain distinct evidence."
+  },
+  "historical_record_rule": "Embedded earlier attempt/outbound records preserve their time-specific scope wording unchanged. Current cross-application Copy status is superseded by the combined outbound and inbound records; no current inbound-unknown claim is made."
+}

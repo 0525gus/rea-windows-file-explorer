@@ -1,0 +1,359 @@
+{
+  "schema_version": 1,
+  "prepared_at_utc": "2026-10-22T00:13:01.001017+00:00",
+  "scope": "Phase6 validation-only A shown-GUI benchmark; neither frozen implementation modified",
+  "benchmark_executed": false,
+  "freeze": {
+    "verified_at_utc": "2026-10-22T00:06:24.527787+00:00",
+    "git_commit": "64032d766cf634fe00b45aa0d8c951878e0ef5c3",
+    "B_manifest_sha256": "a93289e08db7e7338110480063716bd2be434ffd1e76585e0bc36a2b996cf729",
+    "B_files_verified_snapshot_and_current": 354,
+    "A_manifest_sha256": "ab8476db3882c29ef1468559397a1a5ce1153fcf72e822b8e8493636a4792974",
+    "A_snapshot_files_verified": 124,
+    "original_source_read": false,
+    "source_gate_unlock_permitted_by_verified_freeze": true
+  },
+  "freeze_record": {
+    "path": "C:\\dev\\Windows_fileexplore\\verification\\phase6-freeze-verification.json",
+    "bytes": 488,
+    "sha256": "b71d70a0820290afac0bcac0d91096a49623d89a538309e0afd6c945a1a71328"
+  },
+  "A_initial_manifest": {
+    "path": "C:\\dev\\Windows_fileexplore\\experiments\\A\\docs\\evaluation\\initial-freeze-manifest.json",
+    "bytes": 22252,
+    "sha256": "ab8476db3882c29ef1468559397a1a5ce1153fcf72e822b8e8493636a4792974"
+  },
+  "B_initial_manifest": {
+    "path": "C:\\dev\\Windows_fileexplore\\docs\\evaluation\\initial-freeze-manifest.json",
+    "bytes": 71090,
+    "sha256": "a93289e08db7e7338110480063716bd2be434ffd1e76585e0bc36a2b996cf729"
+  },
+  "A_existing_imported_libraries": [
+    {
+      "path": "C:\\dev\\Windows_fileexplore\\experiments\\A\\build-windows\\explorer_core.lib",
+      "bytes": 3818648,
+      "sha256": "b557d6802cd79c061ec3ae4f763c8e79751ac27fc17c17805a18c700903ace5c"
+    },
+    {
+      "path": "C:\\dev\\Windows_fileexplore\\experiments\\A\\build-windows\\explorer_ui.lib",
+      "bytes": 2256508,
+      "sha256": "83fa500d3891b8da4c2eba4464ae4032d9f7246ba657f9a9ed9fa2a21045375e"
+    }
+  ],
+  "A_source_identity_reference": [
+    {
+      "relative_path": "CMakeLists.txt",
+      "sha256": "f4b976355bca6f229b4e13ef11c4bae65e157def566f657206b505f54fdfb21b",
+      "bytes": 2316,
+      "live_equals_frozen": true
+    },
+    {
+      "relative_path": "include/explorer/browser_controller.h",
+      "sha256": "18bcfd750a6aa975840ca75c23884d4ac8d39fb06805c8821794ab287283ec01",
+      "bytes": 2268,
+      "live_equals_frozen": true
+    },
+    {
+      "relative_path": "include/explorer/file_model.h",
+      "sha256": "0496ca2023abea4cc6441551aaf16d1029a9756ca9e7d42174aff01cc9ec8135",
+      "bytes": 1612,
+      "live_equals_frozen": true
+    },
+    {
+      "relative_path": "include/explorer/file_views.h",
+      "sha256": "30f24152e66934c4ce5f5eeeaf367d872c108715a05ad4b1fe3ddf6b9940d653",
+      "bytes": 892,
+      "live_equals_frozen": true
+    },
+    {
+      "relative_path": "include/explorer/main_window.h",
+      "sha256": "bc95d6258d91ca8e53075ad97ec050431c224fd33c16fb031cd97d7c049b48f7",
+      "bytes": 2651,
+      "live_equals_frozen": true
+    },
+    {
+      "relative_path": "include/explorer/navigation.h",
+      "sha256": "cc77c3ae3d44f8d8a37cd6dbe2e50515e4cf8aa246c30219412597f14d6f859d",
+      "bytes": 629,
+      "live_equals_frozen": true
+    },
+    {
+      "relative_path": "include/explorer/operation_manager.h",
+      "sha256": "d3327017cfcfe800ad507e9b76b43fb27ed044f15093787989dc23f616eb608b",
+      "bytes": 1089,
+      "live_equals_frozen": true
+    },
+    {
+      "relative_path": "include/explorer/operations.h",
+      "sha256": "b02eb97a5cef3fc13fe8a07388fec4bc84664c5c6aa4f155d0069eda91773de3",
+      "bytes": 1453,
+      "live_equals_frozen": true
+    },
+    {
+      "relative_path": "include/explorer/platform.h",
+      "sha256": "7e414d759acfe0b0c44898d42c8ba0b110a7662283a31b8dd8208a98990e9fc0",
+      "bytes": 987,
+      "live_equals_frozen": true
+    },
+    {
+      "relative_path": "include/explorer/types.h",
+      "sha256": "32169e64e7ea65c7559a110e1daf14a9415254b7002503944b2e19559b00dcb0",
+      "bytes": 2089,
+      "live_equals_frozen": true
+    },
+    {
+      "relative_path": "src/application/browser_controller.cpp",
+      "sha256": "b57b6bb75b19f2072eaba89d1dc1f4e99614ea1c4d47739aec948fa94297d6b7",
+      "bytes": 7436,
+      "live_equals_frozen": true
+    },
+    {
+      "relative_path": "src/application/operation_manager.cpp",
+      "sha256": "af090988c8908c158463a62be7808bdc727524b3d09c73641e477d2fb1b5dd37",
+      "bytes": 2461,
+      "live_equals_frozen": true
+    },
+    {
+      "relative_path": "src/core/navigation.cpp",
+      "sha256": "f4eb675566f16188deebd7e917d4881270f28b2b470503c265aad726878ee448",
+      "bytes": 886,
+      "live_equals_frozen": true
+    },
+    {
+      "relative_path": "src/main.cpp",
+      "sha256": "425a47d53ecb692795ec984305ffa72d2c6645b3a48d2e4d316a93a78045aa1e",
+      "bytes": 2227,
+      "live_equals_frozen": true
+    },
+    {
+      "relative_path": "src/platform/file_operations.cpp",
+      "sha256": "51704b344d86e2bee61b08acba482d2666501de31c7f15108d2b0d2d7b433fd7",
+      "bytes": 27958,
+      "live_equals_frozen": true
+    },
+    {
+      "relative_path": "src/platform/filesystem_detail.h",
+      "sha256": "b55c04ea48d54d7b0c18e3cf6ddc89d1fdb4fae0244ffa58e746fa89d8524f45",
+      "bytes": 1649,
+      "live_equals_frozen": true
+    },
+    {
+      "relative_path": "src/platform/filesystem_platform.cpp",
+      "sha256": "aed0bfee95785553f11e60a4fd8f9dde6a979bdc79adf6a701c6e85d6e050680",
+      "bytes": 5299,
+      "live_equals_frozen": true
+    },
+    {
+      "relative_path": "src/ui/file_model.cpp",
+      "sha256": "c0a446a263131ecb7793fa6ec04558d9b4014e041463949ed0c7a994251d8f9f",
+      "bytes": 4596,
+      "live_equals_frozen": true
+    },
+    {
+      "relative_path": "src/ui/file_views.cpp",
+      "sha256": "2635eda5e18a3e95cabc0af125cbe60d3f3a6d434b69009f5ad42efc1ddd865d",
+      "bytes": 4614,
+      "live_equals_frozen": true
+    },
+    {
+      "relative_path": "src/ui/main_window.cpp",
+      "sha256": "59c3d73b35d915fdceb115795a6aa9a165d7c4a87a9bec5c036fd6caeaa30b35",
+      "bytes": 36994,
+      "live_equals_frozen": true
+    }
+  ],
+  "A_headers_used": "experiments/A/artifacts/initial-freeze/include",
+  "harness_files": [
+    {
+      "path": "C:\\dev\\Windows_fileexplore\\verification\\benchmarks\\CMakeLists.txt",
+      "bytes": 2224,
+      "sha256": "66d971cfadf9005b92c94070f73c2eb010303c44e99e4284c68406a69619118c"
+    },
+    {
+      "path": "C:\\dev\\Windows_fileexplore\\verification\\benchmarks\\a_gui_benchmark.cpp",
+      "bytes": 7363,
+      "sha256": "8c158c53e6aad4437cd35efcb26b9af4add81dc3cdb047dfdd3535f18be21ecd"
+    },
+    {
+      "path": "C:\\dev\\Windows_fileexplore\\verification\\benchmarks\\write_manifest.py",
+      "bytes": 5193,
+      "sha256": "6d808ca26907a35c19c1807b4be8f1afe340da44c5e253e3a1adfba1604502ed"
+    },
+    {
+      "path": "C:\\dev\\Windows_fileexplore\\verification\\benchmarks\\README.md",
+      "bytes": 3669,
+      "sha256": "d9da7eb56e1df42bab74b7790fc5b077fa880d9b98ff36b6adf611f03ac7d559"
+    }
+  ],
+  "executable": {
+    "path": "C:\\dev\\Windows_fileexplore\\build-comparison\\comparison_a_gui.exe",
+    "bytes": 386560,
+    "sha256": "3df726c11308c950397028a967d9854ff5d9d1d52891706dc54881b834f186cc"
+  },
+  "runtime_dlls": [
+    {
+      "sdk": {
+        "path": "C:\\dev\\Windows_fileexplore\\tools\\qt\\6.8.3\\msvc2022_64\\bin\\Qt6Concurrent.dll",
+        "bytes": 35464,
+        "sha256": "1967edf825a01350740017d223593cc86ea82dbf48f8be41cbbc2226306a22f8"
+      },
+      "app_local": {
+        "path": "C:\\dev\\Windows_fileexplore\\build-comparison\\Qt6Concurrent.dll",
+        "bytes": 35464,
+        "sha256": "1967edf825a01350740017d223593cc86ea82dbf48f8be41cbbc2226306a22f8"
+      }
+    },
+    {
+      "sdk": {
+        "path": "C:\\dev\\Windows_fileexplore\\tools\\qt\\6.8.3\\msvc2022_64\\bin\\Qt6Widgets.dll",
+        "bytes": 6500488,
+        "sha256": "d34ef78b3d3b5506ee8279ce6efbfc263d773b74860af76e66b0715346897a3a"
+      },
+      "app_local": {
+        "path": "C:\\dev\\Windows_fileexplore\\build-comparison\\Qt6Widgets.dll",
+        "bytes": 6500488,
+        "sha256": "d34ef78b3d3b5506ee8279ce6efbfc263d773b74860af76e66b0715346897a3a"
+      }
+    },
+    {
+      "sdk": {
+        "path": "C:\\dev\\Windows_fileexplore\\tools\\qt\\6.8.3\\msvc2022_64\\bin\\Qt6Gui.dll",
+        "bytes": 9285768,
+        "sha256": "ca9f20d9b59d5bc321a87005b926b853ebcd6a2394823e14d3c8b5fc5702fa8c"
+      },
+      "app_local": {
+        "path": "C:\\dev\\Windows_fileexplore\\build-comparison\\Qt6Gui.dll",
+        "bytes": 9285768,
+        "sha256": "ca9f20d9b59d5bc321a87005b926b853ebcd6a2394823e14d3c8b5fc5702fa8c"
+      }
+    },
+    {
+      "sdk": {
+        "path": "C:\\dev\\Windows_fileexplore\\tools\\qt\\6.8.3\\msvc2022_64\\bin\\Qt6Core.dll",
+        "bytes": 6159496,
+        "sha256": "0cc62e841959fb8f6d366ea116c6f6bbc273e30f0ef90d8aa2e4adeb81fd63f8"
+      },
+      "app_local": {
+        "path": "C:\\dev\\Windows_fileexplore\\build-comparison\\Qt6Core.dll",
+        "bytes": 6159496,
+        "sha256": "0cc62e841959fb8f6d366ea116c6f6bbc273e30f0ef90d8aa2e4adeb81fd63f8"
+      }
+    }
+  ],
+  "configure_cache": {
+    "path": "C:\\dev\\Windows_fileexplore\\build-comparison\\CMakeCache.txt",
+    "bytes": 53537,
+    "sha256": "c591828c0b6f964aec69e94fbbc87611a71f1d1ff9f06514f44fb9454c8732fa"
+  },
+  "compile_commands": {
+    "path": "C:\\dev\\Windows_fileexplore\\build-comparison\\compile_commands.json",
+    "bytes": 1510,
+    "sha256": "dab8577f608ae17d85bb6def1e19c26bcde57a65ac46ac7d7b57bb226d1e14aa"
+  },
+  "actual_build_stages": {
+    "configure": {
+      "metrics": {
+        "path": "C:\\dev\\Windows_fileexplore\\build-comparison\\logs\\20261022T091150988\\configure.metrics.json",
+        "bytes": 1416,
+        "sha256": "74d9c81aa14a6b5768ec39c82eccae336c1c0a61e4b7618347454f699357a25a"
+      },
+      "actual": {
+        "argv": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+          "-S",
+          "C:\\dev\\Windows_fileexplore\\verification\\benchmarks",
+          "-B",
+          "C:\\dev\\Windows_fileexplore\\build-comparison",
+          "-G",
+          "Ninja",
+          "-DCMAKE_BUILD_TYPE=Release",
+          "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+          "-DCMAKE_PREFIX_PATH=C:\\dev\\Windows_fileexplore\\tools\\qt\\6.8.3\\msvc2022_64",
+          "-DCMAKE_MAKE_PROGRAM=C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\Ninja\\ninja.exe",
+          "-DCMAKE_INSTALL_PREFIX=C:\\dev\\Windows_fileexplore\\build-comparison\\install"
+        ],
+        "cwd": "C:\\dev\\Windows_fileexplore",
+        "started_at": "2026-10-22T09:11:51.124996+09:00",
+        "hidden": true,
+        "environment_persisted_by_runner": false,
+        "memory_definition": "Job Object PeakJobMemoryUsed: peak simultaneous committed memory for the assigned process and descendants; not resident working set.",
+        "pid": 24160,
+        "exit_code": 0,
+        "residual_owned_processes_terminated": 2,
+        "cpu_user_seconds": 1.4375,
+        "cpu_kernel_seconds": 1.890625,
+        "cpu_family_seconds": 3.328125,
+        "total_family_processes": 71,
+        "active_family_processes_at_completion": 0,
+        "peak_family_committed_bytes": 258052096,
+        "elapsed_seconds": 6.455611699995643
+      },
+      "stdout": {
+        "path": "C:\\dev\\Windows_fileexplore\\build-comparison\\logs\\20261022T091150988\\configure.stdout.log",
+        "bytes": 977,
+        "sha256": "7eea6141f8f5ac3ebc41a7c9942b40a7f8bcc5b177e24cc48ed31a200028dcb1"
+      },
+      "stderr": {
+        "path": "C:\\dev\\Windows_fileexplore\\build-comparison\\logs\\20261022T091150988\\configure.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "build": {
+      "metrics": {
+        "path": "C:\\dev\\Windows_fileexplore\\build-comparison\\logs\\20261022T091150988\\build.metrics.json",
+        "bytes": 970,
+        "sha256": "51627f8304a5ceb495c7508c86abd8158511b3cdd1264722c6268e74b0c781bb"
+      },
+      "actual": {
+        "argv": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+          "--build",
+          "C:\\dev\\Windows_fileexplore\\build-comparison",
+          "--config",
+          "Release",
+          "--parallel",
+          "2"
+        ],
+        "cwd": "C:\\dev\\Windows_fileexplore",
+        "started_at": "2026-10-22T09:11:57.734469+09:00",
+        "hidden": true,
+        "environment_persisted_by_runner": false,
+        "memory_definition": "Job Object PeakJobMemoryUsed: peak simultaneous committed memory for the assigned process and descendants; not resident working set.",
+        "pid": 16620,
+        "exit_code": 0,
+        "residual_owned_processes_terminated": 1,
+        "cpu_user_seconds": 4.328125,
+        "cpu_kernel_seconds": 1.21875,
+        "cpu_family_seconds": 5.546875,
+        "total_family_processes": 12,
+        "active_family_processes_at_completion": 0,
+        "peak_family_committed_bytes": 354193408,
+        "elapsed_seconds": 6.935579700002563
+      },
+      "stdout": {
+        "path": "C:\\dev\\Windows_fileexplore\\build-comparison\\logs\\20261022T091150988\\build.stdout.log",
+        "bytes": 134,
+        "sha256": "937bac828f12cf6a94eaade6da040dfadc1fa08da906d93936d9f8f2750b03da"
+      },
+      "stderr": {
+        "path": "C:\\dev\\Windows_fileexplore\\build-comparison\\logs\\20261022T091150988\\build.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  },
+  "B_measurement_semantics_reference": {
+    "path": "C:\\dev\\Windows_fileexplore\\artifacts\\initial-freeze-b\\src\\main.cpp",
+    "bytes": 6929,
+    "sha256": "b8014672dc693e15ddf1dc6d875c54062a7fcae3d7776abb8b5b2c3e27c3f869"
+  },
+  "fixture_manifest": {
+    "path": "C:\\dev\\Windows_fileexplore\\test-data\\fixture-v1\\manifest.json",
+    "bytes": 434620,
+    "sha256": "278d49240d795cabcd15be949cdc4f235722a0c8d92236854c503efc2dd14bc1"
+  },
+  "expected_names_sha256": "ff84bde034b35b40f6a7d8ef0e85c04966d069644ac12ea9db0408591d4fa8b0",
+  "readiness_limitation": "A has no public global controller-worker idle API; require correct current and listing location, not loading, not operation-busy and exact 1200 model/proxy names. No private state inspection.",
+  "identity_limitation": "Existing static libraries are pinned by digest and linked unchanged. No reproducible source-to-library correspondence proof is asserted beyond source snapshot equality and existing A CMake build metadata."
+}

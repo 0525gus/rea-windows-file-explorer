@@ -1,0 +1,179 @@
+{
+  "kind": "post-freeze copy of retained A raw validation; not new execution",
+  "files": [
+    {
+      "source": "experiments/A/build-windows/test-reports/core.txt",
+      "archive": "docs/evaluation/validation-logs/a-initial-final-20261022T082332/windows/core.txt",
+      "bytes": 782,
+      "sha256": "d3a36b753022d562a27c1d352406911bb979b447316e942a051b26768692ce23"
+    },
+    {
+      "source": "experiments/A/build-windows/test-reports/core.xml",
+      "archive": "docs/evaluation/validation-logs/a-initial-final-20261022T082332/windows/core.xml",
+      "bytes": 1357,
+      "sha256": "0a0e911409c11ab96ef85d03edc219356a21a6bdd6c5877897febe894ad62c6b"
+    },
+    {
+      "source": "experiments/A/build-windows/test-reports/management_ui.txt",
+      "archive": "docs/evaluation/validation-logs/a-initial-final-20261022T082332/windows/management_ui.txt",
+      "bytes": 3153,
+      "sha256": "5486eeb6f75d73dd9ef9a23eabcf287cd22dab15fddc7937432f5d3594feea98"
+    },
+    {
+      "source": "experiments/A/build-windows/test-reports/management_ui.xml",
+      "archive": "docs/evaluation/validation-logs/a-initial-final-20261022T082332/windows/management_ui.xml",
+      "bytes": 3092,
+      "sha256": "bb8dc93ff975123bb0002ee2a7b5dad1eaebbbbfe116723e06805bb6b2f9bf96"
+    },
+    {
+      "source": "experiments/A/build-windows/test-reports/operations.txt",
+      "archive": "docs/evaluation/validation-logs/a-initial-final-20261022T082332/windows/operations.txt",
+      "bytes": 1543,
+      "sha256": "426e646ec68c2eb427c694e3318eaa2a321d9cd90137824c6b111f27f354151c"
+    },
+    {
+      "source": "experiments/A/build-windows/test-reports/operations.xml",
+      "archive": "docs/evaluation/validation-logs/a-initial-final-20261022T082332/windows/operations.xml",
+      "bytes": 2367,
+      "sha256": "e4cb9cf95afd031d13f88d4b0b33dc612a801fce73149bcf0b79201fde7390a5"
+    },
+    {
+      "source": "experiments/A/build-windows/test-reports/platform.txt",
+      "archive": "docs/evaluation/validation-logs/a-initial-final-20261022T082332/windows/platform.txt",
+      "bytes": 941,
+      "sha256": "e54690440150a08d2d1d2f48921243dca136606dc0a8f7e57ab8089f489b81dd"
+    },
+    {
+      "source": "experiments/A/build-windows/test-reports/platform.xml",
+      "archive": "docs/evaluation/validation-logs/a-initial-final-20261022T082332/windows/platform.xml",
+      "bytes": 1463,
+      "sha256": "cac813836bb0a79278dfa0bbb83bf3151123a5f92c4bbc669f4798730259c7ba"
+    },
+    {
+      "source": "experiments/A/build-windows/test-reports/ui.txt",
+      "archive": "docs/evaluation/validation-logs/a-initial-final-20261022T082332/windows/ui.txt",
+      "bytes": 3258,
+      "sha256": "34108d2dbbbfa4998ad11dbc66bab426273f20bcaa1c1c1b7c682e7563fd0300"
+    },
+    {
+      "source": "experiments/A/build-windows/test-reports/ui.xml",
+      "archive": "docs/evaluation/validation-logs/a-initial-final-20261022T082332/windows/ui.xml",
+      "bytes": 3734,
+      "sha256": "9dd63c3dc6ae4c44d59890fb85e387a4fe2282db20b93fb9b2e0b1caaa65e102"
+    },
+    {
+      "source": "experiments/A/build-linux/test-reports/core.txt",
+      "archive": "docs/evaluation/validation-logs/a-initial-final-20261022T082332/linux/core.txt",
+      "bytes": 769,
+      "sha256": "5ec369a55d5899ce6fee5ff2a8e3690bbc3cf8a12cb71fcd687f681f2b1c1af9"
+    },
+    {
+      "source": "experiments/A/build-linux/test-reports/core.xml",
+      "archive": "docs/evaluation/validation-logs/a-initial-final-20261022T082332/linux/core.xml",
+      "bytes": 1338,
+      "sha256": "d7f83f1e26bd53d3b71213d0d9100a4310e34cdb60be19100ba1034a2f3a2386"
+    },
+    {
+      "source": "experiments/A/build-linux/test-reports/management_ui.txt",
+      "archive": "docs/evaluation/validation-logs/a-initial-final-20261022T082332/linux/management_ui.txt",
+      "bytes": 2832,
+      "sha256": "de4e155f4694db375794c7a6b173e239c7e2c5572983ca4aca78d7dc65b9f303"
+    },
+    {
+      "source": "experiments/A/build-linux/test-reports/management_ui.xml",
+      "archive": "docs/evaluation/validation-logs/a-initial-final-20261022T082332/linux/management_ui.xml",
+      "bytes": 2788,
+      "sha256": "54d7f2364701663a968e801a3c94f39647c25a8fc9647c38d5eef1ca7b37ae71"
+    },
+    {
+      "source": "experiments/A/build-linux/test-reports/operations.txt",
+      "archive": "docs/evaluation/validation-logs/a-initial-final-20261022T082332/linux/operations.txt",
+      "bytes": 1778,
+      "sha256": "795e08d2ab025f07ffff8f3234e3ab90018ebaf7664198bc3c1f3f34033a1512"
+    },
+    {
+      "source": "experiments/A/build-linux/test-reports/operations.xml",
+      "archive": "docs/evaluation/validation-logs/a-initial-final-20261022T082332/linux/operations.xml",
+      "bytes": 2558,
+      "sha256": "150ed96a78e107a506d51d5879206b54d040dcb711a7fa68bf4cb7b1bc7278cd"
+    },
+    {
+      "source": "experiments/A/build-linux/test-reports/platform.txt",
+      "archive": "docs/evaluation/validation-logs/a-initial-final-20261022T082332/linux/platform.txt",
+      "bytes": 938,
+      "sha256": "ad249ac7a49e2526b585e8b79faa6832beca196b436d43f13af40d3d4e2df9ae"
+    },
+    {
+      "source": "experiments/A/build-linux/test-reports/platform.xml",
+      "archive": "docs/evaluation/validation-logs/a-initial-final-20261022T082332/linux/platform.xml",
+      "bytes": 1465,
+      "sha256": "e486b5c8fa44b84ee7d63a7ce2cfef7b4c75650dde4caa7cb50df842e3824340"
+    },
+    {
+      "source": "experiments/A/build-linux/test-reports/ui.txt",
+      "archive": "docs/evaluation/validation-logs/a-initial-final-20261022T082332/linux/ui.txt",
+      "bytes": 2942,
+      "sha256": "b96b97d135ee8f186c8317165418693861357c4f7b5a559b75ee83c09c38097e"
+    },
+    {
+      "source": "experiments/A/build-linux/test-reports/ui.xml",
+      "archive": "docs/evaluation/validation-logs/a-initial-final-20261022T082332/linux/ui.xml",
+      "bytes": 3413,
+      "sha256": "55e814e820a8456b2dcbc3b39af80dfda63d14614e863e3942c6115ca8ea4b3a"
+    },
+    {
+      "source": "experiments/A/build-windows/logs/20261022T082332086/configure.metrics.json",
+      "archive": "docs/evaluation/validation-logs/a-initial-final-20261022T082332/windows-stages/configure.metrics.json",
+      "bytes": 1387,
+      "sha256": "3b71c6bf12d5147f48abee72a98c108ae3ad961e0e5dffba4ec6db170bf51a99"
+    },
+    {
+      "source": "experiments/A/build-windows/logs/20261022T082332086/configure.stdout.log",
+      "archive": "docs/evaluation/validation-logs/a-initial-final-20261022T082332/windows-stages/configure.stdout.log",
+      "bytes": 212,
+      "sha256": "910680307d568bcfc9b6d1d50a7b08541558d4bea084c9342a2f87dd1a62f0ca"
+    },
+    {
+      "source": "experiments/A/build-windows/logs/20261022T082332086/configure.stderr.log",
+      "archive": "docs/evaluation/validation-logs/a-initial-final-20261022T082332/windows-stages/configure.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "experiments/A/build-windows/logs/20261022T082332086/build.metrics.json",
+      "archive": "docs/evaluation/validation-logs/a-initial-final-20261022T082332/windows-stages/build.metrics.json",
+      "bytes": 985,
+      "sha256": "d624601d5938b639893aefa98a7ce3e148172e4cfe040e7f6f94bd5d07559994"
+    },
+    {
+      "source": "experiments/A/build-windows/logs/20261022T082332086/build.stdout.log",
+      "archive": "docs/evaluation/validation-logs/a-initial-final-20261022T082332/windows-stages/build.stdout.log",
+      "bytes": 851,
+      "sha256": "8164041c37027624757a6a123f5c407ebcfcdf036a06c36b5f291276a1178333"
+    },
+    {
+      "source": "experiments/A/build-windows/logs/20261022T082332086/build.stderr.log",
+      "archive": "docs/evaluation/validation-logs/a-initial-final-20261022T082332/windows-stages/build.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "experiments/A/build-windows/logs/20261022T082332086/test.metrics.json",
+      "archive": "docs/evaluation/validation-logs/a-initial-final-20261022T082332/windows-stages/test.metrics.json",
+      "bytes": 1006,
+      "sha256": "9ea23c2d0c576e87faec178b1fd85a0828e86c907f386e15f123721c6ce84d0d"
+    },
+    {
+      "source": "experiments/A/build-windows/logs/20261022T082332086/test.stdout.log",
+      "archive": "docs/evaluation/validation-logs/a-initial-final-20261022T082332/windows-stages/test.stdout.log",
+      "bytes": 601,
+      "sha256": "9e28b7b47b157f78295e327321bdc17066b6738898667f4d36363ea1a35b04da"
+    },
+    {
+      "source": "experiments/A/build-windows/logs/20261022T082332086/test.stderr.log",
+      "archive": "docs/evaluation/validation-logs/a-initial-final-20261022T082332/windows-stages/test.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

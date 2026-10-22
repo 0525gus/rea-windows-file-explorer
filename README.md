@@ -2,7 +2,9 @@
 
 C++20/Qt6 기반 Explorer++ 동작 재구현 실험이다. UI는 실제 Windows 11 탐색기 관찰을 참고한다. 원본 프로그램 코드나 UI 자산은 포함하지 않는다.
 
-현재 Phase 5 P1 구현·검증 중이다. Windows와 Linux native ext4의 P0/P1 회귀 suite가 실제 통과했으며, 파일시스템별 제한·성능·배포·최종 비교를 검증한다. 전체 요구사항 완료나 원본의 완전한 복원을 주장하지 않는다. [전체 명세](docs/requirements.md), [초기 결과](docs/evaluation/initial-report.md), [P1 검증](docs/evaluation/p1-validation.md), [요구 추적표](docs/evaluation/requirements-matrix.md)를 함께 확인한다.
+Phase 1–6 PoC 수행·평가를 완료하고 구현·독립 실험·사후 검증 산출물을 제공한다. **실제 OS 앱 간 양방향 Copy는 사용자 보조 검증됐으며 native Move 제스처와 정밀 원본 내부 latency는 미검증/미측정이고 전체 100% 완료는 선언하지 않는다.** [최종 평가](docs/evaluation/final-report.md), [완료 감사](docs/evaluation/phase6-completion-audit.md), [실행·시연 안내](docs/demo.md)를 확인한다. [전체 명세](docs/requirements.md), [초기 결과](docs/evaluation/initial-report.md), [P1 검증](docs/evaluation/p1-validation.md), [초기 요구 추적표](docs/evaluation/requirements-matrix.md)는 동결 시점 증거를 보존한다.
+
+바로 실행할 패키지는 `dist/windows-20261022T090415366/rea_explorer.exe`다. 같은 폴더의 DLL·plugins를 함께 유지한다. 개발용 Qt PATH 없이 독립 두 프로세스 실행을 확인했다. UI 디자인은 실제 Windows 11 탐색기를 기준으로 하며 Explorer++는 기능·동작 비교 대상이다.
 
 ## Windows 빌드와 실행
 
@@ -45,6 +47,6 @@ Windows 전용 실제 ACL 시험은 Linux에서 적용되지 않는다. macOS �
 - [UI 관찰](docs/observations/behavior-summary.md), [구현의 실제 데스크톱 기록](docs/observations/rea-p0-runtime.json)
 - [구조](docs/architecture/architecture.md), [공개 계약](docs/architecture/interfaces.md), [A/B 비교 조건과 한계](docs/evaluation/experiment-protocol.md)
 
-원본 소스는 Phase 6의 초기 구현·보고서 freeze 전까지 다운로드·열람하지 않는다. `verification/source`의 ACL은 그 게이트 전 복원하지 않는다. A/B는 별도 컨텍스트와 입력 지침으로 분리하며 같은 사용자 아래의 강제 권한 격리는 확보하지 못했다. 정확한 모델 배포 ID·토큰/API 과금도 접근할 수 없어 미측정으로 남긴다.
+원본 소스는 초기 구현·보고서 freeze commit `64032d766cf634fe00b45aa0d8c951878e0ef5c3` 및 A/B snapshot 재해시 후에만 Phase 6에서 획득·열람했다. [검증 기록](verification/phase6-freeze-verification.json)→[승인된 ACL 복원](verification/phase6-access.json)→[source 획득](verification/source-acquisition.json) 순서를 보존한다. 초기 분석·제품·snapshot에 사후 source 지식을 소급 반영하지 않았다. A/B는 별도 컨텍스트와 입력 지침으로 분리했으며 같은 사용자 아래의 강제 권한 격리는 확보하지 못했다. 정확한 모델 배포 ID·토큰/API 과금은 접근할 수 없어 미측정으로 남긴다.
 
 Qt는 동적 링크를 사용한다. 배포 전 [외부 구성요소·라이선스 기록](docs/evaluation/dependencies.md)을 확인한다. 원본 Explorer++ 실행파일·Qt SDK·빌드 산출물·검증용 원본 소스는 Git에 포함하지 않는다.

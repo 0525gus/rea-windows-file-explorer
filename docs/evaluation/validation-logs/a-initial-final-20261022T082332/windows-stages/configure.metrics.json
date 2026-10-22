@@ -1,0 +1,30 @@
+{
+  "argv": [
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe",
+    "-S",
+    "C:\\dev\\Windows_fileexplore\\experiments\\A",
+    "-B",
+    "C:\\dev\\Windows_fileexplore\\experiments\\A\\build-windows",
+    "-G",
+    "Ninja",
+    "-DCMAKE_BUILD_TYPE=Release",
+    "-DCMAKE_PREFIX_PATH=C:\\dev\\Windows_fileexplore\\tools\\qt\\6.8.3\\msvc2022_64",
+    "-DCMAKE_MAKE_PROGRAM=C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\Ninja\\ninja.exe",
+    "-DCMAKE_INSTALL_PREFIX=C:\\dev\\Windows_fileexplore\\experiments\\A\\build-windows\\install"
+  ],
+  "cwd": "C:\\dev\\Windows_fileexplore",
+  "started_at": "2026-10-22T08:23:32.275071+09:00",
+  "hidden": true,
+  "environment_persisted_by_runner": false,
+  "memory_definition": "Job Object PeakJobMemoryUsed: peak simultaneous committed memory for the assigned process and descendants; not resident working set.",
+  "pid": 16724,
+  "exit_code": 0,
+  "residual_owned_processes_terminated": 0,
+  "cpu_user_seconds": 0.265625,
+  "cpu_kernel_seconds": 0.625,
+  "cpu_family_seconds": 0.890625,
+  "total_family_processes": 6,
+  "active_family_processes_at_completion": 0,
+  "peak_family_committed_bytes": 16269312,
+  "elapsed_seconds": 1.3838568999999552
+}

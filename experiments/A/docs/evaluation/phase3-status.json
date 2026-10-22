@@ -1,0 +1,14 @@
+{
+  "experiment": "A-no-REA",
+  "phase": "3-design-only",
+  "designCompletedUtc": "2026-10-21T14:56:47.8504748Z",
+  "implementationAuthorized": false,
+  "reaCalls": 0,
+  "originalSourceAccess": false,
+  "otherArmAccess": false,
+  "model": "inherited parent model/settings",
+  "deploymentId": "unknown",
+  "tokenUsage": "unknown",
+  "apiCost": "unknown",
+  "note": "Waiting for root Phase 3 implementation gate; no application code authored."
+}

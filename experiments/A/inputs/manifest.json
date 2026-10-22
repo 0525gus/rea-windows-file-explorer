@@ -1,0 +1,37 @@
+[
+  {
+    "name": "requirements.md",
+    "sha256": "76b659ec0594607e02b1818683ccc826a7af2c8dff6583888852d351e3890c88",
+    "bytes": 20875
+  },
+  {
+    "name": "behavior-summary.md",
+    "sha256": "aebc17a6c65c553231cdaff934f9e3da8b71d2c069213a2edccbe394e3ec714d",
+    "bytes": 4815
+  },
+  {
+    "name": "original-runtime.json",
+    "sha256": "3a437011abd9f3563afefe14fe9fdc6720425331d84ded52db4f1ea89d487dc9",
+    "bytes": 97598
+  },
+  {
+    "name": "windows11-reference.png",
+    "sha256": "953d45474b9b46f4eb80243f79a1c71ce673205c11770c56bd10bcf6c78a03df",
+    "bytes": 85292
+  },
+  {
+    "name": "explorerpp-unicode-details.png",
+    "sha256": "284affc89d6a8abc60cc025fba36169a2e9d58808365309000866b7c7899f9e9",
+    "bytes": 234284
+  },
+  {
+    "name": "explorerpp-search-unicode.png",
+    "sha256": "633d85f01b9585405afc83a8d5e729ecd53e6d0fbe467eb298eb96262c65d7a0",
+    "bytes": 41918
+  },
+  {
+    "name": "create_fixtures.py",
+    "sha256": "7b02e385e33a5d8f66ebad16a3aa11a5eecb51b0260c2093db9c96bebd72e0ff",
+    "bytes": 18075
+  }
+]

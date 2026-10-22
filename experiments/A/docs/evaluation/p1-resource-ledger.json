@@ -1,0 +1,500 @@
+{
+  "definition": "All retained supervised Windows stages including failed attempts and both P0/P1 checkpoints. Elapsed sums are not active development time; model inference and unsupervised tooling are unmeasured. Windows family memory is committed bytes, not RSS.",
+  "records": [
+    {
+      "file": "artifacts\\metrics\\benchmark-20261022T001616289.metrics.json",
+      "startedAt": "2026-10-22T00:16:16.42349+09:00",
+      "exitCode": 0,
+      "elapsedSeconds": 1.3287201000002824,
+      "cpuFamilySeconds": 0.9375,
+      "peakFamilyCommittedBytes": 39419904,
+      "processes": 2
+    },
+    {
+      "file": "artifacts\\metrics\\benchmark-20261022T001923114.metrics.json",
+      "startedAt": "2026-10-22T00:19:23.248247+09:00",
+      "exitCode": 0,
+      "elapsedSeconds": 1.0459758000015427,
+      "cpuFamilySeconds": 0.9375,
+      "peakFamilyCommittedBytes": 39473152,
+      "processes": 2
+    },
+    {
+      "file": "artifacts\\metrics\\benchmark-20261022T082533507.metrics.json",
+      "startedAt": "2026-10-22T08:25:33.629215+09:00",
+      "exitCode": 0,
+      "elapsedSeconds": 0.9594493999975384,
+      "cpuFamilySeconds": 0.8125,
+      "peakFamilyCommittedBytes": 39190528,
+      "processes": 2
+    },
+    {
+      "file": "artifacts\\metrics\\package-20261022T001615189.metrics.json",
+      "startedAt": "2026-10-22T00:16:15.351412+09:00",
+      "exitCode": 0,
+      "elapsedSeconds": 0.27601289999984147,
+      "cpuFamilySeconds": 0.203125,
+      "peakFamilyCommittedBytes": 5390336,
+      "processes": 3
+    },
+    {
+      "file": "artifacts\\metrics\\package-20261022T001921114.metrics.json",
+      "startedAt": "2026-10-22T00:19:21.2488+09:00",
+      "exitCode": 0,
+      "elapsedSeconds": 0.22390529999938735,
+      "cpuFamilySeconds": 0.140625,
+      "peakFamilyCommittedBytes": 5419008,
+      "processes": 3
+    },
+    {
+      "file": "artifacts\\metrics\\package-20261022T082416918.metrics.json",
+      "startedAt": "2026-10-22T08:24:17.150216+09:00",
+      "exitCode": 0,
+      "elapsedSeconds": 0.27411600000050385,
+      "cpuFamilySeconds": 0.21875,
+      "peakFamilyCommittedBytes": 5271552,
+      "processes": 3
+    },
+    {
+      "file": "artifacts\\metrics\\render-20261022T001557642.metrics.json",
+      "startedAt": "2026-10-22T00:15:57.775124+09:00",
+      "exitCode": 0,
+      "elapsedSeconds": 0.8723256000012043,
+      "cpuFamilySeconds": 0.578125,
+      "peakFamilyCommittedBytes": 41926656,
+      "processes": 1
+    },
+    {
+      "file": "artifacts\\metrics\\render-20261022T001922308.metrics.json",
+      "startedAt": "2026-10-22T00:19:22.437234+09:00",
+      "exitCode": 0,
+      "elapsedSeconds": 0.657395500000348,
+      "cpuFamilySeconds": 0.546875,
+      "peakFamilyCommittedBytes": 42778624,
+      "processes": 1
+    },
+    {
+      "file": "artifacts\\metrics\\render-20261022T082418859.metrics.json",
+      "startedAt": "2026-10-22T08:24:19.046811+09:00",
+      "exitCode": 0,
+      "elapsedSeconds": 1.0997083999973256,
+      "cpuFamilySeconds": 0.640625,
+      "peakFamilyCommittedBytes": 42921984,
+      "processes": 1
+    },
+    {
+      "file": "artifacts\\metrics\\smoke-20261022T001641136.metrics.json",
+      "startedAt": "2026-10-22T00:16:41.269908+09:00",
+      "exitCode": 0,
+      "elapsedSeconds": 0.580941600001097,
+      "cpuFamilySeconds": 0.453125,
+      "peakFamilyCommittedBytes": 37642240,
+      "processes": 1
+    },
+    {
+      "file": "artifacts\\metrics\\smoke-20261022T001921504.metrics.json",
+      "startedAt": "2026-10-22T00:19:21.648686+09:00",
+      "exitCode": 0,
+      "elapsedSeconds": 0.6393522000016674,
+      "cpuFamilySeconds": 0.421875,
+      "peakFamilyCommittedBytes": 37498880,
+      "processes": 1
+    },
+    {
+      "file": "artifacts\\metrics\\smoke-20261022T082417485.metrics.json",
+      "startedAt": "2026-10-22T08:24:17.80306+09:00",
+      "exitCode": 0,
+      "elapsedSeconds": 1.0230070000034175,
+      "cpuFamilySeconds": 0.53125,
+      "peakFamilyCommittedBytes": 36335616,
+      "processes": 1
+    },
+    {
+      "file": "build-windows\\logs\\20261022T000658369\\build.metrics.json",
+      "startedAt": "2026-10-22T00:07:04.933833+09:00",
+      "exitCode": 2,
+      "elapsedSeconds": 10.133214299999963,
+      "cpuFamilySeconds": 15.953125,
+      "peakFamilyCommittedBytes": 538263552,
+      "processes": 14
+    },
+    {
+      "file": "build-windows\\logs\\20261022T000658369\\configure.metrics.json",
+      "startedAt": "2026-10-22T00:06:58.545989+09:00",
+      "exitCode": 0,
+      "elapsedSeconds": 6.238025500000731,
+      "cpuFamilySeconds": 3.34375,
+      "peakFamilyCommittedBytes": 219463680,
+      "processes": 71
+    },
+    {
+      "file": "build-windows\\logs\\20261022T000753137\\build.metrics.json",
+      "startedAt": "2026-10-22T00:07:54.008292+09:00",
+      "exitCode": 2,
+      "elapsedSeconds": 26.859182100000908,
+      "cpuFamilySeconds": 41.0,
+      "peakFamilyCommittedBytes": 626589696,
+      "processes": 56
+    },
+    {
+      "file": "build-windows\\logs\\20261022T000753137\\configure.metrics.json",
+      "startedAt": "2026-10-22T00:07:53.273657+09:00",
+      "exitCode": 0,
+      "elapsedSeconds": 0.5944736000001285,
+      "cpuFamilySeconds": 0.484375,
+      "peakFamilyCommittedBytes": 16629760,
+      "processes": 6
+    },
+    {
+      "file": "build-windows\\logs\\20261022T000830559\\build.metrics.json",
+      "startedAt": "2026-10-22T00:08:31.527725+09:00",
+      "exitCode": 0,
+      "elapsedSeconds": 7.238354999999501,
+      "cpuFamilySeconds": 6.875,
+      "peakFamilyCommittedBytes": 364552192,
+      "processes": 31
+    },
+    {
+      "file": "build-windows\\logs\\20261022T000830559\\configure.metrics.json",
+      "startedAt": "2026-10-22T00:08:30.705791+09:00",
+      "exitCode": 0,
+      "elapsedSeconds": 0.6780917999985832,
+      "cpuFamilySeconds": 0.59375,
+      "peakFamilyCommittedBytes": 16175104,
+      "processes": 6
+    },
+    {
+      "file": "build-windows\\logs\\20261022T000830559\\test.metrics.json",
+      "startedAt": "2026-10-22T00:08:38.896595+09:00",
+      "exitCode": 8,
+      "elapsedSeconds": 4.821606800000154,
+      "cpuFamilySeconds": 0.53125,
+      "peakFamilyCommittedBytes": 21426176,
+      "processes": 5
+    },
+    {
+      "file": "build-windows\\logs\\20261022T000925607\\build.metrics.json",
+      "startedAt": "2026-10-22T00:09:26.490483+09:00",
+      "exitCode": 0,
+      "elapsedSeconds": 11.135692599998947,
+      "cpuFamilySeconds": 11.453125,
+      "peakFamilyCommittedBytes": 394469376,
+      "processes": 39
+    },
+    {
+      "file": "build-windows\\logs\\20261022T000925607\\configure.metrics.json",
+      "startedAt": "2026-10-22T00:09:25.746212+09:00",
+      "exitCode": 0,
+      "elapsedSeconds": 0.6088362999998935,
+      "cpuFamilySeconds": 0.484375,
+      "peakFamilyCommittedBytes": 16220160,
+      "processes": 6
+    },
+    {
+      "file": "build-windows\\logs\\20261022T000925607\\test.metrics.json",
+      "startedAt": "2026-10-22T00:09:37.776662+09:00",
+      "exitCode": 8,
+      "elapsedSeconds": 4.341292099999919,
+      "cpuFamilySeconds": 0.5,
+      "peakFamilyCommittedBytes": 21053440,
+      "processes": 5
+    },
+    {
+      "file": "build-windows\\logs\\20261022T001016120\\build.metrics.json",
+      "startedAt": "2026-10-22T00:10:16.993226+09:00",
+      "exitCode": 0,
+      "elapsedSeconds": 0.8573386999996728,
+      "cpuFamilySeconds": 1.109375,
+      "peakFamilyCommittedBytes": 40505344,
+      "processes": 27
+    },
+    {
+      "file": "build-windows\\logs\\20261022T001016120\\configure.metrics.json",
+      "startedAt": "2026-10-22T00:10:16.257395+09:00",
+      "exitCode": 0,
+      "elapsedSeconds": 0.6010084999998071,
+      "cpuFamilySeconds": 0.484375,
+      "peakFamilyCommittedBytes": 16240640,
+      "processes": 6
+    },
+    {
+      "file": "build-windows\\logs\\20261022T001016120\\test.metrics.json",
+      "startedAt": "2026-10-22T00:10:17.978488+09:00",
+      "exitCode": 8,
+      "elapsedSeconds": 3.956064799998785,
+      "cpuFamilySeconds": 0.53125,
+      "peakFamilyCommittedBytes": 21344256,
+      "processes": 5
+    },
+    {
+      "file": "build-windows\\logs\\20261022T001156301\\build.metrics.json",
+      "startedAt": "2026-10-22T00:11:57.190659+09:00",
+      "exitCode": 0,
+      "elapsedSeconds": 6.376208300000144,
+      "cpuFamilySeconds": 5.8125,
+      "peakFamilyCommittedBytes": 316612608,
+      "processes": 32
+    },
+    {
+      "file": "build-windows\\logs\\20261022T001156301\\configure.metrics.json",
+      "startedAt": "2026-10-22T00:11:56.434039+09:00",
+      "exitCode": 0,
+      "elapsedSeconds": 0.6223950000003242,
+      "cpuFamilySeconds": 0.5,
+      "peakFamilyCommittedBytes": 16265216,
+      "processes": 6
+    },
+    {
+      "file": "build-windows\\logs\\20261022T001156301\\test.metrics.json",
+      "startedAt": "2026-10-22T00:12:03.700952+09:00",
+      "exitCode": 0,
+      "elapsedSeconds": 4.226407800000743,
+      "cpuFamilySeconds": 0.5,
+      "peakFamilyCommittedBytes": 21114880,
+      "processes": 5
+    },
+    {
+      "file": "build-windows\\logs\\20261022T001403251\\build.metrics.json",
+      "startedAt": "2026-10-22T00:14:04.146784+09:00",
+      "exitCode": 0,
+      "elapsedSeconds": 34.55297830000018,
+      "cpuFamilySeconds": 60.109375,
+      "peakFamilyCommittedBytes": 658997248,
+      "processes": 88
+    },
+    {
+      "file": "build-windows\\logs\\20261022T001403251\\configure.metrics.json",
+      "startedAt": "2026-10-22T00:14:03.384432+09:00",
+      "exitCode": 0,
+      "elapsedSeconds": 0.6292886000010185,
+      "cpuFamilySeconds": 0.5625,
+      "peakFamilyCommittedBytes": 16199680,
+      "processes": 6
+    },
+    {
+      "file": "build-windows\\logs\\20261022T001403251\\test.metrics.json",
+      "startedAt": "2026-10-22T00:14:38.851706+09:00",
+      "exitCode": 0,
+      "elapsedSeconds": 4.257400700000289,
+      "cpuFamilySeconds": 0.53125,
+      "peakFamilyCommittedBytes": 21106688,
+      "processes": 5
+    },
+    {
+      "file": "build-windows\\logs\\20261022T001811025\\build.metrics.json",
+      "startedAt": "2026-10-22T00:18:12.089549+09:00",
+      "exitCode": 0,
+      "elapsedSeconds": 16.39769239999987,
+      "cpuFamilySeconds": 22.484375,
+      "peakFamilyCommittedBytes": 639651840,
+      "processes": 57
+    },
+    {
+      "file": "build-windows\\logs\\20261022T001811025\\configure.metrics.json",
+      "startedAt": "2026-10-22T00:18:11.190061+09:00",
+      "exitCode": 0,
+      "elapsedSeconds": 0.7522896000009496,
+      "cpuFamilySeconds": 0.609375,
+      "peakFamilyCommittedBytes": 16207872,
+      "processes": 6
+    },
+    {
+      "file": "build-windows\\logs\\20261022T001811025\\test.metrics.json",
+      "startedAt": "2026-10-22T00:18:28.629857+09:00",
+      "exitCode": 0,
+      "elapsedSeconds": 4.315347899999324,
+      "cpuFamilySeconds": 0.515625,
+      "peakFamilyCommittedBytes": 20811776,
+      "processes": 5
+    },
+    {
+      "file": "build-windows\\logs\\20261022T071036029\\build.metrics.json",
+      "startedAt": "2026-10-22T07:10:37.276455+09:00",
+      "exitCode": 0,
+      "elapsedSeconds": 37.86108129999775,
+      "cpuFamilySeconds": 80.90625,
+      "peakFamilyCommittedBytes": 713297920,
+      "processes": 107
+    },
+    {
+      "file": "build-windows\\logs\\20261022T071036029\\configure.metrics.json",
+      "startedAt": "2026-10-22T07:10:36.298317+09:00",
+      "exitCode": 0,
+      "elapsedSeconds": 0.8184318999992684,
+      "cpuFamilySeconds": 0.65625,
+      "peakFamilyCommittedBytes": 16130048,
+      "processes": 6
+    },
+    {
+      "file": "build-windows\\logs\\20261022T071036029\\test.metrics.json",
+      "startedAt": "2026-10-22T07:11:15.260799+09:00",
+      "exitCode": 0,
+      "elapsedSeconds": 4.950469800001883,
+      "cpuFamilySeconds": 0.765625,
+      "peakFamilyCommittedBytes": 22024192,
+      "processes": 6
+    },
+    {
+      "file": "build-windows\\logs\\20261022T071231391\\build.metrics.json",
+      "startedAt": "2026-10-22T07:12:32.38871+09:00",
+      "exitCode": 0,
+      "elapsedSeconds": 12.927157799997076,
+      "cpuFamilySeconds": 15.03125,
+      "peakFamilyCommittedBytes": 397914112,
+      "processes": 83
+    },
+    {
+      "file": "build-windows\\logs\\20261022T071231391\\configure.metrics.json",
+      "startedAt": "2026-10-22T07:12:31.549493+09:00",
+      "exitCode": 0,
+      "elapsedSeconds": 0.7068839999992633,
+      "cpuFamilySeconds": 0.625,
+      "peakFamilyCommittedBytes": 16248832,
+      "processes": 6
+    },
+    {
+      "file": "build-windows\\logs\\20261022T071231391\\test.metrics.json",
+      "startedAt": "2026-10-22T07:12:45.440422+09:00",
+      "exitCode": 8,
+      "elapsedSeconds": 24.105710299998464,
+      "cpuFamilySeconds": 1.0625,
+      "peakFamilyCommittedBytes": 50757632,
+      "processes": 7
+    },
+    {
+      "file": "build-windows\\logs\\20261022T071531508\\build.metrics.json",
+      "startedAt": "2026-10-22T07:15:32.794593+09:00",
+      "exitCode": 0,
+      "elapsedSeconds": 44.66139920000569,
+      "cpuFamilySeconds": 89.40625,
+      "peakFamilyCommittedBytes": 722579456,
+      "processes": 106
+    },
+    {
+      "file": "build-windows\\logs\\20261022T071531508\\configure.metrics.json",
+      "startedAt": "2026-10-22T07:15:31.704827+09:00",
+      "exitCode": 0,
+      "elapsedSeconds": 0.9027351999975508,
+      "cpuFamilySeconds": 0.71875,
+      "peakFamilyCommittedBytes": 16330752,
+      "processes": 6
+    },
+    {
+      "file": "build-windows\\logs\\20261022T071531508\\test.metrics.json",
+      "startedAt": "2026-10-22T07:16:17.587374+09:00",
+      "exitCode": 8,
+      "elapsedSeconds": 20.838029400001687,
+      "cpuFamilySeconds": 0.90625,
+      "peakFamilyCommittedBytes": 21700608,
+      "processes": 7
+    },
+    {
+      "file": "build-windows\\logs\\20261022T071724994\\build.metrics.json",
+      "startedAt": "2026-10-22T07:17:26.048468+09:00",
+      "exitCode": 0,
+      "elapsedSeconds": 21.23525559999689,
+      "cpuFamilySeconds": 41.25,
+      "peakFamilyCommittedBytes": 737722368,
+      "processes": 69
+    },
+    {
+      "file": "build-windows\\logs\\20261022T071724994\\configure.metrics.json",
+      "startedAt": "2026-10-22T07:17:25.134085+09:00",
+      "exitCode": 0,
+      "elapsedSeconds": 0.7443577999947593,
+      "cpuFamilySeconds": 0.640625,
+      "peakFamilyCommittedBytes": 16187392,
+      "processes": 6
+    },
+    {
+      "file": "build-windows\\logs\\20261022T071724994\\test.metrics.json",
+      "startedAt": "2026-10-22T07:17:47.445265+09:00",
+      "exitCode": 8,
+      "elapsedSeconds": 20.98226060000161,
+      "cpuFamilySeconds": 1.15625,
+      "peakFamilyCommittedBytes": 21647360,
+      "processes": 7
+    },
+    {
+      "file": "build-windows\\logs\\20261022T072318071\\build.metrics.json",
+      "startedAt": "2026-10-22T07:23:19.167618+09:00",
+      "exitCode": 0,
+      "elapsedSeconds": 18.639831699998467,
+      "cpuFamilySeconds": 23.15625,
+      "peakFamilyCommittedBytes": 400670720,
+      "processes": 62
+    },
+    {
+      "file": "build-windows\\logs\\20261022T072318071\\configure.metrics.json",
+      "startedAt": "2026-10-22T07:23:18.248363+09:00",
+      "exitCode": 0,
+      "elapsedSeconds": 0.7818303999956697,
+      "cpuFamilySeconds": 0.53125,
+      "peakFamilyCommittedBytes": 16621568,
+      "processes": 6
+    },
+    {
+      "file": "build-windows\\logs\\20261022T072318071\\test.metrics.json",
+      "startedAt": "2026-10-22T07:23:37.937841+09:00",
+      "exitCode": 8,
+      "elapsedSeconds": 21.331587599997874,
+      "cpuFamilySeconds": 1.03125,
+      "peakFamilyCommittedBytes": 21762048,
+      "processes": 7
+    },
+    {
+      "file": "build-windows\\logs\\20261022T072457720\\build.metrics.json",
+      "startedAt": "2026-10-22T07:24:58.723098+09:00",
+      "exitCode": 0,
+      "elapsedSeconds": 30.045899600001576,
+      "cpuFamilySeconds": 55.578125,
+      "peakFamilyCommittedBytes": 743936000,
+      "processes": 83
+    },
+    {
+      "file": "build-windows\\logs\\20261022T072457720\\configure.metrics.json",
+      "startedAt": "2026-10-22T07:24:57.865801+09:00",
+      "exitCode": 0,
+      "elapsedSeconds": 0.7277624000053038,
+      "cpuFamilySeconds": 0.59375,
+      "peakFamilyCommittedBytes": 16175104,
+      "processes": 6
+    },
+    {
+      "file": "build-windows\\logs\\20261022T072457720\\test.metrics.json",
+      "startedAt": "2026-10-22T07:25:28.903144+09:00",
+      "exitCode": 0,
+      "elapsedSeconds": 5.951573700003792,
+      "cpuFamilySeconds": 0.984375,
+      "peakFamilyCommittedBytes": 21843968,
+      "processes": 7
+    },
+    {
+      "file": "build-windows\\logs\\20261022T082332086\\build.metrics.json",
+      "startedAt": "2026-10-22T08:23:33.868421+09:00",
+      "exitCode": 0,
+      "elapsedSeconds": 21.18583480000234,
+      "cpuFamilySeconds": 26.078125,
+      "peakFamilyCommittedBytes": 405434368,
+      "processes": 62
+    },
+    {
+      "file": "build-windows\\logs\\20261022T082332086\\configure.metrics.json",
+      "startedAt": "2026-10-22T08:23:32.275071+09:00",
+      "exitCode": 0,
+      "elapsedSeconds": 1.3838568999999552,
+      "cpuFamilySeconds": 0.890625,
+      "peakFamilyCommittedBytes": 16269312,
+      "processes": 6
+    },
+    {
+      "file": "build-windows\\logs\\20261022T082332086\\test.metrics.json",
+      "startedAt": "2026-10-22T08:23:55.19489+09:00",
+      "exitCode": 0,
+      "elapsedSeconds": 6.103193500006455,
+      "cpuFamilySeconds": 1.078125,
+      "peakFamilyCommittedBytes": 21528576,
+      "processes": 7
+    }
+  ]
+}

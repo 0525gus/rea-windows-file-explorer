@@ -1,0 +1,7 @@
+{
+  "retainedSupervisedStages": 55,
+  "failedStages": 9,
+  "recordedCpuFamilySeconds": 524.4375,
+  "recordedElapsedStageSeconds": 456.0592440000073,
+  "maxObservedFamilyCommittedBytes": 743936000.0
+}

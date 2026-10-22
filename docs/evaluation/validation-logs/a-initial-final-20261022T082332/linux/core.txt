@@ -1,0 +1,15 @@
+********* Start testing of CoreTest *********
+Config: Using QtTest library 6.4.2, Qt 6.4.2 (x86_64-little_endian-lp64 shared (dynamic) release build; by GCC 13.2.0), ubuntu 24.04
+PASS   : CoreTest::initTestCase()
+PASS   : CoreTest::historyTransaction()
+PASS   : CoreTest::failurePreservesCommittedState()
+PASS   : CoreTest::backForwardUpRefresh()
+PASS   : CoreTest::failedHistoryDoesNotMoveCursor()
+PASS   : CoreTest::independentTabsAndDefault()
+PASS   : CoreTest::lateCompletionIsDiscarded()
+PASS   : CoreTest::closeDuringListing()
+PASS   : CoreTest::shutdownOwnsWorker()
+PASS   : CoreTest::fileActivationUsesPlatform()
+PASS   : CoreTest::cleanupTestCase()
+Totals: 11 passed, 0 failed, 0 skipped, 0 blacklisted, 1147ms
+********* Finished testing of CoreTest *********

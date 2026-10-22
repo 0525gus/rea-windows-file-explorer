@@ -1,0 +1,26 @@
+********* Start testing of OperationsTest *********
+Config: Using QtTest library 6.4.2, Qt 6.4.2 (x86_64-little_endian-lp64 shared (dynamic) release build; by GCC 13.2.0), ubuntu 24.04
+PASS   : OperationsTest::initTestCase()
+PASS   : OperationsTest::multiCopyUnicodeAndTree()
+PASS   : OperationsTest::conflictPreflightIsAllOrNothing()
+PASS   : OperationsTest::skipAndConfirmedReplace()
+PASS   : OperationsTest::moveAndRenameAndMkdir()
+PASS   : OperationsTest::moveCollisionSkipThenReplace()
+PASS   : OperationsTest::copyPreservesModifiedTime()
+PASS   : OperationsTest::occupiedDirectoryNeverMerged()
+SKIP   : OperationsTest::lockedSourceCopyPreservesBothSides() Windows mandatory sharing lock fixture is not available on Linux; permission settings were not changed.
+   Loc: [/mnt/c/dev/Windows_fileexplore/experiments/A/tests/test_operations.cpp(232)]
+PASS   : OperationsTest::renameFailureAndSourceSafety()
+PASS   : OperationsTest::deleteRequiresExplicitConfirmation()
+PASS   : OperationsTest::safePathRejections()
+PASS   : OperationsTest::cancellationRemovesOnlyOwnedStage()
+PASS   : OperationsTest::destinationAppearsDuringCopy()
+PASS   : OperationsTest::sourceChangesAfterPreflight()
+PASS   : OperationsTest::cycleMutationRejected()
+PASS   : OperationsTest::asyncProgressAndShutdown()
+PASS   : OperationsTest::mixedItemResultsAndLateCancellation()
+SKIP   : OperationsTest::retainedCleanupOwnershipAndRetry() Windows exclusive file sharing provides this real cleanup-failure fixture; Linux permission mutation is not authorized.
+   Loc: [/mnt/c/dev/Windows_fileexplore/experiments/A/tests/test_operations.cpp(502)]
+PASS   : OperationsTest::cleanupTestCase()
+Totals: 18 passed, 0 failed, 2 skipped, 0 blacklisted, 1036ms
+********* Finished testing of OperationsTest *********

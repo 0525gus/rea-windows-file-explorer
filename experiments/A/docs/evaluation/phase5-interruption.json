@@ -1,0 +1,8 @@
+{
+  "resumedUtc": "2026-10-21T22:05:43.3143734Z",
+  "event": "Parent reported usage-limit interruption during early Phase5",
+  "interruptionStartUtc": "unknown",
+  "interruptionDurationSeconds": "unknown",
+  "activeWorkSeconds": "not derivable from wall-clock stage boundaries",
+  "uiOwnership": "root"
+}
